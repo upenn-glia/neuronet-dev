@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Academic Term'
+vid: academic_term
+description: ''
+hierarchy: 0
+weight: 0

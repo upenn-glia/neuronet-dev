@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Degree
+vid: degree
+description: ''
+hierarchy: 0
+weight: 0

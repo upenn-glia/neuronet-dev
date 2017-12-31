@@ -23,3 +23,16 @@ $local_settings = __DIR__ . "/settings.local.php";
 if (file_exists($local_settings)) {
   include $local_settings;
 }
+if (!defined('PANTHEON_ENVIRONMENT')) {
+	$databases['default']['default'] = array (
+	    'database' => 'neuronet',
+	    'username' => 'neuronet',
+	    'password' => 'neuronet',
+	    'host' => '127.0.0.1',
+	    'driver' => 'mysql',
+	    'prefix' => '',
+	    'unix_socket' => '/Applications/MAMP/tmp/mysql/mysql.sock',
+	  );
+
+	$settings['hash_salt'] = 'asdf';
+}

@@ -1,0 +1,17 @@
+name: Profile
+description: 'Provides Profile content type and related configuration. NGG alumnus profile'
+type: module
+core: 8.x
+dependencies:
+  - core
+  - feeds
+  - field
+  - job
+  - menu_ui
+  - node
+  - path
+  - pathauto
+  - taxonomy
+  - text
+  - user
+  - views

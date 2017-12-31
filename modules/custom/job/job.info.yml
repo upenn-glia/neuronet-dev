@@ -1,0 +1,19 @@
+name: Job
+description: 'Provides Job content type and related configuration. Alumnus job'
+type: module
+core: 8.x
+dependencies:
+  - block
+  - core
+  - ctools
+  - datetime
+  - feeds
+  - field
+  - menu_ui
+  - node
+  - path
+  - pathauto
+  - profile
+  - taxonomy
+  - user
+  - views

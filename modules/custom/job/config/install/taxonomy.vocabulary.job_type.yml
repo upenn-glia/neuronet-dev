@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Job Type'
+vid: job_type
+description: ''
+hierarchy: 0
+weight: 0
