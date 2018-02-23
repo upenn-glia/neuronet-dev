@@ -1,0 +1,9 @@
+uuid: c81268c7-d06e-4141-a6cd-3832f3a47772
+langcode: en
+status: true
+dependencies: {  }
+name: 'Academic Term'
+vid: academic_term
+description: ''
+hierarchy: 0
+weight: 0

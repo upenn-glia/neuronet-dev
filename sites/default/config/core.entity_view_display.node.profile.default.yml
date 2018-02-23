@@ -1,0 +1,98 @@
+uuid: 147509b1-5ae5-42b9-a695-ba98a743a636
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.profile.body
+    - field.field.node.profile.feeds_item
+    - field.field.node.profile.field_degree
+    - field.field.node.profile.field_entry_term
+    - field.field.node.profile.field_exit_term
+    - field.field.node.profile.field_first_name
+    - field.field.node.profile.field_grad_group
+    - field.field.node.profile.field_help_with
+    - field.field.node.profile.field_last_name
+    - field.field.node.profile.field_links
+    - field.field.node.profile.field_research_area
+    - node.type.profile
+  module:
+    - link
+    - text
+    - user
+id: node.profile.default
+targetEntityType: node
+bundle: profile
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_degree:
+    weight: 2
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_entry_term:
+    weight: 3
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_exit_term:
+    weight: 4
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_grad_group:
+    weight: 1
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_help_with:
+    weight: 7
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_links:
+    weight: 5
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_research_area:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  feeds_item: true
+  field_first_name: true
+  field_last_name: true
+  links: true

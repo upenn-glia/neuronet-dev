@@ -1,0 +1,29 @@
+uuid: ff1221a3-1db9-470b-9eff-de5f37325b57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_help_with
+    - node.type.profile
+    - taxonomy.vocabulary.i_can_help_with
+id: node.profile.field_help_with
+field_name: field_help_with
+entity_type: node
+bundle: profile
+label: 'I Can Help With'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      i_can_help_with: i_can_help_with
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

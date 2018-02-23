@@ -1,0 +1,18 @@
+uuid: 37460da4-67d5-49bb-a820-ca8c716b9003
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.job
+  module:
+    - user
+id: node.job.teaser
+targetEntityType: node
+bundle: job
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden: {  }

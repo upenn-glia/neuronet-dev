@@ -1,0 +1,20 @@
+uuid: d4f1c422-ae0d-40b0-a85c-730b86502546
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_entry_term
+field_name: field_entry_term
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

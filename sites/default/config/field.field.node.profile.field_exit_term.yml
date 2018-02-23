@@ -1,0 +1,29 @@
+uuid: 98c1d8b2-882c-4e07-b3d7-3e79f41e3ddf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exit_term
+    - node.type.profile
+    - taxonomy.vocabulary.academic_term
+id: node.profile.field_exit_term
+field_name: field_exit_term
+entity_type: node
+bundle: profile
+label: 'Exit Term'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      academic_term: academic_term
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
