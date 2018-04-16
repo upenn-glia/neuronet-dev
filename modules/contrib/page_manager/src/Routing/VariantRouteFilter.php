@@ -1,17 +1,12 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\page_manager\Routing\VariantRouteFilter.
- */
-
 namespace Drupal\page_manager\Routing;
 
 use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Path\CurrentPathStack;
-use Symfony\Cmf\Component\Routing\NestedMatcher\RouteFilterInterface;
+use Drupal\Core\Routing\FilterInterface;
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -25,7 +20,7 @@ use Symfony\Component\Routing\RouteCollection;
  * needs to be filtered. Here is where we run variant selection, which requires
  * gathering contexts.
  */
-class VariantRouteFilter implements RouteFilterInterface {
+class VariantRouteFilter implements FilterInterface {
 
   use RouteEnhancerCollectorTrait;
 
@@ -141,9 +136,9 @@ class VariantRouteFilter implements RouteFilterInterface {
           return $name;
         }
 
-        // Restore the original request attributes, this must be done in the loop
-        // or the request attributes will not be calculated correctly for the
-        // next route.
+        // Restore the original request attributes, this must be done in
+        // the loop or the request attributes will not be calculated correctly
+        // for the next route.
         $request->attributes->replace($original_attributes);
         $this->requestStack->pop();
       }
