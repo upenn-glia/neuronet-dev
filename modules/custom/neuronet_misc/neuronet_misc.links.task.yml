@@ -1,0 +1,4 @@
+neuronet_misc.node.account:
+  route_name: neuronet_misc.account
+  base_route: entity.node.canonical
+  title: Account

@@ -1,0 +1,19 @@
+neuronet_misc.content:
+  path: '/hello'
+  defaults:
+    _controller: '\Drupal\neuronet_misc\Controller\HelloController::content'
+    _title: 'Hello World'
+  requirements:
+    _permission: 'access content'
+
+neuronet_misc.account:
+  path: '/node/{node}/account'
+  defaults:
+    _controller: '\Drupal\neuronet_misc\Controller\AccountController::content'
+    _title: 'Account'
+  requirements:
+    _custom_access: '\Drupal\neuronet_misc\Controller\AccountController::access'
+  options:
+    parameters:
+      node:
+        type: entity:node
