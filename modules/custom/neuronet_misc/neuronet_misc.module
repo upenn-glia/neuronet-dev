@@ -8,7 +8,9 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use \Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
+use \Drupal\Core\Session\AccountInterface;
+use \Drupal\node\NodeInterface;
+use Drupal\Core\Access\AccessResult;
 /**
  * Implements hook_help().
  */
@@ -85,5 +87,19 @@ function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $rout
         $response->send();
       }
     }
-   }    
+   }
+   /*$user = User::load(21);
+   $link = user_pass_reset_url($user);
+   kint($link);*/
+}
+
+function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  $type = $node->type->entity->label();
+  if ($type == 'Profile' && $op == 'update') {
+    $user = User::load($account->id());
+    if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
+      return AccessResult::allowedIf(True);
+    }
+  }
+  //$type = $node::getType(); 
 }
