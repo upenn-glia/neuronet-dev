@@ -103,3 +103,20 @@ function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $a
   }
   //$type = $node::getType(); 
 }
+
+function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'node_profile_edit_form') {
+    $user = User::load(\Drupal::currentUser()->id());
+    if (!$user->hasRole('administrator')) {
+      $form['revision_information']['#access'] = False;
+    }
+  }
+  if ($form_id == 'user_form') {
+    $user = User::load(\Drupal::currentUser()->id());
+    if (!$user->hasRole('administrator')) {
+      $form['field_profile']['#access'] = False;
+      unset($form['contact']);
+      $form['user_picture']['#access'] = False; 
+    }
+  }
+}
