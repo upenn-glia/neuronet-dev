@@ -6,6 +6,8 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\user\Entity\User;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Implements hook_help().
@@ -51,4 +53,37 @@ function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
     	unset($view->result[$index]);
     }
   }
+}
+
+function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $route_match*/){  
+   $current_path = \Drupal::request()->getRequestUri();
+   $path_args = explode('/', $current_path);
+   // redirect user page to profile
+   if ($path_args[1] == 'user' && is_numeric($path_args[2]) && (!isset($path_args[3]) || is_null($path_args[3]))) {
+    $user = User::load($path_args[2]);
+    if(is_object($user)) {
+      $connection = \Drupal::database();
+      $query = $connection->query("SELECT field_profile_target_id FROM {user__field_profile} WHERE entity_id = :entity_id", [':entity_id' => $path_args[2]]);
+      $result = $query->fetchAll();
+      if (!empty($result)) {
+        $nid = $result[0]->field_profile_target_id;
+        $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
+        $response = new RedirectResponse($alias);
+        $response->send();
+      }
+    }
+   } 
+   if ($path_args[1] == 'user' && is_numeric($path_args[2]) && $path_args[3] == 'edit') {
+    $user = User::load($path_args[2]);
+    if(is_object($user)) {
+      $connection = \Drupal::database();
+      $query = $connection->query("SELECT field_profile_target_id FROM {user__field_profile} WHERE entity_id = :entity_id", [':entity_id' => $path_args[2]]);
+      $result = $query->fetchAll();
+      if (!empty($result)) {
+        $nid = $result[0]->field_profile_target_id;
+        $response = new RedirectResponse('/node/' . $nid . '/account');
+        $response->send();
+      }
+    }
+   }    
 }
