@@ -76,7 +76,7 @@ function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $rout
       }
     }
    } 
-   if ($path_args[1] == 'user' && is_numeric($path_args[2]) && $path_args[3] == 'edit') {
+   if ((isset($path_args[1]) && isset($path_args[2]) && isset($path_args[3])) && $path_args[1] == 'user' && is_numeric($path_args[2]) && $path_args[3] == 'edit') {
     $user = User::load($path_args[2]);
     if(is_object($user)) {
       $connection = \Drupal::database();
@@ -133,8 +133,7 @@ function neuronet_misc_mail_alter(&$message){
   // We can use variable_get() to get the $conf variable set in our settings.php file
   // Note that by setting the default to TRUE, the default setting for the system is to be
   // a development environment. Set this to FALSE to have the default be a live environment.
-  if (!isset($_SERVER['PANTHEON_ENVIRONMENT']) ||
-  $_SERVER['PANTHEON_ENVIRONMENT'] != 'live') {
+  if (!isset($_SERVER['PANTHEON_ENVIRONMENT'])) {
     // First: Prevent the mail from being sent
     $message['send'] = FALSE;
  
