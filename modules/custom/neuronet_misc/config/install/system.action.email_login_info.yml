@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: email_login_info
+label: 'Email login info'
+type: node
+plugin: email_login_info
+configuration: {  }

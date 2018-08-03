@@ -17,3 +17,19 @@ neuronet_misc.account:
     parameters:
       node:
         type: entity:node
+
+neuronet_misc.email_login:
+  path: '/email-login-link-single/{node}'
+  defaults:
+    _controller: '\Drupal\neuronet_misc\Controller\EmailController::sendIndividualEmail'
+    _title: 'Email Login Callback'
+  requirements:
+    _permission: 'access neuronet admin'
+
+neuronet_misc.email_login_group:
+  path: '/email-login-link-group'
+  defaults:
+    _controller: '\Drupal\neuronet_misc\Controller\EmailController::sendGroupEmail'
+    _title: 'Email Group Login Callback'
+  requirements:
+    _permission: 'access neuronet admin'

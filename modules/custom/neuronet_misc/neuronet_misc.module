@@ -58,6 +58,7 @@ function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
 }
 
 function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $route_match*/){  
+   $variables['#attached']['library'][] = 'neuronet_misc/neuronet_misc';
    $current_path = \Drupal::request()->getRequestUri();
    $path_args = explode('/', $current_path);
    // redirect user page to profile
@@ -118,5 +119,27 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
       unset($form['contact']);
       $form['user_picture']['#access'] = False; 
     }
+  }
+}
+
+/*
+ *  Implements hook_mail_alter()
+ *    
+ *  This function stops all emails from being sent from my development environment
+ *  I took it from http://www.jaypan.com/tutorial/preventing-emails-being-sent-drupal-7-development-environment
+*/
+function neuronet_misc_mail_alter(&$message){
+  // We don't want to send emails if the variable has not been set, or if it has been set and is TRUE.
+  // We can use variable_get() to get the $conf variable set in our settings.php file
+  // Note that by setting the default to TRUE, the default setting for the system is to be
+  // a development environment. Set this to FALSE to have the default be a live environment.
+  if (!isset($_SERVER['PANTHEON_ENVIRONMENT']) ||
+  $_SERVER['PANTHEON_ENVIRONMENT'] != 'live') {
+    // First: Prevent the mail from being sent
+    $message['send'] = FALSE;
+ 
+    // Next: Log the mail so it can be debugged if necessary
+    $notice = 'The following email was not sent: <pre> <br/>Subject: ' .  $message['subject'] . '<br/>' . implode('', $message['body']) . print_r($message, TRUE) . '</pre>';
+    \Drupal::logger('neuronet_misc')->notice($notice);
   }
 }

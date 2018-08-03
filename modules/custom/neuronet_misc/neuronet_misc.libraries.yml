@@ -1,0 +1,6 @@
+neuronet_misc:
+  version: 1.x
+  js:
+    js/neuronet_misc.js: {}
+  dependencies:
+    - core/jquery
