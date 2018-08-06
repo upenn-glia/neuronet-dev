@@ -2,6 +2,10 @@ action.configuration.email_login_info:
   type: action_configuration_default
   label: 'Email login info'
 
+action.configuration.pass_reset:
+  type: action_configuration_default
+  label: 'Email password reset link'
+
 action.configuration.term_push_front:
   type: action_configuration_default
   label: 'Push term in front'
