@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use \Drupal\Core\Session\AccountInterface;
 use \Drupal\node\NodeInterface;
 use Drupal\Core\Access\AccessResult;
+use \Drupal\node\Entity\Node;
 /**
  * Implements hook_help().
  */
@@ -114,6 +115,7 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
     $user = User::load(\Drupal::currentUser()->id());
     if (!$user->hasRole('administrator')) {
       $form['revision_information']['#access'] = False;
+      $form['field_email']['#access'] = False; 
     }
   }
   if ($form_id == 'user_form') {
@@ -147,12 +149,22 @@ function neuronet_misc_mail_alter(&$message){
   }
 }
 
-/*function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
-  kint($entity->getEntityTypeId());
-  if ($entity->getEntityTypeId() == 'node') {
+function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'user') {
     $entity_id;
-    $entity->id();
-    $node = \Drupal\node\Entity\Node::load($entity->id());
-    $node->get
+    $user = User::load($entity->id());
+    $connection = \Drupal::database();
+      $query = $connection->query("SELECT field_profile_target_id FROM {user__field_profile} WHERE entity_id = :entity_id", [':entity_id' => $entity->id()]);
+      $result = $query->fetchAll();
+    if (!empty($result)) {
+      $nid = $result[0]->field_profile_target_id;
+      $node = Node::load($nid);
+      $new_email = $user->getEmail();
+      $node->set('field_email', $new_email);
+      $node->save();
+      // if email exists: 
+        // throw new \Exception(t('Fields are not unique!'));
+    }
+    
   }
-}*/
+}
