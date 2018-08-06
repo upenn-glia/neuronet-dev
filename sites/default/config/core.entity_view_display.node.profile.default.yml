@@ -5,7 +5,11 @@ dependencies:
   config:
     - field.field.node.profile.body
     - field.field.node.profile.feeds_item
+    - field.field.node.profile.field_alma_mater
+    - field.field.node.profile.field_alumni
+    - field.field.node.profile.field_classes_taken
     - field.field.node.profile.field_degree
+    - field.field.node.profile.field_email
     - field.field.node.profile.field_entry_term
     - field.field.node.profile.field_exit_term
     - field.field.node.profile.field_first_name
@@ -13,66 +17,163 @@ dependencies:
     - field.field.node.profile.field_help_with
     - field.field.node.profile.field_last_name
     - field.field.node.profile.field_links
+    - field.field.node.profile.field_locations_lived
+    - field.field.node.profile.field_matriculation_year
+    - field.field.node.profile.field_neuroscience_interests
+    - field.field.node.profile.field_ngg_activities
+    - field.field.node.profile.field_non_ngg_activities
+    - field.field.node.profile.field_profile_image
     - field.field.node.profile.field_research_area
+    - field.field.node.profile.field_thesis_lab
+    - field.field.node.profile.field_undergraduate_major
+    - image.style.medium
     - node.type.profile
   module:
+    - ds
+    - image
     - link
     - text
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: bs_2col_stacked
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        layout:
+          wrapper: div
+          classes:
+            row: row
+          add_layout_class: 1
+          attributes: ''
+        regions:
+          top:
+            wrapper: div
+            classes:
+              col-sm-12: col-sm-12
+            add_region_classes: 1
+            attributes: ''
+          left:
+            wrapper: div
+            classes:
+              col-sm-6: col-sm-6
+            add_region_classes: 1
+            attributes: ''
+          right:
+            wrapper: div
+            classes:
+              col-sm-6: col-sm-6
+            add_region_classes: 1
+            attributes: ''
+          bottom:
+            wrapper: div
+            classes:
+              col-sm-12: col-sm-12
+            add_region_classes: 1
+            attributes: ''
+    regions:
+      top:
+        - field_grad_group
+        - field_entry_term
+        - field_exit_term
+        - field_links
+        - field_research_area
+        - field_help_with
+      left:
+        - field_profile_image
+        - field_matriculation_year
+        - field_degree
+        - field_classes_taken
+        - field_email
+      right:
+        - field_undergraduate_major
+        - field_alma_mater
+        - body
+        - field_locations_lived
+        - field_non_ngg_activities
+        - field_thesis_lab
+        - field_neuroscience_interests
+        - field_ngg_activities
 id: node.profile.default
 targetEntityType: node
 bundle: profile
 mode: default
 content:
   body:
+    type: text_trimmed
+    weight: 13
+    region: right
     label: hidden
-    type: text_default
-    weight: 0
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_alma_mater:
+    weight: 12
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
+  field_classes_taken:
+    weight: 9
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+  field_degree:
+    weight: 8
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+  field_email:
+    weight: 10
+    label: above
     settings: {  }
     third_party_settings: {  }
-    region: content
-  field_degree:
-    weight: 2
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
+    type: email_mailto
+    region: left
   field_entry_term:
-    weight: 3
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_exit_term:
-    weight: 4
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_grad_group:
     weight: 1
     label: inline
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
+    region: top
+  field_exit_term:
+    weight: 2
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: top
+  field_grad_group:
+    weight: 0
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: top
   field_help_with:
-    weight: 7
+    weight: 5
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
+    region: top
   field_links:
-    weight: 5
+    weight: 3
     label: above
     settings:
       trim_length: 80
@@ -82,17 +183,82 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-    region: content
-  field_research_area:
-    weight: 6
+    region: top
+  field_locations_lived:
+    weight: 14
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
+    region: right
+  field_matriculation_year:
+    weight: 7
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+  field_neuroscience_interests:
+    weight: 17
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
+  field_ngg_activities:
+    weight: 18
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
+  field_non_ngg_activities:
+    weight: 15
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: right
+  field_profile_image:
+    weight: 6
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: left
+  field_research_area:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: top
+  field_thesis_lab:
+    weight: 16
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
+  field_undergraduate_major:
+    weight: 11
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
 hidden:
   feeds_item: true
+  field_alumni: true
   field_first_name: true
   field_last_name: true
   links: true

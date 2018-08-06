@@ -1,0 +1,9 @@
+uuid: 7f748f1e-59b1-4ebb-b1d3-29728b647eb3
+langcode: en
+status: true
+dependencies: {  }
+name: 'Journal Clubs'
+vid: journal_clubs
+description: ''
+hierarchy: 0
+weight: 0

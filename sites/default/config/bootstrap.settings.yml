@@ -5,7 +5,7 @@ _core:
 favicon:
   mimetype: image/vnd.microsoft.icon
   path: ''
-  url: ''
+  url: 'http://neuronet.yes/themes/bootstrap/favicon.ico'
   use_default: true
 features:
   comment_user_picture: true
@@ -16,3 +16,10 @@ logo:
   path: ''
   url: ''
   use_default: true
+table_responsive: '-1'
+table: ''
+css_enabled: 1
+css: ".form-group {\r\n\tmargin-bottom: 15px !important;\r\n}"
+plaintext_enabled: 0
+autopreview_enabled: 0
+preview_path: ''

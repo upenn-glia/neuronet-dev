@@ -7,16 +7,16 @@ dependencies:
 id: profile
 label: Profile
 type: 'canonical_entities:node'
-pattern: 'profile/[node:title]'
+pattern: '[node:title]'
 selection_criteria:
-  c05edf50-cff0-4be3-b0a4-992cce13a7b0:
+  bcf8c5b6-678b-48b6-b1e2-7b29e0357811:
     id: node_type
     bundles:
       profile: profile
     negate: false
     context_mapping:
       node: node
-    uuid: c05edf50-cff0-4be3-b0a4-992cce13a7b0
+    uuid: bcf8c5b6-678b-48b6-b1e2-7b29e0357811
 selection_logic: and
 weight: -5
 relationships: {  }

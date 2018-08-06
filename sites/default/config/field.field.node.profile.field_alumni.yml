@@ -1,0 +1,23 @@
+uuid: 7bc6b071-c3a9-4d60-a603-a59e8d74058a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_alumni
+    - node.type.profile
+id: node.profile.field_alumni
+field_name: field_alumni
+entity_type: node
+bundle: profile
+label: Alumni
+description: 'Check this box if the person is alumni.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,14 @@
+uuid: abed9187-f8ed-4357-9501-7f010a90126b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.alumni
+  module:
+    - user
+id: user_remove_role_action.alumni
+label: 'Remove the alumni role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: alumni

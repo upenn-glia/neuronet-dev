@@ -1,6 +1,8 @@
 module:
   admin_toolbar: 0
   adminimal_admin_toolbar: 0
+  auto_entitylabel: 0
+  autocomplete_deluxe: 0
   automated_cron: 0
   block: 0
   block_content: 0
@@ -9,10 +11,12 @@ module:
   ckeditor: 0
   color: 0
   comment: 0
+  conditional_fields: 0
   config: 0
   config_update: 0
   contact: 0
   contextual: 0
+  css_editor: 0
   ctools: 0
   datetime: 0
   dblog: 0
@@ -22,6 +26,7 @@ module:
   features_ui: 0
   feeds: 0
   field: 0
+  field_group: 0
   field_ui: 0
   file: 0
   filter: 0
@@ -31,6 +36,7 @@ module:
   kint: 0
   layout_discovery: 0
   link: 0
+  login_emailusername: 0
   menu_ui: 0
   neuronet_misc: 0
   node: 0
@@ -43,6 +49,7 @@ module:
   rdf: 0
   search: 0
   shortcut: 0
+  smtp: 0
   system: 0
   taxonomy: 0
   taxonomy_manager: 0
@@ -51,7 +58,10 @@ module:
   toolbar: 0
   tour: 0
   user: 0
+  views_bootstrap: 0
+  views_bulk_operations: 0
   views_ui: 0
+  ds: 1
   menu_link_content: 1
   pathauto: 1
   views: 10
@@ -63,6 +73,10 @@ theme:
   seven: 0
   adminimal_theme: 0
   bootstrap: 0
+  yorkshire: 0
+  material_admin: 0
+  elevenfeat: 0
+  eleven: 0
 profile: standard
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

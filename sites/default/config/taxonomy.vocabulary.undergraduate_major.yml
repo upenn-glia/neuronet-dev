@@ -1,0 +1,9 @@
+uuid: a9b83408-8f5b-4182-b02f-9a1a1093ee42
+langcode: en
+status: true
+dependencies: {  }
+name: 'Undergraduate Major'
+vid: undergraduate_major
+description: ''
+hierarchy: 0
+weight: 0

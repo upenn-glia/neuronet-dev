@@ -1,0 +1,20 @@
+uuid: c0f1214c-7e1f-4822-abe2-478cacf23928
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - user
+id: user.field_profile
+field_name: field_profile
+entity_type: user
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

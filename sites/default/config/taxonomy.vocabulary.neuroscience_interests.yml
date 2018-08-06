@@ -1,0 +1,9 @@
+uuid: 240de7e9-4b78-4f66-98e6-f5dfbd807ea9
+langcode: en
+status: true
+dependencies: {  }
+name: 'Neuroscience Interests'
+vid: neuroscience_interests
+description: ''
+hierarchy: 0
+weight: 0

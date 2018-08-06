@@ -1,0 +1,29 @@
+uuid: 86aded62-c907-4d4c-a567-a2abcfcc7a8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_matriculation_year
+    - node.type.profile
+    - taxonomy.vocabulary.matriculation_year
+id: node.profile.field_matriculation_year
+field_name: field_matriculation_year
+entity_type: node
+bundle: profile
+label: 'Matriculation Year'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      matriculation_year: matriculation_year
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

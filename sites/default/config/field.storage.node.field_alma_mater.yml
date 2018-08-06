@@ -1,0 +1,20 @@
+uuid: 0c21c06e-0299-4070-a545-bec8b0f6ccd3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_alma_mater
+field_name: field_alma_mater
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

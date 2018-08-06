@@ -1,0 +1,13 @@
+uuid: 9caa0554-7fd4-44f1-aa56-94f7463a3f93
+langcode: en
+status: true
+dependencies: {  }
+id: deputy_admin
+label: 'deputy admin'
+weight: 4
+is_admin: null
+permissions:
+  - 'access neuronet admin'
+  - 'access toolbar'
+  - 'edit any profile content'
+  - 'view the administration theme'

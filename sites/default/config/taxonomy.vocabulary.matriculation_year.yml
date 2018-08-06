@@ -1,0 +1,9 @@
+uuid: 31d858b8-06cb-4467-8c1e-3e9ca810b87f
+langcode: en
+status: true
+dependencies: {  }
+name: 'Matriculation Year'
+vid: matriculation_year
+description: ''
+hierarchy: 0
+weight: 0

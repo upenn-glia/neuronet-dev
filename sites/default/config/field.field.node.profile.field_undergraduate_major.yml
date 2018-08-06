@@ -1,0 +1,29 @@
+uuid: d99f8495-fee3-47b8-b230-8e639a5d4d69
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_undergraduate_major
+    - node.type.profile
+    - taxonomy.vocabulary.undergraduate_major
+id: node.profile.field_undergraduate_major
+field_name: field_undergraduate_major
+entity_type: node
+bundle: profile
+label: 'Undergraduate Major'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      undergraduate_major: undergraduate_major
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

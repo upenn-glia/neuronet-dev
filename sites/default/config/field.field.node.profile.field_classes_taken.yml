@@ -1,0 +1,29 @@
+uuid: e47f9610-f9ca-4faa-ac2b-5bd8e9597acc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_classes_taken
+    - node.type.profile
+    - taxonomy.vocabulary.classes_taken
+id: node.profile.field_classes_taken
+field_name: field_classes_taken
+entity_type: node
+bundle: profile
+label: 'Classes Taken'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      classes_taken: classes_taken
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

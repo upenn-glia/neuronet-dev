@@ -1,0 +1,13 @@
+uuid: 00d6f76c-ae87-42ee-85c1-b5b12e8968eb
+langcode: en
+status: true
+dependencies: {  }
+id: alumni
+label: alumni
+weight: 3
+is_admin: null
+permissions:
+  - 'create job content'
+  - 'delete own job content'
+  - 'edit own job content'
+  - 'edit own profile content'

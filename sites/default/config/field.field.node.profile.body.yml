@@ -11,7 +11,7 @@ id: node.profile.body
 field_name: body
 entity_type: node
 bundle: profile
-label: Body
+label: Biography
 description: ''
 required: false
 translatable: true

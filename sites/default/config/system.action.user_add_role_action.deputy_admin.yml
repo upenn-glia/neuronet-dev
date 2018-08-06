@@ -1,0 +1,14 @@
+uuid: 5b230ff0-a29f-4454-80ef-af4359457143
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.deputy_admin
+  module:
+    - user
+id: user_add_role_action.deputy_admin
+label: 'Add the deputy admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: deputy_admin

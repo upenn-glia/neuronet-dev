@@ -1,0 +1,14 @@
+uuid: e7b6fe58-37cd-49ee-89d2-f225659f76d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.deputy_admin
+  module:
+    - user
+id: user_remove_role_action.deputy_admin
+label: 'Remove the deputy admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: deputy_admin

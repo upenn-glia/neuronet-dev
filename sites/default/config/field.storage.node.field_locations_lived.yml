@@ -1,0 +1,20 @@
+uuid: 8fd5d667-e2df-47f6-b579-3f824a9f7fda
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_locations_lived
+field_name: field_locations_lived
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,9 @@
+uuid: 2a99ae85-69d6-4697-a114-32ea5b54eaf4
+langcode: en
+status: true
+dependencies: {  }
+name: 'NGG-Related Extracurricular Activities'
+vid: ngg_related_extracurricular_acti
+description: ''
+hierarchy: 0
+weight: 0

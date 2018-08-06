@@ -1,0 +1,9 @@
+uuid: 3b0ba864-30a5-4045-9a47-bf17e2f09f4b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Classes Taken'
+vid: classes_taken
+description: ''
+hierarchy: 0
+weight: 0

@@ -1,0 +1,29 @@
+uuid: 5991f058-ae58-4258-be1f-102f5624fc25
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ngg_activities
+    - node.type.profile
+    - taxonomy.vocabulary.ngg_related_extracurricular_acti
+id: node.profile.field_ngg_activities
+field_name: field_ngg_activities
+entity_type: node
+bundle: profile
+label: 'NGG Activities'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      ngg_related_extracurricular_acti: ngg_related_extracurricular_acti
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference
