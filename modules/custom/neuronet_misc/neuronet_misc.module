@@ -96,9 +96,13 @@ function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $rout
 
 function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $account) {
   $type = $node->type->entity->label();
+  //kint($op);
   if ($type == 'Profile' && $op == 'update') {
     $user = User::load($account->id());
     if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
+      return AccessResult::allowedIf(True);
+    }
+    if (($user->hasRole('deputy_admin') || $user->hasRole('administrator')) && $node->id() != 1) {
       return AccessResult::allowedIf(True);
     }
   }
@@ -142,3 +146,13 @@ function neuronet_misc_mail_alter(&$message){
     \Drupal::logger('neuronet_misc')->notice($notice);
   }
 }
+
+/*function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  kint($entity->getEntityTypeId());
+  if ($entity->getEntityTypeId() == 'node') {
+    $entity_id;
+    $entity->id();
+    $node = \Drupal\node\Entity\Node::load($entity->id());
+    $node->get
+  }
+}*/
