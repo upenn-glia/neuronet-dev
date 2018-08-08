@@ -140,7 +140,7 @@ function neuronet_misc_mail_alter(&$message){
   // We can use variable_get() to get the $conf variable set in our settings.php file
   // Note that by setting the default to TRUE, the default setting for the system is to be
   // a development environment. Set this to FALSE to have the default be a live environment.
-  if (!isset($_SERVER['PANTHEON_ENVIRONMENT'])) {
+  if (!isset($_SERVER['PANTHEON_ENVIRONMENT']) && !defined('MED_SERVER')) {
     // First: Prevent the mail from being sent
     $message['send'] = FALSE;
  
