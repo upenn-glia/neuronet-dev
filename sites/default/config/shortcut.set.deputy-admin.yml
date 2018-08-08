@@ -1,0 +1,6 @@
+uuid: 1ff1ecae-cb21-4995-aaca-996f68c21dd4
+langcode: en
+status: true
+dependencies: {  }
+id: deputy-admin
+label: 'Deputy Admin'

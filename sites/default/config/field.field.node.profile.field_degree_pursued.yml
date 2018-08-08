@@ -1,16 +1,16 @@
-uuid: c48603c1-429b-4a1d-a956-011e3abc71cd
+uuid: dee70685-97a1-4c99-b0da-62ca74397616
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_degree
+    - field.storage.node.field_degree_pursued
     - node.type.profile
     - taxonomy.vocabulary.degree
-id: node.profile.field_degree
-field_name: field_degree
+id: node.profile.field_degree_pursued
+field_name: field_degree_pursued
 entity_type: node
 bundle: profile
-label: 'Degree Earned'
+label: 'Degree Pursued'
 description: ''
 required: false
 translatable: false

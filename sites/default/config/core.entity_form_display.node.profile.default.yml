@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.profile.field_alumni
     - field.field.node.profile.field_classes_taken
     - field.field.node.profile.field_degree
+    - field.field.node.profile.field_degree_pursued
     - field.field.node.profile.field_email
     - field.field.node.profile.field_entry_term
     - field.field.node.profile.field_exit_term
@@ -66,6 +67,7 @@ third_party_settings:
       children:
         - field_undergraduate_major
         - field_alma_mater
+        - field_degree_pursued
         - field_matriculation_year
         - field_thesis_lab
         - field_locations_lived
@@ -120,7 +122,7 @@ content:
     type: boolean_checkbox
     region: content
   field_classes_taken:
-    weight: 27
+    weight: 28
     settings:
       match_operator: CONTAINS
       size: 60
@@ -152,6 +154,12 @@ content:
           entity_type: node
           bundle: profile
     type: entity_reference_autocomplete
+    region: content
+  field_degree_pursued:
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_email:
     weight: 9
@@ -299,24 +307,6 @@ content:
     type: link_default
     region: content
   field_locations_lived:
-    weight: 25
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_matriculation_year:
-    weight: 23
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_neuroscience_interests:
     weight: 26
     settings:
       match_operator: CONTAINS
@@ -325,8 +315,26 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_matriculation_year:
+    weight: 24
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_neuroscience_interests:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_ngg_activities:
-    weight: 28
+    weight: 29
     settings:
       match_operator: CONTAINS
       size: 60
@@ -335,7 +343,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_non_ngg_activities:
-    weight: 29
+    weight: 30
     settings:
       rows: 5
       placeholder: ''
@@ -376,7 +384,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_thesis_lab:
-    weight: 24
+    weight: 25
     settings:
       match_operator: CONTAINS
       size: 60
