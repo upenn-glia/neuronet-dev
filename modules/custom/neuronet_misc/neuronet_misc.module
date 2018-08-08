@@ -32,36 +32,37 @@ function neuronet_misc_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_views_pre_render().
  */
 function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
-	// Remove old positions
+  // Remove old positions
   if($view->id() == 'alumni'){
-  	$indexes_to_remove = array();
+    $indexes_to_remove = array();
     foreach($view->result as $value){
-    	// it is VERY annoying to get entity reference values in Drupal 8
+      // it is VERY annoying to get entity reference values in Drupal 8
       $nid = $value->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
       $start_date = $value->_entity->get('field_start_date')->value;
       $index = 0;
       foreach($view->result as $value2){
-      	$sub_nid = $value2->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
-      	if ($nid == $sub_nid) {		
-      		$start_date = $value->_entity->get('field_start_date')->value;
-      		$start_date2 = $value2->_entity->get('field_start_date')->value;
-      		if (date($start_date2) < date($start_date)) {
-      			$indexes_to_remove[] = $index;
-      		}
-      	}
-      	$index++;
+        $sub_nid = $value2->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
+        if ($nid == $sub_nid) {   
+          $start_date = $value->_entity->get('field_start_date')->value;
+          $start_date2 = $value2->_entity->get('field_start_date')->value;
+          if (date($start_date2) < date($start_date)) {
+            $indexes_to_remove[] = $index;
+          }
+        }
+        $index++;
       }
     }
     foreach ($indexes_to_remove as $index){
-    	unset($view->result[$index]);
+      unset($view->result[$index]);
     }
   }
 }
 
 function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $route_match*/){  
    $variables['#attached']['library'][] = 'neuronet_misc/neuronet_misc';
-   $current_path = \Drupal::request()->getRequestUri();
+   $current_path = \Drupal::service('path.current')->getPath();
    $path_args = explode('/', $current_path);
+   global $base_url;
    // redirect user page to profile
    if ($path_args[1] == 'user' && is_numeric($path_args[2]) && (!isset($path_args[3]) || is_null($path_args[3]))) {
     $user = User::load($path_args[2]);
@@ -72,7 +73,7 @@ function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $rout
       if (!empty($result)) {
         $nid = $result[0]->field_profile_target_id;
         $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
-        $response = new RedirectResponse($alias);
+        $response = new RedirectResponse($base_url . $alias);
         $response->send();
       }
     }
@@ -85,7 +86,7 @@ function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $rout
       $result = $query->fetchAll();
       if (!empty($result)) {
         $nid = $result[0]->field_profile_target_id;
-        $response = new RedirectResponse('/node/' . $nid . '/account');
+        $response = new RedirectResponse($base_url . '/node/' . $nid . '/account');
         $response->send();
       }
     }
