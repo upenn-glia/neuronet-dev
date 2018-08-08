@@ -2,5 +2,8 @@ neuronet_misc:
   version: 1.x
   js:
     js/neuronet_misc.js: {}
+  css:
+    theme:
+      css/neuronet_misc.css: {}
   dependencies:
     - core/jquery
