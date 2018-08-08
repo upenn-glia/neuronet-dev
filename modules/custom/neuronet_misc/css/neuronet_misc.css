@@ -1,3 +1,53 @@
 .form-group {
 	margin-bottom: 15px !important;
 }
+
+.student-thumb {
+	    display: block;
+    position: relative;
+    height: 220px;
+    width: 220px;
+        border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    overflow: hidden;
+}
+.student-thumb img {
+	    position: absolute;
+    z-index: 0;
+        width: 220px;
+    clip: rect(0px,220px,220px,0px);
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.student-thumb .thumb-title-container .thumb-title {
+    z-index: 2;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    
+}
+.student-thumb .thumb-title-container .thumb-interests {
+	    color: white;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+.student-thumb .thumb-title-container {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    z-index: 1;
+    background-image: linear-gradient(#99bcdb 0%,#337ab7 100%);
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+        padding: 0px 10px 5px 10px;
+}
+
+.view-id-current_students .col {
+	padding-top:15px;
+	padding-bottom: :15px;
+}
+.view-id-current_students .row {
+	margin-top: 20px;
+}
