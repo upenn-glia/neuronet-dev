@@ -63,3 +63,5 @@ Thumbs.db
 
 sites/default/settings.med.php
 sites/default/local.settings.php
+
+.htaccess
