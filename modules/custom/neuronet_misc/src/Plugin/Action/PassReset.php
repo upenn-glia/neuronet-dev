@@ -62,7 +62,8 @@ class PassReset extends ActionBase {
 
 function _neuronet_pass_reset_body($link) {
   $body = "<p>Hi NGG student/alum!</p>
-<p>Reset your password on NeuroNet here: <a href='" . $link . "'>LOG INTO NEURONET</a></p>
+<p>Reset your password on NeuroNet here:</p> 
+<p>" . $link . "</p> 
 
 <p>Sincerely,</p>
 

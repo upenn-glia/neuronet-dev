@@ -62,7 +62,9 @@ class EmailLoginInfo extends ActionBase {
 
 function _neuronet_alumnus_email_body($link) {
   $body = "<p>Hi NGG alum!</p>
-<p>NGG and GLIA are proud to announce the creation of NGG's very own online current student and alumni database, NeuroNet, and you're invited to be one of the first alumni users! At this point the site is pretty much done and just needs those finishing touches. If you could log-in to the site here: <a href='" . $link . "'>LOG INTO NEURONET</a> , update your profile, and take a look around the site and then let us know any questions/comments/concerns you have, we'd really appreciate it!</p>
+<p>NGG and GLIA are proud to announce the creation of NGG's very own online current student and alumni database, NeuroNet, and you're invited to be one of the first alumni users! At this point the site is pretty much done and just needs those finishing touches. If you could log-in to the site here <strong>(NOTE: You need a separate password from your PennKey for NeuroNet!)</strong>: </p> 
+<p>" . $link . "</p> 
+<p>Log in, update your profile, and take a look around the site and then let us know any questions/comments/concerns you have, we'd really appreciate it!</p>
 
 <p>In particular we would like to know:</p>
 <ul>
