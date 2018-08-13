@@ -1,9 +1,9 @@
 .form-group {
-	margin-bottom: 15px !important;
+    margin-bottom: 15px !important;
 }
 
 .student-thumb {
-	    display: block;
+        display: block;
     position: relative;
     height: 220px;
     width: 220px;
@@ -12,7 +12,7 @@
     overflow: hidden;
 }
 .student-thumb img {
-	    position: absolute;
+        position: absolute;
     z-index: 0;
         width: 220px;
     clip: rect(0px,220px,220px,0px);
@@ -29,7 +29,7 @@
     
 }
 .student-thumb .thumb-title-container .thumb-interests {
-	    color: white;
+        color: white;
     text-transform: uppercase;
     font-size: 10px;
 }
@@ -45,9 +45,19 @@
 }
 
 .view-id-current_students .col {
-	padding-top:15px;
-	padding-bottom: :15px;
+    padding-top:15px;
+    padding-bottom: :15px;
 }
 .view-id-current_students .row {
-	margin-top: 20px;
+    margin-top: 20px;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .form-control,
+    input,
+    select:focus,
+    textarea {
+      font-size: 16px !important;
+    }
 }
