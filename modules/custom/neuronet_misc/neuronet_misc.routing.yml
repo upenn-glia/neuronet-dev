@@ -18,14 +18,6 @@ neuronet_misc.account:
       node:
         type: entity:node
 
-neuronet_misc.list:
-  path: '/admin/neuronet'
-  defaults:
-    _controller: '\Drupal\neuronet_misc\Controller\NeuronetController::content'
-    _title: 'NeuroNet Admin'
-  requirements:
-    _permission: 'access neuronet admin'
-
 neuronet_misc.create_person:
   path: '/admin/neuronet/create-person'
   defaults:

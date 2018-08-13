@@ -1,17 +1,19 @@
-neuronet_misc.list:
+view.current_students.page_2:
   title: NeuroNet Admin
-  route_name: neuronet_misc.list
+  route_name: view.current_students.page_2
   parent: system.admin
   menu_name: admin
 
 neuronet_misc.create_person:
   title: Create Person
   route_name: neuronet_misc.create_person
-  parent: neuronet_misc.list
+  parent: view.current_students.page_2
   menu_name: admin
+  weight: 10
 
 neuronet_misc.taxonomy_manager:
   title: Taxonomy Manager
   route_name: neuronet_misc.taxonomy_manager
-  parent: neuronet_misc.list
+  parent: view.current_students.page_2
   menu_name: admin
+  weight: 11

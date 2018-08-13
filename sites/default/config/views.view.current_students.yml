@@ -1577,14 +1577,14 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/config/manage-people
+      path: admin/neuronet/manage-people
       menu:
-        type: none
+        type: 'default tab'
         title: 'Manage People'
         description: ''
         expanded: false
         parent: system.admin
-        weight: 0
+        weight: -5
         context: '0'
         menu_name: admin
       filters:
@@ -2176,7 +2176,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access content'
+          perm: 'access neuronet admin'
       display_description: ''
       header:
         result:
@@ -2221,6 +2221,11 @@ display:
             offset: false
             offset_label: Offset
           quantity: 5
+      tab_options:
+        type: normal
+        title: 'NeuroNet Admin'
+        description: ''
+        weight: 0
     cache_metadata:
       max-age: 0
       contexts:
