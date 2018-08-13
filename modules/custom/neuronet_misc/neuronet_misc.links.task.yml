@@ -2,3 +2,18 @@ neuronet_misc.node.account:
   route_name: neuronet_misc.account
   base_route: entity.node.canonical
   title: Account
+
+neuronet_misc.list:
+  route_name: neuronet_misc.list
+  base_route: neuronet_misc.list
+  title: NeuroNet Admin
+
+neuronet_misc.create_person:
+  route_name: neuronet_misc.create_person
+  base_route: neuronet_misc.list
+  title: Create Person
+
+neuronet_misc.taxonomy_manager:
+  route_name: neuronet_misc.taxonomy_manager
+  base_route: neuronet_misc.list
+  title: Taxonomy Manager

@@ -12,6 +12,7 @@ use \Drupal\Core\Session\AccountInterface;
 use \Drupal\node\NodeInterface;
 use Drupal\Core\Access\AccessResult;
 use \Drupal\node\Entity\Node;
+use \Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_help().
  */
@@ -130,6 +131,14 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
       $form['user_picture']['#access'] = False; 
     }
   }
+  if ($form_id == 'node_profile_form') {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $current_path);
+    if ($path_args[2] == 'neuronet'){
+      $form['actions']['submit']['#submit'][] = 'neuronet_misc_profile_submit';
+      $form['#validate'][] = 'neuronet_misc_profile_validate';
+    }
+  }
 }
 
 /*
@@ -170,5 +179,52 @@ function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity)
         // throw new \Exception(t('Fields are not unique!'));
     }
     
+  }
+}
+
+function neuronet_misc_profile_submit(array $form, FormStateInterface &$form_state){
+    $form_state->setRedirect('neuronet_misc.create_person');
+}
+
+function neuronet_misc_profile_validate(array $form, FormStateInterface &$form_state) {
+  $email = $form_state->getValue('field_email');
+  $email = $email[0]['value'];
+  if (user_load_by_mail($email) != FALSE) {
+    $form_state->setErrorByName('field_email', t('That email already exists.'));
+  }
+  $firstname = $form_state->getValue('field_first_name'); $firstname = $firstname[0]['value'];
+  $lastname = $form_state->getValue('field_last_name'); $lastname = $lastname[0]['value'];
+  if (user_load_by_name($firstname . ' ' . $lastname) != FALSE) {
+    $form_state->setErrorByName('field_first_name', t('That combination of first and last names already exists.'));
+  }
+}
+
+function neuronet_misc_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'node') {
+    $node = Node::load($entity->id());
+    if ($node->getType() == 'profile') {
+      $email = $node->get('field_email')->getString();
+      $name = $node->get('field_first_name')->getString() . ' ' . $node->get('field_last_name')->getString();
+      $nid = $node->id();
+      //Create a User
+      $user = User::create();
+      //Mandatory settings
+      $user->setPassword(user_password());
+      $user->enforceIsNew();
+      $user->setEmail($email);
+      $user->set('field_profile', $nid);
+      $user->setUsername($name);//This username must be unique and accept only a-Z,0-9, - _ @ .
+      $user->activate();
+
+      //Set Language
+      $language_interface = \Drupal::languageManager()->getCurrentLanguage();
+      $user->set('langcode', $language_interface->getId());
+      $user->set('preferred_langcode', $language_interface->getId());
+      $user->set('preferred_admin_langcode', $language_interface->getId());
+
+      // Save has no return value so this cannot be tested.
+      // Assume save has gone through correctly.
+      $user1 = $user->save();
+    }
   }
 }

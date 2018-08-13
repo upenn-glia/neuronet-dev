@@ -18,6 +18,29 @@ neuronet_misc.account:
       node:
         type: entity:node
 
+neuronet_misc.list:
+  path: '/admin/neuronet'
+  defaults:
+    _controller: '\Drupal\neuronet_misc\Controller\NeuronetController::content'
+    _title: 'NeuroNet Admin'
+  requirements:
+    _permission: 'access neuronet admin'
+
+neuronet_misc.create_person:
+  path: '/admin/neuronet/create-person'
+  defaults:
+    _controller: '\Drupal\neuronet_misc\Controller\CreatePersonController::content'
+    _title: 'Create Person'
+  requirements:
+    _permission: 'access neuronet admin'
+
+neuronet_misc.taxonomy_manager:
+  path: '/admin/neuronet/taxonomy-manager'
+  defaults:
+    _controller: '\Drupal\neuronet_misc\Controller\RedirectTaxonomyController::content'
+  requirements:
+    _permission: 'access neuronet admin'
+
 neuronet_misc.email_login:
   path: '/email-login-link-single/{node}'
   defaults:
