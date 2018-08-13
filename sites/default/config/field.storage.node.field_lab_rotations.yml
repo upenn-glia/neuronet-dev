@@ -1,12 +1,12 @@
-uuid: 5955b1d5-f8f2-44e3-9cf3-f8cdd2d2e01a
+uuid: b04a7948-6e61-4d60-a858-c9ec636749f0
 langcode: en
 status: true
 dependencies:
   module:
     - node
     - taxonomy
-id: node.field_thesis_lab
-field_name: field_thesis_lab
+id: node.field_lab_rotations
+field_name: field_lab_rotations
 entity_type: node
 type: entity_reference
 settings:

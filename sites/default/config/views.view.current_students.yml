@@ -9,7 +9,6 @@ dependencies:
     - field.storage.node.field_profile_image
     - image.style.medium
     - node.type.profile
-    - system.menu.admin
     - taxonomy.vocabulary.academic_term
     - taxonomy.vocabulary.institution
     - taxonomy.vocabulary.locations_lived
@@ -1578,9 +1577,9 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/manage-people
+      path: admin/config/manage-people
       menu:
-        type: normal
+        type: none
         title: 'Manage People'
         description: ''
         expanded: false

@@ -10,7 +10,7 @@ id: node.profile.field_thesis_lab
 field_name: field_thesis_lab
 entity_type: node
 bundle: profile
-label: 'Thesis Lab'
+label: 'Thesis Adviser(s)'
 description: ''
 required: false
 translatable: false
@@ -24,6 +24,6 @@ settings:
     sort:
       field: name
       direction: asc
-    auto_create: true
+    auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference

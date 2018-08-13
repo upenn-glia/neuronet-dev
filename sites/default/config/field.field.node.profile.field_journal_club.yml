@@ -1,16 +1,16 @@
-uuid: 7477da21-fad7-4a6d-980f-b1a5ec38dcf8
+uuid: b5488be7-ecb6-4656-a8cd-f38d681a1b32
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_locations_lived
+    - field.storage.node.field_journal_club
     - node.type.profile
-    - taxonomy.vocabulary.locations_lived
-id: node.profile.field_locations_lived
-field_name: field_locations_lived
+    - taxonomy.vocabulary.journal_clubs
+id: node.profile.field_journal_club
+field_name: field_journal_club
 entity_type: node
 bundle: profile
-label: 'Neighborhoods in Philly'
+label: 'Journal Clubs'
 description: ''
 required: false
 translatable: false
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      locations_lived: locations_lived
+      journal_clubs: journal_clubs
     sort:
       field: name
       direction: asc

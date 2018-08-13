@@ -1,0 +1,19 @@
+uuid: 817ed621-0660-4aaa-87a9-79ed0dc4f0e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hometown_s_
+    - node.type.profile
+id: node.profile.field_hometown_s_
+field_name: field_hometown_s_
+entity_type: node
+bundle: profile
+label: Hometown(s)
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

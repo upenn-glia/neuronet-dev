@@ -1,16 +1,16 @@
-uuid: 7477da21-fad7-4a6d-980f-b1a5ec38dcf8
+uuid: 8fe30136-e4d7-4dd3-975c-5b7d4c67a6f6
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_locations_lived
+    - field.storage.node.field_candidacy_
     - node.type.profile
-    - taxonomy.vocabulary.locations_lived
-id: node.profile.field_locations_lived
-field_name: field_locations_lived
+    - taxonomy.vocabulary.thesis_lab
+id: node.profile.field_candidacy_
+field_name: field_candidacy_
 entity_type: node
 bundle: profile
-label: 'Neighborhoods in Philly'
+label: 'Candidacy Committee'
 description: ''
 required: false
 translatable: false
@@ -20,10 +20,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      locations_lived: locations_lived
+      thesis_lab: thesis_lab
     sort:
       field: name
       direction: asc
-    auto_create: true
+    auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference

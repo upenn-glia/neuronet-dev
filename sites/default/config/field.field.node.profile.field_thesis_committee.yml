@@ -1,16 +1,16 @@
-uuid: 7477da21-fad7-4a6d-980f-b1a5ec38dcf8
+uuid: 77fafa95-05da-43c8-87d2-1b462f8d393e
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_locations_lived
+    - field.storage.node.field_thesis_committee
     - node.type.profile
-    - taxonomy.vocabulary.locations_lived
-id: node.profile.field_locations_lived
-field_name: field_locations_lived
+    - taxonomy.vocabulary.thesis_lab
+id: node.profile.field_thesis_committee
+field_name: field_thesis_committee
 entity_type: node
 bundle: profile
-label: 'Neighborhoods in Philly'
+label: 'Thesis Committee'
 description: ''
 required: false
 translatable: false
@@ -20,10 +20,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      locations_lived: locations_lived
+      thesis_lab: thesis_lab
     sort:
       field: name
       direction: asc
-    auto_create: true
+    auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference

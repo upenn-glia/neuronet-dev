@@ -2,7 +2,7 @@ uuid: 5aee590b-baeb-4d98-905b-0b4dc11963da
 langcode: en
 status: true
 dependencies: {  }
-name: 'Thesis Lab'
+name: 'Faculty Members'
 vid: thesis_lab
 description: ''
 hierarchy: 0
