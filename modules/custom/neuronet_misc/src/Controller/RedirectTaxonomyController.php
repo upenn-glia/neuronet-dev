@@ -13,7 +13,8 @@ class RedirectTaxonomyController extends ControllerBase {
    * @return array
    */
   public function content() {
-    $response = new RedirectResponse('/admin/structure/taxonomy_manager/voc');
+    global $base_url;
+    $response = new RedirectResponse($base_url'/admin/structure/taxonomy_manager/voc');
     $response->send();
     exit;
   }
