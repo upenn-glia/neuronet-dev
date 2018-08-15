@@ -55,7 +55,6 @@ class NodeCountCompletedFields extends FieldPluginBase {
       if (!empty($name) && strpos($name, 'field_') !== false && $name != "field_alumni" && $name != 'field_degree') {
         $value = $node->get($name)->getValue();
         if (!empty($value)) {
-          ksm($name);
           $count++;
         }
       }
