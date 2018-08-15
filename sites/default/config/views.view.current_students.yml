@@ -19,6 +19,7 @@ dependencies:
     - taxonomy.vocabulary.undergraduate_major
   module:
     - image
+    - neuronet_misc
     - node
     - taxonomy
     - user
@@ -2065,6 +2066,56 @@ display:
           entity_type: user
           entity_field: access
           plugin_id: field
+        node_count_completed_fields:
+          id: node_count_completed_fields
+          table: node
+          field: node_count_completed_fields
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: '# of Completed Fields'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          entity_type: node
+          plugin_id: node_count_completed_fields
         views_bulk_operations_bulk_form:
           id: views_bulk_operations_bulk_form
           table: views
@@ -2155,6 +2206,12 @@ display:
           description: ''
           columns:
             title: title
+            nid: nid
+            nothing: nothing
+            field_matriculation_year: field_matriculation_year
+            access: access
+            views_bulk_operations_bulk_form: views_bulk_operations_bulk_form
+            node_count_completed_fields: node_count_completed_fields
           info:
             title:
               sortable: false
@@ -2163,7 +2220,47 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-          default: '-1'
+            nid:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nothing:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_matriculation_year:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            access:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            views_bulk_operations_bulk_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            node_count_completed_fields:
+              sortable: false
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: title
           empty_table: false
       row:
         type: fields

@@ -228,3 +228,17 @@ function neuronet_misc_entity_insert(Drupal\Core\Entity\EntityInterface $entity)
     }
   }
 }
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function neuronet_misc_views_data_alter(array &$data) {
+  $data['node']['node_count_completed_fields'] = array(
+    'title' => t('Count of Completed Fields'),
+    'field' => array(
+      'title' => t('Count of Completed Fields'),
+      'help' => t('Counts number of fields of a node that are completed.'),
+      'id' => 'node_count_completed_fields',
+    ),
+  );
+}
