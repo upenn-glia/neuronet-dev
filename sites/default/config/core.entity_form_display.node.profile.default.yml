@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.profile.field_lab_rotations
     - field.field.node.profile.field_last_name
     - field.field.node.profile.field_links
+    - field.field.node.profile.field_links2
     - field.field.node.profile.field_locations_lived
     - field.field.node.profile.field_matriculation_year
     - field.field.node.profile.field_neuroscience_interests
@@ -85,7 +86,7 @@ third_party_settings:
         - field_locations_lived
         - field_hometown_s_
       parent_name: ''
-      weight: 12
+      weight: 11
       format_type: fieldset
       format_settings:
         id: ''
@@ -102,8 +103,9 @@ third_party_settings:
         - field_thesis_lab
         - field_neuroscience_interests
         - field_links
+        - field_links2
       parent_name: ''
-      weight: 11
+      weight: 10
       format_type: fieldset
       format_settings:
         id: ''
@@ -335,7 +337,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_lab_rotations:
-    weight: 15
+    weight: 16
     settings:
       match_operator: CONTAINS
       size: 60
@@ -375,6 +377,14 @@ content:
           bundle: profile
     type: link_default
     region: content
+  field_links2:
+    weight: 16
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_locations_lived:
     weight: 23
     settings:
@@ -385,7 +395,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_matriculation_year:
-    weight: 14
+    weight: 15
     settings:
       match_operator: CONTAINS
       size: 60

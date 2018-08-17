@@ -10,7 +10,7 @@ id: node.profile.field_degree_pursued
 field_name: field_degree_pursued
 entity_type: node
 bundle: profile
-label: 'Degree Pursued'
+label: 'Degree Pursued At Penn'
 description: ''
 required: false
 translatable: false
