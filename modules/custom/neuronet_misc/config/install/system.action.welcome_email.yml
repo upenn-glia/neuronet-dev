@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: welcome_email
+label: 'Welcome email'
+type: node
+plugin: welcome_email
+configuration: {  }
