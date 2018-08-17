@@ -63,15 +63,15 @@ class WelcomeEmail extends ActionBase {
 function _neuronet_welcome_email_body($link) {
   $body = "<p>Hi NGG!</p>
 
-<p>We are pleased to announce the launch of <strong>NeuroNet</strong>, a directory of current students and - coming soon - alumni! </p>
+<p>We are pleased to announce the launch of NeuroNet, a directory of current students and - coming soon - alumni! </p>
 
 <p>Looking for advice on rotations, picking elective courses, or a new apartment? Now you can check out what experiences and interests other NGG students have and contact them! We need your help, though! As we are not mind readers (sadly), we need you to log in and complete your profiles.</p>
 
-<p><strong><em>You can earn extra raffle tickets at the retreat by filling out your profile!</em></strong></p>  
+<p>You can earn extra raffle tickets at the retreat by filling out your profile!</p>  
 
 <ul>
-  <li><em>1 ticket for logging in and ...</em></li> 
-  <li><em>1 ticket for uploading a profile picture and completing 5 fields</em></li>
+  <li>1 ticket for logging in and ...</li> 
+  <li>1 ticket for uploading a profile picture and completing 5 fields</li>
 </ul>
 
 <p>You can log into the website following the link below and using your Penn ID. </p>
