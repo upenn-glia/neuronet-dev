@@ -9,7 +9,7 @@ id: node.profile.field_non_ngg_activities
 field_name: field_non_ngg_activities
 entity_type: node
 bundle: profile
-label: 'Non-NGG Activities'
+label: 'Non-Academic Activities'
 description: ''
 required: false
 translatable: false

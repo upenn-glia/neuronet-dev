@@ -1337,7 +1337,7 @@ display:
           exposed: true
           expose:
             operator_id: field_ngg_activities_target_id_op
-            label: 'NGG Activities'
+            label: 'Academic Activities'
             description: ''
             use_operator: false
             operator: field_ngg_activities_target_id_op
@@ -1350,6 +1350,7 @@ display:
               anonymous: '0'
               administrator: '0'
               alumni: '0'
+              deputy_admin: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1367,52 +1368,6 @@ display:
           type: select
           limit: true
           vid: ngg_related_extracurricular_acti
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_undergraduate_major_target_id:
-          id: field_undergraduate_major_target_id
-          table: node__field_undergraduate_major
-          field: field_undergraduate_major_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_undergraduate_major_target_id_op
-            label: 'Undergraduate Major'
-            description: ''
-            use_operator: false
-            operator: field_undergraduate_major_target_id_op
-            identifier: field_undergraduate_major_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              alumni: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: undergraduate_major
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
@@ -2171,30 +2126,27 @@ display:
           clear_on_exposed: 0
           action_title: Action
           selected_actions:
-            email_login_info: email_login_info
             pass_reset: pass_reset
-            welcome_email: welcome_email
-            node_assign_owner_action: 0
-            node_unpromote_action: 0
-            node_promote_action: 0
+            email_login_info: email_login_info
+            node_make_unsticky_action: 0
+            node_unpublish_action: 0
+            node_unpublish_by_keyword_action: 0
             node_publish_action: 0
+            node_promote_action: 0
             node_save_action: 0
             node_make_sticky_action: 0
-            node_unpublish_by_keyword_action: 0
-            node_unpublish_action: 0
-            node_make_unsticky_action: 0
+            node_assign_owner_action: 0
+            node_unpromote_action: 0
             views_bulk_operations_delete_entity: 0
             pathauto_update_alias: 0
-            'entity:publish_action:node': 0
             'entity:save_action:node': 0
             'entity:unpublish_action:node': 0
+            'entity:publish_action:node': 0
           preconfiguration:
-            email_login_info:
-              label_override: 'Send special welcome to beta testers'
             pass_reset:
               label_override: ''
-            welcome_email:
-              label_override: 'Send standard welcome email'
+            email_login_info:
+              label_override: 'Send special welcome to beta testers'
           plugin_id: views_bulk_operations_bulk_form
       style:
         type: table
