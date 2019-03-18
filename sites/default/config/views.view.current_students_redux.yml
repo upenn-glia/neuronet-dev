@@ -1,4 +1,4 @@
-uuid: 66025460-ba81-4802-9358-c194a277b1be
+uuid: 4589d149-9315-4557-b765-651e9c9679f6
 langcode: en
 status: true
 dependencies:
@@ -26,8 +26,8 @@ dependencies:
     - user
     - views_bootstrap
     - views_bulk_operations
-id: current_students
-label: 'Current Students'
+id: current_students_redux
+label: 'Current Students Redux'
 module: views
 description: ''
 tag: ''
@@ -776,7 +776,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: current-students
+      path: current-students-redux
       menu:
         type: none
         title: 'Current Students'
@@ -1292,11 +1292,58 @@ display:
           exposed: true
           expose:
             operator_id: field_thesis_lab_target_id_op
-            label: 'Thesis Adviser'
+            label: Adviser
             description: ''
             use_operator: false
             operator: field_thesis_lab_target_id_op
             identifier: field_thesis_lab_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              alumni: '0'
+              deputy_admin: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: thesis_lab
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_candidacy__target_id:
+          id: field_candidacy__target_id
+          table: node__field_candidacy_
+          field: field_candidacy__target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_candidacy__target_id_op
+            label: 'Candidacy Committee'
+            description: ''
+            use_operator: false
+            operator: field_candidacy__target_id_op
+            identifier: field_candidacy__target_id
             required: false
             remember: false
             multiple: false
@@ -1344,53 +1391,6 @@ display:
             use_operator: false
             operator: field_thesis_committee_target_id_op
             identifier: field_thesis_committee_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              alumni: '0'
-              deputy_admin: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: true
-          type: select
-          limit: true
-          vid: thesis_lab
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_candidacy__target_id:
-          id: field_candidacy__target_id
-          table: node__field_candidacy_
-          field: field_candidacy__target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_candidacy__target_id_op
-            label: 'Candidacy Committee'
-            description: ''
-            use_operator: false
-            operator: field_candidacy__target_id_op
-            identifier: field_candidacy__target_id
             required: false
             remember: false
             multiple: false

@@ -11,7 +11,7 @@ field_name: field_candidacy_
 entity_type: node
 bundle: profile
 label: 'Candidacy Committee'
-description: ''
+description: 'To add non-NGG faculty, please email neuronet.glia@gmail.com with the full faculty name and we will add your request within 48 hours and confirm with you.'
 required: false
 translatable: false
 default_value: {  }

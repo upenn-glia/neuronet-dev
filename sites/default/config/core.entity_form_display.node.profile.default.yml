@@ -98,12 +98,12 @@ third_party_settings:
     group_general_information:
       children:
         - field_profile_image
-        - field_curriculum_vitae
         - body
         - field_thesis_lab
         - field_neuroscience_interests
         - field_links
         - field_links2
+        - field_curriculum_vitae
       parent_name: ''
       weight: 10
       format_type: fieldset
@@ -121,7 +121,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 12
+    weight: 11
     settings:
       rows: 9
       summary_rows: 3
@@ -169,7 +169,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_curriculum_vitae:
-    weight: 11
+    weight: 16
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
@@ -354,7 +354,7 @@ content:
     type: string_textfield
     region: content
   field_links:
-    weight: 15
+    weight: 14
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -378,7 +378,7 @@ content:
     type: link_default
     region: content
   field_links2:
-    weight: 16
+    weight: 15
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -387,12 +387,9 @@ content:
     region: content
   field_locations_lived:
     weight: 23
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_matriculation_year:
     weight: 15
@@ -404,7 +401,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_neuroscience_interests:
-    weight: 14
+    weight: 13
     settings:
       match_operator: CONTAINS
       size: 60
@@ -472,7 +469,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_thesis_lab:
-    weight: 13
+    weight: 12
     settings:
       match_operator: CONTAINS
       size: 60

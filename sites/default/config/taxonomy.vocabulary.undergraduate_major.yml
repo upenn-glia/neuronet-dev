@@ -5,5 +5,5 @@ dependencies: {  }
 name: 'Undergraduate Major'
 vid: undergraduate_major
 description: ''
-hierarchy: 0
+hierarchy: 1
 weight: 0
