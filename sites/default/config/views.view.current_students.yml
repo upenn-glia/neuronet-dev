@@ -775,7 +775,198 @@ display:
     display_title: Page
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        views_ef_fieldset:
+          views_ef_fieldset:
+            enabled: 1
+            options:
+              sort:
+                root:
+                  container_type: container
+                  title: ''
+                  description: ''
+                  open: '1'
+                  weight: '0'
+                  id: root
+                  pid: ''
+                  depth: '0'
+                  type: container
+                container-1:
+                  container_type: container
+                  title: ''
+                  description: ''
+                  open: '1'
+                  weight: '-23'
+                  id: container-1
+                  pid: root
+                  depth: '1'
+                  type: container
+                title:
+                  weight: '-23'
+                  id: title
+                  pid: container-1
+                  depth: '2'
+                  type: filter
+                reset:
+                  weight: '-22'
+                  id: reset
+                  pid: container-1
+                  depth: '2'
+                  type: buttons
+                submit:
+                  weight: '-21'
+                  id: submit
+                  pid: container-1
+                  depth: '2'
+                  type: buttons
+                container-0:
+                  container_type: details
+                  title: 'Advanced Search'
+                  description: ''
+                  weight: '-21'
+                  open: 0
+                  id: container-0
+                  pid: root
+                  depth: '1'
+                  type: container
+                field_neuroscience_interests_target_id:
+                  weight: '-23'
+                  id: field_neuroscience_interests_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                field_locations_lived_target_id:
+                  weight: '-22'
+                  id: field_locations_lived_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                field_matriculation_year_target_id:
+                  weight: '-21'
+                  id: field_matriculation_year_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                field_ngg_activities_target_id:
+                  weight: '-20'
+                  id: field_ngg_activities_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                field_candidacy__target_id:
+                  weight: '-19'
+                  id: field_candidacy__target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                field_thesis_committee_target_id:
+                  weight: '-18'
+                  id: field_thesis_committee_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                field_thesis_lab_target_id:
+                  weight: '-17'
+                  id: field_thesis_lab_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                field_alma_mater_target_id:
+                  weight: '-16'
+                  id: field_alma_mater_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                container-2:
+                  container_type: details
+                  title: 'Container 2'
+                  description: ''
+                  weight: '-20'
+                  open: 0
+                  id: container-2
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-3:
+                  container_type: details
+                  title: 'Container 3'
+                  description: ''
+                  weight: '-19'
+                  open: 0
+                  id: container-3
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-4:
+                  container_type: details
+                  title: 'Container 4'
+                  description: ''
+                  weight: '-18'
+                  open: 0
+                  id: container-4
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-5:
+                  container_type: details
+                  title: 'Container 5'
+                  description: ''
+                  weight: '-17'
+                  open: 0
+                  id: container-5
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-6:
+                  container_type: details
+                  title: 'Container 6'
+                  description: ''
+                  weight: '-16'
+                  open: 0
+                  id: container-6
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-7:
+                  container_type: details
+                  title: 'Container 7'
+                  description: ''
+                  weight: '-15'
+                  open: 0
+                  id: container-7
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-8:
+                  container_type: details
+                  title: 'Container 8'
+                  description: ''
+                  weight: '-14'
+                  open: 0
+                  id: container-8
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-9:
+                  container_type: details
+                  title: 'Container 9'
+                  description: ''
+                  weight: '-13'
+                  open: 0
+                  id: container-9
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-10:
+                  container_type: details
+                  title: 'Container 10'
+                  description: ''
+                  weight: '-12'
+                  open: 0
+                  id: container-10
+                  pid: root
+                  depth: '1'
+                  type: container
       path: current-students
       menu:
         type: none
