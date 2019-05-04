@@ -807,14 +807,20 @@ display:
                   pid: container-1
                   depth: '2'
                   type: filter
-                reset:
+                term_node_tid_depth:
                   weight: '-22'
+                  id: term_node_tid_depth
+                  pid: container-1
+                  depth: '2'
+                  type: filter
+                reset:
+                  weight: '-21'
                   id: reset
                   pid: container-1
                   depth: '2'
                   type: buttons
                 submit:
-                  weight: '-21'
+                  weight: '-20'
                   id: submit
                   pid: container-1
                   depth: '2'
@@ -829,12 +835,6 @@ display:
                   pid: root
                   depth: '1'
                   type: container
-                field_neuroscience_interests_target_id:
-                  weight: '-23'
-                  id: field_neuroscience_interests_target_id
-                  pid: container-0
-                  depth: '2'
-                  type: filter
                 field_locations_lived_target_id:
                   weight: '-22'
                   id: field_locations_lived_target_id
@@ -1470,6 +1470,55 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: string
+        term_node_tid_depth:
+          id: term_node_tid_depth
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: term_node_tid_depth_op
+            label: 'Neuroscience Interests'
+            description: ''
+            use_operator: false
+            operator: term_node_tid_depth_op
+            identifier: term_node_tid_depth
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              alumni: '0'
+              deputy_admin: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: neuroscience_interests
+          hierarchy: true
+          error_message: true
+          depth: 2
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
         field_thesis_lab_target_id:
           id: field_thesis_lab_target_id
           table: node__field_thesis_lab
@@ -1608,52 +1657,6 @@ display:
           type: select
           limit: true
           vid: thesis_lab
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_neuroscience_interests_target_id:
-          id: field_neuroscience_interests_target_id
-          table: node__field_neuroscience_interests
-          field: field_neuroscience_interests_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_neuroscience_interests_target_id_op
-            label: 'Neuroscience Interests'
-            description: ''
-            use_operator: false
-            operator: field_neuroscience_interests_target_id_op
-            identifier: field_neuroscience_interests_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              alumni: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: neuroscience_interests
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
