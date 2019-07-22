@@ -19,7 +19,7 @@ class ComposerStaticInitDrupal8
     );
 
     public static $prefixLengthsPsr4 = array (
-        'Z' => 
+        'Z' =>
         array (
             'Zumba\\Mink\\Driver\\' => 18,
             'Zumba\\GastonJS\\' => 15,
@@ -28,21 +28,22 @@ class ComposerStaticInitDrupal8
             'Zend\\Escaper\\' => 13,
             'Zend\\Diactoros\\' => 15,
         ),
-        'X' => 
+        'X' =>
         array (
             'XdgBaseDir\\' => 11,
         ),
-        'W' => 
+        'W' =>
         array (
             'Wikimedia\\Composer\\' => 19,
             'Webmozart\\PathUtil\\' => 19,
             'Webmozart\\Assert\\' => 17,
         ),
-        'T' => 
+        'T' =>
         array (
             'Twig\\' => 5,
+            'TYPO3\\PharStreamWrapper\\' => 24,
         ),
-        'S' => 
+        'S' =>
         array (
             'Symfony\\Polyfill\\Php70\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
@@ -75,11 +76,11 @@ class ComposerStaticInitDrupal8
             'Symfony\\Bridge\\PhpUnit\\' => 23,
             'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' => 49,
         ),
-        'R' => 
+        'R' =>
         array (
             'RedBeanPHP\\' => 11,
         ),
-        'P' => 
+        'P' =>
         array (
             'Psy\\' => 4,
             'Psr\\SimpleCache\\' => 16,
@@ -87,22 +88,27 @@ class ComposerStaticInitDrupal8
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
         ),
-        'M' => 
+        'M' =>
         array (
             'Masterminds\\' => 12,
         ),
-        'G' => 
+        'G' =>
         array (
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
             'Goutte\\' => 7,
         ),
-        'D' => 
+        'E' =>
+        array (
+            'Egulias\\EmailValidator\\' => 23,
+        ),
+        'D' =>
         array (
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\Composer\\' => 21,
             'Drupal\\Core\\' => 12,
+            'Drupal\\Component\\Version\\' => 25,
             'Drupal\\Component\\Uuid\\' => 22,
             'Drupal\\Component\\Utility\\' => 25,
             'Drupal\\Component\\Transliteration\\' => 33,
@@ -131,17 +137,16 @@ class ComposerStaticInitDrupal8
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\' => 16,
         ),
-        'C' => 
+        'C' =>
         array (
             'Composer\\Semver\\' => 16,
             'Composer\\Installers\\' => 20,
         ),
-        'B' => 
+        'B' =>
         array (
-            'Behat\\Mink\\Driver\\' => 18,
-            'Behat\\Mink\\' => 11,
+            'Brumann\\Polyfill\\' => 17,
         ),
-        'A' => 
+        'A' =>
         array (
             'Asm89\\Stack\\' => 12,
             'Alchemy\\Zippy\\' => 14,
@@ -149,449 +154,457 @@ class ComposerStaticInitDrupal8
     );
 
     public static $prefixDirsPsr4 = array (
-        'Zumba\\Mink\\Driver\\' => 
+        'Zumba\\Mink\\Driver\\' =>
         array (
             0 => __DIR__ . '/..' . '/jcalderonzumba/mink-phantomjs-driver/src',
         ),
-        'Zumba\\GastonJS\\' => 
+        'Zumba\\GastonJS\\' =>
         array (
             0 => __DIR__ . '/..' . '/jcalderonzumba/gastonjs/src',
         ),
-        'Zend\\Stdlib\\' => 
+        'Zend\\Stdlib\\' =>
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-stdlib/src',
         ),
-        'Zend\\Feed\\' => 
+        'Zend\\Feed\\' =>
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-feed/src',
         ),
-        'Zend\\Escaper\\' => 
+        'Zend\\Escaper\\' =>
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-escaper/src',
         ),
-        'Zend\\Diactoros\\' => 
+        'Zend\\Diactoros\\' =>
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
         ),
-        'XdgBaseDir\\' => 
+        'XdgBaseDir\\' =>
         array (
             0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
         ),
-        'Wikimedia\\Composer\\' => 
+        'Wikimedia\\Composer\\' =>
         array (
             0 => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src',
         ),
-        'Twig\\' => 
+        'Twig\\' =>
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
         ),
-        'Symfony\\Polyfill\\Php70\\' => 
+        'TYPO3\\PharStreamWrapper\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src',
+        ),
+        'Symfony\\Polyfill\\Php70\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
         ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
+        'Symfony\\Polyfill\\Mbstring\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
-        'Symfony\\Polyfill\\Iconv\\' => 
+        'Symfony\\Polyfill\\Iconv\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-iconv',
         ),
-        'Symfony\\Polyfill\\Ctype\\' => 
+        'Symfony\\Polyfill\\Ctype\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'Symfony\\Component\\Yaml\\' => 
+        'Symfony\\Component\\Yaml\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'Symfony\\Component\\VarDumper\\' => 
+        'Symfony\\Component\\VarDumper\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
-        'Symfony\\Component\\Validator\\' => 
+        'Symfony\\Component\\Validator\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/validator',
         ),
-        'Symfony\\Component\\Translation\\' => 
+        'Symfony\\Component\\Translation\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
-        'Symfony\\Component\\Serializer\\' => 
+        'Symfony\\Component\\Serializer\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/serializer',
         ),
-        'Symfony\\Component\\Routing\\' => 
+        'Symfony\\Component\\Routing\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/routing',
         ),
-        'Symfony\\Component\\Process\\' => 
+        'Symfony\\Component\\Process\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
         ),
-        'Symfony\\Component\\HttpKernel\\' => 
+        'Symfony\\Component\\HttpKernel\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/http-kernel',
         ),
-        'Symfony\\Component\\HttpFoundation\\' => 
+        'Symfony\\Component\\HttpFoundation\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
         ),
-        'Symfony\\Component\\Finder\\' => 
+        'Symfony\\Component\\Finder\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
         ),
-        'Symfony\\Component\\Filesystem\\' => 
+        'Symfony\\Component\\Filesystem\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
-        'Symfony\\Component\\ExpressionLanguage\\' => 
+        'Symfony\\Component\\ExpressionLanguage\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/expression-language',
         ),
-        'Symfony\\Component\\EventDispatcher\\' => 
+        'Symfony\\Component\\EventDispatcher\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
-        'Symfony\\Component\\DomCrawler\\' => 
+        'Symfony\\Component\\DomCrawler\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/dom-crawler',
         ),
-        'Symfony\\Component\\DependencyInjection\\' => 
+        'Symfony\\Component\\DependencyInjection\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/dependency-injection',
         ),
-        'Symfony\\Component\\Debug\\' => 
+        'Symfony\\Component\\Debug\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
         ),
-        'Symfony\\Component\\CssSelector\\' => 
+        'Symfony\\Component\\CssSelector\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/css-selector',
         ),
-        'Symfony\\Component\\Console\\' => 
+        'Symfony\\Component\\Console\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Symfony\\Component\\Config\\' => 
+        'Symfony\\Component\\Config\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/config',
         ),
-        'Symfony\\Component\\ClassLoader\\' => 
+        'Symfony\\Component\\ClassLoader\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/class-loader',
         ),
-        'Symfony\\Component\\Cache\\' => 
+        'Symfony\\Component\\Cache\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/cache',
         ),
-        'Symfony\\Component\\BrowserKit\\' => 
+        'Symfony\\Component\\BrowserKit\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
         ),
-        'Symfony\\Cmf\\Component\\Routing\\' => 
+        'Symfony\\Cmf\\Component\\Routing\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony-cmf/routing',
         ),
-        'Symfony\\Bridge\\PsrHttpMessage\\' => 
+        'Symfony\\Bridge\\PsrHttpMessage\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
         ),
-        'Symfony\\Bridge\\PhpUnit\\' => 
+        'Symfony\\Bridge\\PhpUnit\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/phpunit-bridge',
         ),
-        'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' => 
+        'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' =>
         array (
             0 => __DIR__ . '/..' . '/stecman/symfony-console-completion/src',
         ),
-        'RedBeanPHP\\' => 
+        'RedBeanPHP\\' =>
         array (
             0 => __DIR__ . '/..' . '/gabordemooij/redbean/RedBeanPHP',
         ),
-        'Psy\\' => 
+        'Psy\\' =>
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src/Psy',
         ),
-        'Psr\\SimpleCache\\' => 
+        'Psr\\SimpleCache\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
-        'Psr\\Log\\' => 
+        'Psr\\Log\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'Psr\\Http\\Message\\' => 
+        'Psr\\Http\\Message\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
-        'Psr\\Container\\' => 
+        'Psr\\Container\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'Masterminds\\' => 
+        'Masterminds\\' =>
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
         ),
-        'GuzzleHttp\\Psr7\\' => 
+        'GuzzleHttp\\Psr7\\' =>
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
-        'GuzzleHttp\\Promise\\' => 
+        'GuzzleHttp\\Promise\\' =>
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
         ),
-        'GuzzleHttp\\' => 
+        'GuzzleHttp\\' =>
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
-        'Goutte\\' => 
+        'Egulias\\EmailValidator\\' =>
         array (
-            0 => __DIR__ . '/..' . '/fabpot/goutte/Goutte',
+            0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
         ),
-        'Drupal\\Driver\\' => 
+        'Drupal\\Driver\\' =>
         array (
             0 => __DIR__ . '/../..' . '/drivers/lib/Drupal/Driver',
         ),
-        'Drupal\\Core\\Composer\\' => 
+        'Drupal\\Core\\Composer\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Composer',
         ),
-        'Drupal\\Core\\' => 
+        'Drupal\\Core\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Core',
         ),
-        'Drupal\\Component\\Uuid\\' => 
+        'Drupal\\Component\\Version\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Version',
+        ),
+        'Drupal\\Component\\Uuid\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Uuid',
         ),
-        'Drupal\\Component\\Utility\\' => 
+        'Drupal\\Component\\Utility\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility',
         ),
-        'Drupal\\Component\\Transliteration\\' => 
+        'Drupal\\Component\\Transliteration\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Transliteration',
         ),
-        'Drupal\\Component\\Serialization\\' => 
+        'Drupal\\Component\\Serialization\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Serialization',
         ),
-        'Drupal\\Component\\Render\\' => 
+        'Drupal\\Component\\Render\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Render',
         ),
-        'Drupal\\Component\\ProxyBuilder\\' => 
+        'Drupal\\Component\\ProxyBuilder\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/ProxyBuilder',
         ),
-        'Drupal\\Component\\Plugin\\' => 
+        'Drupal\\Component\\Plugin\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin',
         ),
-        'Drupal\\Component\\PhpStorage\\' => 
+        'Drupal\\Component\\PhpStorage\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/PhpStorage',
         ),
-        'Drupal\\Component\\HttpFoundation\\' => 
+        'Drupal\\Component\\HttpFoundation\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/HttpFoundation',
         ),
-        'Drupal\\Component\\Graph\\' => 
+        'Drupal\\Component\\Graph\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Graph',
         ),
-        'Drupal\\Component\\Gettext\\' => 
+        'Drupal\\Component\\Gettext\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Gettext',
         ),
-        'Drupal\\Component\\FileSystem\\' => 
+        'Drupal\\Component\\FileSystem\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/FileSystem',
         ),
-        'Drupal\\Component\\FileCache\\' => 
+        'Drupal\\Component\\FileCache\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/FileCache',
         ),
-        'Drupal\\Component\\EventDispatcher\\' => 
+        'Drupal\\Component\\EventDispatcher\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/EventDispatcher',
         ),
-        'Drupal\\Component\\Discovery\\' => 
+        'Drupal\\Component\\Discovery\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Discovery',
         ),
-        'Drupal\\Component\\Diff\\' => 
+        'Drupal\\Component\\Diff\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Diff',
         ),
-        'Drupal\\Component\\DependencyInjection\\' => 
+        'Drupal\\Component\\DependencyInjection\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/DependencyInjection',
         ),
-        'Drupal\\Component\\Datetime\\' => 
+        'Drupal\\Component\\Datetime\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Datetime',
         ),
-        'Drupal\\Component\\ClassFinder\\' => 
+        'Drupal\\Component\\ClassFinder\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/ClassFinder',
         ),
-        'Drupal\\Component\\Bridge\\' => 
+        'Drupal\\Component\\Bridge\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Bridge',
         ),
-        'Drupal\\Component\\Assertion\\' => 
+        'Drupal\\Component\\Assertion\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Assertion',
         ),
-        'Drupal\\Component\\Annotation\\' => 
+        'Drupal\\Component\\Annotation\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Annotation',
         ),
-        'Drupal\\Component\\' => 
+        'Drupal\\Component\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component',
         ),
-        'Dotenv\\' => 
+        'Dotenv\\' =>
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
-        'Doctrine\\Instantiator\\' => 
+        'Doctrine\\Instantiator\\' =>
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
-        'Doctrine\\Common\\Cache\\' => 
+        'Doctrine\\Common\\Cache\\' =>
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
         ),
-        'Doctrine\\Common\\' => 
+        'Doctrine\\Common\\' =>
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
-        'Composer\\Semver\\' => 
+        'Composer\\Semver\\' =>
         array (
             0 => __DIR__ . '/..' . '/composer/semver/src',
         ),
-        'Composer\\Installers\\' => 
+        'Composer\\Installers\\' =>
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
         ),
-        'Behat\\Mink\\Driver\\' => 
+        'Brumann\\Polyfill\\' =>
         array (
-            0 => __DIR__ . '/..' . '/behat/mink-browserkit-driver/src',
-            1 => __DIR__ . '/..' . '/behat/mink-goutte-driver/src',
+            0 => __DIR__ . '/..' . '/brumann/polyfill-unserialize/src',
         ),
-        'Behat\\Mink\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/behat/mink/src',
-        ),
-        'Asm89\\Stack\\' => 
+        'Asm89\\Stack\\' =>
         array (
             0 => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack',
         ),
-        'Alchemy\\Zippy\\' => 
+        'Alchemy\\Zippy\\' =>
         array (
             0 => __DIR__ . '/..' . '/alchemy/zippy/src',
         ),
     );
 
     public static $prefixesPsr0 = array (
-        'p' => 
+        'p' =>
         array (
-            'phpDocumentor' => 
+            'phpDocumentor' =>
             array (
                 0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             ),
         ),
-        'o' => 
+        'o' =>
         array (
-            'org\\bovigo\\vfs\\' => 
+            'org\\bovigo\\vfs\\' =>
             array (
                 0 => __DIR__ . '/..' . '/mikey179/vfsStream/src/main/php',
             ),
         ),
-        'T' => 
+        'T' =>
         array (
-            'Twig_' => 
+            'Twig_' =>
             array (
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
             ),
         ),
-        'S' => 
+        'S' =>
         array (
-            'Stack' => 
+            'Stack' =>
             array (
                 0 => __DIR__ . '/..' . '/stack/builder/src',
             ),
         ),
-        'P' => 
+        'P' =>
         array (
-            'Prophecy\\' => 
+            'PEAR' =>
             array (
-                0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+                0 => __DIR__ . '/..' . '/pear/pear_exception',
             ),
         ),
-        'J' => 
+        'E' =>
         array (
-            'JakubOnderka\\PhpConsoleHighlighter' => 
-            array (
-                0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
-            ),
-            'JakubOnderka\\PhpConsoleColor' => 
-            array (
-                0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
-            ),
-        ),
-        'E' => 
-        array (
-            'Egulias\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/egulias/email-validator/src',
-            ),
-            'EasyRdf_' => 
+            'EasyRdf_' =>
             array (
                 0 => __DIR__ . '/..' . '/easyrdf/easyrdf/lib',
             ),
         ),
-        'D' => 
+        'D' =>
         array (
-            'Doctrine\\Common\\Lexer\\' => 
+            'Doctrine\\Common\\Lexer\\' =>
             array (
                 0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
             ),
-            'Doctrine\\Common\\Inflector\\' => 
+            'Doctrine\\Common\\Inflector\\' =>
             array (
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
             ),
-            'Doctrine\\Common\\Collections\\' => 
+            'Doctrine\\Common\\Collections\\' =>
             array (
                 0 => __DIR__ . '/..' . '/doctrine/collections/lib',
             ),
-            'Doctrine\\Common\\Annotations\\' => 
+            'Doctrine\\Common\\Annotations\\' =>
             array (
                 0 => __DIR__ . '/..' . '/doctrine/annotations/lib',
             ),
-            'Dflydev\\PlaceholderResolver' => 
+            'Dflydev\\PlaceholderResolver' =>
             array (
                 0 => __DIR__ . '/..' . '/dflydev/placeholder-resolver/src',
             ),
-            'Dflydev\\DotAccessData' => 
+            'Dflydev\\DotAccessData' =>
             array (
                 0 => __DIR__ . '/..' . '/dflydev/dot-access-data/src',
             ),
-            'Dflydev\\DotAccessConfiguration' => 
+            'Dflydev\\DotAccessConfiguration' =>
             array (
                 0 => __DIR__ . '/..' . '/dflydev/dot-access-configuration/src',
             ),
         ),
+        'C' =>
+        array (
+            'Console' =>
+            array (
+                0 => __DIR__ . '/..' . '/pear/console_getopt',
+            ),
+        ),
+        'A' =>
+        array (
+            'Archive_Tar' =>
+            array (
+                0 => __DIR__ . '/..' . '/pear/archive_tar',
+            ),
+        ),
+    );
+
+    public static $fallbackDirsPsr0 = array (
+        0 => __DIR__ . '/..' . '/pear/pear-core-minimal/src',
     );
 
     public static $classMap = array (
+        'Archive_Tar' => __DIR__ . '/..' . '/pear/archive_tar/Archive/Tar.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
+        'Brumann\\Polyfill\\Unserialize' => __DIR__ . '/..' . '/brumann/polyfill-unserialize/src/Unserialize.php',
         'Composer\\Installers\\AglInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AglInstaller.php',
         'Composer\\Installers\\AimeosInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AimeosInstaller.php',
         'Composer\\Installers\\AnnotateCmsInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AnnotateCmsInstaller.php',
@@ -602,6 +615,7 @@ class ComposerStaticInitDrupal8
         'Composer\\Installers\\BonefishInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/BonefishInstaller.php',
         'Composer\\Installers\\CakePHPInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/CakePHPInstaller.php',
         'Composer\\Installers\\ChefInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ChefInstaller.php',
+        'Composer\\Installers\\CiviCrmInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/CiviCrmInstaller.php',
         'Composer\\Installers\\ClanCatsFrameworkInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ClanCatsFrameworkInstaller.php',
         'Composer\\Installers\\CockpitInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/CockpitInstaller.php',
         'Composer\\Installers\\CodeIgniterInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/CodeIgniterInstaller.php',
@@ -689,6 +703,7 @@ class ComposerStaticInitDrupal8
         'Composer\\Semver\\Constraint\\MultiConstraint' => __DIR__ . '/..' . '/composer/semver/src/Constraint/MultiConstraint.php',
         'Composer\\Semver\\Semver' => __DIR__ . '/..' . '/composer/semver/src/Semver.php',
         'Composer\\Semver\\VersionParser' => __DIR__ . '/..' . '/composer/semver/src/VersionParser.php',
+        'Console_Getopt' => __DIR__ . '/..' . '/pear/console_getopt/Console/Getopt.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'Doctrine\\Common\\Annotations\\Annotation' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php',
         'Doctrine\\Common\\Annotations\\AnnotationException' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/AnnotationException.php',
@@ -883,12 +898,15 @@ class ComposerStaticInitDrupal8
         'Drupal\\Component\\PhpStorage\\MTimeProtectedFileStorage' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/PhpStorage/MTimeProtectedFileStorage.php',
         'Drupal\\Component\\PhpStorage\\PhpStorageInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/PhpStorage/PhpStorageInterface.php',
         'Drupal\\Component\\Plugin\\CategorizingPluginManagerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/CategorizingPluginManagerInterface.php',
+        'Drupal\\Component\\Plugin\\ConfigurableInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/ConfigurableInterface.php',
         'Drupal\\Component\\Plugin\\ConfigurablePluginInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/ConfigurablePluginInterface.php',
         'Drupal\\Component\\Plugin\\ContextAwarePluginBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/ContextAwarePluginBase.php',
         'Drupal\\Component\\Plugin\\ContextAwarePluginInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/ContextAwarePluginInterface.php',
         'Drupal\\Component\\Plugin\\Context\\Context' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Context/Context.php',
         'Drupal\\Component\\Plugin\\Context\\ContextDefinitionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Context/ContextDefinitionInterface.php',
         'Drupal\\Component\\Plugin\\Context\\ContextInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Context/ContextInterface.php',
+        'Drupal\\Component\\Plugin\\Definition\\ContextAwarePluginDefinitionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Definition/ContextAwarePluginDefinitionInterface.php',
+        'Drupal\\Component\\Plugin\\Definition\\ContextAwarePluginDefinitionTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Definition/ContextAwarePluginDefinitionTrait.php',
         'Drupal\\Component\\Plugin\\Definition\\DerivablePluginDefinitionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Definition/DerivablePluginDefinitionInterface.php',
         'Drupal\\Component\\Plugin\\Definition\\PluginDefinition' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Definition/PluginDefinition.php',
         'Drupal\\Component\\Plugin\\Definition\\PluginDefinitionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Definition/PluginDefinitionInterface.php',
@@ -909,6 +927,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Component\\Plugin\\Exception\\InvalidDeriverException' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Exception/InvalidDeriverException.php',
         'Drupal\\Component\\Plugin\\Exception\\InvalidPluginDefinitionException' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Exception/InvalidPluginDefinitionException.php',
         'Drupal\\Component\\Plugin\\Exception\\MapperExceptionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Exception/MapperExceptionInterface.php',
+        'Drupal\\Component\\Plugin\\Exception\\MissingValueContextException' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Exception/MissingValueContextException.php',
         'Drupal\\Component\\Plugin\\Exception\\PluginException' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Exception/PluginException.php',
         'Drupal\\Component\\Plugin\\Exception\\PluginNotFoundException' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Exception/PluginNotFoundException.php',
         'Drupal\\Component\\Plugin\\Factory\\DefaultFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Factory/DefaultFactory.php',
@@ -919,6 +938,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Component\\Plugin\\Mapper\\MapperInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/Mapper/MapperInterface.php',
         'Drupal\\Component\\Plugin\\PluginAwareInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/PluginAwareInterface.php',
         'Drupal\\Component\\Plugin\\PluginBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/PluginBase.php',
+        'Drupal\\Component\\Plugin\\PluginHelper' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/PluginHelper.php',
         'Drupal\\Component\\Plugin\\PluginInspectionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/PluginInspectionInterface.php',
         'Drupal\\Component\\Plugin\\PluginManagerBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/PluginManagerBase.php',
         'Drupal\\Component\\Plugin\\PluginManagerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Plugin/PluginManagerInterface.php',
@@ -944,9 +964,12 @@ class ComposerStaticInitDrupal8
         'Drupal\\Component\\Utility\\Color' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Color.php',
         'Drupal\\Component\\Utility\\Crypt' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Crypt.php',
         'Drupal\\Component\\Utility\\DiffArray' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/DiffArray.php',
+        'Drupal\\Component\\Utility\\EmailValidator' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/EmailValidator.php',
+        'Drupal\\Component\\Utility\\EmailValidatorInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/EmailValidatorInterface.php',
         'Drupal\\Component\\Utility\\Environment' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Environment.php',
         'Drupal\\Component\\Utility\\Html' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Html.php',
         'Drupal\\Component\\Utility\\Image' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Image.php',
+        'Drupal\\Component\\Utility\\Mail' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Mail.php',
         'Drupal\\Component\\Utility\\NestedArray' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/NestedArray.php',
         'Drupal\\Component\\Utility\\Number' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Number.php',
         'Drupal\\Component\\Utility\\OpCodeCache' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/OpCodeCache.php',
@@ -967,319 +990,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Component\\Uuid\\Php' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Uuid/Php.php',
         'Drupal\\Component\\Uuid\\Uuid' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Uuid/Uuid.php',
         'Drupal\\Component\\Uuid\\UuidInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Uuid/UuidInterface.php',
-        'Drupal\\Console\\Annotations\\DrupalCommand' => __DIR__ . '/..' . '/drupal/console/src/Annotations/DrupalCommand.php',
-        'Drupal\\Console\\Annotations\\DrupalCommandAnnotationReader' => __DIR__ . '/..' . '/drupal/console/src/Annotations/DrupalCommandAnnotationReader.php',
-        'Drupal\\Console\\Application' => __DIR__ . '/..' . '/drupal/console/src/Application.php',
-        'Drupal\\Console\\Bootstrap\\Drupal' => __DIR__ . '/..' . '/drupal/console/src/Bootstrap/Drupal.php',
-        'Drupal\\Console\\Bootstrap\\DrupalCompilerPass' => __DIR__ . '/..' . '/drupal/console/src/Bootstrap/DrupalCompilerPass.php',
-        'Drupal\\Console\\Bootstrap\\DrupalKernel' => __DIR__ . '/..' . '/drupal/console/src/Bootstrap/DrupalKernel.php',
-        'Drupal\\Console\\Bootstrap\\DrupalKernelTrait' => __DIR__ . '/..' . '/drupal/console/src/Bootstrap/DrupalKernelTrait.php',
-        'Drupal\\Console\\Bootstrap\\DrupalServiceModifier' => __DIR__ . '/..' . '/drupal/console/src/Bootstrap/DrupalServiceModifier.php',
-        'Drupal\\Console\\Bootstrap\\DrupalUpdateKernel' => __DIR__ . '/..' . '/drupal/console/src/Bootstrap/DrupalUpdateKernel.php',
-        'Drupal\\Console\\Bootstrap\\FindCommandsCompilerPass' => __DIR__ . '/..' . '/drupal/console/src/Bootstrap/FindCommandsCompilerPass.php',
-        'Drupal\\Console\\Bootstrap\\FindGeneratorsCompilerPass' => __DIR__ . '/..' . '/drupal/console/src/Bootstrap/FindGeneratorsCompilerPass.php',
-        'Drupal\\Console\\Command\\Cache\\RebuildCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Cache/RebuildCommand.php',
-        'Drupal\\Console\\Command\\Cache\\TagInvalidateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Cache/TagInvalidateCommand.php',
-        'Drupal\\Console\\Command\\Config\\DeleteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/DeleteCommand.php',
-        'Drupal\\Console\\Command\\Config\\DiffCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/DiffCommand.php',
-        'Drupal\\Console\\Command\\Config\\EditCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/EditCommand.php',
-        'Drupal\\Console\\Command\\Config\\ExportCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/ExportCommand.php',
-        'Drupal\\Console\\Command\\Config\\ExportContentTypeCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/ExportContentTypeCommand.php',
-        'Drupal\\Console\\Command\\Config\\ExportSingleCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/ExportSingleCommand.php',
-        'Drupal\\Console\\Command\\Config\\ExportViewCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/ExportViewCommand.php',
-        'Drupal\\Console\\Command\\Config\\ImportCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/ImportCommand.php',
-        'Drupal\\Console\\Command\\Config\\ImportSingleCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/ImportSingleCommand.php',
-        'Drupal\\Console\\Command\\Config\\OverrideCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/OverrideCommand.php',
-        'Drupal\\Console\\Command\\Config\\PrintConfigValidationTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/PrintConfigValidationTrait.php',
-        'Drupal\\Console\\Command\\Config\\ValidateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Config/ValidateCommand.php',
-        'Drupal\\Console\\Command\\Create\\CommentsCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Create/CommentsCommand.php',
-        'Drupal\\Console\\Command\\Create\\NodesCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Create/NodesCommand.php',
-        'Drupal\\Console\\Command\\Create\\RolesCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Create/RolesCommand.php',
-        'Drupal\\Console\\Command\\Create\\TermsCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Create/TermsCommand.php',
-        'Drupal\\Console\\Command\\Create\\UsersCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Create/UsersCommand.php',
-        'Drupal\\Console\\Command\\Create\\VocabulariesCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Create/VocabulariesCommand.php',
-        'Drupal\\Console\\Command\\Cron\\ExecuteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Cron/ExecuteCommand.php',
-        'Drupal\\Console\\Command\\Cron\\ReleaseCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Cron/ReleaseCommand.php',
-        'Drupal\\Console\\Command\\Database\\AddCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/AddCommand.php',
-        'Drupal\\Console\\Command\\Database\\ClientCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/ClientCommand.php',
-        'Drupal\\Console\\Command\\Database\\ConnectCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/ConnectCommand.php',
-        'Drupal\\Console\\Command\\Database\\DatabaseLogBase' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/DatabaseLogBase.php',
-        'Drupal\\Console\\Command\\Database\\DropCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/DropCommand.php',
-        'Drupal\\Console\\Command\\Database\\DumpCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/DumpCommand.php',
-        'Drupal\\Console\\Command\\Database\\LogClearCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/LogClearCommand.php',
-        'Drupal\\Console\\Command\\Database\\LogPollCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/LogPollCommand.php',
-        'Drupal\\Console\\Command\\Database\\QueryCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/QueryCommand.php',
-        'Drupal\\Console\\Command\\Database\\RestoreCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Database/RestoreCommand.php',
-        'Drupal\\Console\\Command\\Debug\\BreakpointsCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/BreakpointsCommand.php',
-        'Drupal\\Console\\Command\\Debug\\CacheContextCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/CacheContextCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ConfigCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ConfigCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ConfigSettingsCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ConfigSettingsCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ConfigValidateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ConfigValidateCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ContainerCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ContainerCommand.php',
-        'Drupal\\Console\\Command\\Debug\\CronCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/CronCommand.php',
-        'Drupal\\Console\\Command\\Debug\\DatabaseLogCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/DatabaseLogCommand.php',
-        'Drupal\\Console\\Command\\Debug\\DatabaseTableCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/DatabaseTableCommand.php',
-        'Drupal\\Console\\Command\\Debug\\EntityCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/EntityCommand.php',
-        'Drupal\\Console\\Command\\Debug\\EventCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/EventCommand.php',
-        'Drupal\\Console\\Command\\Debug\\FeaturesCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/FeaturesCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ImageStylesCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ImageStylesCommand.php',
-        'Drupal\\Console\\Command\\Debug\\LibrariesCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/LibrariesCommand.php',
-        'Drupal\\Console\\Command\\Debug\\MigrateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/MigrateCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ModuleCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ModuleCommand.php',
-        'Drupal\\Console\\Command\\Debug\\MultisiteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/MultisiteCommand.php',
-        'Drupal\\Console\\Command\\Debug\\PermissionCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/PermissionCommand.php',
-        'Drupal\\Console\\Command\\Debug\\PluginCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/PluginCommand.php',
-        'Drupal\\Console\\Command\\Debug\\QueueCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/QueueCommand.php',
-        'Drupal\\Console\\Command\\Debug\\RestCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/RestCommand.php',
-        'Drupal\\Console\\Command\\Debug\\RolesCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/RolesCommand.php',
-        'Drupal\\Console\\Command\\Debug\\RouterCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/RouterCommand.php',
-        'Drupal\\Console\\Command\\Debug\\StateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/StateCommand.php',
-        'Drupal\\Console\\Command\\Debug\\TestCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/TestCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ThemeCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ThemeCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ThemeKeysCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ThemeKeysCommand.php',
-        'Drupal\\Console\\Command\\Debug\\UpdateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/UpdateCommand.php',
-        'Drupal\\Console\\Command\\Debug\\UserCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/UserCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ViewsCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ViewsCommand.php',
-        'Drupal\\Console\\Command\\Debug\\ViewsPluginsCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Debug/ViewsPluginsCommand.php',
-        'Drupal\\Console\\Command\\DevelDumperCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/DevelDumperCommand.php',
-        'Drupal\\Console\\Command\\Entity\\DeleteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Entity/DeleteCommand.php',
-        'Drupal\\Console\\Command\\Features\\ImportCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Features/ImportCommand.php',
-        'Drupal\\Console\\Command\\Field\\InfoCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Field/InfoCommand.php',
-        'Drupal\\Console\\Command\\Generate\\AuthenticationProviderCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/AuthenticationProviderCommand.php',
-        'Drupal\\Console\\Command\\Generate\\BreakPointCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/BreakPointCommand.php',
-        'Drupal\\Console\\Command\\Generate\\CacheContextCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/CacheContextCommand.php',
-        'Drupal\\Console\\Command\\Generate\\CommandCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/CommandCommand.php',
-        'Drupal\\Console\\Command\\Generate\\ConfigFormBaseCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/ConfigFormBaseCommand.php',
-        'Drupal\\Console\\Command\\Generate\\ControllerCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/ControllerCommand.php',
-        'Drupal\\Console\\Command\\Generate\\EntityBundleCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/EntityBundleCommand.php',
-        'Drupal\\Console\\Command\\Generate\\EntityCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/EntityCommand.php',
-        'Drupal\\Console\\Command\\Generate\\EntityConfigCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/EntityConfigCommand.php',
-        'Drupal\\Console\\Command\\Generate\\EntityContentCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/EntityContentCommand.php',
-        'Drupal\\Console\\Command\\Generate\\EventSubscriberCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/EventSubscriberCommand.php',
-        'Drupal\\Console\\Command\\Generate\\FormAlterCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/FormAlterCommand.php',
-        'Drupal\\Console\\Command\\Generate\\FormBaseCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/FormBaseCommand.php',
-        'Drupal\\Console\\Command\\Generate\\FormCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/FormCommand.php',
-        'Drupal\\Console\\Command\\Generate\\HelpCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/HelpCommand.php',
-        'Drupal\\Console\\Command\\Generate\\JsTestCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/JsTestCommand.php',
-        'Drupal\\Console\\Command\\Generate\\ModuleCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/ModuleCommand.php',
-        'Drupal\\Console\\Command\\Generate\\ModuleFileCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/ModuleFileCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PermissionCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PermissionCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginBlockCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginBlockCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginCKEditorButtonCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginCKEditorButtonCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginConditionCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginConditionCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginFieldCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginFieldCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginFieldFormatterCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginFieldFormatterCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginFieldTypeCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginFieldTypeCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginFieldWidgetCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginFieldWidgetCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginImageEffectCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginImageEffectCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginImageFormatterCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginImageFormatterCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginMailCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginMailCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginMigrateProcessCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginMigrateProcessCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginMigrateSourceCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginMigrateSourceCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginRestResourceCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginRestResourceCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginRulesActionCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginRulesActionCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginSkeletonCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginSkeletonCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginTypeAnnotationCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginTypeAnnotationCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginTypeYamlCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginTypeYamlCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PluginViewsFieldCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PluginViewsFieldCommand.php',
-        'Drupal\\Console\\Command\\Generate\\PostUpdateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/PostUpdateCommand.php',
-        'Drupal\\Console\\Command\\Generate\\ProfileCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/ProfileCommand.php',
-        'Drupal\\Console\\Command\\Generate\\RouteSubscriberCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/RouteSubscriberCommand.php',
-        'Drupal\\Console\\Command\\Generate\\ServiceCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/ServiceCommand.php',
-        'Drupal\\Console\\Command\\Generate\\ThemeCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/ThemeCommand.php',
-        'Drupal\\Console\\Command\\Generate\\TwigExtensionCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/TwigExtensionCommand.php',
-        'Drupal\\Console\\Command\\Generate\\UpdateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Generate/UpdateCommand.php',
-        'Drupal\\Console\\Command\\Image\\StylesFlushCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Image/StylesFlushCommand.php',
-        'Drupal\\Console\\Command\\Locale\\LanguageAddCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Locale/LanguageAddCommand.php',
-        'Drupal\\Console\\Command\\Locale\\LanguageDeleteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Locale/LanguageDeleteCommand.php',
-        'Drupal\\Console\\Command\\Locale\\TranslationStatusCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Locale/TranslationStatusCommand.php',
-        'Drupal\\Console\\Command\\Migrate\\ExecuteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Migrate/ExecuteCommand.php',
-        'Drupal\\Console\\Command\\Migrate\\RollBackCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Migrate/RollBackCommand.php',
-        'Drupal\\Console\\Command\\Migrate\\SetupCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Migrate/SetupCommand.php',
-        'Drupal\\Console\\Command\\Module\\DownloadCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Module/DownloadCommand.php',
-        'Drupal\\Console\\Command\\Module\\InstallCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Module/InstallCommand.php',
-        'Drupal\\Console\\Command\\Module\\InstallDependencyCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Module/InstallDependencyCommand.php',
-        'Drupal\\Console\\Command\\Module\\PathCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Module/PathCommand.php',
-        'Drupal\\Console\\Command\\Module\\UninstallCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Module/UninstallCommand.php',
-        'Drupal\\Console\\Command\\Module\\UpdateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Module/UpdateCommand.php',
-        'Drupal\\Console\\Command\\Multisite\\NewCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Multisite/NewCommand.php',
-        'Drupal\\Console\\Command\\Multisite\\UpdateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Multisite/UpdateCommand.php',
-        'Drupal\\Console\\Command\\Node\\AccessRebuildCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Node/AccessRebuildCommand.php',
-        'Drupal\\Console\\Command\\Queue\\RunCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Queue/RunCommand.php',
-        'Drupal\\Console\\Command\\Rest\\DisableCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Rest/DisableCommand.php',
-        'Drupal\\Console\\Command\\Rest\\EnableCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Rest/EnableCommand.php',
-        'Drupal\\Console\\Command\\Role\\DeleteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Role/DeleteCommand.php',
-        'Drupal\\Console\\Command\\Role\\NewCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Role/NewCommand.php',
-        'Drupal\\Console\\Command\\Router\\RebuildCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Router/RebuildCommand.php',
-        'Drupal\\Console\\Command\\ServerCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/ServerCommand.php',
-        'Drupal\\Console\\Command\\Shared\\ConfirmationTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/ConfirmationTrait.php',
-        'Drupal\\Console\\Command\\Shared\\ConnectTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/ConnectTrait.php',
-        'Drupal\\Console\\Command\\Shared\\CreateTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/CreateTrait.php',
-        'Drupal\\Console\\Command\\Shared\\DatabaseTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/DatabaseTrait.php',
-        'Drupal\\Console\\Command\\Shared\\EventsTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/EventsTrait.php',
-        'Drupal\\Console\\Command\\Shared\\ExportTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/ExportTrait.php',
-        'Drupal\\Console\\Command\\Shared\\ExtensionTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/ExtensionTrait.php',
-        'Drupal\\Console\\Command\\Shared\\FeatureTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/FeatureTrait.php',
-        'Drupal\\Console\\Command\\Shared\\FormTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/FormTrait.php',
-        'Drupal\\Console\\Command\\Shared\\LocaleTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/LocaleTrait.php',
-        'Drupal\\Console\\Command\\Shared\\MenuTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/MenuTrait.php',
-        'Drupal\\Console\\Command\\Shared\\MigrationTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/MigrationTrait.php',
-        'Drupal\\Console\\Command\\Shared\\ModuleTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/ModuleTrait.php',
-        'Drupal\\Console\\Command\\Shared\\PermissionTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/PermissionTrait.php',
-        'Drupal\\Console\\Command\\Shared\\ProjectDownloadTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/ProjectDownloadTrait.php',
-        'Drupal\\Console\\Command\\Shared\\RestTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/RestTrait.php',
-        'Drupal\\Console\\Command\\Shared\\ServicesTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/ServicesTrait.php',
-        'Drupal\\Console\\Command\\Shared\\ThemeBreakpointTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/ThemeBreakpointTrait.php',
-        'Drupal\\Console\\Command\\Shared\\ThemeRegionTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/ThemeRegionTrait.php',
-        'Drupal\\Console\\Command\\Shared\\TranslationTrait' => __DIR__ . '/..' . '/drupal/console/src/Command/Shared/TranslationTrait.php',
-        'Drupal\\Console\\Command\\ShellCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/ShellCommand.php',
-        'Drupal\\Console\\Command\\Site\\ImportLocalCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Site/ImportLocalCommand.php',
-        'Drupal\\Console\\Command\\Site\\InstallCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Site/InstallCommand.php',
-        'Drupal\\Console\\Command\\Site\\MaintenanceCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Site/MaintenanceCommand.php',
-        'Drupal\\Console\\Command\\Site\\ModeCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Site/ModeCommand.php',
-        'Drupal\\Console\\Command\\Site\\StatisticsCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Site/StatisticsCommand.php',
-        'Drupal\\Console\\Command\\Site\\StatusCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Site/StatusCommand.php',
-        'Drupal\\Console\\Command\\SnippetCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/SnippetCommand.php',
-        'Drupal\\Console\\Command\\State\\DeleteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/State/DeleteCommand.php',
-        'Drupal\\Console\\Command\\State\\OverrideCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/State/OverrideCommand.php',
-        'Drupal\\Console\\Command\\Taxonomy\\DeleteTermCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Taxonomy/DeleteTermCommand.php',
-        'Drupal\\Console\\Command\\Test\\RunCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Test/RunCommand.php',
-        'Drupal\\Console\\Command\\Theme\\DownloadCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Theme/DownloadCommand.php',
-        'Drupal\\Console\\Command\\Theme\\InstallCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Theme/InstallCommand.php',
-        'Drupal\\Console\\Command\\Theme\\PathCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Theme/PathCommand.php',
-        'Drupal\\Console\\Command\\Theme\\UninstallCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Theme/UninstallCommand.php',
-        'Drupal\\Console\\Command\\Update\\EntitiesCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Update/EntitiesCommand.php',
-        'Drupal\\Console\\Command\\Update\\ExecuteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Update/ExecuteCommand.php',
-        'Drupal\\Console\\Command\\User\\CreateCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/User/CreateCommand.php',
-        'Drupal\\Console\\Command\\User\\DeleteCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/User/DeleteCommand.php',
-        'Drupal\\Console\\Command\\User\\LoginCleanAttemptsCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/User/LoginCleanAttemptsCommand.php',
-        'Drupal\\Console\\Command\\User\\LoginUrlCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/User/LoginUrlCommand.php',
-        'Drupal\\Console\\Command\\User\\PasswordHashCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/User/PasswordHashCommand.php',
-        'Drupal\\Console\\Command\\User\\PasswordResetCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/User/PasswordResetCommand.php',
-        'Drupal\\Console\\Command\\User\\RoleCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/User/RoleCommand.php',
-        'Drupal\\Console\\Command\\User\\UserBase' => __DIR__ . '/..' . '/drupal/console/src/Command/User/UserBase.php',
-        'Drupal\\Console\\Command\\Views\\DisableCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Views/DisableCommand.php',
-        'Drupal\\Console\\Command\\Views\\EnableCommand' => __DIR__ . '/..' . '/drupal/console/src/Command/Views/EnableCommand.php',
-        'Drupal\\Console\\Composer\\Plugin\\Extender' => __DIR__ . '/..' . '/drupal/console-extend-plugin/src/Extender.php',
-        'Drupal\\Console\\Composer\\Plugin\\ExtenderManager' => __DIR__ . '/..' . '/drupal/console-extend-plugin/src/ExtenderManager.php',
-        'Drupal\\Console\\Core\\Application' => __DIR__ . '/..' . '/drupal/console-core/src/Application.php',
-        'Drupal\\Console\\Core\\Bootstrap\\DrupalConsoleCore' => __DIR__ . '/..' . '/drupal/console-core/src/Bootstrap/DrupalConsoleCore.php',
-        'Drupal\\Console\\Core\\Bootstrap\\DrupalInterface' => __DIR__ . '/..' . '/drupal/console-core/src/Bootstrap/DrupalInterface.php',
-        'Drupal\\Console\\Core\\Command\\AboutCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/AboutCommand.php',
-        'Drupal\\Console\\Core\\Command\\Chain\\ChainCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Chain/ChainCommand.php',
-        'Drupal\\Console\\Core\\Command\\Chain\\ChainCustomCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Chain/ChainCustomCommand.php',
-        'Drupal\\Console\\Core\\Command\\CheckCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/CheckCommand.php',
-        'Drupal\\Console\\Core\\Command\\Command' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Command.php',
-        'Drupal\\Console\\Core\\Command\\CompleteCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/CompleteCommand.php',
-        'Drupal\\Console\\Core\\Command\\ContainerAwareCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/ContainerAwareCommand.php',
-        'Drupal\\Console\\Core\\Command\\Debug\\ChainCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Debug/ChainCommand.php',
-        'Drupal\\Console\\Core\\Command\\Debug\\SettingsCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Debug/SettingsCommand.php',
-        'Drupal\\Console\\Core\\Command\\Debug\\SiteCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Debug/SiteCommand.php',
-        'Drupal\\Console\\Core\\Command\\DrushCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/DrushCommand.php',
-        'Drupal\\Console\\Core\\Command\\Exclude\\DrupliconCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Exclude/DrupliconCommand.php',
-        'Drupal\\Console\\Core\\Command\\Exclude\\ElephpantCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Exclude/ElephpantCommand.php',
-        'Drupal\\Console\\Core\\Command\\Exec\\ExecCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Exec/ExecCommand.php',
-        'Drupal\\Console\\Core\\Command\\HelpCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/HelpCommand.php',
-        'Drupal\\Console\\Core\\Command\\InitCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/InitCommand.php',
-        'Drupal\\Console\\Core\\Command\\ListCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/ListCommand.php',
-        'Drupal\\Console\\Core\\Command\\Settings\\SetCommand' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Settings/SetCommand.php',
-        'Drupal\\Console\\Core\\Command\\Shared\\CommandTrait' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Shared/CommandTrait.php',
-        'Drupal\\Console\\Core\\Command\\Shared\\ContainerAwareCommandTrait' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Shared/ContainerAwareCommandTrait.php',
-        'Drupal\\Console\\Core\\Command\\Shared\\InputTrait' => __DIR__ . '/..' . '/drupal/console-core/src/Command/Shared/InputTrait.php',
-        'Drupal\\Console\\Core\\Descriptor\\TextDescriptor' => __DIR__ . '/..' . '/drupal/console-core/src/Descriptor/TextDescriptor.php',
-        'Drupal\\Console\\Core\\EventSubscriber\\CallCommandListener' => __DIR__ . '/..' . '/drupal/console-core/src/EventSubscriber/CallCommandListener.php',
-        'Drupal\\Console\\Core\\EventSubscriber\\DefaultValueEventListener' => __DIR__ . '/..' . '/drupal/console-core/src/EventSubscriber/DefaultValueEventListener.php',
-        'Drupal\\Console\\Core\\EventSubscriber\\ShowGenerateChainListener' => __DIR__ . '/..' . '/drupal/console-core/src/EventSubscriber/ShowGenerateChainListener.php',
-        'Drupal\\Console\\Core\\EventSubscriber\\ShowGenerateCountCodeLinesListener' => __DIR__ . '/..' . '/drupal/console-core/src/EventSubscriber/ShowGenerateCountCodeLinesListener.php',
-        'Drupal\\Console\\Core\\EventSubscriber\\ShowGenerateInlineListener' => __DIR__ . '/..' . '/drupal/console-core/src/EventSubscriber/ShowGenerateInlineListener.php',
-        'Drupal\\Console\\Core\\EventSubscriber\\ShowGeneratedFilesListener' => __DIR__ . '/..' . '/drupal/console-core/src/EventSubscriber/ShowGeneratedFilesListener.php',
-        'Drupal\\Console\\Core\\EventSubscriber\\ShowTipsListener' => __DIR__ . '/..' . '/drupal/console-core/src/EventSubscriber/ShowTipsListener.php',
-        'Drupal\\Console\\Core\\EventSubscriber\\ShowWelcomeMessageListener' => __DIR__ . '/..' . '/drupal/console-core/src/EventSubscriber/ShowWelcomeMessageListener.php',
-        'Drupal\\Console\\Core\\EventSubscriber\\ValidateExecutionListener' => __DIR__ . '/..' . '/drupal/console-core/src/EventSubscriber/ValidateExecutionListener.php',
-        'Drupal\\Console\\Core\\Generator\\Generator' => __DIR__ . '/..' . '/drupal/console-core/src/Generator/Generator.php',
-        'Drupal\\Console\\Core\\Generator\\InitGenerator' => __DIR__ . '/..' . '/drupal/console-core/src/Generator/InitGenerator.php',
-        'Drupal\\Console\\Core\\Helper\\DescriptorHelper' => __DIR__ . '/..' . '/drupal/console-core/src/Helper/DescriptorHelper.php',
-        'Drupal\\Console\\Core\\Helper\\DrupalChoiceQuestionHelper' => __DIR__ . '/..' . '/drupal/console-core/src/Helper/DrupalChoiceQuestionHelper.php',
-        'Drupal\\Console\\Core\\Style\\DrupalStyle' => __DIR__ . '/..' . '/drupal/console-core/src/Style/DrupalStyle.php',
-        'Drupal\\Console\\Core\\Utils\\ArgvInputReader' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/ArgvInputReader.php',
-        'Drupal\\Console\\Core\\Utils\\ChainDiscovery' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/ChainDiscovery.php',
-        'Drupal\\Console\\Core\\Utils\\ChainQueue' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/ChainQueue.php',
-        'Drupal\\Console\\Core\\Utils\\ConfigurationManager' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/ConfigurationManager.php',
-        'Drupal\\Console\\Core\\Utils\\CountCodeLines' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/CountCodeLines.php',
-        'Drupal\\Console\\Core\\Utils\\DrupalFinder' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/DrupalFinder.php',
-        'Drupal\\Console\\Core\\Utils\\FileQueue' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/FileQueue.php',
-        'Drupal\\Console\\Core\\Utils\\MessageManager' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/MessageManager.php',
-        'Drupal\\Console\\Core\\Utils\\NestedArray' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/NestedArray.php',
-        'Drupal\\Console\\Core\\Utils\\RequirementChecker' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/RequirementChecker.php',
-        'Drupal\\Console\\Core\\Utils\\ShellProcess' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/ShellProcess.php',
-        'Drupal\\Console\\Core\\Utils\\ShowFile' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/ShowFile.php',
-        'Drupal\\Console\\Core\\Utils\\StringConverter' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/StringConverter.php',
-        'Drupal\\Console\\Core\\Utils\\TranslatorManager' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/TranslatorManager.php',
-        'Drupal\\Console\\Core\\Utils\\TranslatorManagerInterface' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/TranslatorManagerInterface.php',
-        'Drupal\\Console\\Core\\Utils\\TwigRenderer' => __DIR__ . '/..' . '/drupal/console-core/src/Utils/TwigRenderer.php',
-        'Drupal\\Console\\Dotenv\\Command\\DebugCommand' => __DIR__ . '/..' . '/drupal/console-dotenv/src/Command/DebugCommand.php',
-        'Drupal\\Console\\Dotenv\\Command\\InitCommand' => __DIR__ . '/..' . '/drupal/console-dotenv/src/Command/InitCommand.php',
-        'Drupal\\Console\\Dotenv\\Generator\\InitGenerator' => __DIR__ . '/..' . '/drupal/console-dotenv/src/Generator/InitGenerator.php',
-        'Drupal\\Console\\Extension\\Discovery' => __DIR__ . '/..' . '/drupal/console/src/Extension/Discovery.php',
-        'Drupal\\Console\\Extension\\Extension' => __DIR__ . '/..' . '/drupal/console/src/Extension/Extension.php',
-        'Drupal\\Console\\Extension\\Manager' => __DIR__ . '/..' . '/drupal/console/src/Extension/Manager.php',
-        'Drupal\\Console\\Generator\\AuthenticationProviderGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/AuthenticationProviderGenerator.php',
-        'Drupal\\Console\\Generator\\BreakPointGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/BreakPointGenerator.php',
-        'Drupal\\Console\\Generator\\CacheContextGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/CacheContextGenerator.php',
-        'Drupal\\Console\\Generator\\CommandGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/CommandGenerator.php',
-        'Drupal\\Console\\Generator\\ControllerGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/ControllerGenerator.php',
-        'Drupal\\Console\\Generator\\DatabaseSettingsGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/DatabaseSettingsGenerator.php',
-        'Drupal\\Console\\Generator\\EntityBundleGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/EntityBundleGenerator.php',
-        'Drupal\\Console\\Generator\\EntityConfigGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/EntityConfigGenerator.php',
-        'Drupal\\Console\\Generator\\EntityContentGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/EntityContentGenerator.php',
-        'Drupal\\Console\\Generator\\EventSubscriberGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/EventSubscriberGenerator.php',
-        'Drupal\\Console\\Generator\\FormAlterGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/FormAlterGenerator.php',
-        'Drupal\\Console\\Generator\\FormGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/FormGenerator.php',
-        'Drupal\\Console\\Generator\\HelpGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/HelpGenerator.php',
-        'Drupal\\Console\\Generator\\JsTestGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/JsTestGenerator.php',
-        'Drupal\\Console\\Generator\\ModuleFileGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/ModuleFileGenerator.php',
-        'Drupal\\Console\\Generator\\ModuleGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/ModuleGenerator.php',
-        'Drupal\\Console\\Generator\\PermissionGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PermissionGenerator.php',
-        'Drupal\\Console\\Generator\\PluginBlockGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginBlockGenerator.php',
-        'Drupal\\Console\\Generator\\PluginCKEditorButtonGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginCKEditorButtonGenerator.php',
-        'Drupal\\Console\\Generator\\PluginConditionGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginConditionGenerator.php',
-        'Drupal\\Console\\Generator\\PluginFieldFormatterGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginFieldFormatterGenerator.php',
-        'Drupal\\Console\\Generator\\PluginFieldTypeGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginFieldTypeGenerator.php',
-        'Drupal\\Console\\Generator\\PluginFieldWidgetGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginFieldWidgetGenerator.php',
-        'Drupal\\Console\\Generator\\PluginImageEffectGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginImageEffectGenerator.php',
-        'Drupal\\Console\\Generator\\PluginImageFormatterGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginImageFormatterGenerator.php',
-        'Drupal\\Console\\Generator\\PluginMailGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginMailGenerator.php',
-        'Drupal\\Console\\Generator\\PluginMigrateProcessGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginMigrateProcessGenerator.php',
-        'Drupal\\Console\\Generator\\PluginMigrateSourceGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginMigrateSourceGenerator.php',
-        'Drupal\\Console\\Generator\\PluginRestResourceGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginRestResourceGenerator.php',
-        'Drupal\\Console\\Generator\\PluginRulesActionGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginRulesActionGenerator.php',
-        'Drupal\\Console\\Generator\\PluginSkeletonGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginSkeletonGenerator.php',
-        'Drupal\\Console\\Generator\\PluginTypeAnnotationGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginTypeAnnotationGenerator.php',
-        'Drupal\\Console\\Generator\\PluginTypeYamlGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginTypeYamlGenerator.php',
-        'Drupal\\Console\\Generator\\PluginViewsFieldGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PluginViewsFieldGenerator.php',
-        'Drupal\\Console\\Generator\\PostUpdateGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/PostUpdateGenerator.php',
-        'Drupal\\Console\\Generator\\ProfileGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/ProfileGenerator.php',
-        'Drupal\\Console\\Generator\\RouteSubscriberGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/RouteSubscriberGenerator.php',
-        'Drupal\\Console\\Generator\\ServiceGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/ServiceGenerator.php',
-        'Drupal\\Console\\Generator\\ThemeGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/ThemeGenerator.php',
-        'Drupal\\Console\\Generator\\TwigExtensionGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/TwigExtensionGenerator.php',
-        'Drupal\\Console\\Generator\\UpdateGenerator' => __DIR__ . '/..' . '/drupal/console/src/Generator/UpdateGenerator.php',
-        'Drupal\\Console\\Plugin\\ScriptHandler' => __DIR__ . '/..' . '/drupal/console/src/Plugin/ScriptHandler.php',
-        'Drupal\\Console\\Utils\\AnnotationValidator' => __DIR__ . '/..' . '/drupal/console/src/Utils/AnnotationValidator.php',
-        'Drupal\\Console\\Utils\\Create\\Base' => __DIR__ . '/..' . '/drupal/console/src/Utils/Create/Base.php',
-        'Drupal\\Console\\Utils\\Create\\CommentData' => __DIR__ . '/..' . '/drupal/console/src/Utils/Create/CommentData.php',
-        'Drupal\\Console\\Utils\\Create\\NodeData' => __DIR__ . '/..' . '/drupal/console/src/Utils/Create/NodeData.php',
-        'Drupal\\Console\\Utils\\Create\\RoleData' => __DIR__ . '/..' . '/drupal/console/src/Utils/Create/RoleData.php',
-        'Drupal\\Console\\Utils\\Create\\TermData' => __DIR__ . '/..' . '/drupal/console/src/Utils/Create/TermData.php',
-        'Drupal\\Console\\Utils\\Create\\UserData' => __DIR__ . '/..' . '/drupal/console/src/Utils/Create/UserData.php',
-        'Drupal\\Console\\Utils\\Create\\VocabularyData' => __DIR__ . '/..' . '/drupal/console/src/Utils/Create/VocabularyData.php',
-        'Drupal\\Console\\Utils\\DrupalApi' => __DIR__ . '/..' . '/drupal/console/src/Utils/DrupalApi.php',
-        'Drupal\\Console\\Utils\\MigrateExecuteMessageCapture' => __DIR__ . '/..' . '/drupal/console/src/Utils/MigrateExecuteMessageCapture.php',
-        'Drupal\\Console\\Utils\\Site' => __DIR__ . '/..' . '/drupal/console/src/Utils/Site.php',
-        'Drupal\\Console\\Utils\\TranslatorManager' => __DIR__ . '/..' . '/drupal/console/src/Utils/TranslatorManager.php',
-        'Drupal\\Console\\Utils\\Validator' => __DIR__ . '/..' . '/drupal/console/src/Utils/Validator.php',
-        'Drupal\\Console\\Zippy\\Adapter\\TarGzGNUTarForWindowsAdapter' => __DIR__ . '/..' . '/drupal/console/src/Zippy/Adapter/TarGzGNUTarForWindowsAdapter.php',
-        'Drupal\\Console\\Zippy\\FileStrategy\\TarGzFileForWindowsStrategy' => __DIR__ . '/..' . '/drupal/console/src/Zippy/FileStrategy/TarGzFileForWindowsStrategy.php',
+        'Drupal\\Component\\Version\\Constraint' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Version/Constraint.php',
         'Drupal\\Core\\Access\\AccessArgumentsResolverFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Access/AccessArgumentsResolverFactory.php',
         'Drupal\\Core\\Access\\AccessArgumentsResolverFactoryInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Access/AccessArgumentsResolverFactoryInterface.php',
         'Drupal\\Core\\Access\\AccessCheckInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Access/AccessCheckInterface.php',
@@ -1306,18 +1017,26 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Action\\ActionManager' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/ActionManager.php',
         'Drupal\\Core\\Action\\ActionPluginCollection' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/ActionPluginCollection.php',
         'Drupal\\Core\\Action\\ConfigurableActionBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/ConfigurableActionBase.php',
+        'Drupal\\Core\\Action\\Plugin\\Action\\DeleteAction' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/DeleteAction.php',
         'Drupal\\Core\\Action\\Plugin\\Action\\Derivative\\EntityActionDeriverBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/Derivative/EntityActionDeriverBase.php',
         'Drupal\\Core\\Action\\Plugin\\Action\\Derivative\\EntityChangedActionDeriver' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/Derivative/EntityChangedActionDeriver.php',
+        'Drupal\\Core\\Action\\Plugin\\Action\\Derivative\\EntityDeleteActionDeriver' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/Derivative/EntityDeleteActionDeriver.php',
         'Drupal\\Core\\Action\\Plugin\\Action\\Derivative\\EntityPublishedActionDeriver' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/Derivative/EntityPublishedActionDeriver.php',
+        'Drupal\\Core\\Action\\Plugin\\Action\\EmailAction' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/EmailAction.php',
         'Drupal\\Core\\Action\\Plugin\\Action\\EntityActionBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/EntityActionBase.php',
+        'Drupal\\Core\\Action\\Plugin\\Action\\GotoAction' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/GotoAction.php',
+        'Drupal\\Core\\Action\\Plugin\\Action\\MessageAction' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/MessageAction.php',
         'Drupal\\Core\\Action\\Plugin\\Action\\PublishAction' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/PublishAction.php',
         'Drupal\\Core\\Action\\Plugin\\Action\\SaveAction' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/SaveAction.php',
         'Drupal\\Core\\Action\\Plugin\\Action\\UnpublishAction' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Action/Plugin/Action/UnpublishAction.php',
         'Drupal\\Core\\Ajax\\AddCssCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/AddCssCommand.php',
         'Drupal\\Core\\Ajax\\AfterCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/AfterCommand.php',
+        'Drupal\\Core\\Ajax\\AjaxFormHelperTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/AjaxFormHelperTrait.php',
+        'Drupal\\Core\\Ajax\\AjaxHelperTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/AjaxHelperTrait.php',
         'Drupal\\Core\\Ajax\\AjaxResponse' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/AjaxResponse.php',
         'Drupal\\Core\\Ajax\\AjaxResponseAttachmentsProcessor' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/AjaxResponseAttachmentsProcessor.php',
         'Drupal\\Core\\Ajax\\AlertCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/AlertCommand.php',
+        'Drupal\\Core\\Ajax\\AnnounceCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/AnnounceCommand.php',
         'Drupal\\Core\\Ajax\\AppendCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/AppendCommand.php',
         'Drupal\\Core\\Ajax\\BaseCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/BaseCommand.php',
         'Drupal\\Core\\Ajax\\BeforeCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Ajax/BeforeCommand.php',
@@ -1393,6 +1112,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Authentication\\AuthenticationProviderChallengeInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Authentication/AuthenticationProviderChallengeInterface.php',
         'Drupal\\Core\\Authentication\\AuthenticationProviderFilterInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Authentication/AuthenticationProviderFilterInterface.php',
         'Drupal\\Core\\Authentication\\AuthenticationProviderInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Authentication/AuthenticationProviderInterface.php',
+        'Drupal\\Core\\Batch\\BatchBuilder' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Batch/BatchBuilder.php',
         'Drupal\\Core\\Batch\\BatchStorage' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Batch/BatchStorage.php',
         'Drupal\\Core\\Batch\\BatchStorageInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Batch/BatchStorageInterface.php',
         'Drupal\\Core\\Batch\\Percentage' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Batch/Percentage.php',
@@ -1470,6 +1190,8 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Cache\\ListCacheBinsPass' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/ListCacheBinsPass.php',
         'Drupal\\Core\\Cache\\MemoryBackend' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/MemoryBackend.php',
         'Drupal\\Core\\Cache\\MemoryBackendFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/MemoryBackendFactory.php',
+        'Drupal\\Core\\Cache\\MemoryCache\\MemoryCache' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/MemoryCache/MemoryCache.php',
+        'Drupal\\Core\\Cache\\MemoryCache\\MemoryCacheInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/MemoryCache/MemoryCacheInterface.php',
         'Drupal\\Core\\Cache\\MemoryCounterBackend' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/MemoryCounterBackend.php',
         'Drupal\\Core\\Cache\\NullBackend' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/NullBackend.php',
         'Drupal\\Core\\Cache\\NullBackendFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/NullBackendFactory.php',
@@ -1487,6 +1209,9 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Command\\DbToolsApplication' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Command/DbToolsApplication.php',
         'Drupal\\Core\\Command\\GenerateProxyClassApplication' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Command/GenerateProxyClassApplication.php',
         'Drupal\\Core\\Command\\GenerateProxyClassCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Command/GenerateProxyClassCommand.php',
+        'Drupal\\Core\\Command\\InstallCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Command/InstallCommand.php',
+        'Drupal\\Core\\Command\\QuickStartCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Command/QuickStartCommand.php',
+        'Drupal\\Core\\Command\\ServerCommand' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Command/ServerCommand.php',
         'Drupal\\Core\\Composer\\Composer' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Composer/Composer.php',
         'Drupal\\Core\\Condition\\Annotation\\Condition' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Condition/Annotation/Condition.php',
         'Drupal\\Core\\Condition\\ConditionAccessResolverTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Condition/ConditionAccessResolverTrait.php',
@@ -1533,6 +1258,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Config\\Entity\\ConfigEntityStorageInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Entity/ConfigEntityStorageInterface.php',
         'Drupal\\Core\\Config\\Entity\\ConfigEntityType' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Entity/ConfigEntityType.php',
         'Drupal\\Core\\Config\\Entity\\ConfigEntityTypeInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Entity/ConfigEntityTypeInterface.php',
+        'Drupal\\Core\\Config\\Entity\\ConfigEntityUpdater' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Entity/ConfigEntityUpdater.php',
         'Drupal\\Core\\Config\\Entity\\DraggableListBuilder' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Entity/DraggableListBuilder.php',
         'Drupal\\Core\\Config\\Entity\\Exception\\ConfigEntityIdLengthException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Entity/Exception/ConfigEntityIdLengthException.php',
         'Drupal\\Core\\Config\\Entity\\Exception\\ConfigEntityStorageClassException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Entity/Exception/ConfigEntityStorageClassException.php',
@@ -1547,9 +1273,11 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Config\\FileStorageFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/FileStorageFactory.php',
         'Drupal\\Core\\Config\\ImmutableConfig' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/ImmutableConfig.php',
         'Drupal\\Core\\Config\\ImmutableConfigException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/ImmutableConfigException.php',
+        'Drupal\\Core\\Config\\Importer\\ConfigImporterBatch' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Importer/ConfigImporterBatch.php',
         'Drupal\\Core\\Config\\Importer\\FinalMissingContentSubscriber' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Importer/FinalMissingContentSubscriber.php',
         'Drupal\\Core\\Config\\Importer\\MissingContentEvent' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Importer/MissingContentEvent.php',
         'Drupal\\Core\\Config\\InstallStorage' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/InstallStorage.php',
+        'Drupal\\Core\\Config\\MemoryStorage' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/MemoryStorage.php',
         'Drupal\\Core\\Config\\NullStorage' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/NullStorage.php',
         'Drupal\\Core\\Config\\PreExistingConfigException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/PreExistingConfigException.php',
         'Drupal\\Core\\Config\\Schema\\ArrayElement' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Schema/ArrayElement.php',
@@ -1568,6 +1296,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Config\\StorageCacheInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/StorageCacheInterface.php',
         'Drupal\\Core\\Config\\StorageComparer' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/StorageComparer.php',
         'Drupal\\Core\\Config\\StorageComparerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/StorageComparerInterface.php',
+        'Drupal\\Core\\Config\\StorageCopyTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/StorageCopyTrait.php',
         'Drupal\\Core\\Config\\StorageException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/StorageException.php',
         'Drupal\\Core\\Config\\StorageInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/StorageInterface.php',
         'Drupal\\Core\\Config\\Testing\\ConfigSchemaChecker' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/Testing/ConfigSchemaChecker.php',
@@ -1575,6 +1304,9 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Config\\TypedConfigManagerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/TypedConfigManagerInterface.php',
         'Drupal\\Core\\Config\\UnmetDependenciesException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/UnmetDependenciesException.php',
         'Drupal\\Core\\Config\\UnsupportedDataTypeConfigException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Config/UnsupportedDataTypeConfigException.php',
+        'Drupal\\Core\\Controller\\ArgumentResolver\\Psr7RequestValueResolver' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Controller/ArgumentResolver/Psr7RequestValueResolver.php',
+        'Drupal\\Core\\Controller\\ArgumentResolver\\RawParameterValueResolver' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Controller/ArgumentResolver/RawParameterValueResolver.php',
+        'Drupal\\Core\\Controller\\ArgumentResolver\\RouteMatchValueResolver' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Controller/ArgumentResolver/RouteMatchValueResolver.php',
         'Drupal\\Core\\Controller\\ControllerBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Controller/ControllerBase.php',
         'Drupal\\Core\\Controller\\ControllerResolver' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Controller/ControllerResolver.php',
         'Drupal\\Core\\Controller\\ControllerResolverInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Controller/ControllerResolverInterface.php',
@@ -1655,6 +1387,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Database\\Query\\Truncate' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Query/Truncate.php',
         'Drupal\\Core\\Database\\Query\\Update' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Query/Update.php',
         'Drupal\\Core\\Database\\Query\\Upsert' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Query/Upsert.php',
+        'Drupal\\Core\\Database\\ReplicaKillSwitch' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/ReplicaKillSwitch.php',
         'Drupal\\Core\\Database\\RowCountException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/RowCountException.php',
         'Drupal\\Core\\Database\\Schema' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Schema.php',
         'Drupal\\Core\\Database\\SchemaException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/SchemaException.php',
@@ -1705,6 +1438,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\DependencyInjection\\ContainerInjectionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DependencyInjection/ContainerInjectionInterface.php',
         'Drupal\\Core\\DependencyInjection\\ContainerNotInitializedException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DependencyInjection/ContainerNotInitializedException.php',
         'Drupal\\Core\\DependencyInjection\\DependencySerializationTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DependencyInjection/DependencySerializationTrait.php',
+        'Drupal\\Core\\DependencyInjection\\DeprecatedServicePropertyTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DependencyInjection/DeprecatedServicePropertyTrait.php',
         'Drupal\\Core\\DependencyInjection\\ServiceModifierInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DependencyInjection/ServiceModifierInterface.php',
         'Drupal\\Core\\DependencyInjection\\ServiceProviderBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DependencyInjection/ServiceProviderBase.php',
         'Drupal\\Core\\DependencyInjection\\ServiceProviderInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DependencyInjection/ServiceProviderInterface.php',
@@ -1754,6 +1488,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Entity\\EntityAccessControlHandler' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityAccessControlHandler.php',
         'Drupal\\Core\\Entity\\EntityAccessControlHandlerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityAccessControlHandlerInterface.php',
         'Drupal\\Core\\Entity\\EntityAutocompleteMatcher' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityAutocompleteMatcher.php',
+        'Drupal\\Core\\Entity\\EntityBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityBase.php',
         'Drupal\\Core\\Entity\\EntityBundleListener' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityBundleListener.php',
         'Drupal\\Core\\Entity\\EntityBundleListenerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityBundleListenerInterface.php',
         'Drupal\\Core\\Entity\\EntityChangedInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityChangedInterface.php',
@@ -1768,6 +1503,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Entity\\EntityDefinitionUpdateManagerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityDefinitionUpdateManagerInterface.php',
         'Drupal\\Core\\Entity\\EntityDeleteForm' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityDeleteForm.php',
         'Drupal\\Core\\Entity\\EntityDeleteFormTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityDeleteFormTrait.php',
+        'Drupal\\Core\\Entity\\EntityDeleteMultipleAccessCheck' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityDeleteMultipleAccessCheck.php',
         'Drupal\\Core\\Entity\\EntityDescriptionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityDescriptionInterface.php',
         'Drupal\\Core\\Entity\\EntityDisplayBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityDisplayBase.php',
         'Drupal\\Core\\Entity\\EntityDisplayModeBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/EntityDisplayModeBase.php',
@@ -1839,12 +1575,14 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Entity\\Exception\\UnsupportedEntityTypeDefinitionException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Exception/UnsupportedEntityTypeDefinitionException.php',
         'Drupal\\Core\\Entity\\FieldableEntityInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/FieldableEntityInterface.php',
         'Drupal\\Core\\Entity\\FieldableEntityStorageInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/FieldableEntityStorageInterface.php',
+        'Drupal\\Core\\Entity\\Form\\DeleteMultipleForm' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Form/DeleteMultipleForm.php',
         'Drupal\\Core\\Entity\\HtmlEntityFormController' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/HtmlEntityFormController.php',
         'Drupal\\Core\\Entity\\KeyValueStore\\KeyValueContentEntityStorage' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/KeyValueStore/KeyValueContentEntityStorage.php',
         'Drupal\\Core\\Entity\\KeyValueStore\\KeyValueEntityStorage' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/KeyValueStore/KeyValueEntityStorage.php',
         'Drupal\\Core\\Entity\\KeyValueStore\\Query\\Condition' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/KeyValueStore/Query/Condition.php',
         'Drupal\\Core\\Entity\\KeyValueStore\\Query\\Query' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/KeyValueStore/Query/Query.php',
         'Drupal\\Core\\Entity\\KeyValueStore\\Query\\QueryFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/KeyValueStore/Query/QueryFactory.php',
+        'Drupal\\Core\\Entity\\Plugin\\DataType\\ConfigEntityAdapter' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/DataType/ConfigEntityAdapter.php',
         'Drupal\\Core\\Entity\\Plugin\\DataType\\Deriver\\EntityDeriver' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/DataType/Deriver/EntityDeriver.php',
         'Drupal\\Core\\Entity\\Plugin\\DataType\\EntityAdapter' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/DataType/EntityAdapter.php',
         'Drupal\\Core\\Entity\\Plugin\\DataType\\EntityReference' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/DataType/EntityReference.php',
@@ -1858,6 +1596,8 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Entity\\Plugin\\Validation\\Constraint\\CompositeConstraintBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/Validation/Constraint/CompositeConstraintBase.php',
         'Drupal\\Core\\Entity\\Plugin\\Validation\\Constraint\\EntityChangedConstraint' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/Validation/Constraint/EntityChangedConstraint.php',
         'Drupal\\Core\\Entity\\Plugin\\Validation\\Constraint\\EntityChangedConstraintValidator' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/Validation/Constraint/EntityChangedConstraintValidator.php',
+        'Drupal\\Core\\Entity\\Plugin\\Validation\\Constraint\\EntityHasFieldConstraint' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/Validation/Constraint/EntityHasFieldConstraint.php',
+        'Drupal\\Core\\Entity\\Plugin\\Validation\\Constraint\\EntityHasFieldConstraintValidator' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/Validation/Constraint/EntityHasFieldConstraintValidator.php',
         'Drupal\\Core\\Entity\\Plugin\\Validation\\Constraint\\EntityTypeConstraint' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/Validation/Constraint/EntityTypeConstraint.php',
         'Drupal\\Core\\Entity\\Plugin\\Validation\\Constraint\\EntityTypeConstraintValidator' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/Validation/Constraint/EntityTypeConstraintValidator.php',
         'Drupal\\Core\\Entity\\Plugin\\Validation\\Constraint\\EntityUntranslatableFieldsConstraint' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Plugin/Validation/Constraint/EntityUntranslatableFieldsConstraint.php',
@@ -1906,8 +1646,11 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Entity\\Sql\\SqlContentEntityStorageSchema' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorageSchema.php',
         'Drupal\\Core\\Entity\\Sql\\SqlContentEntityStorageSchemaConverter' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorageSchemaConverter.php',
         'Drupal\\Core\\Entity\\Sql\\SqlEntityStorageInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Sql/SqlEntityStorageInterface.php',
+        'Drupal\\Core\\Entity\\Sql\\SqlFieldableEntityTypeListenerTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Sql/SqlFieldableEntityTypeListenerTrait.php',
         'Drupal\\Core\\Entity\\Sql\\TableMappingInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Sql/TableMappingInterface.php',
         'Drupal\\Core\\Entity\\Sql\\TemporaryTableMapping' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/Sql/TemporaryTableMapping.php',
+        'Drupal\\Core\\Entity\\SynchronizableEntityTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/SynchronizableEntityTrait.php',
+        'Drupal\\Core\\Entity\\SynchronizableInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/SynchronizableInterface.php',
         'Drupal\\Core\\Entity\\TranslatableInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/TranslatableInterface.php',
         'Drupal\\Core\\Entity\\TranslatableRevisionableInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/TranslatableRevisionableInterface.php',
         'Drupal\\Core\\Entity\\TranslatableRevisionableStorageInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Entity/TranslatableRevisionableStorageInterface.php',
@@ -1951,7 +1694,6 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\EventSubscriber\\RedirectLeadingSlashesSubscriber' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/EventSubscriber/RedirectLeadingSlashesSubscriber.php',
         'Drupal\\Core\\EventSubscriber\\RedirectResponseSubscriber' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/EventSubscriber/RedirectResponseSubscriber.php',
         'Drupal\\Core\\EventSubscriber\\RenderArrayNonHtmlSubscriber' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/EventSubscriber/RenderArrayNonHtmlSubscriber.php',
-        'Drupal\\Core\\EventSubscriber\\ReplicaDatabaseIgnoreSubscriber' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/EventSubscriber/ReplicaDatabaseIgnoreSubscriber.php',
         'Drupal\\Core\\EventSubscriber\\RequestCloseSubscriber' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/EventSubscriber/RequestCloseSubscriber.php',
         'Drupal\\Core\\EventSubscriber\\ResponseGeneratorSubscriber' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/EventSubscriber/ResponseGeneratorSubscriber.php',
         'Drupal\\Core\\EventSubscriber\\RouteAccessResponseSubscriber' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/EventSubscriber/RouteAccessResponseSubscriber.php',
@@ -1962,22 +1704,30 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Executable\\ExecutableInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Executable/ExecutableInterface.php',
         'Drupal\\Core\\Executable\\ExecutableManagerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Executable/ExecutableManagerInterface.php',
         'Drupal\\Core\\Executable\\ExecutablePluginBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Executable/ExecutablePluginBase.php',
+        'Drupal\\Core\\Extension\\Dependency' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/Dependency.php',
         'Drupal\\Core\\Extension\\Discovery\\RecursiveExtensionFilterIterator' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/Discovery/RecursiveExtensionFilterIterator.php',
+        'Drupal\\Core\\Extension\\Exception\\UninstalledExtensionException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/Exception/UninstalledExtensionException.php',
+        'Drupal\\Core\\Extension\\Exception\\UnknownExtensionException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/Exception/UnknownExtensionException.php',
         'Drupal\\Core\\Extension\\Extension' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/Extension.php',
         'Drupal\\Core\\Extension\\ExtensionDiscovery' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ExtensionDiscovery.php',
+        'Drupal\\Core\\Extension\\ExtensionList' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ExtensionList.php',
         'Drupal\\Core\\Extension\\ExtensionNameLengthException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ExtensionNameLengthException.php',
         'Drupal\\Core\\Extension\\InfoParser' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/InfoParser.php',
         'Drupal\\Core\\Extension\\InfoParserDynamic' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/InfoParserDynamic.php',
         'Drupal\\Core\\Extension\\InfoParserException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/InfoParserException.php',
         'Drupal\\Core\\Extension\\InfoParserInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/InfoParserInterface.php',
         'Drupal\\Core\\Extension\\MissingDependencyException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/MissingDependencyException.php',
+        'Drupal\\Core\\Extension\\ModuleExtensionList' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ModuleExtensionList.php',
         'Drupal\\Core\\Extension\\ModuleHandler' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ModuleHandler.php',
         'Drupal\\Core\\Extension\\ModuleHandlerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ModuleHandlerInterface.php',
         'Drupal\\Core\\Extension\\ModuleInstaller' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ModuleInstaller.php',
         'Drupal\\Core\\Extension\\ModuleInstallerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ModuleInstallerInterface.php',
         'Drupal\\Core\\Extension\\ModuleUninstallValidatorException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ModuleUninstallValidatorException.php',
         'Drupal\\Core\\Extension\\ModuleUninstallValidatorInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ModuleUninstallValidatorInterface.php',
+        'Drupal\\Core\\Extension\\ProfileExtensionList' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ProfileExtensionList.php',
         'Drupal\\Core\\Extension\\RequiredModuleUninstallValidator' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/RequiredModuleUninstallValidator.php',
+        'Drupal\\Core\\Extension\\ThemeEngineExtensionList' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ThemeEngineExtensionList.php',
+        'Drupal\\Core\\Extension\\ThemeExtensionList' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ThemeExtensionList.php',
         'Drupal\\Core\\Extension\\ThemeHandler' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ThemeHandler.php',
         'Drupal\\Core\\Extension\\ThemeHandlerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ThemeHandlerInterface.php',
         'Drupal\\Core\\Extension\\ThemeInstaller' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Extension/ThemeInstaller.php',
@@ -1998,11 +1748,13 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Field\\FieldConfigBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldConfigBase.php',
         'Drupal\\Core\\Field\\FieldConfigInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldConfigInterface.php',
         'Drupal\\Core\\Field\\FieldConfigStorageBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldConfigStorageBase.php',
+        'Drupal\\Core\\Field\\FieldDefinition' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldDefinition.php',
         'Drupal\\Core\\Field\\FieldDefinitionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldDefinitionInterface.php',
         'Drupal\\Core\\Field\\FieldDefinitionListener' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldDefinitionListener.php',
         'Drupal\\Core\\Field\\FieldDefinitionListenerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldDefinitionListenerInterface.php',
         'Drupal\\Core\\Field\\FieldException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldException.php',
         'Drupal\\Core\\Field\\FieldFilteredMarkup' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldFilteredMarkup.php',
+        'Drupal\\Core\\Field\\FieldInputValueNormalizerTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldInputValueNormalizerTrait.php',
         'Drupal\\Core\\Field\\FieldItemBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldItemBase.php',
         'Drupal\\Core\\Field\\FieldItemInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldItemInterface.php',
         'Drupal\\Core\\Field\\FieldItemList' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Field/FieldItemList.php',
@@ -2089,6 +1841,12 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\FileTransfer\\Form\\FileTransferAuthorizeForm' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/FileTransfer/Form/FileTransferAuthorizeForm.php',
         'Drupal\\Core\\FileTransfer\\Local' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/FileTransfer/Local.php',
         'Drupal\\Core\\FileTransfer\\SSH' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/FileTransfer/SSH.php',
+        'Drupal\\Core\\File\\Exception\\DirectoryNotReadyException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/File/Exception/DirectoryNotReadyException.php',
+        'Drupal\\Core\\File\\Exception\\FileException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/File/Exception/FileException.php',
+        'Drupal\\Core\\File\\Exception\\FileExistsException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/File/Exception/FileExistsException.php',
+        'Drupal\\Core\\File\\Exception\\FileNotExistsException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/File/Exception/FileNotExistsException.php',
+        'Drupal\\Core\\File\\Exception\\FileWriteException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/File/Exception/FileWriteException.php',
+        'Drupal\\Core\\File\\Exception\\NotRegularFileException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/File/Exception/NotRegularFileException.php',
         'Drupal\\Core\\File\\FileSystem' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/File/FileSystem.php',
         'Drupal\\Core\\File\\FileSystemInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/File/FileSystemInterface.php',
         'Drupal\\Core\\File\\MimeType\\ExtensionMimeTypeGuesser' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/File/MimeType/ExtensionMimeTypeGuesser.php',
@@ -2172,14 +1930,19 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Installer\\Exception\\InstallProfileMismatchException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/Exception/InstallProfileMismatchException.php',
         'Drupal\\Core\\Installer\\Exception\\InstallerException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/Exception/InstallerException.php',
         'Drupal\\Core\\Installer\\Exception\\NoProfilesException' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/Exception/NoProfilesException.php',
+        'Drupal\\Core\\Installer\\ExtensionListTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/ExtensionListTrait.php',
         'Drupal\\Core\\Installer\\Form\\SelectLanguageForm' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/Form/SelectLanguageForm.php',
         'Drupal\\Core\\Installer\\Form\\SelectProfileForm' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/Form/SelectProfileForm.php',
         'Drupal\\Core\\Installer\\Form\\SiteConfigureForm' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/Form/SiteConfigureForm.php',
         'Drupal\\Core\\Installer\\Form\\SiteSettingsForm' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/Form/SiteSettingsForm.php',
         'Drupal\\Core\\Installer\\InstallerKernel' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/InstallerKernel.php',
+        'Drupal\\Core\\Installer\\InstallerModuleExtensionList' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/InstallerModuleExtensionList.php',
         'Drupal\\Core\\Installer\\InstallerRedirectTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/InstallerRedirectTrait.php',
         'Drupal\\Core\\Installer\\InstallerRouteBuilder' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/InstallerRouteBuilder.php',
         'Drupal\\Core\\Installer\\InstallerServiceProvider' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/InstallerServiceProvider.php',
+        'Drupal\\Core\\Installer\\InstallerThemeEngineExtensionList' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/InstallerThemeEngineExtensionList.php',
+        'Drupal\\Core\\Installer\\InstallerThemeExtensionList' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/InstallerThemeExtensionList.php',
+        'Drupal\\Core\\Installer\\NormalInstallerServiceProvider' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/NormalInstallerServiceProvider.php',
         'Drupal\\Core\\KeyValueStore\\DatabaseStorage' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/KeyValueStore/DatabaseStorage.php',
         'Drupal\\Core\\KeyValueStore\\DatabaseStorageExpirable' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/KeyValueStore/DatabaseStorageExpirable.php',
         'Drupal\\Core\\KeyValueStore\\KeyValueDatabaseExpirableFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/KeyValueStore/KeyValueDatabaseExpirableFactory.php',
@@ -2285,6 +2048,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\PageCache\\ResponsePolicy\\KillSwitch' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/PageCache/ResponsePolicy/KillSwitch.php',
         'Drupal\\Core\\PageCache\\ResponsePolicy\\NoServerError' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/PageCache/ResponsePolicy/NoServerError.php',
         'Drupal\\Core\\ParamConverter\\AdminPathConfigEntityConverter' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/ParamConverter/AdminPathConfigEntityConverter.php',
+        'Drupal\\Core\\ParamConverter\\DynamicEntityTypeParamConverterTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/ParamConverter/DynamicEntityTypeParamConverterTrait.php',
         'Drupal\\Core\\ParamConverter\\EntityConverter' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/ParamConverter/EntityConverter.php',
         'Drupal\\Core\\ParamConverter\\EntityRevisionParamConverter' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/ParamConverter/EntityRevisionParamConverter.php',
         'Drupal\\Core\\ParamConverter\\MenuLinkPluginConverter' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/ParamConverter/MenuLinkPluginConverter.php',
@@ -2330,6 +2094,8 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Plugin\\Context\\ContextInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/Context/ContextInterface.php',
         'Drupal\\Core\\Plugin\\Context\\ContextProviderInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/Context/ContextProviderInterface.php',
         'Drupal\\Core\\Plugin\\Context\\ContextRepositoryInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/Context/ContextRepositoryInterface.php',
+        'Drupal\\Core\\Plugin\\Context\\EntityContext' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/Context/EntityContext.php',
+        'Drupal\\Core\\Plugin\\Context\\EntityContextDefinition' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/Context/EntityContextDefinition.php',
         'Drupal\\Core\\Plugin\\Context\\LazyContextRepository' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/Context/LazyContextRepository.php',
         'Drupal\\Core\\Plugin\\DefaultLazyPluginCollection' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/DefaultLazyPluginCollection.php',
         'Drupal\\Core\\Plugin\\DefaultPluginManager' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/DefaultPluginManager.php',
@@ -2345,6 +2111,8 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Plugin\\Discovery\\YamlDiscovery' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/Discovery/YamlDiscovery.php',
         'Drupal\\Core\\Plugin\\Discovery\\YamlDiscoveryDecorator' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/Discovery/YamlDiscoveryDecorator.php',
         'Drupal\\Core\\Plugin\\Factory\\ContainerFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/Factory/ContainerFactory.php',
+        'Drupal\\Core\\Plugin\\FilteredPluginManagerInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/FilteredPluginManagerInterface.php',
+        'Drupal\\Core\\Plugin\\FilteredPluginManagerTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/FilteredPluginManagerTrait.php',
         'Drupal\\Core\\Plugin\\ObjectWithPluginCollectionInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/ObjectWithPluginCollectionInterface.php',
         'Drupal\\Core\\Plugin\\PluginBase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/PluginBase.php',
         'Drupal\\Core\\Plugin\\PluginDependencyTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Plugin/PluginDependencyTrait.php',
@@ -2477,6 +2245,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Render\\Placeholder\\SingleFlushStrategy' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Render/Placeholder/SingleFlushStrategy.php',
         'Drupal\\Core\\Render\\PlaceholderingRenderCache' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Render/PlaceholderingRenderCache.php',
         'Drupal\\Core\\Render\\Plugin\\DisplayVariant\\SimplePageVariant' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Render/Plugin/DisplayVariant/SimplePageVariant.php',
+        'Drupal\\Core\\Render\\PreviewFallbackInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Render/PreviewFallbackInterface.php',
         'Drupal\\Core\\Render\\RenderCache' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Render/RenderCache.php',
         'Drupal\\Core\\Render\\RenderCacheInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Render/RenderCacheInterface.php',
         'Drupal\\Core\\Render\\RenderContext' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Render/RenderContext.php',
@@ -2541,6 +2310,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Routing\\UrlGeneratorInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Routing/UrlGeneratorInterface.php',
         'Drupal\\Core\\Routing\\UrlGeneratorTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Routing/UrlGeneratorTrait.php',
         'Drupal\\Core\\Routing\\UrlMatcher' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Routing/UrlMatcher.php',
+        'Drupal\\Core\\Security\\PharExtensionInterceptor' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Security/PharExtensionInterceptor.php',
         'Drupal\\Core\\Security\\RequestSanitizer' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Security/RequestSanitizer.php',
         'Drupal\\Core\\Serialization\\Yaml' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Serialization/Yaml.php',
         'Drupal\\Core\\Session\\AccountInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Session/AccountInterface.php',
@@ -2590,6 +2360,8 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\StringTranslation\\Translator\\FileTranslation' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/StringTranslation/Translator/FileTranslation.php',
         'Drupal\\Core\\StringTranslation\\Translator\\StaticTranslation' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/StringTranslation/Translator/StaticTranslation.php',
         'Drupal\\Core\\StringTranslation\\Translator\\TranslatorInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/StringTranslation/Translator/TranslatorInterface.php',
+        'Drupal\\Core\\TempStore\\Element\\BreakLockLink' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/TempStore/Element/BreakLockLink.php',
+        'Drupal\\Core\\TempStore\\Lock' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/TempStore/Lock.php',
         'Drupal\\Core\\TempStore\\PrivateTempStore' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/TempStore/PrivateTempStore.php',
         'Drupal\\Core\\TempStore\\PrivateTempStoreFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/TempStore/PrivateTempStoreFactory.php',
         'Drupal\\Core\\TempStore\\SharedTempStore' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/TempStore/SharedTempStore.php',
@@ -2614,6 +2386,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Test\\FunctionalTestSetupTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Test/FunctionalTestSetupTrait.php',
         'Drupal\\Core\\Test\\HttpClientMiddleware\\TestHttpClientMiddleware' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Test/HttpClientMiddleware/TestHttpClientMiddleware.php',
         'Drupal\\Core\\Test\\ObjectSerialization' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Test/ObjectSerialization.php',
+        'Drupal\\Core\\Test\\RefreshVariablesTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Test/RefreshVariablesTrait.php',
         'Drupal\\Core\\Test\\TestDatabase' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Test/TestDatabase.php',
         'Drupal\\Core\\Test\\TestKernel' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Test/TestKernel.php',
         'Drupal\\Core\\Test\\TestRunnerKernel' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Test/TestRunnerKernel.php',
@@ -2710,6 +2483,7 @@ class ComposerStaticInitDrupal8
         'Drupal\\Core\\Utility\\LinkGenerator' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Utility/LinkGenerator.php',
         'Drupal\\Core\\Utility\\LinkGeneratorInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Utility/LinkGeneratorInterface.php',
         'Drupal\\Core\\Utility\\ProjectInfo' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Utility/ProjectInfo.php',
+        'Drupal\\Core\\Utility\\TableSort' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Utility/TableSort.php',
         'Drupal\\Core\\Utility\\ThemeRegistry' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Utility/ThemeRegistry.php',
         'Drupal\\Core\\Utility\\Token' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Utility/Token.php',
         'Drupal\\Core\\Utility\\UnroutedUrlAssembler' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Utility/UnroutedUrlAssembler.php',
@@ -2787,13 +2561,69 @@ class ComposerStaticInitDrupal8
         'EasyRdf_Sparql_Result' => __DIR__ . '/..' . '/easyrdf/easyrdf/lib/EasyRdf/Sparql/Result.php',
         'EasyRdf_TypeMapper' => __DIR__ . '/..' . '/easyrdf/easyrdf/lib/EasyRdf/TypeMapper.php',
         'EasyRdf_Utils' => __DIR__ . '/..' . '/easyrdf/easyrdf/lib/EasyRdf/Utils.php',
-        'Egulias\\EmailValidator\\EmailLexer' => __DIR__ . '/..' . '/egulias/email-validator/src/Egulias/EmailValidator/EmailLexer.php',
-        'Egulias\\EmailValidator\\EmailParser' => __DIR__ . '/..' . '/egulias/email-validator/src/Egulias/EmailValidator/EmailParser.php',
-        'Egulias\\EmailValidator\\EmailValidator' => __DIR__ . '/..' . '/egulias/email-validator/src/Egulias/EmailValidator/EmailValidator.php',
-        'Egulias\\EmailValidator\\EmailValidatorInterface' => __DIR__ . '/..' . '/egulias/email-validator/src/Egulias/EmailValidator/EmailValidatorInterface.php',
-        'Egulias\\EmailValidator\\Parser\\DomainPart' => __DIR__ . '/..' . '/egulias/email-validator/src/Egulias/EmailValidator/Parser/DomainPart.php',
-        'Egulias\\EmailValidator\\Parser\\LocalPart' => __DIR__ . '/..' . '/egulias/email-validator/src/Egulias/EmailValidator/Parser/LocalPart.php',
-        'Egulias\\EmailValidator\\Parser\\Parser' => __DIR__ . '/..' . '/egulias/email-validator/src/Egulias/EmailValidator/Parser/Parser.php',
+        'Egulias\\EmailValidator\\EmailLexer' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/EmailLexer.php',
+        'Egulias\\EmailValidator\\EmailParser' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/EmailParser.php',
+        'Egulias\\EmailValidator\\EmailValidator' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/EmailValidator.php',
+        'Egulias\\EmailValidator\\Exception\\AtextAfterCFWS' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/AtextAfterCFWS.php',
+        'Egulias\\EmailValidator\\Exception\\CRLFAtTheEnd' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/CRLFAtTheEnd.php',
+        'Egulias\\EmailValidator\\Exception\\CRLFX2' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/CRLFX2.php',
+        'Egulias\\EmailValidator\\Exception\\CRNoLF' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/CRNoLF.php',
+        'Egulias\\EmailValidator\\Exception\\CharNotAllowed' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/CharNotAllowed.php',
+        'Egulias\\EmailValidator\\Exception\\CommaInDomain' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/CommaInDomain.php',
+        'Egulias\\EmailValidator\\Exception\\ConsecutiveAt' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ConsecutiveAt.php',
+        'Egulias\\EmailValidator\\Exception\\ConsecutiveDot' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ConsecutiveDot.php',
+        'Egulias\\EmailValidator\\Exception\\DomainHyphened' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/DomainHyphened.php',
+        'Egulias\\EmailValidator\\Exception\\DotAtEnd' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/DotAtEnd.php',
+        'Egulias\\EmailValidator\\Exception\\DotAtStart' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/DotAtStart.php',
+        'Egulias\\EmailValidator\\Exception\\ExpectedQPair' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingQPair.php',
+        'Egulias\\EmailValidator\\Exception\\ExpectingAT' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingAT.php',
+        'Egulias\\EmailValidator\\Exception\\ExpectingATEXT' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingATEXT.php',
+        'Egulias\\EmailValidator\\Exception\\ExpectingCTEXT' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingCTEXT.php',
+        'Egulias\\EmailValidator\\Exception\\ExpectingDTEXT' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingDTEXT.php',
+        'Egulias\\EmailValidator\\Exception\\ExpectingDomainLiteralClose' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/ExpectingDomainLiteralClose.php',
+        'Egulias\\EmailValidator\\Exception\\InvalidEmail' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/InvalidEmail.php',
+        'Egulias\\EmailValidator\\Exception\\NoDNSRecord' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/NoDNSRecord.php',
+        'Egulias\\EmailValidator\\Exception\\NoDomainPart' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/NoDomainPart.php',
+        'Egulias\\EmailValidator\\Exception\\NoLocalPart' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/NoLocalPart.php',
+        'Egulias\\EmailValidator\\Exception\\UnclosedComment' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/UnclosedComment.php',
+        'Egulias\\EmailValidator\\Exception\\UnclosedQuotedString' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/UnclosedQuotedString.php',
+        'Egulias\\EmailValidator\\Exception\\UnopenedComment' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Exception/UnopenedComment.php',
+        'Egulias\\EmailValidator\\Parser\\DomainPart' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Parser/DomainPart.php',
+        'Egulias\\EmailValidator\\Parser\\LocalPart' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Parser/LocalPart.php',
+        'Egulias\\EmailValidator\\Parser\\Parser' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Parser/Parser.php',
+        'Egulias\\EmailValidator\\Validation\\DNSCheckValidation' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/DNSCheckValidation.php',
+        'Egulias\\EmailValidator\\Validation\\EmailValidation' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/EmailValidation.php',
+        'Egulias\\EmailValidator\\Validation\\Error\\RFCWarnings' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/Error/RFCWarnings.php',
+        'Egulias\\EmailValidator\\Validation\\Error\\SpoofEmail' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/Error/SpoofEmail.php',
+        'Egulias\\EmailValidator\\Validation\\Exception\\EmptyValidationList' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/Exception/EmptyValidationList.php',
+        'Egulias\\EmailValidator\\Validation\\MultipleErrors' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/MultipleErrors.php',
+        'Egulias\\EmailValidator\\Validation\\MultipleValidationWithAnd' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/MultipleValidationWithAnd.php',
+        'Egulias\\EmailValidator\\Validation\\NoRFCWarningsValidation' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/NoRFCWarningsValidation.php',
+        'Egulias\\EmailValidator\\Validation\\RFCValidation' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/RFCValidation.php',
+        'Egulias\\EmailValidator\\Validation\\SpoofCheckValidation' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Validation/SpoofCheckValidation.php',
+        'Egulias\\EmailValidator\\Warning\\AddressLiteral' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/AddressLiteral.php',
+        'Egulias\\EmailValidator\\Warning\\CFWSNearAt' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/CFWSNearAt.php',
+        'Egulias\\EmailValidator\\Warning\\CFWSWithFWS' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/CFWSWithFWS.php',
+        'Egulias\\EmailValidator\\Warning\\Comment' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/Comment.php',
+        'Egulias\\EmailValidator\\Warning\\DeprecatedComment' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/DeprecatedComment.php',
+        'Egulias\\EmailValidator\\Warning\\DomainLiteral' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/DomainLiteral.php',
+        'Egulias\\EmailValidator\\Warning\\DomainTooLong' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/DomainTooLong.php',
+        'Egulias\\EmailValidator\\Warning\\EmailTooLong' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/EmailTooLong.php',
+        'Egulias\\EmailValidator\\Warning\\IPV6BadChar' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/IPV6BadChar.php',
+        'Egulias\\EmailValidator\\Warning\\IPV6ColonEnd' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/IPV6ColonEnd.php',
+        'Egulias\\EmailValidator\\Warning\\IPV6ColonStart' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/IPV6ColonStart.php',
+        'Egulias\\EmailValidator\\Warning\\IPV6Deprecated' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/IPV6Deprecated.php',
+        'Egulias\\EmailValidator\\Warning\\IPV6DoubleColon' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/IPV6DoubleColon.php',
+        'Egulias\\EmailValidator\\Warning\\IPV6GroupCount' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/IPV6GroupCount.php',
+        'Egulias\\EmailValidator\\Warning\\IPV6MaxGroups' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/IPV6MaxGroups.php',
+        'Egulias\\EmailValidator\\Warning\\LabelTooLong' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/LabelTooLong.php',
+        'Egulias\\EmailValidator\\Warning\\LocalTooLong' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/LocalTooLong.php',
+        'Egulias\\EmailValidator\\Warning\\NoDNSMXRecord' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/NoDNSMXRecord.php',
+        'Egulias\\EmailValidator\\Warning\\ObsoleteDTEXT' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/ObsoleteDTEXT.php',
+        'Egulias\\EmailValidator\\Warning\\QuotedPart' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/QuotedPart.php',
+        'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/QuotedString.php',
+        'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/TLD.php',
+        'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/Warning/Warning.php',
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
         'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
@@ -2886,6 +2716,11 @@ class ComposerStaticInitDrupal8
         'Masterminds\\HTML5\\Serializer\\OutputRules' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/OutputRules.php',
         'Masterminds\\HTML5\\Serializer\\RulesInterface' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/RulesInterface.php',
         'Masterminds\\HTML5\\Serializer\\Traverser' => __DIR__ . '/..' . '/masterminds/html5/src/HTML5/Serializer/Traverser.php',
+        'OS_Guess' => __DIR__ . '/..' . '/pear/pear-core-minimal/src/OS/Guess.php',
+        'PEAR' => __DIR__ . '/..' . '/pear/pear-core-minimal/src/PEAR.php',
+        'PEAR_Error' => __DIR__ . '/..' . '/pear/pear-core-minimal/src/PEAR.php',
+        'PEAR_ErrorStack' => __DIR__ . '/..' . '/pear/pear-core-minimal/src/PEAR/ErrorStack.php',
+        'PEAR_Exception' => __DIR__ . '/..' . '/pear/pear_exception/PEAR/Exception.php',
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
         'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
@@ -2927,6 +2762,7 @@ class ComposerStaticInitDrupal8
         'Symfony\\Bridge\\PhpUnit\\TextUI\\TestRunner' => __DIR__ . '/..' . '/symfony/phpunit-bridge/TextUI/TestRunner.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\DiactorosFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/DiactorosFactory.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\HttpFoundationFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/HttpFoundationFactory.php',
+        'Symfony\\Bridge\\PsrHttpMessage\\Factory\\PsrHttpFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/PsrHttpFactory.php',
         'Symfony\\Bridge\\PsrHttpMessage\\HttpFoundationFactoryInterface' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/HttpFoundationFactoryInterface.php',
         'Symfony\\Bridge\\PsrHttpMessage\\HttpMessageFactoryInterface' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/HttpMessageFactoryInterface.php',
         'Symfony\\Cmf\\Component\\Routing\\Candidates\\Candidates' => __DIR__ . '/..' . '/symfony-cmf/routing/Candidates/Candidates.php',
@@ -3655,6 +3491,7 @@ class ComposerStaticInitDrupal8
         'Symfony\\Component\\HttpKernel\\HttpCache\\Ssi' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/Ssi.php',
         'Symfony\\Component\\HttpKernel\\HttpCache\\Store' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/Store.php',
         'Symfony\\Component\\HttpKernel\\HttpCache\\StoreInterface' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/StoreInterface.php',
+        'Symfony\\Component\\HttpKernel\\HttpCache\\SubRequestHandler' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/SubRequestHandler.php',
         'Symfony\\Component\\HttpKernel\\HttpCache\\SurrogateInterface' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/SurrogateInterface.php',
         'Symfony\\Component\\HttpKernel\\HttpKernel' => __DIR__ . '/..' . '/symfony/http-kernel/HttpKernel.php',
         'Symfony\\Component\\HttpKernel\\HttpKernelInterface' => __DIR__ . '/..' . '/symfony/http-kernel/HttpKernelInterface.php',
@@ -4039,6 +3876,7 @@ class ComposerStaticInitDrupal8
         'Symfony\\Component\\Validator\\ObjectInitializerInterface' => __DIR__ . '/..' . '/symfony/validator/ObjectInitializerInterface.php',
         'Symfony\\Component\\Validator\\Test\\ConstraintValidatorTestCase' => __DIR__ . '/..' . '/symfony/validator/Test/ConstraintValidatorTestCase.php',
         'Symfony\\Component\\Validator\\Test\\ConstraintViolationAssertion' => __DIR__ . '/..' . '/symfony/validator/Test/ConstraintValidatorTestCase.php',
+        'Symfony\\Component\\Validator\\Test\\TestCaseSetUpTearDownTrait' => __DIR__ . '/..' . '/symfony/validator/Test/TestCaseSetUpTearDownTrait.php',
         'Symfony\\Component\\Validator\\Util\\PropertyPath' => __DIR__ . '/..' . '/symfony/validator/Util/PropertyPath.php',
         'Symfony\\Component\\Validator\\Validation' => __DIR__ . '/..' . '/symfony/validator/Validation.php',
         'Symfony\\Component\\Validator\\ValidatorBuilder' => __DIR__ . '/..' . '/symfony/validator/ValidatorBuilder.php',
@@ -4106,6 +3944,27 @@ class ComposerStaticInitDrupal8
         'Symfony\\Polyfill\\Iconv\\Iconv' => __DIR__ . '/..' . '/symfony/polyfill-iconv/Iconv.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Symfony\\Polyfill\\Php70\\Php70' => __DIR__ . '/..' . '/symfony/polyfill-php70/Php70.php',
+        'System' => __DIR__ . '/..' . '/pear/pear-core-minimal/src/System.php',
+        'TYPO3\\PharStreamWrapper\\Assertable' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Assertable.php',
+        'TYPO3\\PharStreamWrapper\\Behavior' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Behavior.php',
+        'TYPO3\\PharStreamWrapper\\Collectable' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Collectable.php',
+        'TYPO3\\PharStreamWrapper\\Exception' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Exception.php',
+        'TYPO3\\PharStreamWrapper\\Helper' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Helper.php',
+        'TYPO3\\PharStreamWrapper\\Interceptor\\ConjunctionInterceptor' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Interceptor/ConjunctionInterceptor.php',
+        'TYPO3\\PharStreamWrapper\\Interceptor\\PharExtensionInterceptor' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Interceptor/PharExtensionInterceptor.php',
+        'TYPO3\\PharStreamWrapper\\Interceptor\\PharMetaDataInterceptor' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Interceptor/PharMetaDataInterceptor.php',
+        'TYPO3\\PharStreamWrapper\\Manager' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Manager.php',
+        'TYPO3\\PharStreamWrapper\\PharStreamWrapper' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/PharStreamWrapper.php',
+        'TYPO3\\PharStreamWrapper\\Phar\\Container' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Phar/Container.php',
+        'TYPO3\\PharStreamWrapper\\Phar\\DeserializationException' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Phar/DeserializationException.php',
+        'TYPO3\\PharStreamWrapper\\Phar\\Manifest' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Phar/Manifest.php',
+        'TYPO3\\PharStreamWrapper\\Phar\\Reader' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Phar/Reader.php',
+        'TYPO3\\PharStreamWrapper\\Phar\\ReaderException' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Phar/ReaderException.php',
+        'TYPO3\\PharStreamWrapper\\Phar\\Stub' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Phar/Stub.php',
+        'TYPO3\\PharStreamWrapper\\Resolvable' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Resolvable.php',
+        'TYPO3\\PharStreamWrapper\\Resolver\\PharInvocation' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Resolver/PharInvocation.php',
+        'TYPO3\\PharStreamWrapper\\Resolver\\PharInvocationCollection' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Resolver/PharInvocationCollection.php',
+        'TYPO3\\PharStreamWrapper\\Resolver\\PharInvocationResolver' => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src/Resolver/PharInvocationResolver.php',
         'Twig\\Cache\\CacheInterface' => __DIR__ . '/..' . '/twig/twig/src/Cache/CacheInterface.php',
         'Twig\\Cache\\FilesystemCache' => __DIR__ . '/..' . '/twig/twig/src/Cache/FilesystemCache.php',
         'Twig\\Cache\\NullCache' => __DIR__ . '/..' . '/twig/twig/src/Cache/NullCache.php',
@@ -4150,6 +4009,8 @@ class ComposerStaticInitDrupal8
         'Twig\\Node\\BlockReferenceNode' => __DIR__ . '/..' . '/twig/twig/src/Node/BlockReferenceNode.php',
         'Twig\\Node\\BodyNode' => __DIR__ . '/..' . '/twig/twig/src/Node/BodyNode.php',
         'Twig\\Node\\CheckSecurityNode' => __DIR__ . '/..' . '/twig/twig/src/Node/CheckSecurityNode.php',
+        'Twig\\Node\\CheckToStringNode' => __DIR__ . '/..' . '/twig/twig/src/Node/CheckToStringNode.php',
+        'Twig\\Node\\DeprecatedNode' => __DIR__ . '/..' . '/twig/twig/src/Node/DeprecatedNode.php',
         'Twig\\Node\\DoNode' => __DIR__ . '/..' . '/twig/twig/src/Node/DoNode.php',
         'Twig\\Node\\EmbedNode' => __DIR__ . '/..' . '/twig/twig/src/Node/EmbedNode.php',
         'Twig\\Node\\Expression\\AbstractExpression' => __DIR__ . '/..' . '/twig/twig/src/Node/Expression/AbstractExpression.php',
@@ -4254,6 +4115,7 @@ class ComposerStaticInitDrupal8
         'Twig\\TokenParser\\AbstractTokenParser' => __DIR__ . '/..' . '/twig/twig/src/TokenParser/AbstractTokenParser.php',
         'Twig\\TokenParser\\AutoEscapeTokenParser' => __DIR__ . '/..' . '/twig/twig/src/TokenParser/AutoEscapeTokenParser.php',
         'Twig\\TokenParser\\BlockTokenParser' => __DIR__ . '/..' . '/twig/twig/src/TokenParser/BlockTokenParser.php',
+        'Twig\\TokenParser\\DeprecatedTokenParser' => __DIR__ . '/..' . '/twig/twig/src/TokenParser/DeprecatedTokenParser.php',
         'Twig\\TokenParser\\DoTokenParser' => __DIR__ . '/..' . '/twig/twig/src/TokenParser/DoTokenParser.php',
         'Twig\\TokenParser\\EmbedTokenParser' => __DIR__ . '/..' . '/twig/twig/src/TokenParser/EmbedTokenParser.php',
         'Twig\\TokenParser\\ExtendsTokenParser' => __DIR__ . '/..' . '/twig/twig/src/TokenParser/ExtendsTokenParser.php',
@@ -4341,6 +4203,7 @@ class ComposerStaticInitDrupal8
         'Twig_Node_BlockReference' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Node/BlockReference.php',
         'Twig_Node_Body' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Node/Body.php',
         'Twig_Node_CheckSecurity' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Node/CheckSecurity.php',
+        'Twig_Node_Deprecated' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Node/Deprecated.php',
         'Twig_Node_Do' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Node/Do.php',
         'Twig_Node_Embed' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Node/Embed.php',
         'Twig_Node_Expression' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Node/Expression.php',
@@ -4456,6 +4319,7 @@ class ComposerStaticInitDrupal8
         'Twig_TokenParserInterface' => __DIR__ . '/..' . '/twig/twig/lib/Twig/TokenParserInterface.php',
         'Twig_TokenParser_AutoEscape' => __DIR__ . '/..' . '/twig/twig/lib/Twig/TokenParser/AutoEscape.php',
         'Twig_TokenParser_Block' => __DIR__ . '/..' . '/twig/twig/lib/Twig/TokenParser/Block.php',
+        'Twig_TokenParser_Deprecated' => __DIR__ . '/..' . '/twig/twig/lib/Twig/TokenParser/Deprecated.php',
         'Twig_TokenParser_Do' => __DIR__ . '/..' . '/twig/twig/lib/Twig/TokenParser/Do.php',
         'Twig_TokenParser_Embed' => __DIR__ . '/..' . '/twig/twig/lib/Twig/TokenParser/Embed.php',
         'Twig_TokenParser_Extends' => __DIR__ . '/..' . '/twig/twig/lib/Twig/TokenParser/Extends.php',
@@ -4775,6 +4639,7 @@ class ComposerStaticInitDrupal8
             $loader->prefixLengthsPsr4 = ComposerStaticInitDrupal8::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitDrupal8::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitDrupal8::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInitDrupal8::$fallbackDirsPsr0;
             $loader->classMap = ComposerStaticInitDrupal8::$classMap;
 
         }, null, ClassLoader::class);

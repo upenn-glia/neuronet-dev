@@ -13,7 +13,8 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *
  * This entity type starts out non-revisionable and non-translatable, but during
  * an update test it can be made revisionable and translatable using the helper
- * methods from \Drupal\system\Tests\Entity\EntityDefinitionTestTrait.
+ * methods from
+ * \Drupal\Tests\system\Functional\Entity\Traits\EntityDefinitionTestTrait.
  *
  * @ContentEntityType(
  *   id = "entity_test_update",
@@ -43,6 +44,17 @@ class EntityTestUpdate extends ContentEntityBase {
     if (empty($values['type'])) {
       $values['type'] = $storage->getEntityTypeId();
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave(EntityStorageInterface $storage) {
+    // Simulate an error during the 'restore' process of a test entity.
+    if (\Drupal::state()->get('entity_test_update.throw_exception', FALSE)) {
+      throw new \Exception('Peekaboo!');
+    }
+    parent::preSave($storage);
   }
 
   /**

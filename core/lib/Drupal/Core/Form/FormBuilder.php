@@ -3,6 +3,7 @@
 namespace Drupal\Core\Form;
 
 use Drupal\Component\Utility\Crypt;
+use Drupal\Component\Utility\Environment;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Component\Utility\UrlHelper;
@@ -687,7 +688,7 @@ class FormBuilder implements FormBuilderInterface, FormValidatorInterface, FormS
       // will be replaced at the very last moment. This ensures forms with
       // dynamically generated action URLs don't have poor cacheability.
       // Use the proper API to generate the placeholder, when we have one. See
-      // https://www.drupal.org/node/2562341. The placholder uses a fixed string
+      // https://www.drupal.org/node/2562341. The placeholder uses a fixed string
       // that is Crypt::hashBase64('Drupal\Core\Form\FormBuilder::prepareForm');
       $placeholder = 'form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM';
 
@@ -778,9 +779,9 @@ class FormBuilder implements FormBuilderInterface, FormValidatorInterface, FormS
           '#attached' => [
             'placeholders' => [
               $placeholder => [
-                '#lazy_builder' => ['form_builder:renderFormTokenPlaceholder', [$placeholder]]
-              ]
-            ]
+                '#lazy_builder' => ['form_builder:renderFormTokenPlaceholder', [$placeholder]],
+              ],
+            ],
           ],
           '#cache' => [
             'max-age' => 0,
@@ -1390,7 +1391,7 @@ class FormBuilder implements FormBuilderInterface, FormValidatorInterface, FormS
    *   based on the PHP upload_max_filesize and post_max_size.
    */
   protected function getFileUploadMaxSize() {
-    return file_upload_max_size();
+    return Environment::getUploadMaxSize();
   }
 
   /**
