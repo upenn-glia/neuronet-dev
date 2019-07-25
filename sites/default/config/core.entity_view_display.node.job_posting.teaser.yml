@@ -1,0 +1,24 @@
+uuid: 79cd4643-4bff-41cc-b0ca-6fae5d3c24bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.job_posting.field_institution
+    - field.field.node.job_posting.field_salary
+    - field.field.node.job_posting.field_start_date
+    - node.type.job_posting
+  module:
+    - user
+id: node.job_posting.teaser
+targetEntityType: node
+bundle: job_posting
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_institution: true
+  field_salary: true
+  field_start_date: true

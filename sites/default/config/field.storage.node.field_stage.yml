@@ -1,0 +1,30 @@
+uuid: 12f5921f-9754-4b90-8ec5-912368809ca0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_stage
+field_name: field_stage
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: pre_candidacy
+      label: Pre-Candidacy
+    -
+      value: post_candidacy
+      label: Post-Candidacy
+    -
+      value: defended
+      label: 'PHD Defended'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

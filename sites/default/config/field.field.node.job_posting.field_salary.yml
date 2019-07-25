@@ -1,0 +1,23 @@
+uuid: 206310e8-5ae7-4388-8851-f578df42c31d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_salary
+    - node.type.job_posting
+id: node.job_posting.field_salary
+field_name: field_salary
+entity_type: node
+bundle: job_posting
+label: Salary
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: $
+  suffix: ''
+field_type: integer

@@ -1,0 +1,29 @@
+uuid: 87e19219-6225-49de-a045-c94eedf6aabb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_interests
+    - node.type.job_posting
+    - taxonomy.vocabulary.neuroscience_interests
+id: node.job_posting.field_interests
+field_name: field_interests
+entity_type: node
+bundle: job_posting
+label: Interests
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      neuroscience_interests: neuroscience_interests
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

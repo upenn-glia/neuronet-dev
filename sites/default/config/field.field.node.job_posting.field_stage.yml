@@ -1,0 +1,21 @@
+uuid: ebd8ab35-1272-4f69-b836-dc213fe206f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stage
+    - node.type.job_posting
+  module:
+    - options
+id: node.job_posting.field_stage
+field_name: field_stage
+entity_type: node
+bundle: job_posting
+label: 'Stage In Graduate School'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
