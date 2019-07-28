@@ -18,6 +18,18 @@ neuronet_misc.account:
       node:
         type: entity:node
 
+neuronet_misc.my_job_posts:
+  path: '/node/{node}/my-job-posts'
+  defaults:
+    _controller: '\Drupal\neuronet_misc\Controller\MyJobPostsController::content'
+    _title: My Job Posts
+  requirements:
+    _custom_access: '\Drupal\neuronet_misc\Controller\MyJobPostsController::access'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
 neuronet_misc.create_person:
   path: '/admin/neuronet/create-person'
   defaults:

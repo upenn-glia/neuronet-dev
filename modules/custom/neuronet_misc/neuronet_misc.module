@@ -43,7 +43,7 @@ function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
       $index = 0;
       foreach($view->result as $value2){
         $sub_nid = $value2->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
-        if ($nid == $sub_nid) {   
+        if ($nid == $sub_nid) {
           $start_date = $value->_entity->get('field_start_date')->value;
           $start_date2 = $value2->_entity->get('field_start_date')->value;
           if (date($start_date2) < date($start_date)) {
@@ -59,20 +59,23 @@ function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
   }
 }
 
-function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $route_match*/){  
+function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $route_match*/){
+  //echo 'test'; die();
    $variables['#attached']['library'][] = 'neuronet_misc/neuronet_misc';
    $current_path = \Drupal::service('path.current')->getPath();
    $path_args = explode('/', $current_path);
 
    global $base_url;
-   
+
    // redirect user page to profile
    if ($path_args[1] == 'user' && is_numeric($path_args[2]) && (!isset($path_args[3]) || is_null($path_args[3]))) {
     $user = User::load($path_args[2]);
     if(is_object($user)) {
       $connection = \Drupal::database();
       $query = $connection->query("SELECT field_profile_target_id FROM {user__field_profile} WHERE entity_id = :entity_id", [':entity_id' => $path_args[2]]);
+
       $result = $query->fetchAll();
+      //echo $result[0]->field_profile_target_id; die();
       if (!empty($result)) {
         $nid = $result[0]->field_profile_target_id;
         $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
@@ -80,7 +83,7 @@ function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $rout
         $response->send();
       }
     }
-   } 
+   }
    if ((isset($path_args[1]) && isset($path_args[2]) && isset($path_args[3])) && $path_args[1] == 'user' && is_numeric($path_args[2]) && $path_args[3] == 'edit') {
     $user = User::load($path_args[2]);
     $token = \Drupal::request()->query->get('pass-reset-token');
@@ -112,7 +115,7 @@ function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $a
       return AccessResult::allowedIf(True);
     }
   }
-  //$type = $node::getType(); 
+  //$type = $node::getType();
 }
 
 function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
@@ -120,7 +123,7 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
     $user = User::load(\Drupal::currentUser()->id());
     if (!$user->hasRole('administrator')) {
       $form['revision_information']['#access'] = False;
-      $form['field_email']['#access'] = False; 
+      $form['field_email']['#access'] = False;
     }
   }
   if ($form_id == 'user_form') {
@@ -128,7 +131,7 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
     if (!$user->hasRole('administrator')) {
       $form['field_profile']['#access'] = False;
       unset($form['contact']);
-      $form['user_picture']['#access'] = False; 
+      $form['user_picture']['#access'] = False;
     }
   }
   if ($form_id == 'node_profile_form') {
@@ -143,7 +146,7 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
 
 /*
  *  Implements hook_mail_alter()
- *    
+ *
  *  This function stops all emails from being sent from my development environment
  *  I took it from http://www.jaypan.com/tutorial/preventing-emails-being-sent-drupal-7-development-environment
 */
@@ -155,7 +158,7 @@ function neuronet_misc_mail_alter(&$message){
   if (!isset($_SERVER['PANTHEON_ENVIRONMENT']) && !defined('MED_SERVER')) {
     // First: Prevent the mail from being sent
     $message['send'] = FALSE;
- 
+
     // Next: Log the mail so it can be debugged if necessary
     $notice = 'The following email was not sent: <pre> <br/>Subject: ' .  $message['subject'] . '<br/>' . implode('', $message['body']) . print_r($message, TRUE) . '</pre>';
     \Drupal::logger('neuronet_misc')->notice($notice);
@@ -175,10 +178,10 @@ function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity)
       $new_email = $user->getEmail();
       $node->set('field_email', $new_email);
       $node->save();
-      // if email exists: 
+      // if email exists:
         // throw new \Exception(t('Fields are not unique!'));
     }
-    
+
   }
 }
 
