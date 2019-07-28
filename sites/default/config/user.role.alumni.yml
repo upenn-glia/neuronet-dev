@@ -8,6 +8,9 @@ weight: 3
 is_admin: null
 permissions:
   - 'create job content'
+  - 'create job_posting content'
   - 'delete own job content'
+  - 'delete own job_posting content'
   - 'edit own job content'
+  - 'edit own job_posting content'
   - 'edit own profile content'
