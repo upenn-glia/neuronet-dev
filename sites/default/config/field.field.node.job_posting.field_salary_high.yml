@@ -1,0 +1,23 @@
+uuid: a7144913-d633-4120-b6d0-9f30bed7843d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_salary_high
+    - node.type.job_posting
+id: node.job_posting.field_salary_high
+field_name: field_salary_high
+entity_type: node
+bundle: job_posting
+label: 'Salary - High'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: $
+  suffix: ''
+field_type: integer

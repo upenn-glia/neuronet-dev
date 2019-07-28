@@ -4,8 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.job_posting.field_description
     - field.field.node.job_posting.field_institution
-    - field.field.node.job_posting.field_salary
+    - field.field.node.job_posting.field_interests
+    - field.field.node.job_posting.field_links
+    - field.field.node.job_posting.field_salary_high
+    - field.field.node.job_posting.field_salary_low
     - field.field.node.job_posting.field_start_date
     - node.type.job_posting
   module:
@@ -23,6 +27,6 @@ hidden:
   field_institution: true
   field_interests: true
   field_links: true
-  field_salary: true
-  field_stage: true
+  field_salary_high: true
+  field_salary_low: true
   field_start_date: true

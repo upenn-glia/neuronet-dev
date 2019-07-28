@@ -7,7 +7,8 @@ dependencies:
     - field.field.node.job_posting.field_institution
     - field.field.node.job_posting.field_interests
     - field.field.node.job_posting.field_links
-    - field.field.node.job_posting.field_salary
+    - field.field.node.job_posting.field_salary_high
+    - field.field.node.job_posting.field_salary_low
     - field.field.node.job_posting.field_stage
     - field.field.node.job_posting.field_start_date
     - node.type.job_posting
@@ -57,8 +58,17 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  field_salary:
-    weight: 103
+  field_salary_high:
+    weight: 110
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_salary_low:
+    weight: 109
     label: above
     settings:
       thousand_separator: ''
@@ -67,7 +77,7 @@ content:
     type: number_integer
     region: content
   field_stage:
-    weight: 108
+    weight: 111
     label: above
     settings: {  }
     third_party_settings: {  }

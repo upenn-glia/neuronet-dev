@@ -1,4 +1,4 @@
-uuid: ebd8ab35-1272-4f69-b836-dc213fe206f3
+uuid: 666571c8-2364-467b-b5ea-e9e5e29ffa9c
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ id: node.job_posting.field_stage
 field_name: field_stage
 entity_type: node
 bundle: job_posting
-label: 'Stage In Graduate School'
+label: 'Stage in Career'
 description: ''
 required: true
 translatable: false

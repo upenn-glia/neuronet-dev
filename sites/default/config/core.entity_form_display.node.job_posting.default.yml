@@ -7,7 +7,8 @@ dependencies:
     - field.field.node.job_posting.field_institution
     - field.field.node.job_posting.field_interests
     - field.field.node.job_posting.field_links
-    - field.field.node.job_posting.field_salary
+    - field.field.node.job_posting.field_salary_high
+    - field.field.node.job_posting.field_salary_low
     - field.field.node.job_posting.field_stage
     - field.field.node.job_posting.field_start_date
     - node.type.job_posting
@@ -27,7 +28,7 @@ third_party_settings:
         - field_description
         - field_interests
         - field_institution
-        - field_salary
+        - group_s
         - field_links
       parent_name: ''
       weight: 0
@@ -38,6 +39,20 @@ third_party_settings:
         description: ''
         required_fields: true
       label: 'Job Posting'
+      region: content
+    group_s:
+      children:
+        - field_salary_low
+        - field_salary_high
+      parent_name: group_job_posting
+      weight: 7
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: false
+      label: 'Salary Range'
       region: content
 id: node.job_posting.default
 targetEntityType: node
@@ -84,18 +99,25 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_salary:
-    weight: 7
+  field_salary_high:
+    weight: 27
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_salary_low:
+    weight: 26
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_stage:
-    weight: 3
+    weight: 28
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+    type: options_select
     region: content
   field_start_date:
     weight: 2

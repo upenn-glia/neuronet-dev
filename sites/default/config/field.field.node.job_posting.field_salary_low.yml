@@ -1,15 +1,15 @@
-uuid: 206310e8-5ae7-4388-8851-f578df42c31d
+uuid: e1094750-c6b9-45d9-bbda-623146cbe02a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_salary
+    - field.storage.node.field_salary_low
     - node.type.job_posting
-id: node.job_posting.field_salary
-field_name: field_salary
+id: node.job_posting.field_salary_low
+field_name: field_salary_low
 entity_type: node
 bundle: job_posting
-label: Salary
+label: 'Salary - Low'
 description: ''
 required: false
 translatable: false

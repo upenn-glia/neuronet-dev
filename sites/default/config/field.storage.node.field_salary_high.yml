@@ -1,11 +1,11 @@
-uuid: ff02232d-917d-46c3-bb08-d9acbe7d3f16
+uuid: 31145d58-1bb9-4df8-b68d-4afddd553e44
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_salary
-field_name: field_salary
+id: node.field_salary_high
+field_name: field_salary_high
 entity_type: node
 type: integer
 settings:
