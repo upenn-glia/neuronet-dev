@@ -11,9 +11,16 @@ neuronet_misc.create_person:
   menu_name: admin
   weight: 10
 
+neuronet_misc.custom_emails:
+  title: Custom Emails
+  route_name: neuronet_misc.custom_emails
+  parent: view.current_students.page_2
+  menu_name: admin
+  weight: 11
+
 neuronet_misc.taxonomy_manager:
   title: Taxonomy Manager
   route_name: neuronet_misc.taxonomy_manager
   parent: view.current_students.page_2
   menu_name: admin
-  weight: 11
+  weight: 12

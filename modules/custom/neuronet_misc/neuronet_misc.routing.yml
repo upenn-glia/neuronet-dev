@@ -38,6 +38,14 @@ neuronet_misc.create_person:
   requirements:
     _permission: 'access neuronet admin'
 
+neuronet_misc.custom_emails:
+  path: '/admin/neuronet/custom-emails'
+  defaults:
+    _form: '\Drupal\neuronet_misc\Form\CustomEmails'
+    _title: 'Manage Custom Emails'
+  requirements:
+    _permission: 'access neuronet admin'
+
 neuronet_misc.taxonomy_manager:
   path: '/admin/neuronet/taxonomy-manager'
   defaults:

@@ -18,4 +18,10 @@ neuronet_misc.taxonomy_manager:
   route_name: neuronet_misc.taxonomy_manager
   base_route: view.current_students.page_2
   title: Taxonomy Manager
+  weight: 12
+
+neuronet_misc.custom_emails:
+  title: Custom Emails
+  route_name: neuronet_misc.custom_emails
+  base_route: view.current_students.page_2
   weight: 11
