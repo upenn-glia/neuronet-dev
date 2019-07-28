@@ -887,7 +887,7 @@ class ViewsBulkOperationsBulkForm extends FieldPluginBase implements CacheableDe
   /**
    * Check if an action is configurable.
    */
-  protected function isConfigurable($action) {
+  public function isConfigurable($action) {
     return (in_array('Drupal\Core\Plugin\PluginFormInterface', class_implements($action['class']), TRUE) || method_exists($action['class'], 'buildConfigurationForm'));
   }
 
