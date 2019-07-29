@@ -38,11 +38,11 @@ class EmailLoginInfo extends ActionBase {
         if (is_object($user)){
           $mailManager = \Drupal::service('plugin.manager.mail');
           $langcode = $user->getPreferredLangcode();
-          $params['context']['subject'] = "Login Info for Neuronet";
+          $params['action_values']['subject'] = "Login Info for Neuronet";
           $link = user_pass_reset_url($user);
-          $params['context']['message'] = _neuronet_alumnus_email_body($link);
+          $params['action_values']['body'] = _neuronet_alumnus_email_body($link);
           $to = $user->get('mail')->value;
-          $mailManager->mail('system', 'mail', $to, $langcode, $params);
+          $mailManager->mail('neuronet_misc', 'login', $to, $langcode, $params);
           drupal_set_message($message = 'Login link email sent to ' . $node->getTitle(), $type = 'status');
         }
       }

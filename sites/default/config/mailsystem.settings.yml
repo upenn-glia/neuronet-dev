@@ -1,11 +1,8 @@
 theme: current
 defaults:
-  sender: mime_mail
-  formatter: mime_mail
+  sender: SMTPMailSystem
+  formatter: SMTPMailSystem
 _core:
   default_config_hash: IhwTepsVwtbtbcT5GzQKhCXDCRvbk3MNkWqPiuiZ10s
 modules:
-  neuronet_misc:
-    none:
-      formatter: mime_mail
-      sender: mime_mail
+  neuronet_misc: {  }

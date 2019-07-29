@@ -38,11 +38,11 @@ class PassReset extends ActionBase {
         if (is_object($user)){
           $mailManager = \Drupal::service('plugin.manager.mail');
           $langcode = $user->getPreferredLangcode();
-          $params['context']['subject'] = "Password Reset Link for Neuronet";
+          $params['action_values']['subject'] = "Password Reset Link for Neuronet";
           $link = user_pass_reset_url($user);
-          $params['context']['message'] = _neuronet_pass_reset_body($link);
+          $params['action_values']['body'] = _neuronet_pass_reset_body($link);
           $to = $user->get('mail')->value;
-          $mailManager->mail('system', 'mail', $to, $langcode, $params);
+          $mailManager->mail('neuronet_misc', 'passreset', $to, $langcode, $params);
           drupal_set_message($message = 'Password reset link sent to ' . $node->getTitle(), $type = 'status');
         }
       }

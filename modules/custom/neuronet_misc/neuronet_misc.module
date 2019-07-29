@@ -165,9 +165,16 @@ function neuronet_misc_mail_alter(&$message){
   }
 }
 
+function neuronet_misc_mail($key, &$message, $params) {
+  //echo 'test'; die();
+  // Set HTML Headers
+  $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+  $message['subject'] = $params['action_values']['subject'];
+  $message['body'][] = $params['action_values']['body'];
+}
+
 function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() == 'user') {
-    $entity_id;
     $user = User::load($entity->id());
     $connection = \Drupal::database();
       $query = $connection->query("SELECT field_profile_target_id FROM {user__field_profile} WHERE entity_id = :entity_id", [':entity_id' => $entity->id()]);

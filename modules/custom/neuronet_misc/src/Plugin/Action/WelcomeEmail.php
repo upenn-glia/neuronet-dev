@@ -38,11 +38,11 @@ class WelcomeEmail extends ActionBase {
         if (is_object($user)){
           $mailManager = \Drupal::service('plugin.manager.mail');
           $langcode = $user->getPreferredLangcode();
-          $params['context']['subject'] = "Welcome to NGG Neuronet";
+          $params['action_values']['subject'] = "Welcome to NGG Neuronet";
           $link = user_pass_reset_url($user);
-          $params['context']['message'] = _neuronet_welcome_email_body($link);
+          $params['action_values']['body'] = _neuronet_welcome_email_body($link);
           $to = $user->get('mail')->value;
-          $mailManager->mail('system', 'mail', $to, $langcode, $params);
+          $mailManager->mail('neuronet_misc', 'welcome', $to, $langcode, $params);
           drupal_set_message($message = 'Welcome email sent to ' . $node->getTitle(), $type = 'status');
         }
       }
@@ -61,16 +61,16 @@ class WelcomeEmail extends ActionBase {
 }
 
 function _neuronet_welcome_email_body($link) {
-  $body = "<p>Hi NGG!</p>
+  $body = "<p><strong>Hi NGG!</strong></p>
 
 <p>We are pleased to announce the launch of NeuroNet, a directory of current students and - coming soon - alumni! </p>
 
 <p>Looking for advice on rotations, picking elective courses, or a new apartment? Now you can check out what experiences and interests other NGG students have and contact them! We need your help, though! As we are not mind readers (sadly), we need you to log in and complete your profiles.</p>
 
-<p>You can earn extra raffle tickets at the retreat by filling out your profile!</p>  
+<p>You can earn extra raffle tickets at the retreat by filling out your profile!</p>
 
 <ul>
-  <li>1 ticket for logging in and ...</li> 
+  <li>1 ticket for logging in and ...</li>
   <li>1 ticket for uploading a profile picture and completing 5 fields</li>
 </ul>
 
