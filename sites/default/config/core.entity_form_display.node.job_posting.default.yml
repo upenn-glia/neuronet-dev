@@ -16,6 +16,7 @@ dependencies:
     - datetime
     - field_group
     - link
+    - multiple_selects
     - path
     - text
 third_party_settings:
@@ -24,12 +25,12 @@ third_party_settings:
       children:
         - title
         - field_start_date
-        - field_stage
         - field_description
         - field_interests
         - field_institution
         - group_s
         - field_links
+        - field_stage
       parent_name: ''
       weight: 0
       format_type: fieldset
@@ -84,12 +85,9 @@ content:
     region: content
   field_interests:
     weight: 5
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: multiple_options_select
     region: content
   field_links:
     weight: 8
