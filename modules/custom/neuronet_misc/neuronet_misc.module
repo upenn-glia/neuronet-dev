@@ -60,52 +60,11 @@ function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
 }
 
 function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $route_match*/){
-  //echo 'test'; die();
-   $variables['#attached']['library'][] = 'neuronet_misc/neuronet_misc';
-   $current_path = \Drupal::service('path.current')->getPath();
-   $path_args = explode('/', $current_path);
-
-   global $base_url;
-
-   // redirect user page to profile
-   if ($path_args[1] == 'user' && is_numeric($path_args[2]) && (!isset($path_args[3]) || is_null($path_args[3]))) {
-    $user = User::load($path_args[2]);
-    if(is_object($user)) {
-      $connection = \Drupal::database();
-      $query = $connection->query("SELECT field_profile_target_id FROM {user__field_profile} WHERE entity_id = :entity_id", [':entity_id' => $path_args[2]]);
-
-      $result = $query->fetchAll();
-      //echo $result[0]->field_profile_target_id; die();
-      if (!empty($result)) {
-        $nid = $result[0]->field_profile_target_id;
-        $alias = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$nid);
-        $response = new RedirectResponse($base_url . $alias);
-        $response->send();
-      }
-    }
-   }
-   if ((isset($path_args[1]) && isset($path_args[2]) && isset($path_args[3])) && $path_args[1] == 'user' && is_numeric($path_args[2]) && $path_args[3] == 'edit') {
-    $user = User::load($path_args[2]);
-    $token = \Drupal::request()->query->get('pass-reset-token');
-    if(is_object($user) && is_null($token)) {
-      $connection = \Drupal::database();
-      $query = $connection->query("SELECT field_profile_target_id FROM {user__field_profile} WHERE entity_id = :entity_id", [':entity_id' => $path_args[2]]);
-      $result = $query->fetchAll();
-      if (!empty($result)) {
-        $nid = $result[0]->field_profile_target_id;
-        $response = new RedirectResponse($base_url . '/node/' . $nid . '/account');
-        $response->send();
-      }
-    }
-   }
-   /*$user = User::load(21);
-   $link = user_pass_reset_url($user);
-   kint($link);*/
+  $variables['#attached']['library'][] = 'neuronet_misc/neuronet_misc';
 }
 
 function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $account) {
   $type = $node->type->entity->label();
-  //kint($op);
   if ($type == 'Profile' && $op == 'update') {
     $user = User::load($account->id());
     if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
@@ -115,7 +74,6 @@ function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $a
       return AccessResult::allowedIf(True);
     }
   }
-  //$type = $node::getType();
 }
 
 function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {

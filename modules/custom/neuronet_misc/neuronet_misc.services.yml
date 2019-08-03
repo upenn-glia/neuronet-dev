@@ -1,0 +1,5 @@
+services:
+  neuronet_misc.redirect_subscriber:
+    class: Drupal\neuronet_misc\Service\RedirectSubscriber
+    tags:
+      - { name: event_subscriber }
