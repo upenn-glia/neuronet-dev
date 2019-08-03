@@ -6,6 +6,7 @@ dependencies:
     - views.view.jobs_of_alum
   module:
     - ctools
+    - system
     - views
   theme:
     - bootstrap
@@ -31,3 +32,8 @@ visibility:
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: "/node/*/my-job-posts\r\n/node/*/edit\r\n/node/*/account"
+    negate: true
+    context_mapping: {  }
