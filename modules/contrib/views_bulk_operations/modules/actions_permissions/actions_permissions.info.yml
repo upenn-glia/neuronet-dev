@@ -6,8 +6,8 @@ package: 'Views Bulk Operations'
 dependencies:
   - drupal:views_bulk_operations
 
-# Information added by Drupal.org packaging script on 2018-07-02
-version: '8.x-2.4'
+# Information added by Drupal.org packaging script on 2019-05-28
+version: '8.x-3.2'
 core: '8.x'
 project: 'views_bulk_operations'
-datestamp: 1530516826
+datestamp: 1559040787
