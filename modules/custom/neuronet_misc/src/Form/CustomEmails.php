@@ -136,6 +136,12 @@ class CustomEmails extends ConfigFormBase {
         '#default_value' => empty($config['emails_container'][$i]['name']) ? '' : $config['emails_container'][$i]['name'],
         '#required' => true,
       ];
+      $form['emails_container'][$i]['subject'] = [
+        '#type'       => 'textfield',
+        '#title' => $this->t('Email Subject'),
+        '#default_value' => empty($config['emails_container'][$i]['subject']) ? '' : $config['emails_container'][$i]['subject'],
+        '#required' => true,
+      ];
       $form['emails_container'][$i]['email'] = [
         '#type'       => 'text_format',
         '#title' => $this->t('Email Body'),
@@ -257,8 +263,9 @@ class CustomEmails extends ConfigFormBase {
       unset($values['emails_container']['actions']);
     }
     $this->state->set('neuronet_misc.custom_emails', $values);
-    if ($this->tempStore->get('send_custom_email')) {
-      $form_state->setRedirect('neuronet_misc.select_custom_email');
+    if ($path = $this->tempStore->get('send_custom_email__form_path')->get($this->currentUser()->id())) {
+      $this->tempStore->get('send_custom_email__form_path')->delete($this->currentUser()->id());
+      $form_state->setRedirect($path);
     }
   }
 }

@@ -11,6 +11,12 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Path\PathValidator;
 use Symfony\Component\HttpFoundation\Request;
+use Drupal\views_bulk_operations\Action\ViewsBulkOperationsActionBase;
+use Drupal\Core\Plugin\PluginFormInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\State\State;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Routing\UrlGeneratorTrait;
 
 /**
  * Redirects to an entity deletion form.
@@ -21,8 +27,9 @@ use Symfony\Component\HttpFoundation\Request;
  *   type = "node"
  * )
  */
-class SendCustomEmail extends ActionBase implements ContainerFactoryPluginInterface {
+class SendCustomEmail extends ViewsBulkOperationsActionBase implements ContainerFactoryPluginInterface, PluginFormInterface {
 
+  use UrlGeneratorTrait;
   /**
    * The tempstore object.
    *
@@ -60,9 +67,10 @@ class SendCustomEmail extends ActionBase implements ContainerFactoryPluginInterf
    * @param \Drupal\Core\Session\AccountInterface $current_user
    *   Current user.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, PrivateTempStoreFactory $temp_store_factory, AccountInterface $current_user) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, PrivateTempStoreFactory $temp_store_factory, AccountInterface $current_user, State $State) {
     $this->currentUser = $current_user;
-    $this->tempStore = $temp_store_factory->get('send_custom_email');
+    $this->tempStore = $temp_store_factory->get('send_custom_email__form_path');
+    $this->state = $State;
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
   }
 
@@ -76,42 +84,42 @@ class SendCustomEmail extends ActionBase implements ContainerFactoryPluginInterf
       $plugin_definition,
       $container->get('entity_type.manager'),
       $container->get('tempstore.private'),
-      $container->get('current_user')
+      $container->get('current_user'),
+      $container->get('state')
     );
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function setContext(array &$context) {
-    if (!is_null($context['redirect_url']) && $context['redirect_url']->getRouteName()) {
-      $this->previousRoute = $context['redirect_url']->getRouteName();
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+    $config = $this->state->get('neuronet_misc.custom_emails');
+    if (empty($config['emails_container'])) {
+      $this->tempStore->set(\Drupal::currentUser()->id(), $this->context['redirect_url']->getRouteName());
+      $response = new RedirectResponse(\Drupal::url('neuronet_misc.custom_emails'));
+      $response->send();
     }
-    $this->context['sandbox'] = &$context['sandbox'];
-    $this->context['results'] = &$context['results'];
-    foreach ($context as $key => $item) {
-      if ($key === 'sandbox' || $key === 'results') {
-        continue;
-      }
-      $this->context[$key] = $item;
+    // Set select options.
+    $options = [];
+    foreach ($config['emails_container'] as $email) {
+      $options[] = $email['name'];
     }
+    $form['custom_email_selected'] = [
+      '#type' => 'select',
+      '#required' => true,
+      '#title' => $this->t('Custom Emails to Send'),
+      '#options' => $options,
+    ];
+    return $form;
   }
 
   /**
    * {@inheritdoc}
    */
   public function executeMultiple(array $entities) {
-
-    $nids = [];
+    $titles = '';
     foreach ($entities as $entity) {
-      $nids[] = $entity->id();
+      $titles .= $entity->getTitle() . ', ';
     }
-    $temp_vars = [
-      'nids' => $nids,
-      'previous_route' => $this->previousRoute,
-    ];
-    $this->tempStore->set($this->currentUser->id(), $temp_vars);
-    $this->context['results']['redirect_url'] = Url::fromRoute('neuronet_misc.select_custom_email');
+    $titles = rtrim($titles, ', ');
+    $this->messenger()->addStatus($this->t('Sent email to: @title', ['@title' => $titles]));
   }
 
   /**
