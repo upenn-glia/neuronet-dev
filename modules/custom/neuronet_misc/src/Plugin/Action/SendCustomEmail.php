@@ -138,7 +138,7 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
   protected function getCustomEmails() {
     // Get email config from state.
     $config = $this->state->get('neuronet_misc.custom_emails');
-    if (empty($config['emails_container'])) {
+    if (empty($config['emails_container']) && !is_null($this->context['redirect_url'])) {
       $this->tempStore->set(\Drupal::currentUser()->id(), $this->context['redirect_url']->getRouteName());
       $response = new RedirectResponse(\Drupal::url('neuronet_misc.custom_emails'));
       $response->send();
