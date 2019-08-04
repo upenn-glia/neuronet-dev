@@ -28,7 +28,7 @@ class RedirectSubscriber implements EventSubscriberInterface {
     $request = $event->getRequest();
     global $base_url;
     // redirect user page to profile
-    if (!is_null($request->attributes->get('user'))) {
+    if (!is_null($request->attributes->get('user')) && is_null($request->query->get('pass-reset-token'))) {
      $user = $request->attributes->get('user');
      if(is_object($user)) {
        $connection = \Drupal::database();

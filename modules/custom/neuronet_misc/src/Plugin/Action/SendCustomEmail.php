@@ -2,21 +2,19 @@
 
 namespace Drupal\neuronet_misc\Plugin\Action;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Action\ActionBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Url;
-use Drupal\Core\Path\PathValidator;
-use Symfony\Component\HttpFoundation\Request;
 use Drupal\views_bulk_operations\Action\ViewsBulkOperationsActionBase;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\State\State;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Routing\UrlGeneratorTrait;
+use Drupal\Core\Mail\MailManager;
+use Drupal\Core\Database\Connection;
 
 /**
  * Redirects to an entity deletion form.
@@ -29,7 +27,6 @@ use Drupal\Core\Routing\UrlGeneratorTrait;
  */
 class SendCustomEmail extends ViewsBulkOperationsActionBase implements ContainerFactoryPluginInterface, PluginFormInterface {
 
-  use UrlGeneratorTrait;
   /**
    * The tempstore object.
    *
@@ -45,11 +42,32 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
   protected $currentUser;
 
   /**
-   * Previous Route name
+   * MailManager service
    *
-   * @var string
+   * @var MailManager
    */
-  protected $previousRoute = 'entity.node.collection';
+  protected $mailManager;
+
+  /**
+   * EntityTypeManager service
+   *
+   * @var EntityTypeManager
+   */
+  protected $entityTypeManager;
+
+  /**
+   * Connection service
+   *
+   * @var Connection
+   */
+  protected $database;
+
+  /**
+   * Custom email options
+   *
+   * @var array
+   */
+  protected $customEmailOptions;
 
   /**
    * Constructs a new DeleteAction object.
@@ -60,24 +78,43 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
    *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param EntityTypeManager $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $temp_store_factory
+   * @param PrivateTempStoreFactory $temp_store_factory
    *   The tempstore factory.
-   * @param \Drupal\Core\Session\AccountInterface $current_user
+   * @param AccountInterface $current_user
    *   Current user.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, PrivateTempStoreFactory $temp_store_factory, AccountInterface $current_user, State $State) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    EntityTypeManager $entity_type_manager,
+    PrivateTempStoreFactory $temp_store_factory,
+    AccountInterface $current_user,
+    State $State,
+    MailManager $MailManager,
+    Connection $Connection
+    ) {
     $this->currentUser = $current_user;
     $this->tempStore = $temp_store_factory->get('send_custom_email__form_path');
+    $this->entityTypeManager = $entity_type_manager;
     $this->state = $State;
+    $this->mailManager = $MailManager;
+    $this->database = $Connection;
+    $this->customEmailOptions = $this->getCustomEmails();
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(
+    ContainerInterface $container,
+    array $configuration,
+    $plugin_id,
+    $plugin_definition
+    ) {
     return new static(
       $configuration,
       $plugin_id,
@@ -85,22 +122,37 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
       $container->get('entity_type.manager'),
       $container->get('tempstore.private'),
       $container->get('current_user'),
-      $container->get('state')
+      $container->get('state'),
+      $container->get('plugin.manager.mail'),
+      $container->get('database')
     );
   }
 
-  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+  /**
+   * Get custom email options
+   *
+   * - Numeric keys, name values.
+   *
+   * @return array
+   */
+  protected function getCustomEmails() {
+    // Get email config from state.
     $config = $this->state->get('neuronet_misc.custom_emails');
     if (empty($config['emails_container'])) {
       $this->tempStore->set(\Drupal::currentUser()->id(), $this->context['redirect_url']->getRouteName());
       $response = new RedirectResponse(\Drupal::url('neuronet_misc.custom_emails'));
       $response->send();
     }
+    return $config['emails_container'];
+  }
+
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     // Set select options.
     $options = [];
-    foreach ($config['emails_container'] as $email) {
+    foreach ($this->customEmailOptions as $email) {
       $options[] = $email['name'];
     }
+    // Select custom email.
     $form['custom_email_selected'] = [
       '#type' => 'select',
       '#required' => true,
@@ -113,13 +165,43 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
   /**
    * {@inheritdoc}
    */
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
+    $this->configuration['selected_email_key'] = $form_state->getValue('custom_email_selected');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function executeMultiple(array $entities) {
-    $titles = '';
+    // Get key of selected email.
+    $key = (int) $this->configuration['selected_email_key'] + 1;
+    $recipients = '';
     foreach ($entities as $entity) {
-      $titles .= $entity->getTitle() . ', ';
+      // Get user associated with selected profile.
+      $result = $this->entityTypeManager->getStorage('user')->loadByProperties([
+        'field_profile' => $entity->id(),
+      ]);
+      if ($user = reset($result)) {
+        // Send mail.
+        $langcode = $user->getPreferredLangcode();
+        $params = [
+          'user' => $user,
+          'profile' => $entity,
+          'subject' => $this->customEmailOptions[$key]['subject'],
+          'body' => $this->customEmailOptions[$key]['email']['value'],
+        ];
+        $to = $user->get('mail')->value;
+        $recipients .= $entity->getTitle() . ' (' . $to . '), ';
+        $this->mailManager->mail('neuronet_misc', 'custom', $to, $langcode, $params);
+      }
     }
-    $titles = rtrim($titles, ', ');
-    $this->messenger()->addStatus($this->t('Sent email to: @title', ['@title' => $titles]));
+    // Set message.
+    $recipients = rtrim($recipients, ', ');
+    $this->messenger()->addStatus($this->t('Sent "@name" email to: @title', [
+      '@title' => $recipients,
+      '@name' => $this->customEmailOptions[$key]['name'],
+      ]
+    ));
   }
 
   /**

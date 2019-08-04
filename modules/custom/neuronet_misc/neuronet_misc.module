@@ -113,22 +113,41 @@ function neuronet_misc_mail_alter(&$message){
   // We can use variable_get() to get the $conf variable set in our settings.php file
   // Note that by setting the default to TRUE, the default setting for the system is to be
   // a development environment. Set this to FALSE to have the default be a live environment.
-  if (!isset($_SERVER['PANTHEON_ENVIRONMENT']) && !defined('MED_SERVER')) {
+  if (!defined('MED_SERVER')) {
     // First: Prevent the mail from being sent
     $message['send'] = FALSE;
-
     // Next: Log the mail so it can be debugged if necessary
-    $notice = 'The following email was not sent: <pre> <br/>Subject: ' .  $message['subject'] . '<br/>' . implode('', $message['body']) . print_r($message, TRUE) . '</pre>';
+    $notice = 'The following email was not sent: <pre> <br/>Subject: ' .  $message['subject'] . '<br/>' . implode('', $message['body']) . '</pre>';
     \Drupal::logger('neuronet_misc')->notice($notice);
   }
 }
 
 function neuronet_misc_mail($key, &$message, $params) {
-  //echo 'test'; die();
   // Set HTML Headers
   $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
-  $message['subject'] = $params['action_values']['subject'];
-  $message['body'][] = $params['action_values']['body'];
+  if ($key == 'custom') {
+    // Replace first name.
+    $subject = $params['subject'];
+    $body = $params['body'];
+    $subject = preg_replace('/(%%%FIRSTNAME%%%)/i', $params['profile']->get('field_first_name')->value, $subject);
+    $body = preg_replace('/(%%%FIRSTNAME%%%)/i', $params['profile']->get('field_first_name')->value, $body);
+    // Replace last name.
+    $subject = preg_replace('/(%%%LASTNAME%%%)/i', $params['profile']->get('field_last_name')->value, $subject);
+    $body = preg_replace('/(%%%LASTNAME%%%)/i', $params['profile']->get('field_last_name')->value, $body);
+    // Replace login link.
+    if ($params['user']->id() != 1) {
+      $login_url = user_pass_reset_url($params['user']);
+      $login_link =  '<a href=' . $login_url . '>' . $login_url . '</a>';
+      $body = preg_replace('/(%%%LOGINLINK%%%)/i', $login_link, $body);
+    }
+    $message['subject'] = $subject;
+    $message['body'][] = $body;
+  }
+  else {
+    $message['subject'] = $params['action_values']['subject'];
+    $message['body'][] = $params['action_values']['body'];
+  }
+
 }
 
 function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
