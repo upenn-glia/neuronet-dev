@@ -1,0 +1,11 @@
+uuid: 54551d4e-7e2c-4ee9-be8b-aaf41854e3b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: welcome_email
+label: 'Welcome email'
+type: node
+plugin: welcome_email
+configuration: {  }

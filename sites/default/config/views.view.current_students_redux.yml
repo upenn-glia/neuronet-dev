@@ -2265,7 +2265,7 @@ display:
           batch_size: 10
           form_step: true
           buttons: false
-          clear_on_exposed: 0
+          clear_on_exposed: false
           action_title: Action
           selected_actions:
             email_login_info: email_login_info

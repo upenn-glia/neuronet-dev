@@ -6,6 +6,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\State\State;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 
 class CustomEmails extends ConfigFormBase {
 
@@ -17,12 +18,20 @@ class CustomEmails extends ConfigFormBase {
   protected $state;
 
   /**
+   * The tempstore object.
+   *
+   * @var \Drupal\Core\TempStore\SharedTempStore
+   */
+  protected $tempStore;
+
+  /**
    * Constructs CustomEmails object.
    *
    * @var State $State
    */
-  public function __construct(State $State) {
+  public function __construct(State $State, PrivateTempStoreFactory $tempStoreFactory) {
     $this->state = $State;
+    $this->tempStore = $tempStoreFactory;
   }
 
   /**
@@ -31,8 +40,10 @@ class CustomEmails extends ConfigFormBase {
    * @param ContainerInterface $container
    */
   public static function create(ContainerInterface $container) {
-    $State = $container->get('state');
-    return new static($State);
+    return new static(
+      $container->get('state'),
+      $container->get('tempstore.private')
+    );
   }
 
   /**
@@ -130,8 +141,8 @@ class CustomEmails extends ConfigFormBase {
         '#title' => $this->t('Email Body'),
         '#default_value' => empty($config['emails_container'][$i]['email']['value']) ? '' : $config['emails_container'][$i]['email']['value'],
         '#required' => true,
-        '#description' => $this->t('You can insert the following variable placeholders, 
-        which will be replaced by their user-specific values upon email send: 
+        '#description' => $this->t('You can insert the following variable placeholders,
+        which will be replaced by their user-specific values upon email send:
           %%%FIRSTNAME%%% %%%LASTNAME%%% %%%LOGINLINK%%%'),
       ];
       // Remove button.
@@ -246,5 +257,8 @@ class CustomEmails extends ConfigFormBase {
       unset($values['emails_container']['actions']);
     }
     $this->state->set('neuronet_misc.custom_emails', $values);
+    if ($this->tempStore->get('send_custom_email')) {
+      $form_state->setRedirect('neuronet_misc.select_custom_email');
+    }
   }
 }

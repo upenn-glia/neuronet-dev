@@ -1,0 +1,11 @@
+uuid: 8339670d-cd13-49cb-8183-57384c864cc1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: send_custom_email
+label: 'Send custom email'
+type: node
+plugin: send_custom_email
+configuration: {  }

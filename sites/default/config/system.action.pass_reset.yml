@@ -1,0 +1,11 @@
+uuid: 99fe7384-a4d3-4b6c-968b-2621dd2bf336
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: pass_reset
+label: 'Email password reset link'
+type: node
+plugin: pass_reset
+configuration: {  }

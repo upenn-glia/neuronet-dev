@@ -1,0 +1,11 @@
+uuid: 93aa04a4-81f4-47ea-ad7f-9f443e8fc766
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: email_login_info
+label: 'Email login info'
+type: node
+plugin: email_login_info
+configuration: {  }

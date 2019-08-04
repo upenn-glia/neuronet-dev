@@ -46,6 +46,14 @@ neuronet_misc.custom_emails:
   requirements:
     _permission: 'access neuronet admin'
 
+neuronet_misc.select_custom_email:
+  path: '/admin/neuronet/select-custom-email'
+  defaults:
+    _form: '\Drupal\neuronet_misc\Form\SelectEmailToSend'
+    _title: 'Select Custom Email to Send'
+  requirements:
+    _permission: 'access neuronet admin'
+
 neuronet_misc.taxonomy_manager:
   path: '/admin/neuronet/taxonomy-manager'
   defaults:

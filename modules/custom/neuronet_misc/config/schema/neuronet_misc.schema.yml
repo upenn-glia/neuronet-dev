@@ -10,10 +10,6 @@ action.configuration.welcome_email:
   type: action_configuration_default
   label: 'Welcome email'
 
-action.configuration.term_push_front:
+action.configuration.send_custom_email:
   type: action_configuration_default
-  label: 'Push term in front'
-
-action.configuration.term_unpush_front:
-  type: action_configuration_default
-  label: 'Unpush term from front'
+  label: 'Send custom email'
