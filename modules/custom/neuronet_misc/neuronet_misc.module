@@ -8,6 +8,7 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use \Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Entity\EntityInterface;
 use \Drupal\Core\Session\AccountInterface;
 use \Drupal\node\NodeInterface;
 use Drupal\Core\Access\AccessResult;
@@ -188,32 +189,51 @@ function neuronet_misc_profile_validate(array $form, FormStateInterface &$form_s
   }
 }
 
-function neuronet_misc_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
-  if ($entity->getEntityTypeId() == 'node') {
-    $node = Node::load($entity->id());
-    if ($node->getType() == 'profile') {
-      $email = $node->get('field_email')->getString();
-      $name = $node->get('field_first_name')->getString() . ' ' . $node->get('field_last_name')->getString();
-      $nid = $node->id();
-      //Create a User
-      $user = User::create();
-      //Mandatory settings
-      $user->setPassword(user_password());
-      $user->enforceIsNew();
-      $user->setEmail($email);
-      $user->set('field_profile', $nid);
-      $user->setUsername($name);//This username must be unique and accept only a-Z,0-9, - _ @ .
-      $user->activate();
-
-      //Set Language
-      $language_interface = \Drupal::languageManager()->getCurrentLanguage();
-      $user->set('langcode', $language_interface->getId());
-      $user->set('preferred_langcode', $language_interface->getId());
-      $user->set('preferred_admin_langcode', $language_interface->getId());
-
-      // Save has no return value so this cannot be tested.
-      // Assume save has gone through correctly.
-      $user1 = $user->save();
+function neuronet_misc_node_insert($node) {
+  if ($node->getType() == 'profile') {
+    $email = $node->get('field_email')->getString();
+    $name = $node->get('field_first_name')->getString() . ' ' . $node->get('field_last_name')->getString();
+    $nid = $node->id();
+    //Create a User
+    $user = User::create();
+    //Mandatory settings
+    $user->setPassword(user_password());
+    $user->enforceIsNew();
+    $user->setEmail($email);
+    $user->set('field_profile', $nid);
+    $user->setUsername($name);//This username must be unique and accept only a-Z,0-9, - _ @ .
+    $user->activate();
+    if ($node->get('field_alumni')->value) {
+      $user->addRole('alumni');
+    }
+    //Set Language
+    $language_interface = \Drupal::languageManager()->getCurrentLanguage();
+    $user->set('langcode', $language_interface->getId());
+    $user->set('preferred_langcode', $language_interface->getId());
+    $user->set('preferred_admin_langcode', $language_interface->getId());
+    // Save.
+    $user->save();
+  }
+}
+/**
+ * Implements hook_node_update()
+ */
+function neuronet_misc_node_update(EntityInterface $node) {
+  // Add alumni role to users associated w/ profiles set to alumni.
+  // Remove alumni role from users associated w/ profiles not set to alumni.
+  if ($node->getType() == 'profile') {
+    $users = \Drupal::entityTypeManager()->getStorage('user')->loadByProperties([
+      'field_profile' => $node->id(),
+    ]);
+    if ($user = reset($users)) {
+      if ($node->get('field_alumni')->value && !$user->hasRole('alumni')) {
+        $user->addRole('alumni');
+        $user->save();
+      }
+      elseif (!$node->get('field_alumni')->value && $user->hasRole('alumni')) {
+        $user->removeRole('alumni');
+        $user->save();
+      }
     }
   }
 }
