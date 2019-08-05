@@ -1,0 +1,19 @@
+uuid: cd822251-a463-48b9-8458-2f77004488d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_preferred_prefix
+    - node.type.profile
+id: node.profile.field_preferred_prefix
+field_name: field_preferred_prefix
+entity_type: node
+bundle: profile
+label: 'Preferred Name'
+description: 'e.g. Dr. Smith, or John'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

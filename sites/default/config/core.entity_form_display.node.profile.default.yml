@@ -29,6 +29,7 @@ dependencies:
     - field.field.node.profile.field_neuroscience_interests
     - field.field.node.profile.field_ngg_activities
     - field.field.node.profile.field_non_ngg_activities
+    - field.field.node.profile.field_preferred_prefix
     - field.field.node.profile.field_profile_image
     - field.field.node.profile.field_research_area
     - field.field.node.profile.field_thesis_committee
@@ -86,7 +87,7 @@ third_party_settings:
         - field_locations_lived
         - field_hometown_s_
       parent_name: ''
-      weight: 11
+      weight: 12
       format_type: fieldset
       format_settings:
         id: ''
@@ -105,7 +106,7 @@ third_party_settings:
         - field_links2
         - field_curriculum_vitae
       parent_name: ''
-      weight: 10
+      weight: 11
       format_type: fieldset
       format_settings:
         id: ''
@@ -207,7 +208,7 @@ content:
     type: options_select
     region: content
   field_email:
-    weight: 9
+    weight: 10
     settings:
       size: 60
       placeholder: ''
@@ -425,6 +426,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
+  field_preferred_prefix:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_profile_image:
     weight: 10
