@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @file
+ * Contains neuronet_misc.install.
+ */
+
+ /**
+  * Update users to all have notifications settings set to true.
+  */
+function neuronet_misc_update_8001(&$sandbox) {
+  $db_connection = \Drupal::database();
+  // Use the sandbox at your convenience to store the information needed
+  // to track progression between successive calls to the function.
+  if (!isset($sandbox['progress'])) {
+    // The count of users visited so far.
+    $sandbox['progress'] = 0;
+    // Total users that must be visited.
+    $sandbox['max'] = $db_connection
+      ->query('SELECT COUNT(uid) FROM {users}')
+      ->fetchField();
+    // A place to store messages during the run.
+    $sandbox['messages'] = [];
+    // Last node read via the query.
+    $sandbox['current_user_id'] = -1;
+  }
+  // Process users by groups of 20 (arbitrary value).
+  // When a group is processed, the batch update engine determines
+  // whether it should continue processing in the same request or provide
+  // progress feedback to the user and wait for the next request.
+  $limit = 20;
+  // Retrieve the next group of uids.
+  $result = $db_connection
+    ->select('users', 'u')
+    ->fields('u', [
+      'uid',
+    ])
+    ->where('u.uid > :uid', [
+      ':uid' => $sandbox['current_user_id'],
+    ])
+    ->range(0, $limit)
+    ->orderBy('u.uid', 'ASC')
+    ->execute();
+  foreach ($result as $row) {
+    if ($user = \Drupal::entityTypeManager()->getStorage('user')->load($row->uid)) {
+      $user->set('field_general_emails', true);
+      $user->set('field_job_posting_emails', true);
+      $user->save();
+    }
+    // Update our progress information.
+    $sandbox['progress']++;
+    $sandbox['current_user_id'] = $row->uid;
+  }
+  // Set the "finished" status, to tell batch engine whether this function
+  // needs to run again. If you set a float, this will indicate the progress
+  // of the batch so the progress bar will update.
+  $sandbox['#finished'] = $sandbox['progress'] >= $sandbox['max'] ? TRUE : $sandbox['progress'] / $sandbox['max'];
+  // Set up a per-run message; Make a copy of $sandbox so we can change it.
+  // This is simply a debugging stanza to illustrate how to capture status
+  // from each pass through hook_update_N().
+  $sandbox_status = $sandbox;
+  // Don't want them in the output.
+  unset($sandbox_status['messages']);
+  $sandbox['messages'][] = t('$sandbox=') . print_r($sandbox_status, TRUE);
+  if ($sandbox['#finished']) {
+    // hook_update_N() may optionally return a string which will be displayed
+    // to the user.
+    $final_message = '<ul><li>' . implode('</li><li>', $sandbox['messages']) . "</li></ul>";
+    return t('The batch_example demonstration update did what it was supposed to do: @message', [
+      '@message' => $final_message,
+    ]);
+  }
+ }

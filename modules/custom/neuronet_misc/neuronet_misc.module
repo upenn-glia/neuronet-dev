@@ -158,10 +158,12 @@ function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity)
       $result = $query->fetchAll();
     if (!empty($result)) {
       $nid = $result[0]->field_profile_target_id;
-      $node = Node::load($nid);
-      $new_email = $user->getEmail();
-      $node->set('field_email', $new_email);
-      $node->save();
+      if ($node = \Drupal::entityTypeManager()->getStorage('node')->load($nid)) {
+        $new_email = $user->getEmail();
+        $node->set('field_email', $new_email);
+        $node->save();
+      }
+
       // if email exists:
         // throw new \Exception(t('Fields are not unique!'));
     }

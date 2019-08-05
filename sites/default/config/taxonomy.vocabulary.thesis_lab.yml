@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Faculty Members'
 vid: thesis_lab
 description: ''
-hierarchy: 0
 weight: 0

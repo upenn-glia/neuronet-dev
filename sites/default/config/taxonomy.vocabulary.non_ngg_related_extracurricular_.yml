@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Non-NGG Related Extracurricular Activities'
 vid: non_ngg_related_extracurricular_
 description: ''
-hierarchy: 0
 weight: 0

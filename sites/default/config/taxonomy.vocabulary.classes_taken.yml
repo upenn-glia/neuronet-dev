@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Classes Taken'
 vid: classes_taken
 description: ''
-hierarchy: 0
 weight: 0

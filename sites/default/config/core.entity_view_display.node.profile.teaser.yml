@@ -8,22 +8,31 @@ dependencies:
     - field.field.node.profile.feeds_item
     - field.field.node.profile.field_alma_mater
     - field.field.node.profile.field_alumni
+    - field.field.node.profile.field_candidacy_
     - field.field.node.profile.field_classes_taken
+    - field.field.node.profile.field_curriculum_vitae
     - field.field.node.profile.field_degree
+    - field.field.node.profile.field_degree_pursued
     - field.field.node.profile.field_email
     - field.field.node.profile.field_entry_term
     - field.field.node.profile.field_exit_term
     - field.field.node.profile.field_first_name
     - field.field.node.profile.field_grad_group
     - field.field.node.profile.field_help_with
+    - field.field.node.profile.field_hometown_s_
+    - field.field.node.profile.field_journal_club
+    - field.field.node.profile.field_lab_rotations
     - field.field.node.profile.field_last_name
     - field.field.node.profile.field_links
+    - field.field.node.profile.field_links2
     - field.field.node.profile.field_locations_lived
     - field.field.node.profile.field_matriculation_year
     - field.field.node.profile.field_neuroscience_interests
     - field.field.node.profile.field_ngg_activities
     - field.field.node.profile.field_non_ngg_activities
+    - field.field.node.profile.field_profile_image
     - field.field.node.profile.field_research_area
+    - field.field.node.profile.field_thesis_committee
     - field.field.node.profile.field_thesis_lab
     - field.field.node.profile.field_undergraduate_major
     - node.type.profile
@@ -59,20 +68,29 @@ hidden:
   body: true
   feeds_item: true
   field_alumni: true
+  field_candidacy_: true
   field_classes_taken: true
+  field_curriculum_vitae: true
   field_degree: true
+  field_degree_pursued: true
   field_email: true
   field_entry_term: true
   field_exit_term: true
   field_first_name: true
   field_grad_group: true
   field_help_with: true
+  field_hometown_s_: true
+  field_journal_club: true
+  field_lab_rotations: true
   field_last_name: true
   field_links: true
+  field_links2: true
   field_locations_lived: true
   field_matriculation_year: true
   field_ngg_activities: true
   field_non_ngg_activities: true
+  field_profile_image: true
   field_research_area: true
+  field_thesis_committee: true
   field_thesis_lab: true
   field_undergraduate_major: true

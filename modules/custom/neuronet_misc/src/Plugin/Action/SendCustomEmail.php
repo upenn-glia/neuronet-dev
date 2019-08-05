@@ -176,12 +176,18 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
     // Get key of selected email.
     $key = (int) $this->configuration['selected_email_key'] + 1;
     $recipients = '';
+    $disabled_recipients = '';
     foreach ($entities as $entity) {
       // Get user associated with selected profile.
       $result = $this->entityTypeManager->getStorage('user')->loadByProperties([
         'field_profile' => $entity->id(),
       ]);
       if ($user = reset($result)) {
+        // Don't send mail to people who have disabled notifications.
+        if (!$user->get('field_general_emails')->value) {
+          $disabled_recipients .= $entity->getTitle() . ' (' . $user->get('mail')->value . '), ';
+          continue;
+        }
         // Send mail.
         $langcode = $user->getPreferredLangcode();
         $params = [
@@ -195,13 +201,20 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
         $this->mailManager->mail('neuronet_misc', 'custom', $to, $langcode, $params);
       }
     }
-    // Set message.
-    $recipients = rtrim($recipients, ', ');
-    $this->messenger()->addStatus($this->t('Sent "@name" email to: @title', [
-      '@title' => $recipients,
-      '@name' => $this->customEmailOptions[$key]['name'],
-      ]
-    ));
+    // Set messages.
+    if (!empty($recipients)) {
+      $this->messenger()->addStatus($this->t('The "@name" email was sent to: @recipients', [
+        '@recipients' => rtrim($recipients, ', '),
+        '@name' => $this->customEmailOptions[$key]['name'],
+      ]));
+    }
+    if (!empty($disabled_recipients)) {
+      $this->messenger()->addStatus($this->t('The "@name" email was *not* send to the following users
+        due to their turning off notifications: @recipients', [
+        '@recipients' => rtrim($disabled_recipients, ', '),
+        '@name' => $this->customEmailOptions[$key]['name'],
+      ]));
+    }
   }
 
   /**

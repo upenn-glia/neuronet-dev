@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Grad Group'
 vid: grad_group
 description: ''
-hierarchy: 0
 weight: 0

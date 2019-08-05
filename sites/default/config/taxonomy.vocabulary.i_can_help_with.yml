@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'I Can Help With'
 vid: i_can_help_with
 description: ''
-hierarchy: 0
 weight: 0

@@ -1,0 +1,24 @@
+uuid: b1d55048-9d8c-4576-8f8c-7573e339c2fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_job_posting_emails
+  module:
+    - user
+id: user.user.field_job_posting_emails
+field_name: field_job_posting_emails
+entity_type: user
+bundle: user
+label: 'Send Me Job Posting Emails'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

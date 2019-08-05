@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Neighborhoods in Philly'
 vid: locations_lived
 description: ''
-hierarchy: 1
 weight: 0

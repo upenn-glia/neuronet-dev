@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.job_posting.field_links
     - field.field.node.job_posting.field_salary_high
     - field.field.node.job_posting.field_salary_low
+    - field.field.node.job_posting.field_stage
     - field.field.node.job_posting.field_start_date
     - node.type.job_posting
   module:
@@ -22,6 +23,8 @@ content:
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_description: true
   field_institution: true

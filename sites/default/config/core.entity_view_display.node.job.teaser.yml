@@ -4,6 +4,14 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.job.feeds_item
+    - field.field.node.job.field_department
+    - field.field.node.job.field_institution
+    - field.field.node.job.field_job_term
+    - field.field.node.job.field_job_type
+    - field.field.node.job.field_last_
+    - field.field.node.job.field_profile
+    - field.field.node.job.field_start_date
     - node.type.job
   module:
     - user
@@ -15,4 +23,14 @@ content:
   links:
     weight: 100
     region: content
-hidden: {  }
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  feeds_item: true
+  field_department: true
+  field_institution: true
+  field_job_term: true
+  field_job_type: true
+  field_last_: true
+  field_profile: true
+  field_start_date: true
