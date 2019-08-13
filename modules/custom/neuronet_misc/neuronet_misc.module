@@ -138,8 +138,7 @@ function neuronet_misc_mail($key, &$message, $params) {
     // Replace login link.
     if ($params['user']->id() != 1) {
       $login_url = user_pass_reset_url($params['user']);
-      $login_link =  '<a href=' . $login_url . '>' . $login_url . '</a>';
-      $body = preg_replace('/(%%%LOGINLINK%%%)/i', $login_link, $body);
+      $body = preg_replace('/(%%%LOGINLINK%%%)/i', $login_url, $body);
     }
     $message['subject'] = $subject;
     $message['body'][] = $body;
