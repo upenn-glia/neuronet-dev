@@ -31,4 +31,5 @@ permissions:
   - 'edit terms in ngg_related_extracurricular_acti'
   - 'edit terms in thesis_lab'
   - 'switch shortcut sets'
+  - 'use text format full_html'
   - 'view the administration theme'

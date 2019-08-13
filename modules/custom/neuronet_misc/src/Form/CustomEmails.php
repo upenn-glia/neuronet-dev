@@ -150,6 +150,7 @@ class CustomEmails extends ConfigFormBase {
         '#description' => $this->t('You can insert the following variable placeholders,
         which will be replaced by their user-specific values upon email send:
           %%%FIRSTNAME%%% %%%LASTNAME%%% %%%LOGINLINK%%%'),
+        '#format' => 'full_html',
       ];
       // Remove button.
       $form['emails_container'][$i]['remove_item_' . $i] =[

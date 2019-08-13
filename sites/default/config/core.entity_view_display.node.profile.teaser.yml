@@ -89,6 +89,7 @@ hidden:
   field_matriculation_year: true
   field_ngg_activities: true
   field_non_ngg_activities: true
+  field_preferred_prefix: true
   field_profile_image: true
   field_research_area: true
   field_thesis_committee: true
