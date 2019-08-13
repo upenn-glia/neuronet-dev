@@ -39,6 +39,7 @@ module:
   login_emailusername: 0
   mailsystem: 0
   menu_ui: 0
+  mimemail: 0
   multiple_selects: 0
   neuronet_misc: 0
   node: 0
@@ -51,7 +52,6 @@ module:
   rdf: 0
   search: 0
   shortcut: 0
-  smtp: 0
   system: 0
   taxonomy: 0
   taxonomy_manager: 0
