@@ -1,4 +1,12 @@
-format: 'html'
+format: 'full_html'
 name : ''
 mail: ''
-linkonly: 0
+linkonly: false
+textonly: false
+sitestyle: true
+simple_address: false
+engine: 'mimemail'
+preserve_class: false
+advanced:
+  incoming: false
+  key: ''

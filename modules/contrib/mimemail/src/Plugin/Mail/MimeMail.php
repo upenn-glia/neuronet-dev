@@ -2,8 +2,8 @@
 
 namespace Drupal\mimemail\Plugin\Mail;
 
-use Drupal\Core\Mail\MailInterface;
 use Drupal\Core\Mail\MailFormatHelper;
+use Drupal\Core\Mail\Plugin\Mail\PhpMail;
 use Drupal\mimemail\Utility\MimeMailFormatHelper;
 
 /**
@@ -15,7 +15,7 @@ use Drupal\mimemail\Utility\MimeMailFormatHelper;
  *   description = @Translation("Sends MIME-encoded emails with embedded images and attachments..")
  * )
  */
-class MimeMail implements MailInterface {
+class MimeMail extends PhpMail {
 
   /**
    * {@inheritdoc}
@@ -42,17 +42,10 @@ class MimeMail implements MailInterface {
     else {
       $message = mimemail_prepare_message($message);
     }*/
-    // @TODO set mimemail_engine. For the moment let's prepare the message.
-    $message =  $this->prepareMessage($message);
+    // @todo Set mimemail_engine. For the moment let's prepare the message.
+    $message = $this->prepareMessage($message);
 
     return $message;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function mail(array $message) {
-    // @TODO
   }
 
   /**
@@ -60,13 +53,14 @@ class MimeMail implements MailInterface {
    *
    * @param array $message
    *   An array containing the message data. The optional parameters are:
-   *   - plain: Whether to send the message as plaintext only or HTML. If evaluates to TRUE,
-   *     then the message will be sent as plaintext.
+   *   - plain: Whether to send the message as plaintext only or HTML. If
+   *     this evaluates to TRUE the message will be sent as plaintext.
    *   - plaintext: Optional plaintext portion of a multipart email.
    *   - attachments: An array of arrays which describe one or more attachments.
-   *     Existing files can be added by path, dinamically-generated files
-   *     can be added by content. The internal array contains the following elements:
-   *      - filepath: Relative Drupal path to an existing file (filecontent is NULL).
+   *     Existing files can be added by path, dinamically-generated files can be
+   *     added by content. The internal array contains the following elements:
+   *      - filepath: Relative Drupal path to an existing file
+   *        (filecontent is NULL).
    *      - filecontent: The actual content of the file (filepath is NULL).
    *      - filename: The filename of the file.
    *      - filemime: The MIME type of the file.
@@ -108,10 +102,10 @@ class MimeMail implements MailInterface {
       && variable_get('mimemail_engine', 'mimemail') == 'mimemail') {
       $mimemail_name = variable_get('mimemail_name', $site_name);
       $mimemail_mail = variable_get('mimemail_mail', $site_mail);
-      $from = array(
+      $from = [
         'name' => !empty($mimemail_name) ? $mimemail_name : $site_name,
         'mail' => !empty($mimemail_mail) ? $mimemail_mail : $site_mail,
-      );
+      ];
     }*/
     // Override site mails default sender when using default engine.
     if ((empty($from) || $from == $site_mail)) {
@@ -142,11 +136,11 @@ class MimeMail implements MailInterface {
     }
 
     // Removing newline character introduced by _drupal_wrap_mail_line();
-    $subject = str_replace(array("\n"), '', trim(MailFormatHelper::htmlToText($subject)));
+    $subject = str_replace(["\n"], '', trim(MailFormatHelper::htmlToText($subject)));
 
     $hook = [
       'mimemail_message__' . $key,
-      'mimemail_message__' . $module .'__'. $key,
+      'mimemail_message__' . $module . '__' . $key,
     ];
 
     $body = [
@@ -155,7 +149,7 @@ class MimeMail implements MailInterface {
       '#key' => $key,
       '#recipient' => $to,
       '#subject' => $subject,
-      '#body' => $body
+      '#body' => $body,
     ];
 
     $body = \Drupal::service('renderer')->renderRoot($body);

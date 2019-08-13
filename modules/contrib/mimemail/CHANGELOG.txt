@@ -1,5 +1,14 @@
 Mime Mail 8.x-1.x, xxxx-xx-xx
 -----------------------
+- #2986723 by TR: Many settings not ported to D8 yet
+- #2938963 by hansfn, TR, colan: Sender'Mime Mail mailer fails without explanation
+- #2985911 by TR: Port test cases to D8
+- #2983816 by TR, Xano: Add basic config schemas / fix AdminForm
+- #2986145 by TR: Use mb_* functions instead of Unicode::* methods
+- #2986124 by TR, riddhi.addweb: Coding standards: Short array syntax
+- #2986160 by TR: drupal_get_message() and drupal_set_message() replaced by Messenger service
+- #2885904 by pcambra, colan, TR: Default filter format is non-existent
+- #2986156 by TR: getFormID() should be getFormId()
 
 Mime Mail 8.x-1.0-alpha2, 2017-05-14
 -----------------------
