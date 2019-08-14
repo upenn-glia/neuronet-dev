@@ -228,7 +228,7 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
    * {@inheritdoc}
    */
   public function access($object, AccountInterface $account = NULL, $return_as_object = FALSE) {
-    return $object->access('edit', $account, $return_as_object);
+    return true;
   }
 
 }
