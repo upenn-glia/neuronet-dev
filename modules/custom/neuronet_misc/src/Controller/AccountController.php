@@ -47,20 +47,20 @@ class AccountController extends ControllerBase {
     if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
       $access = true;
     }
-    elseif ($user->hasRole('administrator')) {
-      $connection = \Drupal::database();
-      $query = $connection->query("SELECT entity_id FROM {user__field_profile} WHERE field_profile_target_id = :field_profile_target_id", [':field_profile_target_id' => $node->id()]);
-      $result = $query->fetchAll();
-      if (!empty($result)) {
-        $uid = $result[0]->entity_id;
-        $user = User::load($uid);
-        if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
+    elseif ($user->hasRole('deputy_admin')) {
+      $entities = \Drupal::entityTypeManager()->getStorage('user')->loadByProperties([
+        'field_profile' => $node->id(),
+      ]);
+      if (!empty($entities)) {
+        $viewed_user = reset($entities);
+        if ($viewed_user->id() !== 1 && !$viewed_user->hasRole('administrator')) {
           $access = true;
         }
       }
-      
+    }
+    elseif ($user->id() == 1 || ($user->hasRole('administrator') && $viewed_user->id() !== 1)) {
+      $access = true;
     }
     return AccessResult::allowedIf($account->hasPermission('access content') && $access);
   }
-
 }
