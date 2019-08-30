@@ -5,6 +5,7 @@ namespace Drupal\taxonomy_manager\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\taxonomy\VocabularyInterface;
+use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\taxonomy_manager\TaxonomyManagerHelper;
 
 /**
@@ -12,13 +13,12 @@ use Drupal\taxonomy_manager\TaxonomyManagerHelper;
  */
 class AddTermsToVocabularyForm extends FormBase {
 
+  use MessengerTrait;
+
   /**
-   * @param array $form
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   * @param \Drupal\taxonomy\VocabularyInterface $vocabulary
-   * @return array
+   * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, VocabularyInterface $taxonomy_vocabulary = NULL, $parents = array()) {
+  public function buildForm(array $form, FormStateInterface $form_state, VocabularyInterface $taxonomy_vocabulary = NULL, $parents = []) {
     // Cache form state so that we keep the parents in the modal dialog.
     // For non modals (non POST request), form state caching on is not allowed.
     // @see FormState::setCached()
@@ -26,18 +26,18 @@ class AddTermsToVocabularyForm extends FormBase {
       $form_state->setCached(TRUE);
     }
 
-    $form['voc'] = array('#type' => 'value', '#value' => $taxonomy_vocabulary);
+    $form['voc'] = ['#type' => 'value', '#value' => $taxonomy_vocabulary];
     $form['parents']['#tree'] = TRUE;
     foreach ($parents as $p) {
-      $form['parents'][$p] = array('#type' => 'value', '#value' => $p);
+      $form['parents'][$p] = ['#type' => 'value', '#value' => $p];
     }
 
     $description = $this->t("If you have selected one or more terms in the tree view, the new terms are automatically children of those.");
-    $form['help'] = array(
+    $form['help'] = [
       '#markup' => $description,
-    );
+    ];
 
-    $form['mass_add'] = array(
+    $form['mass_add'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Terms'),
       '#description' => $this->t("One term per line. Child terms can be prefixed with a
@@ -52,40 +52,40 @@ class AddTermsToVocabularyForm extends FormBase {
         --cat"),
       '#rows' => 10,
       '#required' => TRUE,
-    );
-    $form['add'] = array(
+    ];
+    $form['add'] = [
       '#type' => 'submit',
       '#value' => $this->t('Add'),
-    );
+    ];
     return $form;
   }
 
   /**
-   * Submit handler for adding terms.
-   * @param array $form
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $term_names_too_long = array();
-    $term_names = array();
+    $term_names_too_long = [];
+    $term_names = [];
 
     $taxonomy_vocabulary = $form_state->getValue('voc');
     $parents = $form_state->getValue('parents');
     $mass_terms = $form_state->getValue('mass_add');
 
-    $new_terms = TaxonomyManagerHelper::mass_add_terms($mass_terms, $taxonomy_vocabulary->id(), $parents, $term_names_too_long);
+    $new_terms = TaxonomyManagerHelper::massAddTerms($mass_terms, $taxonomy_vocabulary->id(), $parents, $term_names_too_long);
     foreach ($new_terms as $term) {
       $term_names[] = $term->label();
     }
 
     if (count($term_names_too_long)) {
-      drupal_set_message($this->t("Following term names were too long and truncated to 255 characters: %names.",
-        array('%names' => implode(', ', $term_names_too_long))), 'warning');
+      $this->messenger()->addWarning($this->t("Following term names were too long and truncated to 255 characters: %names.", ['%names' => implode(', ', $term_names_too_long)]));
     }
-    drupal_set_message($this->t("Terms added: %terms", array('%terms' => implode(', ', $term_names))));
-    $form_state->setRedirect('taxonomy_manager.admin_vocabulary', array('taxonomy_vocabulary' => $taxonomy_vocabulary->id()));
+    $this->messenger()->addMessage($this->t("Terms added: %terms", ['%terms' => implode(', ', $term_names)]));
+    $form_state->setRedirect('taxonomy_manager.admin_vocabulary', ['taxonomy_vocabulary' => $taxonomy_vocabulary->id()]);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getFormId() {
     return 'taxonomy_manager.add_form';
   }

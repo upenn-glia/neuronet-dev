@@ -12,19 +12,29 @@ use Drupal\Component\Utility\Html;
 use Drupal\taxonomy\VocabularyInterface;
 use Drupal\taxonomy_manager\TaxonomyManagerHelper;
 
+/**
+ * Taxonomy manager class.
+ */
 class TaxonomyManagerForm extends FormBase {
 
+  /**
+   * {@inheritdoc}
+   */
   public function getFormId() {
     return 'taxonomy_manager.vocabulary_terms_form';
   }
 
   /**
-   * Returns the title for the whole page
-   * @param String $taxonomy_vocabulary the name of the vocabulary
-   * @return string The title, itself
+   * Returns the title for the whole page.
+   *
+   * @param string $taxonomy_vocabulary
+   *   The name of the vocabulary.
+   *
+   * @return string
+   *   The title, itself
    */
   public function getTitle($taxonomy_vocabulary) {
-    return  $this->t("Taxonomy Manager - %voc_name", array("%voc_name" => $taxonomy_vocabulary->label()));
+    return $this->t("Taxonomy Manager - %voc_name", ["%voc_name" => $taxonomy_vocabulary->label()]);
   }
 
   /**
@@ -37,122 +47,108 @@ class TaxonomyManagerForm extends FormBase {
    *   An associative array containing the structure of the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
-   * @param VocabularyInterface $taxonomy_vocabulary
-   *   The vocabulary being with worked with
+   * @param \Drupal\taxonomy\VocabularyInterface $taxonomy_vocabulary
+   *   The vocabulary being with worked with.
    *
    * @return array
    *   The form structure.
    */
   public function buildForm(array $form, FormStateInterface $form_state, VocabularyInterface $taxonomy_vocabulary = NULL) {
-    $form['voc'] = array('#type' => 'value', "#value" => $taxonomy_vocabulary);
+    $form['voc'] = ['#type' => 'value', "#value" => $taxonomy_vocabulary];
     $form['#attached']['library'][] = 'taxonomy_manager/form';
 
-    if (TaxonomyManagerHelper::_taxonomy_manager_voc_is_empty($taxonomy_vocabulary->id())) {
-      $form['text'] = array(
+    if (TaxonomyManagerHelper::vocabularyIsEmpty($taxonomy_vocabulary->id())) {
+      $form['text'] = [
         '#markup' => $this->t('No terms available'),
-      );
+      ];
       $form[] = \Drupal::formBuilder()->getForm('Drupal\taxonomy_manager\Form\AddTermsToVocabularyForm', $taxonomy_vocabulary);
       return $form;
     }
 
-    $form['toolbar'] = array(
+    $form['toolbar'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Toolbar'),
-    );
-    $form['toolbar']['add'] = array(
+    ];
+    $form['toolbar']['add'] = [
       '#type' => 'submit',
       '#name' => 'add',
       '#value' => $this->t('Add'),
-      '#ajax' => array(
+      '#ajax' => [
         'callback' => '::addFormCallback',
-      ),
-    );
-    $form['toolbar']['delete'] = array(
+      ],
+    ];
+    $form['toolbar']['delete'] = [
       '#type' => 'submit',
       '#name' => 'delete',
       '#value' => $this->t('Delete'),
-      '#ajax' => array(
+      '#attributes' => [
+        'disabled' => TRUE,
+      ],
+      '#ajax' => [
         'callback' => '::deleteFormCallback',
-      ),
-    );
-    $form['toolbar']['move'] = array(
+      ],
+    ];
+    $form['toolbar']['move'] = [
       '#type' => 'submit',
       '#name' => 'move',
       '#value' => $this->t('Move'),
-      '#ajax' => array(
+      '#ajax' => [
         'callback' => '::moveFormCallback',
-      ),
-    );
-    $form['toolbar']['export'] = array(
+      ],
+    ];
+    $form['toolbar']['export'] = [
       '#type' => 'submit',
       '#name' => 'export',
       '#value' => $this->t('Export'),
-      '#ajax' => array(
+      '#ajax' => [
         'callback' => '::exportFormCallback',
-      ),
-    );
+      ],
+    ];
 
     /* Taxonomy manager. */
     $form['taxonomy']['#tree'] = TRUE;
 
-    $form['taxonomy']['manager'] = array(
+    $form['taxonomy']['manager'] = [
       '#type' => 'fieldset',
       '#title' => Html::escape($taxonomy_vocabulary->label()),
       '#tree' => TRUE,
-    );
+    ];
 
-    $form['taxonomy']['manager']['top'] = array(
+    $form['taxonomy']['manager']['top'] = [
       '#markup' => '',
       '#prefix' => '<div class="taxonomy-manager-tree-top">',
       '#suffix' => '</div>',
-    );
+    ];
 
-    /*$grippie_image = array(
-      '#theme' => 'image',
-      '#uri' => drupal_get_path('module', 'taxonomy_manager') . "/images/grippie.png",
-      '#alt' => $this->t("Resize tree"),
-      '#title' => $this->t("Resize tree"),
-      '#attributes' => array('class' => array('div-grippie')),
-    );
-
-    $form['taxonomy']['manager']['top']['size'] = array(
-      '#markup' =>
-        '<div class="taxonomy-manager-tree-size">'
-        . \Drupal::service('renderer')->render($grippie_image, true)
-        . '</div>'
-    );*/
-
-    $form['taxonomy']['manager']['tree'] = array(
+    $form['taxonomy']['manager']['tree'] = [
       '#type' => 'taxonomy_manager_tree',
       '#vocabulary' => $taxonomy_vocabulary->id(),
       '#pager_size' => \Drupal::config('taxonomy_manager.settings')->get('taxonomy_manager_pager_tree_page_size'),
-    );
+    ];
 
-    $form['taxonomy']['manager']['pager'] = array('#type' => 'pager');
+    $form['taxonomy']['manager']['pager'] = ['#type' => 'pager'];
 
     // Add placeholder for term data form, the load-term-data field has AJAX
     // events attached and will trigger the load of the term data form. The
     // field is hidden via CSS and the value gets set in termData.js.
     $form['term-data']['#prefix'] = '<div id="taxonomy-term-data-form">';
     $form['term-data']['#suffix'] = '</div>';
-    $form['load-term-data'] = array(
+    $form['load-term-data'] = [
       '#type' => 'textfield',
-      '#ajax' => array(
+      '#ajax' => [
         'callback' => '::termDataCallback',
         'event' => 'change',
-      ),
-    );
+      ],
+    ];
 
     return $form;
   }
 
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-
-  }
-
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $selected_terms = $form_state->getValue(['taxonomy', 'manager', 'tree']);
-    //dsm($selected_terms);
   }
 
   /**
@@ -160,7 +156,6 @@ class TaxonomyManagerForm extends FormBase {
    */
   public function addFormCallback($form, FormStateInterface $form_state) {
     return $this->modalHelper($form_state, 'Drupal\taxonomy_manager\Form\AddTermsToVocabularyForm', 'taxonomy_manager.admin_vocabulary.add', $this->t('Add terms'));
-
   }
 
   /**
@@ -188,7 +183,6 @@ class TaxonomyManagerForm extends FormBase {
    * AJAX callback handler for the term data form.
    */
   public function termDataCallback($form, FormStateInterface $form_state) {
-    $taxonomy_vocabulary = $form_state->getValue('voc');
     $taxonomy_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($form_state->getValue('load-term-data'));
 
     $term_form = \Drupal::service('entity.form_builder')->getForm($taxonomy_term, 'default');
@@ -196,7 +190,7 @@ class TaxonomyManagerForm extends FormBase {
     // Move the term data form into a fieldset.
     $term_form['fieldset']['#type'] = 'fieldset';
     $term_form['fieldset']['#title'] = Html::escape($taxonomy_term->getName()) . ' (' . $taxonomy_term->id() . ')';
-    $term_form['fieldset']['#attributes'] = array();
+    $term_form['fieldset']['#attributes'] = [];
     foreach (Element::children($term_form) as $key) {
       if ($key != 'fieldset') {
         $term_form['fieldset'][$key] = $term_form[$key];
@@ -206,33 +200,49 @@ class TaxonomyManagerForm extends FormBase {
 
     $term_form['#prefix'] = '<div id="taxonomy-term-data-form">';
     $term_form['#suffix'] = '</div>';
-
+    $current_path = \Drupal::service('path.current')->getPath();
     // Change the form action url form the current site to the add form.
-    $term_form['#action'] = $this->url('entity.taxonomy_term.edit_form', array('taxonomy_term' => $taxonomy_term->id()));
+    $term_form['#action'] = $this->getUrlGenerator()
+      ->generateFromRoute(
+        'entity.taxonomy_term.edit_form',
+        ['taxonomy_term' => $taxonomy_term->id()],
+        [
+          'query' => [
+            'destination' => $current_path
+          ],
+        ]
+      );
 
     $response = new AjaxResponse();
     $response->addCommand(new ReplaceCommand('#taxonomy-term-data-form', $term_form));
     return $response;
   }
 
+  /**
+   * Term data submit handler.
+   *
+   * @TODO: redirect to taxonomy manager
+   */
   public static function termDataFormSubmit($form, FormStateInterface $form_state) {
-    // @todo redirect to taxonomy manager
+
   }
 
   /**
    * Helper function to generate a modal form within an AJAX callback.
    *
-   * @param $form_state
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The form state of the current (parent) form.
-   * @param $class_name
+   * @param string $class_name
    *   The class name of the form to embed in the modal.
-   * @param $route_name
+   * @param string $route_name
    *   The route name the form is located.
-   * @param $title
+   * @param string $title
    *   The modal title.
+   *
    * @return \Drupal\Core\Ajax\AjaxResponse
+   *   The ajax response.
    */
-  protected function modalHelper($form_state, $class_name, $route_name, $title) {
+  protected function modalHelper(FormStateInterface $form_state, $class_name, $route_name, $title) {
     $taxonomy_vocabulary = $form_state->getValue('voc');
     $selected_terms = $form_state->getValue(['taxonomy', 'manager', 'tree']);
 
@@ -240,10 +250,10 @@ class TaxonomyManagerForm extends FormBase {
     $del_form['#attached']['library'][] = 'core/drupal.dialog.ajax';
 
     // Change the form action url form the current site to the add form.
-    $del_form['#action'] = $this->url($route_name, array('taxonomy_vocabulary' => $taxonomy_vocabulary->id()));
+    $del_form['#action'] = $this->url($route_name, ['taxonomy_vocabulary' => $taxonomy_vocabulary->id()]);
 
     $response = new AjaxResponse();
-    $response->addCommand(new OpenModalDialogCommand($title, $del_form, array('width' => '700')));
+    $response->addCommand(new OpenModalDialogCommand($title, $del_form, ['width' => '700']));
     return $response;
   }
 

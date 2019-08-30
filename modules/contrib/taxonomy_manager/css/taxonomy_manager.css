@@ -1,4 +1,3 @@
-
 #edit-taxonomy-manager {
   float: left;
   width: 30%;
@@ -11,5 +10,13 @@
 }
 
 .form-item-load-term-data {
+  display: none;
+}
+
+.taxonomy-managervocabulary-terms-form #edit-export {
+  display: none;
+}
+
+.taxonomy-managervocabulary-terms-form #edit-move {
   display: none;
 }
