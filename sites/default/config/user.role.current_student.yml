@@ -6,4 +6,7 @@ id: current_student
 label: 'Current Student'
 weight: 5
 is_admin: null
-permissions: {  }
+permissions:
+  - 'access content'
+  - 'view any profile content'
+  - 'view own profile content'

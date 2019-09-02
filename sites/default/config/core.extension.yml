@@ -43,6 +43,7 @@ module:
   multiple_selects: 0
   neuronet_misc: 0
   node: 0
+  node_view_permissions: 0
   options: 0
   page_cache: 0
   page_manager: 0

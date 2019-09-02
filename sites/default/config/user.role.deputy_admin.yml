@@ -7,6 +7,7 @@ label: 'deputy admin'
 weight: 4
 is_admin: null
 permissions:
+  - 'access content'
   - 'access neuronet admin'
   - 'access taxonomy overview'
   - 'access toolbar'
@@ -32,4 +33,10 @@ permissions:
   - 'edit terms in thesis_lab'
   - 'switch shortcut sets'
   - 'use text format full_html'
+  - 'view any job content'
+  - 'view any job_posting content'
+  - 'view any profile content'
+  - 'view own job content'
+  - 'view own job_posting content'
+  - 'view own profile content'
   - 'view the administration theme'

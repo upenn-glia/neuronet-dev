@@ -83,6 +83,9 @@ function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $a
       if ($node->id() != $user->get('field_profile')->target_id) {
         return new AccessResultForbidden();
       }
+      else {
+        return new AccessResultAllowed();
+      }
     }
   }
 }
