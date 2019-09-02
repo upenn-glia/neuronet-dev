@@ -12,6 +12,8 @@ use Drupal\Core\Entity\EntityInterface;
 use \Drupal\Core\Session\AccountInterface;
 use \Drupal\node\NodeInterface;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultAllowed;
+use Drupal\Core\Access\AccessResultForbidden;
 use \Drupal\node\Entity\Node;
 use \Drupal\Core\Form\FormStateInterface;
 /**
@@ -65,18 +67,25 @@ function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $rout
 }
 
 function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $account) {
-  $type = $node->type->entity->label();
-  if ($type == 'Profile' && $op == 'update') {
+  if ($node->getType() == 'profile' && $op == 'update') {
     $user = User::load($account->id());
     if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
-      return AccessResult::allowedIf(True);
+      return new AccessResultAllowed();
     }
     if (($user->hasRole('deputy_admin') || $user->hasRole('administrator')) && $node->id() != 1) {
-      return AccessResult::allowedIf(True);
+      return new AccessResultAllowed();
+    }
+  }
+  // Prevent alumni from seeing Profiles.
+  if ($node->getType() == 'profile' && $op == 'view') {
+    $user = User::load($account->id());
+    if (!$user->hasRole('deputy_admin') && $user->hasRole('alumni')) {
+      if ($node->id() != $user->get('field_profile')->target_id) {
+        return new AccessResultForbidden();
+      }
     }
   }
 }
-
 function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   if ($form_id == 'node_profile_edit_form') {
     $user = User::load(\Drupal::currentUser()->id());
