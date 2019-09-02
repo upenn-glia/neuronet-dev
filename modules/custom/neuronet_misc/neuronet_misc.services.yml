@@ -3,3 +3,7 @@ services:
     class: Drupal\neuronet_misc\Service\RedirectSubscriber
     tags:
       - { name: event_subscriber }
+  neuronet_misc.redirect_home:
+    class: Drupal\neuronet_misc\Service\RedirectHome
+    tags:
+      - { name: event_subscriber }

@@ -968,7 +968,7 @@ display:
                   pid: root
                   depth: '1'
                   type: container
-      path: current-students
+      path: secure/current-students
       menu:
         type: none
         title: 'Current Students'
