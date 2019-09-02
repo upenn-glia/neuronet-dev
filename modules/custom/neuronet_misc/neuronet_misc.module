@@ -214,6 +214,9 @@ function neuronet_misc_node_insert($node) {
     if ($node->get('field_alumni')->value) {
       $user->addRole('alumni');
     }
+    else {
+      $user->addRole('current_student');
+    }
     //Set Language
     $language_interface = \Drupal::languageManager()->getCurrentLanguage();
     $user->set('langcode', $language_interface->getId());
@@ -236,10 +239,12 @@ function neuronet_misc_node_update(EntityInterface $node) {
     if ($user = reset($users)) {
       if ($node->get('field_alumni')->value && !$user->hasRole('alumni')) {
         $user->addRole('alumni');
+        $user->removeRole('current_student');
         $user->save();
       }
       elseif (!$node->get('field_alumni')->value && $user->hasRole('alumni')) {
         $user->removeRole('alumni');
+        $user->addRole('current_student');
         $user->save();
       }
     }
