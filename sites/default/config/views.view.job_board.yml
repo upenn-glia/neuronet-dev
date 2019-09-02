@@ -28,7 +28,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access neuronet admin'
+          perm: 'view own job_posting content'
       cache:
         type: tag
         options: {  }
