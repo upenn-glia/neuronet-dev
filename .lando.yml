@@ -1,0 +1,11 @@
+name: neuronet-alumni
+recipe: pantheon
+config:
+  framework: drupal8
+  site: neuronet-alumni
+  id: 3d94b8e5-a951-4704-916e-66803b530103
+#   xdebug: true
+# services:
+#   appserver:
+#     config:
+#       conf: .vscode/php.ini
