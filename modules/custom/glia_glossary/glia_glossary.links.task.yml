@@ -1,0 +1,5 @@
+glia_glossary.transform_text:
+  route_name: glia_glossary.transform_text
+  base_route: view.administer_glossary.page_1
+  title: Transform BnB Text
+  weight: 10

@@ -1,0 +1,5 @@
+glia:
+  version: 1.x
+  js:
+    https://unpkg.com/sweetalert/dist/sweetalert.min.js: { type: external, minified: true }
+    js/glia-copy-clipboard.js: {}

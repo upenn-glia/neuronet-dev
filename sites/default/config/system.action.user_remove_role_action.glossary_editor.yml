@@ -1,0 +1,14 @@
+uuid: 3d776703-cfd1-438d-a216-7aec27aa1499
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.glossary_editor
+  module:
+    - user
+id: user_remove_role_action.glossary_editor
+label: 'Remove the Glossary Editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: glossary_editor

@@ -1,0 +1,10 @@
+uuid: 4f6a2f87-3920-4af1-bfa0-1dc9d561672e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: O4ySgg-SXJzVG-BMAiVlnLeh_CuelBw3x9rnBZy-2FE
+name: Glossary
+vid: glossary
+description: ''
+weight: 0

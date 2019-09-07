@@ -8,6 +8,7 @@ weight: 4
 is_admin: null
 permissions:
   - 'access content'
+  - 'access glia admin'
   - 'access neuronet admin'
   - 'access taxonomy overview'
   - 'access toolbar'

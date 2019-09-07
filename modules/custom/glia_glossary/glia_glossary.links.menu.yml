@@ -1,0 +1,11 @@
+view.administer_glossary.page_1:
+  title: Glossary
+  route_name: view.administer_glossary.page_1
+  parent: system.admin
+  menu_name: admin
+
+glia_glossary.transform_text:
+  title: Transform BnB Text
+  route_name: glia_glossary.transform_text
+  parent: view.administer_glossary.page_1
+  menu_name: admin

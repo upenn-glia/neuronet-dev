@@ -1,0 +1,7 @@
+glia_glossary.transform_text:
+  path: '/admin/glia/transform-text'
+  defaults:
+    _form: '\Drupal\glia_glossary\Form\GlossaryForm'
+    _title: 'Add Glossary Terms to Brains in Briefs text'
+  requirements:
+    _permission: 'access glia admin'
