@@ -29,7 +29,7 @@ class MyJobPostsController extends ControllerBase {
     return [
       'button' => [
         '#type' => 'markup',
-        '#markup' => '<a class="btn btn-primary trigger" href="/node/add/job_posting?destination=' .
+        '#markup' => '<a class="btn btn-primary trigger" href="' . \Drupal::request()->getSchemeAndHttpHost() . '/node/add/job_posting?destination=' .
         $node_alias .
         '" title="Edit" data-dialog-type="modal">'. $this->t('Post Job') . '</a>',
       ],
