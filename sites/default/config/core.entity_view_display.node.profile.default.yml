@@ -84,16 +84,18 @@ third_party_settings:
             add_region_classes: 1
             attributes: ''
     regions:
+      top:
+        - field_preferred_prefix
       left:
         - field_profile_image
         - field_email
         - node_links
         - field_links
         - field_thesis_lab
-        - field_neuroscience_interests
         - field_curriculum_vitae
         - field_links2
       right:
+        - field_neuroscience_interests
         - field_degree_pursued
         - body
         - field_matriculation_year
@@ -116,7 +118,7 @@ third_party_settings:
     fields:
       node_links:
         plugin_id: node_links
-        weight: 2
+        weight: 3
         label: hidden
         formatter: default
 id: node.profile.default
@@ -126,13 +128,13 @@ mode: default
 content:
   body:
     type: text_default
-    weight: 9
+    weight: 10
     region: right
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_alma_mater:
-    weight: 11
+    weight: 12
     label: above
     settings:
       link: true
@@ -140,7 +142,7 @@ content:
     type: entity_reference_label
     region: right
   field_candidacy_:
-    weight: 14
+    weight: 15
     label: above
     settings:
       link: true
@@ -148,7 +150,7 @@ content:
     type: entity_reference_label
     region: right
   field_classes_taken:
-    weight: 17
+    weight: 18
     label: above
     settings:
       link: true
@@ -164,7 +166,7 @@ content:
     type: file_default
     region: left
   field_degree_pursued:
-    weight: 8
+    weight: 9
     label: above
     settings:
       link: true
@@ -172,21 +174,13 @@ content:
     type: entity_reference_label
     region: right
   field_email:
-    weight: 1
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: email_mailto
     region: left
   field_entry_term:
-    weight: 23
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: right
-  field_exit_term:
     weight: 24
     label: inline
     settings:
@@ -194,8 +188,16 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: right
+  field_exit_term:
+    weight: 25
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
   field_grad_group:
-    weight: 22
+    weight: 23
     label: inline
     settings:
       link: true
@@ -203,7 +205,7 @@ content:
     type: entity_reference_label
     region: right
   field_help_with:
-    weight: 26
+    weight: 27
     label: above
     settings:
       link: true
@@ -211,7 +213,7 @@ content:
     type: entity_reference_label
     region: right
   field_hometown_s_:
-    weight: 15
+    weight: 16
     label: above
     settings:
       link_to_entity: false
@@ -220,14 +222,14 @@ content:
     region: right
   field_journal_club:
     type: entity_reference_label
-    weight: 21
+    weight: 22
     region: right
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_lab_rotations:
-    weight: 18
+    weight: 19
     label: above
     settings:
       link: true
@@ -235,7 +237,7 @@ content:
     type: entity_reference_label
     region: right
   field_links:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       trim_length: 80
@@ -260,14 +262,14 @@ content:
     region: left
   field_locations_lived:
     type: entity_reference_label
-    weight: 16
+    weight: 17
     region: right
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_matriculation_year:
-    weight: 10
+    weight: 11
     label: above
     settings:
       link: true
@@ -275,38 +277,38 @@ content:
     type: entity_reference_label
     region: right
   field_neuroscience_interests:
-    weight: 5
+    weight: 8
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: left
+    region: right
   field_ngg_activities:
     type: entity_reference_label
-    weight: 20
+    weight: 21
     region: right
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_non_ngg_activities:
-    weight: 19
+    weight: 20
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: right
   field_preferred_prefix:
-    weight: 27
+    weight: 0
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: top
   field_profile_image:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       image_style: medium
@@ -315,7 +317,7 @@ content:
     type: image
     region: left
   field_research_area:
-    weight: 25
+    weight: 26
     label: above
     settings:
       link: true
@@ -323,7 +325,7 @@ content:
     type: entity_reference_label
     region: right
   field_thesis_committee:
-    weight: 13
+    weight: 14
     label: above
     settings:
       link: true
@@ -331,7 +333,7 @@ content:
     type: entity_reference_label
     region: right
   field_thesis_lab:
-    weight: 4
+    weight: 5
     label: above
     settings:
       link: true
@@ -339,7 +341,7 @@ content:
     type: entity_reference_label
     region: left
   field_undergraduate_major:
-    weight: 12
+    weight: 13
     label: above
     settings:
       link: true
