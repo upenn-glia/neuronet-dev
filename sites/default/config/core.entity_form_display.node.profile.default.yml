@@ -78,6 +78,7 @@ third_party_settings:
         - title
         - field_first_name
         - field_last_name
+        - field_preferred_prefix
         - field_email
         - field_profile_image
         - body
@@ -86,7 +87,6 @@ third_party_settings:
         - field_links
         - field_links2
         - field_curriculum_vitae
-        - field_preferred_prefix
       parent_name: group_profile
       weight: 9
       format_type: tab
@@ -141,7 +141,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 7
+    weight: 8
     settings:
       rows: 9
       summary_rows: 3
@@ -189,7 +189,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_curriculum_vitae:
-    weight: 12
+    weight: 13
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
@@ -227,7 +227,7 @@ content:
     type: options_select
     region: content
   field_email:
-    weight: 5
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -374,7 +374,7 @@ content:
     type: string_textfield
     region: content
   field_links:
-    weight: 10
+    weight: 11
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -398,7 +398,7 @@ content:
     type: link_default
     region: content
   field_links2:
-    weight: 11
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -421,7 +421,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_neuroscience_interests:
-    weight: 9
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
@@ -447,7 +447,7 @@ content:
     type: string_textarea
     region: content
   field_preferred_prefix:
-    weight: 13
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -455,7 +455,7 @@ content:
     type: string_textfield
     region: content
   field_profile_image:
-    weight: 6
+    weight: 7
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -497,7 +497,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_thesis_lab:
-    weight: 8
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
