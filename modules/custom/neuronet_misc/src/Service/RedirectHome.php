@@ -26,10 +26,10 @@ class RedirectHome implements EventSubscriberInterface {
    */
   public function redirectHome(FilterResponseEvent $event) {
     $request = $event->getRequest();
-    if ($request->getRequestUri() === '/') {
+    if (\Drupal::service('path.matcher')->isFrontPage()) {
       $user = User::load(\Drupal::currentUser()->id());
       if ($user->isAnonymous()) {
-        $response = new RedirectResponse("\user");
+        $response = new RedirectResponse(\Drupal::url('user.page'));
         return $response->send();
       }
       if ($user->hasRole('current_student') || $user->hasRole('administrator')) {
@@ -37,7 +37,7 @@ class RedirectHome implements EventSubscriberInterface {
         return $response->send();
       }
       else {
-        $response = new RedirectResponse("\user");
+        $response = new RedirectResponse(\Drupal::url('user.page'));
         return $response->send();
       }
 
