@@ -9,7 +9,7 @@ id: node.profile.field_alumni
 field_name: field_alumni
 entity_type: node
 bundle: profile
-label: Alumni
+label: 'Is an alumni'
 description: 'Check this box if the person is alumni.'
 required: false
 translatable: false
