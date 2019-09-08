@@ -24,12 +24,11 @@ class MyJobPostsController extends ControllerBase {
     $connection = \Drupal::database();
     $query = $connection->query("SELECT entity_id FROM {user__field_profile} WHERE field_profile_target_id = :field_profile_target_id", [':field_profile_target_id' => $node->id()]);
     $result = $query->fetchAll();
-    //$view->setArguments([1]);
-    $node_alias = '/node/' . $node->id() . '/my-job-posts';
+    $node_alias = \Drupal::url("neuronet_misc.my_job_posts", ["node" => $node->id()]);
     return [
       'button' => [
         '#type' => 'markup',
-        '#markup' => '<a class="btn btn-primary trigger" href="' . \Drupal::request()->getSchemeAndHttpHost() . '/node/add/job_posting?destination=' .
+        '#markup' => '<a class="btn btn-primary trigger" href="' . \Drupal::url("node.add", ['node_type' => 'job_posting']) . '?destination=' .
         $node_alias .
         '" title="Edit" data-dialog-type="modal">'. $this->t('Post Job') . '</a>',
       ],
