@@ -19,6 +19,10 @@ dependencies:
     - taxonomy.vocabulary.research_area
     - taxonomy.vocabulary.thesis_lab
     - taxonomy.vocabulary.undergraduate_major
+    - user.role.administrator
+    - user.role.current_student
+    - user.role.deputy_admin
+    - user.role.glossary_editor
   module:
     - image
     - neuronet_misc
@@ -1905,49 +1909,6 @@ display:
           entity_field: type
           plugin_id: bundle
           group: 1
-        field_exit_term_target_id:
-          id: field_exit_term_target_id
-          table: node__field_exit_term
-          field: field_exit_term_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: empty
-          value: {  }
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: academic_term
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
         title:
           id: title
           table: node_field_data
@@ -2037,6 +1998,97 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
+        roles_target_id:
+          id: roles_target_id
+          table: user__roles
+          field: roles_target_id
+          relationship: reverse__user__field_profile
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            current_student: current_student
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: true
+          entity_type: user
+          entity_field: roles
+          plugin_id: user_roles
+        roles_target_id_1:
+          id: roles_target_id_1
+          table: user__roles
+          field: roles_target_id
+          relationship: reverse__user__field_profile
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            all: all
+            administrator: administrator
+            deputy_admin: deputy_admin
+            glossary_editor: glossary_editor
+          group: 1
+          exposed: true
+          expose:
+            operator_id: roles_target_id_1_op
+            label: Role
+            description: ''
+            use_operator: false
+            operator: roles_target_id_1_op
+            identifier: roles_target_id_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              alumni: '0'
+              deputy_admin: '0'
+              current_student: '0'
+              glossary_editor: '0'
+            reduce: true
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: true
+          entity_type: user
+          entity_field: roles
+          plugin_id: user_roles
       defaults:
         filters: false
         filter_groups: false
@@ -2269,55 +2321,6 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Email Login Link'
-          exclude: true
-          alter:
-            alter_text: true
-            text: '<img src="/modules/custom/neuronet_misc/img/mail-512.png">'
-            make_link: true
-            path: '/email-login-link-single/{{ nid }}'
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: are-you-sure
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
-          plugin_id: custom
         field_matriculation_year:
           id: field_matriculation_year
           table: node__field_matriculation_year
@@ -2381,6 +2384,59 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        roles_target_id:
+          id: roles_target_id
+          table: user__roles
+          field: roles_target_id
+          relationship: reverse__user__field_profile
+          group_type: group
+          admin_label: ''
+          label: Roles
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          type: separator
+          separator: '<br>'
+          entity_type: user
+          entity_field: roles
+          plugin_id: user_roles
         access:
           id: access
           table: users_field_data
@@ -2654,7 +2710,7 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 10
+          items_per_page: 20
           offset: 0
           id: 0
           total_pages: null
@@ -2827,7 +2883,7 @@ display:
           exposed: true
           expose:
             operator_id: field_exit_term_target_id_1_op
-            label: 'Exit Term'
+            label: 'Exit Term (field_exit_term)'
             description: ''
             use_operator: false
             operator: field_exit_term_target_id_1_op
@@ -2841,6 +2897,8 @@ display:
               administrator: '0'
               alumni: '0'
               deputy_admin: '0'
+              current_student: '0'
+              glossary_editor: '0'
             reduce: false
           is_grouped: false
           group_info:

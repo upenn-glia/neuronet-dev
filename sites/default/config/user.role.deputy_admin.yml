@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: deputy_admin
-label: 'deputy admin'
+label: 'NeuroNet Manager'
 weight: 4
 is_admin: null
 permissions:
