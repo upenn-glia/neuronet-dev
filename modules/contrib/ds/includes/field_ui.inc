@@ -13,6 +13,7 @@ use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\ds\Ds;
 use Drupal\ds\Plugin\DsField\DsFieldInterface;
@@ -716,6 +717,9 @@ function _ds_field_ui_table_layouts($entity_type, $bundle, $view_mode, array &$f
   foreach ($ds_layouts as $key => $layout_definition) {
     // Create new layout option group.
     $optgroup = $layout_definition->getCategory() ?: t('Other');
+    if ($optgroup instanceof TranslatableMarkup) {
+      $optgroup = (string) $optgroup;
+    }
     if (!isset($layout_options[$optgroup])) {
       $layout_options[$optgroup] = [];
     }
