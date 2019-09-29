@@ -2162,8 +2162,8 @@ display:
           selected_actions:
             comment_delete_action: 0
             send_custom_email: send_custom_email
-            email_login_info: email_login_info
-            welcome_email: welcome_email
+            email_login_info: 0
+            welcome_email: 0
             pass_reset: pass_reset
             node_unpromote_action: 0
             node_unpublish_action: 0
@@ -2183,10 +2183,6 @@ display:
           preconfiguration:
             send_custom_email:
               label_override: ''
-            email_login_info:
-              label_override: 'Send special welcome to beta testers'
-            welcome_email:
-              label_override: 'Send Welcome Email'
             pass_reset:
               label_override: ''
           plugin_id: views_bulk_operations_bulk_form

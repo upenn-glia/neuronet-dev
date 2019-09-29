@@ -1,0 +1,28 @@
+uuid: 971f0ccc-83d8-4003-850d-4c16ae07f52f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_people_emailed
+    - node.type.email
+    - node.type.profile
+id: node.email.field_people_emailed
+field_name: field_people_emailed
+entity_type: node
+bundle: email
+label: 'People Emailed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      profile: profile
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

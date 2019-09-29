@@ -175,8 +175,9 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
   public function executeMultiple(array $entities) {
     // Get key of selected email.
     $key = (int) $this->configuration['selected_email_key'] + 1;
-    $recipients = '';
-    $disabled_recipients = '';
+    $recipient_array = [];
+    $recipient_names = '';
+    $disabled_recipient_names = '';
     foreach ($entities as $entity) {
       // Get user associated with selected profile.
       $result = $this->entityTypeManager->getStorage('user')->loadByProperties([
@@ -185,7 +186,7 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
       if ($user = reset($result)) {
         // Don't send mail to people who have disabled notifications.
         if (!$user->get('field_general_emails')->value) {
-          $disabled_recipients .= $entity->getTitle() . ' (' . $user->get('mail')->value . '), ';
+          $disabled_recipient_names .= $entity->getTitle() . ' (' . $user->get('mail')->value . '), ';
           continue;
         }
         // Send mail.
@@ -197,23 +198,27 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
           'body' => $this->customEmailOptions[$key]['email']['value'],
         ];
         $to = $user->get('mail')->value;
-        $recipients .= $entity->getTitle() . ' (' . $to . '), ';
-        $this->mailManager->mail('neuronet_misc', 'custom', $to, $langcode, $params);
+        $recipient_names .= $entity->getTitle() . ' (' . $to . '), ';
+        $recipient_array[] = $entity->id();
+        //$this->mailManager->mail('neuronet_misc', 'custom', $to, $langcode, $params);
       }
     }
     // Set messages.
-    if (!empty($recipients)) {
-      $this->messenger()->addStatus($this->t('The "@name" email was sent to: @recipients', [
-        '@recipients' => rtrim($recipients, ', '),
-        '@name' => $this->customEmailOptions[$key]['name'],
-      ]));
-    }
-    if (!empty($disabled_recipients)) {
-      $this->messenger()->addStatus($this->t('The "@name" email was *not* send to the following users
-        due to their turning off notifications: @recipients', [
-        '@recipients' => rtrim($disabled_recipients, ', '),
-        '@name' => $this->customEmailOptions[$key]['name'],
-      ]));
+    if (!empty($recipient_names)) {
+      // Get the existing data on sent emails.
+      $tempstore = \Drupal::service('tempstore.private');
+      $store = $tempstore->get('neuronet_misc');
+      $sent_email_data = $store->get('sent_email_data');
+      // Set new sent email.
+      $store->set('sent_email_data', [
+        'recipient_nids' => !empty($sent_email_data['recipient_nids']) ?
+          array_merge($sent_email_data['recipient_nids'], $recipient_array) : $recipient_array,
+        'recipient_names' => !empty($sent_email_data['recipient_names']) ?
+          $sent_email_data['recipient_names'] . $recipient_names : $recipient_names,
+        'disabled_recipient_names' => !empty($sent_email_data['disabled_recipient_names']) ?
+          $sent_email_data['disabled_recipient_names'] . $disabled_recipient_names : $disabled_recipient_names,
+        'email_sent' => $this->customEmailOptions[$key],
+      ]);
     }
   }
 

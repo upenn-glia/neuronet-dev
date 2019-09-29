@@ -1,0 +1,28 @@
+uuid: f3184202-47d5-4c47-8a38-5f94beab58c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sender
+    - node.type.email
+    - node.type.profile
+id: node.email.field_sender
+field_name: field_sender
+entity_type: node
+bundle: email
+label: Sender
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      profile: profile
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

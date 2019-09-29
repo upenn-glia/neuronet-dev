@@ -60,6 +60,48 @@ function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
       unset($view->result[$index]);
     }
   }
+  // Respond to Send Custom Email action processing in Current Students view.
+  if ($view->id() == 'current_students') {
+    $tempstore = \Drupal::service('tempstore.private');
+    // Get the store collection.
+    $store = $tempstore->get('neuronet_misc');
+    $sent_email_data = $store->get('sent_email_data');
+    if (!empty($sent_email_data)) {
+      $email_sent = $sent_email_data['email_sent'];
+      // Get sender profile ID.
+      $sender_profile = \Drupal::entityTypeManager()
+        ->getStorage('user')
+        ->load(\Drupal::currentUser()->id());
+      // Create & save email node.
+      $email = \Drupal::entityTypeManager()->getStorage('node')->create([
+        'type' => 'email',
+        'title' => $email_sent['name'] . ' -- ' . time(),
+        'field_email_name' => $email_sent['name'],
+        'field_subject' => $email_sent['subject'],
+        'body' => [
+          'value' => $email_sent['email']['value'],
+          'format' => 'full_html',
+        ],
+        'field_sender' => $sender_profile->get('field_profile')->target_id,
+        'field_people_emailed' => $sent_email_data['recipient_nids'],
+      ]);
+      // Set Drupal message for email recipients.
+      \Drupal::messenger()->addStatus(t('The "@name" email was sent to: @recipients', [
+        '@recipients' => rtrim($sent_email_data['recipient_names'], ', '),
+        '@name' => $email_sent['name'],
+      ]));
+      // Set Drupal message for disabled recipients.
+      if (!empty($sent_email_data['disabled_recipient_names'])) {
+        \Drupal::messenger()->addStatus(t('The "@name" email was *not* send to the following users
+          due to their turning off notifications: @recipients', [
+          '@recipients' => rtrim($sent_email_data['disabled_recipient_names'], ', '),
+          '@name' => $email_sent['name'],
+        ]));
+      }
+      $email->save();
+      $store->delete('sent_email_data');
+    }
+  }
 }
 
 function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $route_match*/){
