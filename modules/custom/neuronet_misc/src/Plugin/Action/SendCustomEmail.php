@@ -200,7 +200,7 @@ class SendCustomEmail extends ViewsBulkOperationsActionBase implements Container
         $to = $user->get('mail')->value;
         $recipient_names .= $entity->getTitle() . ' (' . $to . '), ';
         $recipient_array[] = $entity->id();
-        //$this->mailManager->mail('neuronet_misc', 'custom', $to, $langcode, $params);
+        $this->mailManager->mail('neuronet_misc', 'custom', $to, $langcode, $params);
       }
     }
     // Set messages.
