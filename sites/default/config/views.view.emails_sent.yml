@@ -261,7 +261,7 @@ display:
           settings:
             date_format: custom
             custom_date_format: 'm/d/Y - g:i a'
-            timezone: ''
+            timezone: America/New_York
           group_column: value
           group_columns: {  }
           group_rows: true
