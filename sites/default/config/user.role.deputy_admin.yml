@@ -34,6 +34,7 @@ permissions:
   - 'edit terms in thesis_lab'
   - 'switch shortcut sets'
   - 'use text format full_html'
+  - 'view any email content'
   - 'view any job content'
   - 'view any job_posting content'
   - 'view any profile content'
