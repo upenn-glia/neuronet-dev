@@ -1,0 +1,20 @@
+global-styling:
+  version: 8.x
+  css:
+    theme:
+      css/base/elements.css: {}
+      css/bootstrap.css: {}
+      css/fontawesome-all.css: {}
+      css/swiper.css: {}
+      css/magnific-popup.css: {}
+      css/styles.css: {}
+  js:
+    js/jquery.min.js: {}
+    js/popper.min.js: {}
+    js/bootstrap.min.js: {}
+    js/jquery.easing.min.js: {}
+    js/swiper.min.js: {}
+    js/jquery.magnific-popup.js: {}
+    js/morphext.min.js: {}
+    js/validator.min.js: {}
+    js/scripts.js: {}

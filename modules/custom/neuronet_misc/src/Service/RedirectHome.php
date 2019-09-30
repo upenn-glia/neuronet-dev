@@ -29,8 +29,7 @@ class RedirectHome implements EventSubscriberInterface {
     if (\Drupal::service('path.matcher')->isFrontPage()) {
       $user = User::load(\Drupal::currentUser()->id());
       if ($user->isAnonymous()) {
-        $response = new RedirectResponse(\Drupal::url('user.page'));
-        return $response->send();
+        return;
       }
       if ($user->hasRole('current_student') || $user->hasRole('administrator')) {
         $response = new RedirectResponse(\Drupal::url('view.current_students.page_1'));

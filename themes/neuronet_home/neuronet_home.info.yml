@@ -1,0 +1,9 @@
+
+name: NeuroNet Home
+type: theme
+description: 'NeuroNet Homepage Theme'
+package: NeuroNet
+core: 8.x
+libraries:
+  - neuronet_home/global-styling
+
