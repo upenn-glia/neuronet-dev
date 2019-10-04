@@ -2106,3 +2106,7 @@ a:hover.back-to-top {
 #team h2 {
 	text-align: center;
 }
+.row .btn-solid-lg {
+	margin-bottom: 1.25rem;
+	margin-right: 0.5rem;
+}
