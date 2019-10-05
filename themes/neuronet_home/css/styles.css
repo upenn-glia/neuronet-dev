@@ -667,6 +667,7 @@ input[type='checkbox'] {
 	color: #fff;
 	text-decoration: none;
 	transition: all 0.2s ease;
+	text-transform: uppercase;
 }
 
 .navbar-custom .nav-item .nav-link:hover,
@@ -2109,4 +2110,19 @@ a:hover.back-to-top {
 .row .btn-solid-lg {
 	margin-bottom: 1.25rem;
 	margin-right: 0.5rem;
+}
+
+/* body.adminimal-admin-toolbar .navbar-custom .navbar-nav {
+	margin-top: 80px;
+}
+
+body.adminimal-admin-toolbar .fixed-top {
+	top: 80px;
+} */
+
+body.front.adminimal-admin-toolbar {
+	padding-top: 0px !important;
+}
+body.front.adminimal-admin-toolbar #toolbar-administration {
+	display: none;
 }

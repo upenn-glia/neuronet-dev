@@ -1282,6 +1282,7 @@ display:
         filters: false
         filter_groups: false
         use_ajax: false
+        access: false
       filters:
         status:
           value: '1'
@@ -1856,6 +1857,13 @@ display:
         groups:
           1: AND
       use_ajax: true
+      access:
+        type: role
+        options:
+          role:
+            administrator: administrator
+            deputy_admin: deputy_admin
+            current_student: current_student
     cache_metadata:
       max-age: -1
       contexts:
@@ -1865,7 +1873,7 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_neuroscience_interests'
         - 'config:field.storage.node.field_profile_image'

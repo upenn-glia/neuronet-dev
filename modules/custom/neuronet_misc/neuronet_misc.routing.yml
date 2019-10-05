@@ -68,3 +68,19 @@ neuronet_misc.email_login_group:
     _title: 'Email Group Login Callback'
   requirements:
     _permission: 'access neuronet admin'
+
+neuronet_misc.sign_in:
+  title: 'LOG IN'
+  parent: system.menu.main
+  description: 'Sign in'
+  route_name: user.login
+  weight: 100
+  menu_name: homepage
+
+neuronet_misc.sign_out:
+  title: 'LOG OUT'
+  parent: system.menu.main
+  description: 'Sign out'
+  route_name: user.logout
+  weight: 101
+  menu_name: homepage

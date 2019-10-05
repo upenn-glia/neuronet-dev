@@ -24,3 +24,8 @@ neuronet_misc.taxonomy_manager:
   parent: view.current_students.page_2
   menu_name: admin
   weight: 12
+
+neuronet_misc.logout:
+  weight: 100
+  menu_name: homepage
+  class: Drupal\user\Plugin\Menu\LoginLogoutMenuLink

@@ -9,7 +9,7 @@ global-styling:
       css/magnific-popup.css: {}
       css/styles.css: {}
   js:
-    js/jquery.min.js: {}
+    # js/jquery.min.js: {}
     js/popper.min.js: {}
     js/bootstrap.min.js: {}
     js/jquery.easing.min.js: {}
@@ -18,3 +18,7 @@ global-styling:
     js/morphext.min.js: {}
     js/validator.min.js: {}
     js/scripts.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once

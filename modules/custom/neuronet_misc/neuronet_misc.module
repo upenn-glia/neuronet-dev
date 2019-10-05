@@ -16,6 +16,7 @@ use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Access\AccessResultForbidden;
 use \Drupal\node\Entity\Node;
 use \Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 /**
  * Implements hook_help().
  */
@@ -308,4 +309,22 @@ function neuronet_misc_views_data_alter(array &$data) {
       'id' => 'node_count_completed_fields',
     ),
   );
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function neuronet_misc_user_login(AccountInterface $account) {
+  // Redirect login to either Current Students view or User page.
+  $roles = $account->getRoles();
+  if (\Drupal::routeMatch()->getRouteName() != 'user.reset.login') {
+    if (in_array('current_student', $roles) || in_array('administrator', $roles)) {
+      $response = new RedirectResponse(\Drupal::url('view.current_students.page_1'));
+      return $response->send();
+    }
+    else {
+      $response = new RedirectResponse(\Drupal::url('user.page'));
+      return $response->send();
+    }
+  }
 }

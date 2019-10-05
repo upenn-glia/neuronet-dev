@@ -24,20 +24,7 @@
         <!-- end of mobile menu toggle button -->
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#team">TEAM</a>
-                </li>
-                {# <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#features">FEATURES</a>
-                </li> #}
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="{{ url('<front>') }}user">LOG IN</a>
-                </li>
-            </ul>
+            {{ drupal_menu('homepage') }}
             <span class="nav-item social-icons">
                 <span class="fa-stack">
                     <a href="https://www.facebook.com/pg/PennNGG" target="_blank">

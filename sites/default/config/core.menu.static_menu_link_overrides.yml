@@ -17,5 +17,11 @@ definitions:
     weight: -10
     expanded: false
     enabled: false
+  neuronet_misc__logout:
+    weight: -45
+    menu_name: homepage
+    parent: ''
+    expanded: false
+    enabled: true
 _core:
   default_config_hash: jdY7AU0tU-QsjmiOw3W8vwpYMb-By--_MSFgbqKUTYM
