@@ -52,7 +52,7 @@ class EntityBatchUpdate {
    * @param array $sandbox
    * @param QueryFactoryInterface $query
    * @param integer $limit
-   * @param string $callback
+   * @param string|object $callback
    * @return string
    *   Returns final message
    */
@@ -76,7 +76,12 @@ class EntityBatchUpdate {
     // Execute callback;
     foreach ($result as $id) {
       if ($entity = $this->entityTypeManager->getStorage($entity_type_id)->load($id)) {
-        $callback($entity);
+        if (is_string($callback)) {
+          $callback($entity);
+        }
+        else {
+          $callback->processUpdate($entity);
+        }
       }
       unset($entity);
       $sandbox['already_run'][] = $id;

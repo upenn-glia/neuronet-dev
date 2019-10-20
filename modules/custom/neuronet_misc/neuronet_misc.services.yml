@@ -10,3 +10,5 @@ services:
       - '@entity_type.manager'
   neuronet_misc.completed_fields:
     class: Drupal\neuronet_misc\Service\CompletedFields
+    arguments:
+      - '@database'
