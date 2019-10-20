@@ -14,6 +14,7 @@ use \Drupal\node\NodeInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Access\AccessResultForbidden;
+use Drupal\Core\Asset\AttachedAssetsInterface;
 use \Drupal\node\Entity\Node;
 use \Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -319,6 +320,9 @@ function neuronet_misc_user_login(AccountInterface $account) {
   }
 }
 
+/**
+ * Implements hook_views_data().
+ */
 function neuronet_misc_views_data() {
   $data = [];
   $data['completed_profile_fields']['table']['group'] = t('Completed Fields');
@@ -350,4 +354,28 @@ function neuronet_misc_views_data() {
     ],
   ];
   return $data;
+}
+
+/**
+ * Implements hook_js_settings_alter().
+ */
+function neuronet_misc_js_settings_alter(&$settings, AttachedAssetsInterface $assets) {
+  // Add path prefix if the baseUrl is not empty.
+  $base_url = \Drupal::requestStack()->getMasterRequest()->getBaseUrl();
+  if (!empty($settings['path']) && empty($settings['path']['pathPrefix']) && !empty(ltrim($base_url, '/'))) {
+    $settings['path']['pathPrefix'] = ltrim($base_url, '/');
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function neuronet_misc_module_implements_alter(&$implementations, $hook) {
+  // Move NeuroNet Misc to the end of the implementation execution order
+  // for the 'js_settings_alter' hook.
+  if ($hook == 'js_settings_alter') {
+    $group = $implementations['neuronet_misc'];
+    unset($implementations['neuronet_misc']);
+    $implementations['neuronet_misc'] = $group;
+  }
 }
