@@ -2097,6 +2097,75 @@ display:
           entity_type: user
           entity_field: roles
           plugin_id: user_roles
+        num_completed_fields:
+          id: num_completed_fields
+          table: completed_profile_fields
+          field: num_completed_fields
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '<='
+          value:
+            min: ''
+            max: ''
+            value: '6'
+          group: 1
+          exposed: true
+          expose:
+            operator_id: num_completed_fields_op
+            label: 'Incomplete Fields'
+            description: ''
+            use_operator: false
+            operator: num_completed_fields_op
+            identifier: incomplete
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              alumni: '0'
+              deputy_admin: '0'
+              current_student: '0'
+              glossary_editor: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: true
+          group_info:
+            label: 'Number of Completed Fields'
+            description: ''
+            identifier: num_completed_fields
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: Incomplete
+                operator: '<='
+                value:
+                  value: '6'
+                  min: ''
+                  max: ''
+              2:
+                title: 'Less than 15'
+                operator: '<'
+                value:
+                  value: '15'
+                  min: ''
+                  max: ''
+              3:
+                title: '15 or more'
+                operator: '>='
+                value:
+                  value: '15'
+                  min: ''
+                  max: ''
+          plugin_id: numeric
       defaults:
         filters: false
         filter_groups: false
@@ -2506,14 +2575,14 @@ display:
           entity_type: user
           entity_field: access
           plugin_id: field
-        node_count_completed_fields:
-          id: node_count_completed_fields
-          table: node
-          field: node_count_completed_fields
+        num_completed_fields:
+          id: num_completed_fields
+          table: completed_profile_fields
+          field: num_completed_fields
           relationship: none
           group_type: group
           admin_label: ''
-          label: '# of Completed Fields'
+          label: 'Number of Completed Fields'
           exclude: false
           alter:
             alter_text: false
@@ -2554,8 +2623,15 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          entity_type: node
-          plugin_id: node_count_completed_fields
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ','
+          format_plural: false
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          plugin_id: numeric
         operations:
           id: operations
           table: node
@@ -2619,16 +2695,22 @@ display:
           summary: ''
           description: ''
           columns:
+            views_bulk_operations_bulk_form: views_bulk_operations_bulk_form
             title: title
             nid: nid
-            nothing: nothing
             field_matriculation_year: field_matriculation_year
+            roles_target_id: roles_target_id
             access: access
-            views_bulk_operations_bulk_form: views_bulk_operations_bulk_form
-            node_count_completed_fields: node_count_completed_fields
+            num_completed_fields: num_completed_fields
+            operations: operations
           info:
+            views_bulk_operations_bulk_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             title:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -2641,14 +2723,14 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            nothing:
-              sortable: false
+            field_matriculation_year:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_matriculation_year:
+            roles_target_id:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -2656,20 +2738,20 @@ display:
               empty_column: false
               responsive: ''
             access:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            views_bulk_operations_bulk_form:
+            num_completed_fields:
+              sortable: true
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            node_count_completed_fields:
-              sortable: false
-              default_sort_order: desc
+            operations:
               align: ''
               separator: ''
               empty_column: false
@@ -2887,7 +2969,7 @@ display:
           exposed: true
           expose:
             operator_id: field_exit_term_target_id_1_op
-            label: 'Exit Term (field_exit_term)'
+            label: 'Exit Term'
             description: ''
             use_operator: false
             operator: field_exit_term_target_id_1_op
@@ -2962,6 +3044,69 @@ display:
           entity_type: user
           entity_field: mail
           plugin_id: string
+        num_completed_fields:
+          id: num_completed_fields
+          table: completed_profile_fields
+          field: num_completed_fields
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: num_completed_fields_op
+            label: 'Number of Completed Fields'
+            description: null
+            use_operator: false
+            operator: num_completed_fields_op
+            identifier: num_completed_fields
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+            min_placeholder: null
+            max_placeholder: null
+          is_grouped: true
+          group_info:
+            label: 'Completed Fields'
+            description: ''
+            identifier: num_completed_fields
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: Incomplete
+                operator: '<'
+                value:
+                  value: '7'
+                  min: ''
+                  max: ''
+              2:
+                title: 'Less than 15'
+                operator: '<'
+                value:
+                  value: '15'
+                  min: ''
+                  max: ''
+              3:
+                title: '15 or more'
+                operator: '>='
+                value:
+                  value: '15'
+                  min: ''
+                  max: ''
+          plugin_id: numeric
       defaults:
         filters: false
         filter_groups: false
@@ -3367,14 +3512,14 @@ display:
           entity_type: user
           entity_field: access
           plugin_id: field
-        node_count_completed_fields:
-          id: node_count_completed_fields
-          table: node
-          field: node_count_completed_fields
+        num_completed_fields:
+          id: num_completed_fields
+          table: completed_profile_fields
+          field: num_completed_fields
           relationship: none
           group_type: group
           admin_label: ''
-          label: '# of Completed Fields'
+          label: 'Completed Fields'
           exclude: false
           alter:
             alter_text: false
@@ -3415,8 +3560,15 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          entity_type: node
-          plugin_id: node_count_completed_fields
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ','
+          format_plural: false
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          plugin_id: numeric
         operations:
           id: operations
           table: node

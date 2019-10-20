@@ -302,20 +302,6 @@ function neuronet_misc_node_update(EntityInterface $node) {
 }
 
 /**
- * Implements hook_views_data_alter().
- */
-function neuronet_misc_views_data_alter(array &$data) {
-  $data['node']['node_count_completed_fields'] = array(
-    'title' => t('Count of Completed Fields'),
-    'field' => array(
-      'title' => t('Count of Completed Fields'),
-      'help' => t('Counts number of fields of a node that are completed.'),
-      'id' => 'node_count_completed_fields',
-    ),
-  );
-}
-
-/**
  * Implements hook_user_login().
  */
 function neuronet_misc_user_login(AccountInterface $account) {
@@ -331,4 +317,37 @@ function neuronet_misc_user_login(AccountInterface $account) {
       return $response->send();
     }
   }
+}
+
+function neuronet_misc_views_data() {
+  $data = [];
+  $data['completed_profile_fields']['table']['group'] = t('Completed Fields');
+  $data['completed_profile_fields']['table']['base'] = [
+    'field' => 'nid',
+    'title' => t('Completed Fields'),
+    'access query tag' => 'node_access',
+  ];
+  $data['completed_profile_fields']['table']['join'] = [
+    'node_field_data' => [
+      'left_field' => 'nid',
+      'field' => 'nid',
+    ],
+  ];
+  $data['completed_profile_fields']['num_completed_fields'] = [
+    'title' => t('Number of Completed Fields'),
+    'help' => t('The number of node fields that have been completed.'),
+    'field' => [
+      'id' => 'numeric',
+    ],
+    'filter' => [
+      'id' => 'numeric',
+    ],
+    'argument' => [
+      'id' => 'numeric',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+  ];
+  return $data;
 }
