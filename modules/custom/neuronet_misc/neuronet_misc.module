@@ -379,5 +379,3 @@ function neuronet_misc_module_implements_alter(&$implementations, $hook) {
     $implementations['neuronet_misc'] = $group;
   }
 }
-
-// comment to test post-receive
