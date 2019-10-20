@@ -363,7 +363,7 @@ function neuronet_misc_js_settings_alter(&$settings, AttachedAssetsInterface $as
   // Add path prefix if the baseUrl is not empty.
   $base_url = \Drupal::requestStack()->getMasterRequest()->getBaseUrl();
   if (!empty($settings['path']) && empty($settings['path']['pathPrefix']) && !empty(ltrim($base_url, '/'))) {
-    $settings['path']['pathPrefix'] = ltrim($base_url, '/');
+    $settings['path']['pathPrefix'] = substr(ltrim($base_url, '/'), -1) == '/' ? ltrim($base_url, '/') : ltrim($base_url, '/') . '/';
   }
 }
 
