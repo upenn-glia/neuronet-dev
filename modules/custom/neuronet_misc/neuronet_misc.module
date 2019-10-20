@@ -17,6 +17,8 @@ use Drupal\Core\Access\AccessResultForbidden;
 use \Drupal\node\Entity\Node;
 use \Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\neuronet_misc\Service\CompletedFields;
+
 /**
  * Implements hook_help().
  */
@@ -294,6 +296,8 @@ function neuronet_misc_node_update(EntityInterface $node) {
         $user->save();
       }
     }
+    // Set completed fields.
+    CompletedFields::saveCompletedFields($node);
   }
 }
 
