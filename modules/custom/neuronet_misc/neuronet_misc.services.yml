@@ -3,3 +3,10 @@ services:
     class: Drupal\neuronet_misc\Service\RedirectSubscriber
     tags:
       - { name: event_subscriber }
+  neuronet_misc.entity_batch_update:
+    class: Drupal\neuronet_misc\Service\EntityBatchUpdate
+    arguments:
+      - '@database'
+      - '@entity_type.manager'
+  neuronet_misc.completed_fields:
+    class: Drupal\neuronet_misc\Service\CompletedFields
