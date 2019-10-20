@@ -3,6 +3,7 @@
 namespace Drupal\neuronet_misc\Service;
 
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\NodeInterface;
 use Drupal\neuronet_misc\EntityBatchUpdateCallbackInterface;
 
@@ -27,7 +28,7 @@ class CompletedFields implements EntityBatchUpdateCallbackInterface {
    *
    * @param NodeInterface $node
    */
-  public function processUpdate($node) {
+  public function processUpdate(EntityInterface $node) {
     $this->saveCompletedFields($node);
   }
 
