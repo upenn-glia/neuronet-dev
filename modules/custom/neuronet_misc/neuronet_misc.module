@@ -298,7 +298,9 @@ function neuronet_misc_node_update(EntityInterface $node) {
       }
     }
     // Set completed fields.
-    CompletedFields::saveCompletedFields($node);
+    /** @var CompletedFields $completed_fields_service */
+    $completed_fields_service = \Drupal::service('neuronet_misc.completed_fields');
+    $completed_fields_service->saveCompletedFields($node);
   }
 }
 
