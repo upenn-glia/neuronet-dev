@@ -1,0 +1,10 @@
+uuid: 2769d1a7-1cec-440e-97e0-523d725bc7c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.teaser_profile
+label: 'Teaser Student Profile'
+targetEntityType: node
+cache: true

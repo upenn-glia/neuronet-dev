@@ -30,6 +30,7 @@ dependencies:
     - field.field.node.profile.field_neuroscience_interests
     - field.field.node.profile.field_ngg_activities
     - field.field.node.profile.field_non_ngg_activities
+    - field.field.node.profile.field_preferred_prefix
     - field.field.node.profile.field_profile_image
     - field.field.node.profile.field_research_area
     - field.field.node.profile.field_thesis_committee
@@ -43,31 +44,20 @@ targetEntityType: node
 bundle: profile
 mode: teaser
 content:
-  field_alma_mater:
-    type: entity_reference_label
-    weight: 1
-    region: content
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-  field_neuroscience_interests:
-    type: entity_reference_label
-    weight: 2
-    region: content
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-  links:
+  field_alumni:
+    type: boolean
     weight: 0
     region: content
-    settings: {  }
+    label: hidden
+    settings:
+      format: custom
+      format_custom_true: '<strong>&rarr;  Alumni</strong>'
+      format_custom_false: '<strong>&rarr;  Current Student</strong>'
     third_party_settings: {  }
 hidden:
   body: true
   feeds_item: true
-  field_alumni: true
+  field_alma_mater: true
   field_candidacy_: true
   field_classes_taken: true
   field_curriculum_vitae: true
@@ -87,6 +77,7 @@ hidden:
   field_links2: true
   field_locations_lived: true
   field_matriculation_year: true
+  field_neuroscience_interests: true
   field_ngg_activities: true
   field_non_ngg_activities: true
   field_preferred_prefix: true
@@ -95,3 +86,4 @@ hidden:
   field_thesis_committee: true
   field_thesis_lab: true
   field_undergraduate_major: true
+  links: true

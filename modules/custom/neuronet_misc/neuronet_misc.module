@@ -113,6 +113,7 @@ function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $rout
 }
 
 function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  $test = '';
   if ($node->getType() == 'profile' && $op == 'update') {
     $user = User::load($account->id());
     if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
@@ -126,10 +127,10 @@ function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $a
   if ($node->getType() == 'profile' && $op == 'view') {
     $user = User::load($account->id());
     if (!$user->hasRole('deputy_admin') && $user->hasRole('alumni')) {
-      if ($node->id() != $user->get('field_profile')->target_id) {
-        return new AccessResultForbidden();
+      if ($node->id() != $user->get('field_profile')->target_id && (int) $node->get('field_alumni')->value === 0) {
+        //return new AccessResultForbidden();
       }
-      else {
+      elseif ((int) $node->get('field_alumni')->value === 1) {
         return new AccessResultAllowed();
       }
     }

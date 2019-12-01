@@ -15,6 +15,8 @@ permissions:
   - 'edit own job content'
   - 'edit own job_posting content'
   - 'edit own profile content'
+  - 'view any job content'
+  - 'view any profile content'
   - 'view own job content'
   - 'view own job_posting content'
   - 'view own profile content'
