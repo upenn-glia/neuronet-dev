@@ -6,6 +6,9 @@ dependencies:
     - field.storage.node.field_institution
     - field.storage.node.field_start_date
     - node.type.job_posting
+    - system.menu.main
+    - user.role.administrator
+    - user.role.alumni
   module:
     - datetime
     - node
@@ -28,7 +31,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'view own job_posting content'
+          perm: 'view any job_posting content'
       cache:
         type: tag
         options: {  }
@@ -820,8 +823,18 @@ display:
     display_title: Page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: secure/jobs
+      display_extenders:
+        views_ef_fieldset: {  }
+      path: jobs
+      menu:
+        type: normal
+        title: Jobs
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
