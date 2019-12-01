@@ -11,7 +11,6 @@ dependencies:
     - field.storage.node.field_job_type
     - field.storage.node.field_last_name
     - node.type.job
-    - system.menu.main
     - taxonomy.vocabulary.institution
     - taxonomy.vocabulary.job_title
     - user.role.administrator
@@ -1151,10 +1150,10 @@ display:
     display_options:
       display_extenders:
         views_ef_fieldset: {  }
-      path: alumni
+      path: a-people/alumni
       exposed_block: false
       menu:
-        type: normal
+        type: 'default tab'
         title: Alumni
         description: ''
         expanded: false
@@ -1162,6 +1161,11 @@ display:
         weight: 0
         context: '0'
         menu_name: main
+      tab_options:
+        type: tab
+        title: People
+        description: ''
+        weight: -2
     cache_metadata:
       max-age: -1
       contexts:
