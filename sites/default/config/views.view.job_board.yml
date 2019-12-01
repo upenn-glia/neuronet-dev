@@ -7,8 +7,6 @@ dependencies:
     - field.storage.node.field_start_date
     - node.type.job_posting
     - system.menu.main
-    - user.role.administrator
-    - user.role.alumni
   module:
     - datetime
     - node
@@ -835,6 +833,24 @@ display:
         weight: 0
         context: '0'
         menu_name: main
+      title: 'Posted Job Opportunities'
+      defaults:
+        title: false
+        empty: false
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No jobs posted yet. Check back soon.'
+            format: basic_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
