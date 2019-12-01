@@ -8,5 +8,6 @@ weight: 5
 is_admin: null
 permissions:
   - 'access content'
+  - 'view any job content'
   - 'view any profile content'
   - 'view own profile content'

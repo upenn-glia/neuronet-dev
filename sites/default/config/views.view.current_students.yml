@@ -973,14 +973,14 @@ display:
                   pid: root
                   depth: '1'
                   type: container
-      path: secure/current-students
+      path: secure/people/students
       menu:
-        type: none
+        type: 'default tab'
         title: 'Current Students'
         description: ''
         expanded: false
         parent: ''
-        weight: 0
+        weight: -5
         context: '0'
         menu_name: main
       fields:
@@ -1284,6 +1284,7 @@ display:
         filter_groups: false
         use_ajax: false
         access: false
+        title: false
       filters:
         status:
           value: '1'
@@ -1865,6 +1866,12 @@ display:
             administrator: administrator
             deputy_admin: deputy_admin
             current_student: current_student
+      tab_options:
+        type: tab
+        title: People
+        description: ''
+        weight: 0
+      title: 'Current Students'
     cache_metadata:
       max-age: -1
       contexts:

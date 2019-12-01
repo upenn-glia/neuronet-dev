@@ -36,7 +36,6 @@ dependencies:
     - field.field.node.profile.field_thesis_committee
     - field.field.node.profile.field_thesis_lab
     - field.field.node.profile.field_undergraduate_major
-    - image.style.large
     - node.type.profile
   module:
     - ds
@@ -133,7 +132,7 @@ content:
     region: left
     label: hidden
     settings:
-      image_style: large
+      image_style: ''
       image_link: ''
     third_party_settings: {  }
   field_thesis_lab:

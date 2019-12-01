@@ -113,7 +113,6 @@ function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $rout
 }
 
 function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $account) {
-  $test = '';
   if ($node->getType() == 'profile' && $op == 'update') {
     $user = User::load($account->id());
     if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
@@ -133,6 +132,18 @@ function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $a
       elseif ((int) $node->get('field_alumni')->value === 1) {
         return new AccessResultAllowed();
       }
+    }
+  }
+}
+/**
+ * Implements hook_block_access()
+ */
+function neuronet_misc_block_access(\Drupal\block\Entity\Block $block, $operation, \Drupal\Core\Session\AccountInterface $account) {
+  // Don't allow admins to see a redundant alumni profile block.
+  if ($block->id() == "views_block__single_profile_block_4") {
+    $user = User::load(\Drupal::currentUser()->id());
+    if ($user->hasRole('administrator') || $user->hasRole('deputy_admin')) {
+      return new AccessResultForbidden();
     }
   }
 }
