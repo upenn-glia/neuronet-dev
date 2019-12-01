@@ -98,7 +98,8 @@ display:
             title: title
             field_first_name: field_first_name
             field_last_name: field_last_name
-            nothing: nothing
+            path: path
+            nid: nid
             field_institution: field_institution
             field_job_term: field_job_term
             field_job_type: field_job_type
@@ -106,7 +107,7 @@ display:
             field_exit_term: field_exit_term
           info:
             title:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -126,10 +127,17 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            nothing:
-              sortable: true
+            path:
+              sortable: false
               default_sort_order: asc
-              align: views-align-left
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nid:
+              sortable: false
+              default_sort_order: asc
+              align: ''
               separator: ''
               empty_column: false
               responsive: ''
@@ -177,11 +185,11 @@ display:
           id: title
           table: node_field_data
           field: title
-          relationship: none
+          relationship: field_profile
           group_type: group
           admin_label: ''
-          label: ''
-          exclude: true
+          label: Name
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -224,7 +232,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: false
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -482,55 +490,6 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: field
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Name
-          exclude: false
-          alter:
-            alter_text: true
-            text: '<a class="use-ajax" data-dialog-type="modal" href="/employment?nid={{ nid }}">{{ field_first_name }} {{ field_last_name }}</a>'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: use-ajax
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
-          plugin_id: custom
         field_institution:
           id: field_institution
           table: node__field_institution
