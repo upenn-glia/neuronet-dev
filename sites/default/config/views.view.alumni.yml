@@ -11,8 +11,11 @@ dependencies:
     - field.storage.node.field_job_type
     - field.storage.node.field_last_name
     - node.type.job
+    - system.menu.main
     - taxonomy.vocabulary.institution
     - taxonomy.vocabulary.job_title
+    - user.role.administrator
+    - user.role.alumni
   module:
     - node
     - taxonomy
@@ -33,9 +36,11 @@ display:
     position: 0
     display_options:
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            administrator: administrator
+            alumni: alumni
       cache:
         type: tag
         options: {  }
@@ -60,7 +65,7 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 20
+          items_per_page: 50
           offset: 0
           id: 0
           total_pages: null
@@ -77,7 +82,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          quantity: 9
+          quantity: 5
       style:
         type: table
         options:
@@ -488,7 +493,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a class="use-ajax" data-dialog-type="modal" href="employment?nid={{ nid }}">{{ field_first_name }} {{ field_last_name }}</a>'
+            text: '<a class="use-ajax" data-dialog-type="modal" href="/employment?nid={{ nid }}">{{ field_first_name }} {{ field_last_name }}</a>'
             make_link: false
             path: ''
             absolute: false
@@ -1068,6 +1073,47 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
+        roles_target_id:
+          id: roles_target_id
+          table: user__roles
+          field: roles_target_id
+          relationship: reverse__user__field_profile
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            alumni: alumni
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          entity_type: user
+          entity_field: roles
+          plugin_id: user_roles
       sorts:
         title:
           id: title
@@ -1083,8 +1129,18 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: standard
-      title: 'NGG Alumni'
-      header: {  }
+      title: 'Fellow NGG Alumni'
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: 'Displaying @start - @end of @total'
+          plugin_id: result
       footer: {  }
       empty: {  }
       relationships:
@@ -1097,6 +1153,16 @@ display:
           admin_label: 'field_profile: Content'
           required: true
           plugin_id: standard
+        reverse__user__field_profile:
+          id: reverse__user__field_profile
+          table: node_field_data
+          field: reverse__user__field_profile
+          relationship: field_profile
+          group_type: group
+          admin_label: field_profile
+          required: false
+          entity_type: node
+          plugin_id: entity_reverse
       arguments: {  }
       display_extenders: {  }
       use_ajax: true
@@ -1109,7 +1175,7 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_entry_term'
         - 'config:field.storage.node.field_exit_term'
@@ -1124,9 +1190,19 @@ display:
     display_title: Page
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        views_ef_fieldset: {  }
       path: alumni
       exposed_block: false
+      menu:
+        type: normal
+        title: Alumni
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
@@ -1136,7 +1212,7 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_entry_term'
         - 'config:field.storage.node.field_exit_term'
