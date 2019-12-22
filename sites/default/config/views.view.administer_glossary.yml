@@ -260,7 +260,6 @@ display:
           empty: false
           content: 'Displaying @start - @end of @total'
           plugin_id: result
-      footer:
         area:
           id: area
           table: views
@@ -268,12 +267,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: false
+          empty: false
+          tokenize: true
           content:
-            value: '<a id="add-glossary-term" class="button button--primary" href="/admin/structure/taxonomy/manage/glossary/add?destination=/admin/glia">Add Glossary Term</a>'
+            value: '<br><br><a id="add-glossary-term" style="margin-left: 0px;" class="button button--primary" href="{{ url(''<front>'')}}admin/structure/taxonomy/manage/glossary/add?destination=/neuronet/admin/glia">Add Glossary Term</a>'
             format: full_html
           plugin_id: text
+      footer: {  }
       empty: {  }
       relationships: {  }
       arguments: {  }
