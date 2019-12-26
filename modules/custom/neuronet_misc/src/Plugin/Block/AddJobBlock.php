@@ -134,6 +134,12 @@ class AddJobBlock extends BlockBase implements ContainerFactoryPluginInterface {
    * @see self::access()
    */
   protected function blockAccess(AccountInterface $account) {
+    if (
+      ($node = $this->routeMatch->getParameter('node')) &&
+      (!$node->get('field_alumni')->value)
+    ) {
+      return AccessResult::forbidden();
+    }
     // If an administrator is viewing the profile, allow access.
     if ($this->currentUser->hasRole('deputy_admin') || $this->currentUser->hasRole('administrator')) {
       return AccessResult::allowed();

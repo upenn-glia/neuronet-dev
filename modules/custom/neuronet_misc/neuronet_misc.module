@@ -338,6 +338,7 @@ function neuronet_misc_node_update(EntityInterface $node) {
         $user->addRole('alumni');
         $user->removeRole('current_student');
         $user->save();
+        \Drupal::messenger()->addWarning(t('NOTE: To be viewable as an alumni to others in the system, you must go to your profile and add at least one entry in your job history.'));
       }
       elseif (!$node->get('field_alumni')->value && $user->hasRole('alumni')) {
         $user->removeRole('alumni');

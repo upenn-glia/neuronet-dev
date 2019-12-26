@@ -5,6 +5,7 @@ dependencies:
   module:
     - ctools
     - neuronet_misc
+    - system
     - user
   theme:
     - bootstrap
@@ -36,3 +37,8 @@ visibility:
     negate: false
     context_mapping:
       user: '@user.current_user_context:current_user'
+  request_path:
+    id: request_path
+    pages: "/node/*/edit\r\n/node/*/account\r\n/node/*/my-job-posts\r\n"
+    negate: true
+    context_mapping: {  }
