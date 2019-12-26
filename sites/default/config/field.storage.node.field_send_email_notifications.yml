@@ -1,0 +1,18 @@
+uuid: 86b6af2d-a04f-4702-9e6b-cdeba6bcaedc
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_send_email_notifications
+field_name: field_send_email_notifications
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

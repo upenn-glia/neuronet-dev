@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.job_posting.field_links
     - field.field.node.job_posting.field_salary_high
     - field.field.node.job_posting.field_salary_low
+    - field.field.node.job_posting.field_send_email_notifications
     - field.field.node.job_posting.field_stage
     - field.field.node.job_posting.field_start_date
     - node.type.job_posting
@@ -75,6 +76,16 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
+  field_send_email_notifications:
+    weight: 112
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_stage:
     weight: 111

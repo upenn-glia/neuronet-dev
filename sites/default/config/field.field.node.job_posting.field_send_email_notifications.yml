@@ -1,0 +1,23 @@
+uuid: 7d11519a-d74f-4cdf-a838-168d28476ec6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_send_email_notifications
+    - node.type.job_posting
+id: node.job_posting.field_send_email_notifications
+field_name: field_send_email_notifications
+entity_type: node
+bundle: job_posting
+label: 'Send Email Notifications about this Job Posting'
+description: 'Check this box if upon save, you want to email everyone in NeuroNet who fits the above conditions.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
