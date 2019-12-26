@@ -15,8 +15,10 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Access\AccessResultForbidden;
 use Drupal\Core\Asset\AttachedAssetsInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 use \Drupal\node\Entity\Node;
 use \Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
 use Drupal\neuronet_misc\Service\CompletedFields;
 
@@ -173,6 +175,36 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
     if ($path_args[2] == 'neuronet'){
       $form['actions']['submit']['#submit'][] = 'neuronet_misc_profile_submit';
       $form['#validate'][] = 'neuronet_misc_profile_validate';
+    }
+  }
+  // Set default values for new Job history item.
+  if ($form_id == 'node_job_form') {
+    $form['title']['widget'][0]['value']['#default_value'] = sha1(md5(rand(0,10)));
+    if ($profile_id = \Drupal::request()->query->get('profile')) {
+      $form['field_profile']['widget'][0]['target_id']['#default_value'] = \Drupal::entityManager()->getStorage('node')->load($profile_id);
+    }
+    else {
+      $url = \Drupal::request()->headers->get('referer') ? \Drupal::request()->headers->get('referer') : \Drupal::request()->query->get('destination');
+      $form['#access'] = FALSE;
+      $form['#markup'] = '';
+      \Drupal::messenger()->addWarning(t('You must add to the job history from a profile page.'));
+      if ($url) {
+        $response = new TrustedRedirectResponse($url);
+        $response->send();
+        exit();
+      }
+    }
+  }
+  // Set access & default values for a new or existing Job history item.
+  if ($form_id == 'node_job_form' || $form_id == 'node_job_edit_form') {
+    $form['field_last_']['widget'][0]['value']['#default_value'] = DrupalDateTime::createFromTimestamp(time());
+    $user = User::load(\Drupal::currentUser()->id());
+    if (!$user->hasRole('administrator') && !$user->hasRole('deputy_admin')) {
+      $form['field_profile']['#access'] = FALSE;
+      $form['field_last_']['#access'] = FALSE;
+    }
+    if (!$user->hasRole('administrator')) {
+      $form['title']['#access'] = FALSE;
     }
   }
 }
