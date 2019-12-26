@@ -32,6 +32,7 @@ dependencies:
     - field.field.node.profile.field_preferred_prefix
     - field.field.node.profile.field_profile_image
     - field.field.node.profile.field_research_area
+    - field.field.node.profile.field_show_to_alumni
     - field.field.node.profile.field_show_to_students
     - field.field.node.profile.field_thesis_committee
     - field.field.node.profile.field_thesis_lab
@@ -85,6 +86,16 @@ targetEntityType: node
 bundle: profile
 mode: default
 content:
+  field_show_to_alumni:
+    weight: 2
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   field_show_to_students:
     weight: 1
     label: above

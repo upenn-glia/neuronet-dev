@@ -1,0 +1,23 @@
+uuid: 5598708a-38df-49d2-8a05-89bd6778e05a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_to_alumni
+    - node.type.profile
+id: node.profile.field_show_to_alumni
+field_name: field_show_to_alumni
+entity_type: node
+bundle: profile
+label: 'Expose Profile to Alumni'
+description: 'Check this box if you want fellow NGG alumni to view your past institutions and email address.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
