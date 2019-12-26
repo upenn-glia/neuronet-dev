@@ -207,6 +207,11 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
       $form['title']['#access'] = FALSE;
     }
   }
+
+  // Always set the default value of Send Email Notifications checkbox to false.
+  if ($form_id == 'node_job_posting_form' || $form_id == 'node_job_posting_edit_form') {
+    $form['field_send_email_notifications']['widget']['value']['#default_value'] = FALSE;
+  }
 }
 
 /*
