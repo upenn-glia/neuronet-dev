@@ -981,8 +981,21 @@ display:
         title: false
         header: false
         arguments: false
-      title: 'Job History'
-      header: {  }
+      title: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: '<h2>Job History</h2>'
+            format: basic_html
+          plugin_id: text
       arguments:
         field_profile_target_id:
           id: field_profile_target_id
