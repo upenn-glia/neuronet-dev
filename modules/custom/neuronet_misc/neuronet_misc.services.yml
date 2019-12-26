@@ -12,3 +12,7 @@ services:
     class: Drupal\neuronet_misc\Service\CompletedFields
     arguments:
       - '@database'
+  neuronet_misc.job_authorship:
+    class: Drupal\neuronet_misc\Service\JobAuthorship
+    arguments:
+      - '@entity_type.manager'
