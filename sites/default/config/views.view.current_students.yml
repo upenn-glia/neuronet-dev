@@ -1864,7 +1864,6 @@ display:
         options:
           role:
             administrator: administrator
-            deputy_admin: deputy_admin
             current_student: current_student
       tab_options:
         type: tab
