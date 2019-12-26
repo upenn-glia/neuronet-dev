@@ -154,6 +154,10 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
       $form['revision_information']['#access'] = False;
       $form['field_email']['#access'] = False;
     }
+    if (!$user->hasRole('administrator') && !$user->hasRole('deputy_admin')) {
+      $form['field_alumni']['#disabled'] = TRUE;
+      $form['field_alumni']['widget']['value']['#description'] = t('Only an administrator can change alumni status.');
+    }
   }
   if ($form_id == 'user_form') {
     $user = User::load(\Drupal::currentUser()->id());
