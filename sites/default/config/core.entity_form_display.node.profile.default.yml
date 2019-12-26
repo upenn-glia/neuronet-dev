@@ -495,7 +495,24 @@ content:
     weight: 5
     settings:
       display_label: true
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        fe046973-ada6-4e92-8a70-59b3ac7b5778:
+          dependee: field_alumni
+          settings:
+            state: visible
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: profile
     type: boolean_checkbox
     region: content
   field_show_to_students:
