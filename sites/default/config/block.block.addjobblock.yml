@@ -30,7 +30,9 @@ visibility:
   user_role:
     id: user_role
     roles:
+      administrator: administrator
       alumni: alumni
+      deputy_admin: deputy_admin
     negate: false
     context_mapping:
       user: '@user.current_user_context:current_user'

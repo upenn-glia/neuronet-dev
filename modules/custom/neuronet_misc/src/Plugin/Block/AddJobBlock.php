@@ -2,7 +2,9 @@
 
 namespace Drupal\neuronet_misc\Plugin\Block;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Path\AliasManagerInterface;
 use Drupal\Core\Path\CurrentPathStack;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -44,6 +46,20 @@ class AddJobBlock extends BlockBase implements ContainerFactoryPluginInterface {
   protected $routeMatch;
 
   /**
+   * Current User service
+   *
+   * @var AccountInterface
+   */
+  protected $currentUser;
+
+  /**
+   * Entity type manager service
+   *
+   * @var EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * Constructs AddJobBlock
    *
    * @param array $configuration
@@ -52,12 +68,16 @@ class AddJobBlock extends BlockBase implements ContainerFactoryPluginInterface {
    * @param CurrentPathStack $current_path
    * @param AliasManagerInterface $alias_manager
    * @param RouteMatchInterface $route_match
+   * @param AccountInterface $current_user
+   * @param EntityTypeManagerInterface $entity_type_manager
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, CurrentPathStack $current_path, AliasManagerInterface $alias_manager, RouteMatchInterface $route_match) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, CurrentPathStack $current_path, AliasManagerInterface $alias_manager, RouteMatchInterface $route_match, AccountInterface $current_user, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->currentPath = $current_path;
     $this->aliasManager = $alias_manager;
     $this->routeMatch = $route_match;
+    $this->entityTypeManager = $entity_type_manager;
+    $this->currentUser = $this->entityTypeManager->getStorage('user')->load($current_user->id());
   }
 
   /**
@@ -75,7 +95,9 @@ class AddJobBlock extends BlockBase implements ContainerFactoryPluginInterface {
       $plugin_definition,
       $container->get('path.current'),
       $container->get('path.alias_manager'),
-      $container->get('current_route_match')
+      $container->get('current_route_match'),
+      $container->get('current_user'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -94,6 +116,37 @@ class AddJobBlock extends BlockBase implements ContainerFactoryPluginInterface {
     return [
       '#markup' => $link,
     ];
+  }
+
+  /**
+   * Indicates whether the block should be shown.
+   *
+   * Blocks with specific access checking should override this method rather
+   * than access(), in order to avoid repeating the handling of the
+   * $return_as_object argument.
+   *
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   The user session for which to check access.
+   *
+   * @return \Drupal\Core\Access\AccessResult
+   *   The access result.
+   *
+   * @see self::access()
+   */
+  protected function blockAccess(AccountInterface $account) {
+    // If an administrator is viewing the profile, allow access.
+    if ($this->currentUser->hasRole('deputy_admin') || $this->currentUser->hasRole('administrator')) {
+      return AccessResult::allowed();
+    }
+    // If the profile being viewed belongs to the current user, allow, if not, forbid.
+    if (
+      (!$this->currentUser->get('field_profile')->isEmpty()) &&
+      ($node = $this->routeMatch->getParameter('node')) &&
+      ($this->currentUser->get('field_profile')->first()->target_id == $node->id())
+    ) {
+      return AccessResult::allowed();
+    }
+    return AccessResult::forbidden();
   }
 
 }
