@@ -21,6 +21,9 @@ use \Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
 use Drupal\neuronet_misc\Service\CompletedFields;
+use Drupal\user\PrivateTempStoreFactory;
+
+require_once __DIR__ . '/inc/helpers.php';
 
 /**
  * Implements hook_help().
@@ -211,6 +214,7 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
   // Always set the default value of Send Email Notifications checkbox to false.
   if ($form_id == 'node_job_posting_form' || $form_id == 'node_job_posting_edit_form') {
     $form['field_send_email_notifications']['widget']['value']['#default_value'] = FALSE;
+    $form['actions']['submit']['#submit'][] = '_neuronet_misc_redirect_job_posting';
   }
 }
 
@@ -300,6 +304,7 @@ function neuronet_misc_profile_validate(array $form, FormStateInterface &$form_s
 }
 
 function neuronet_misc_node_insert($node) {
+  _neuronet_misc_set_job_posting_temp_store($node);
   if ($node->getType() == 'profile') {
     $email = $node->get('field_email')->getString();
     $name = $node->get('field_first_name')->getString() . ' ' . $node->get('field_last_name')->getString();
@@ -332,6 +337,7 @@ function neuronet_misc_node_insert($node) {
  * Implements hook_node_update()
  */
 function neuronet_misc_node_update(EntityInterface $node) {
+  _neuronet_misc_set_job_posting_temp_store($node);
   // Add alumni role to users associated w/ profiles set to alumni.
   // Remove alumni role from users associated w/ profiles not set to alumni.
   if ($node->getType() == 'profile') {

@@ -84,3 +84,11 @@ neuronet_misc.sign_out:
   route_name: user.logout
   weight: 101
   menu_name: homepage
+
+neuronet_misc.job_posting_email_confirmation:
+  path: '/confirm-job-posting-emails'
+  defaults:
+    _title: 'Confirm: Notification Emails about to be Sent'
+    _form: '\Drupal\neuronet_misc\Form\JobPostingEmailConfirmation'
+  requirements:
+   _permission: 'create job_posting content'

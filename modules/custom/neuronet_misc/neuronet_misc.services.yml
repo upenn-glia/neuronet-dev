@@ -16,3 +16,8 @@ services:
     class: Drupal\neuronet_misc\Service\JobAuthorship
     arguments:
       - '@entity_type.manager'
+  neuronet_misc.job_posting_emails:
+    class: Drupal\neuronet_misc\Service\JobPostingEmails
+    arguments:
+      - '@tempstore.private'
+      - '@entity_type.manager'
