@@ -140,17 +140,20 @@ class JobPostingEmails {
    *
    * - Redirects to the job_posting_redirect_destination from private temp store
    *   & deletes store.
+   * - Sets a success message.
    */
   public static function finishBatch() {
     /** @var PrivateTempStoreFactory $tempstore */
     $tempstore = \Drupal::service('tempstore.private');
     $store = $tempstore->get('neuronet_misc');
     $destination = $store->get('job_posting_redirect_destination') ? $store->get('job_posting_redirect_destination') : '/user';
+    $job = $store->get('job_posting_node');
     $store->delete('job_posting_redirect_destination');
     $store->delete('job_posting_recipients');
     $store->delete('job_posting_node');
     $response = new TrustedRedirectResponse($destination);
     $response->send();
+    \Drupal::messenger()->addStatus(t('An email notification about \'@title\' has been sent to relevant NeuroNet community members.', ['@title' => $job->getTitle()]));
   }
 
   /**

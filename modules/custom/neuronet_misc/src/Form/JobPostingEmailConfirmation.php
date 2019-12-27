@@ -6,7 +6,9 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\TempStore\PrivateTempStore;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
+use Drupal\Core\Url;
 use Drupal\neuronet_misc\Service\JobPostingEmails;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -61,12 +63,23 @@ class JobPostingEmailConfirmation extends FormBase {
    * {@inheritdoc}.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    // Get recipients & job node.
     $recipent_nids = $this->jobPostingEmails->getRecipients();
+    $job = $this->tempStore->get('job_posting_node');
+    // Build form.
     $form['message'] = [
       '#type' => 'markup',
-      '#markup' => '<h3>' . $this->t('You are about to send an email to everyone in the system that meets the following criteria:') . '</h3>',
+      '#markup' => '<h3>' . $this->t('You are about to send an email to everyone in the system that meets the following criteria (@num people):', ['@num' => count($recipent_nids)]) . '</h3>',
     ];
-    $form['submit_button'] = [
+    $form['details'] = [
+      '#type' => 'markup',
+      '#markup' =>
+      '<ul>
+        <li>' . $this->t('Job: @title', ['@title' => $job->getTitle() ]) . '</li>
+        <li>' . $this->t('Career Stages: @stages', ['@stages' => implode(', ', $this->extractStageNames($job))]) . '</li>
+      </ul>',
+    ];
+    $form['actions']['submit_button'] = [
       '#type' => 'submit',
       '#attributes' => [
         'class' => [
@@ -76,7 +89,11 @@ class JobPostingEmailConfirmation extends FormBase {
       ],
       '#value' => $this->t('I Am Sure'),
     ];
-
+    $form['actions']['cancel'] = [
+      '#type' => 'link',
+      '#title' => t('Cancel'),
+      '#url' => Url::fromUserInput($this->tempStore->get('job_posting_redirect_destination')),
+    ];
     return $form;
   }
 
@@ -92,5 +109,18 @@ class JobPostingEmailConfirmation extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->jobPostingEmails->handleConfirmationSubmit();
+  }
+
+  /**
+   * Extract names of career stages
+   *
+   * @param NodeInterface $job
+   * @return array
+   */
+  protected function extractStageNames(NodeInterface $job) {
+    $allowed_stages = $job->get('field_stage')->getFieldDefinition()->getSettings()['allowed_values'];
+    $stage_values = array_column($job->get('field_stage')->getValue(), 'value');
+    $stage_values = array_combine($stage_values, $stage_values);
+    return array_intersect_key($allowed_stages, $stage_values);
   }
 }
