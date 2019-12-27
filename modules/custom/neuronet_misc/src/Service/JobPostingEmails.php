@@ -120,6 +120,7 @@ class JobPostingEmails {
    * - Sets the batch process to send emails.
    */
   public function handleConfirmationSubmit() {
+    $job_node = $this->tempStore->get('job_posting_node');
     $batch = [
       'title' => $this->t('Notifying NeuroNet members of this job opportunity...'),
       'operations' => [],
@@ -128,8 +129,8 @@ class JobPostingEmails {
       'error_message'    => $this->t('An error occurred during processing'),
       'finished' => [get_class($this), 'finishBatch']
     ];
-    foreach ($this->getRecipients() as $nid) {
-      $batch['operations'][] = [[get_class($this), 'sendEmail'],[$nid]];
+    foreach ($this->getRecipients() as $profile_nid) {
+      $batch['operations'][] = [[get_class($this), 'sendEmail'],[$profile_nid, $job_node]];
     }
     batch_set($batch);
   }
@@ -157,10 +158,10 @@ class JobPostingEmails {
    *
    * @param integer $nid
    */
-  public static function sendEmail($nid) {
+  public static function sendEmail($profile_nid, $job_node) {
     // Get user associated with the profile.
     $users = \Drupal::entityTypeManager()->getStorage('user')->loadByProperties([
-      'field_profile' => $nid,
+      'field_profile' => $profile_nid,
     ]);
     // Make sure the user is active & allows emails.
     if (
@@ -168,14 +169,19 @@ class JobPostingEmails {
       (!$user->isBlocked()) &&
       ((int) $user->get('field_job_posting_emails')->value)
     ) {
+      $profile = \Drupal::entityTypeManager()->getStorage('node')->load($profile_nid);
       // Send email.
       /** @var MailManager $mail_manager */
       $mail_manager = \Drupal::service('plugin.manager.mail');
       $params = [
-        'action_values' => [
-          'subject' => 'asdf',
-          'body' => 'stuff body'
-        ]
+        'subject' => t('New Job Post: ', ['@title' => $job_node->getTitle()]),
+        'notification_render_array' => [
+          '#theme' => 'job_posting_notification',
+          '#title' => $job_node->getTitle(),
+          '#first_name' => $profile->get('field_first_name')->value,
+          '#job_url' => $job_node->toUrl()->toString(),
+          '#description' => $job_node->get('field_description')->value,
+        ],
       ];
       $mail_manager->mail('neuronet_misc', 'job_posting_notification', $user->get('mail')->value, $user->getPreferredLangcode(), $params);
     }

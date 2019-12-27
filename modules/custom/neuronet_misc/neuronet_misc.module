@@ -238,6 +238,9 @@ function neuronet_misc_mail_alter(&$message){
   }
 }
 
+/**
+ * Implements hook_mail()
+ */
 function neuronet_misc_mail($key, &$message, $params) {
   // Set HTML Headers
   $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
@@ -257,6 +260,10 @@ function neuronet_misc_mail($key, &$message, $params) {
     }
     $message['subject'] = $subject;
     $message['body'][] = $body;
+  }
+  elseif ($key === 'job_posting_notification') {
+    $message['body'][] = \Drupal::service('renderer')->render($params['notification_render_array']);
+    $message['subject'] = $params['subject'];
   }
   else {
     $message['subject'] = $params['action_values']['subject'];
@@ -442,4 +449,18 @@ function neuronet_misc_module_implements_alter(&$implementations, $hook) {
   }
 }
 
-// comment to test post-receive
+/**
+ * Implements hook_theme()
+ */
+function neuronet_misc_theme($existing, $type, $theme, $path) {
+  return [
+    'job_posting_notification' => [
+      'variables' => [
+        'title' => null,
+        'first_name' => null,
+        'job_url' => null,
+        'description' => null,
+      ],
+    ]
+  ];
+}
