@@ -7,6 +7,12 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\node\NodeInterface;
 use Drupal\neuronet_misc\EntityBatchUpdateCallbackInterface;
 
+/**
+ * Service to set an existing job history item author to be the author of the
+ * profile it's associated with
+ * 
+ * - Used in neuronet_misc_update_8005()
+ */
 class JobAuthorship implements EntityBatchUpdateCallbackInterface {
 
   /**

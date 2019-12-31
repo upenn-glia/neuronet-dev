@@ -2,16 +2,16 @@
 
 namespace Drupal\neuronet_misc\Service;
 
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Core\Mail\MailManager;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
-use Drupal\node\NodeInterface;
-use Drupal\neuronet_misc\EntityBatchUpdateCallbackInterface;
 
+/**
+ * Service to handle sending email notifications of job postings
+ */
 class JobPostingEmails {
 
   use StringTranslationTrait;

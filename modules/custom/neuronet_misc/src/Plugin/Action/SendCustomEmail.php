@@ -17,7 +17,7 @@ use Drupal\Core\Mail\MailManager;
 use Drupal\Core\Database\Connection;
 
 /**
- * Redirects to an entity deletion form.
+ * Action to send a custom email
  *
  * @Action(
  *   id = "send_custom_email",

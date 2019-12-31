@@ -3,6 +3,13 @@
 /**
  * @file
  * Contains neuronet_misc.module.
+ *
+ * - The contents of this file are solely Drupal procedural hooks. Some hooks
+ *   call on helper functions in /inc/helpers.php.
+ * - Drupal hooks are an old approach to "event subscribers": Something happens
+ *   (e.g. a profile is created), and these hooks are fired, allowing for a
+ *   custom response to be written (e.g. a user is converted to an alumni role).
+ * - This is code that glues NeuroNet together.
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -11,17 +18,14 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Entity\EntityInterface;
 use \Drupal\Core\Session\AccountInterface;
 use \Drupal\node\NodeInterface;
-use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Access\AccessResultForbidden;
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
-use \Drupal\node\Entity\Node;
 use \Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\TrustedRedirectResponse;
-use Drupal\Core\Url;
+
 use Drupal\neuronet_misc\Service\CompletedFields;
-use Drupal\user\PrivateTempStoreFactory;
 
 require_once __DIR__ . '/inc/helpers.php';
 
@@ -45,7 +49,7 @@ function neuronet_misc_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_views_pre_render().
  */
 function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
-  // Remove old positions
+  // In alumni view, remove duplicate job positions.
   if($view->id() == 'alumni'){
     $indexes_to_remove = array();
     foreach($view->result as $value){
@@ -69,7 +73,14 @@ function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
       unset($view->result[$index]);
     }
   }
-  // Respond to Send Custom Email action processing in Current Students view.
+  // Respond to Send Custom Email action processing in NeuroNet Manager's people
+  // view.
+  // - Upon completion of the batch process that sends emails from the manager's
+  //   administrative view of people, this logic fires.
+  // - It:
+  //    - Creates a record of the mass email.
+  //    - Sets a message for the manager.
+  //    - Deletes the private key-value store with the batch process data.
   if ($view->id() == 'current_students') {
     $tempstore = \Drupal::service('tempstore.private');
     // Get the store collection.
@@ -113,11 +124,23 @@ function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
   }
 }
 
+/**
+ * Implements hook_preprocess_page()
+ */
 function neuronet_misc_preprocess_page(&$variables /*, RouteMatchInterface $route_match*/){
+  // On every page load, include the styles & scripts necessary for the custom
+  // NeuroNet code.
   $variables['#attached']['library'][] = 'neuronet_misc/neuronet_misc';
 }
 
+/**
+ * Implements hook_node_access()
+ */
 function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  // Control access to editing profiles.
+  // - If a user has an associated profile, and if the profile being edited
+  //   belongs to that user: YES
+  // - If a user is a NeuroNet manager, site administrator, or super user: YES.
   if ($node->getType() == 'profile' && $op == 'update') {
     $user = User::load($account->id());
     if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
@@ -140,6 +163,7 @@ function neuronet_misc_node_access(NodeInterface $node, $op, AccountInterface $a
     }
   }
 }
+
 /**
  * Implements hook_block_access()
  */
@@ -152,7 +176,13 @@ function neuronet_misc_block_access(\Drupal\block\Entity\Block $block, $operatio
     }
   }
 }
-function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function neuronet_misc_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Disable certain profile fields for non-admins.
+  // - If not a site admin:
+  //    - Disable revision information c.
+  //    - Disable email.
+  // - If not an admin AND not a NeuroNet manager:
+  //    - Disable the alumni checkbox.
   if ($form_id == 'node_profile_edit_form') {
     $user = User::load(\Drupal::currentUser()->id());
     if (!$user->hasRole('administrator')) {
@@ -164,6 +194,10 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
       $form['field_alumni']['widget']['value']['#description'] = t('Only an administrator can change alumni status.');
     }
   }
+  // Disable certain user form fields for non-admins.
+  // - If not a site admin:
+  //    - Disable profile reference field.
+  //    - Disable picture field. There's already a picture field in profile.
   if ($form_id == 'user_form') {
     $user = User::load(\Drupal::currentUser()->id());
     if (!$user->hasRole('administrator')) {
@@ -172,15 +206,22 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
       $form['user_picture']['#access'] = False;
     }
   }
+  // For the create profile form (which only admins can access):
+  // - Set a custom validation function (e.g. checks email existence in system).
+  // - Set a custom submit handler (which redirects the manager back to the
+  //   create person form.)
   if ($form_id == 'node_profile_form') {
     $current_path = \Drupal::service('path.current')->getPath();
     $path_args = explode('/', $current_path);
     if ($path_args[2] == 'neuronet'){
-      $form['actions']['submit']['#submit'][] = 'neuronet_misc_profile_submit';
-      $form['#validate'][] = 'neuronet_misc_profile_validate';
+      $form['actions']['submit']['#submit'][] = '_neuronet_misc_profile_submit';
+      $form['#validate'][] = '_neuronet_misc_profile_validate';
     }
   }
-  // Set default values for new Job history item.
+  // Set default values for new Job history item for an alumni.
+  // - Title will be automatically set as a random hash.
+  // - Sets default profile association based on a ?profile= query parameter in
+  //   the URL. Redirects if that query parameter does not exist.
   if ($form_id == 'node_job_form') {
     $form['title']['widget'][0]['value']['#default_value'] = sha1(md5(rand(0,10)));
     if ($profile_id = \Drupal::request()->query->get('profile')) {
@@ -198,7 +239,13 @@ function neuronet_misc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
       }
     }
   }
-  // Set access & default values for a new or existing Job history item.
+  // Disable certain job history item fields for non-admins --> for both
+  // creation & edit forms.
+  // - If not a site admin:
+  //    - Disable title.
+  // - If not a site admin AND not a NeuroNet manager:
+  //    - Disable profile association.
+  //    - Disable last updated. This is set automatically.
   if ($form_id == 'node_job_form' || $form_id == 'node_job_edit_form') {
     $form['field_last_']['widget'][0]['value']['#default_value'] = DrupalDateTime::createFromTimestamp(time());
     $user = User::load(\Drupal::currentUser()->id());
@@ -242,8 +289,9 @@ function neuronet_misc_mail_alter(&$message){
  * Implements hook_mail()
  */
 function neuronet_misc_mail($key, &$message, $params) {
-  // Set HTML Headers
+  // Make sure all emails use HTML Headers. Allows for sleek, rich text emails.
   $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+  // Set values for a custom email created by NeuroNet managers.
   if ($key == 'custom') {
     // Replace first name.
     $subject = $params['subject'];
@@ -261,10 +309,12 @@ function neuronet_misc_mail($key, &$message, $params) {
     $message['subject'] = $subject;
     $message['body'][] = $body;
   }
+  // Set values for a job posting notification.
   elseif ($key === 'job_posting_notification') {
     $message['body'][] = \Drupal::service('renderer')->render($params['notification_render_array']);
     $message['subject'] = $params['subject'];
   }
+  // Set values for any other email.
   else {
     $message['subject'] = $params['action_values']['subject'];
     $message['body'][] = $params['action_values']['body'];
@@ -272,7 +322,13 @@ function neuronet_misc_mail($key, &$message, $params) {
 
 }
 
-function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+/**
+ * Implements hook_entity_update()
+ */
+function neuronet_misc_entity_update(EntityInterface $entity) {
+  // Update profile email whenever a user is updated.
+  // - Note: Profiles are content, whereas users are not. They are different.
+  //   Users have an associated profile.
   if ($entity->getEntityTypeId() == 'user') {
     $user = User::load($entity->id());
     $connection = \Drupal::database();
@@ -285,33 +341,18 @@ function neuronet_misc_entity_update(Drupal\Core\Entity\EntityInterface $entity)
         $node->set('field_email', $new_email);
         $node->save();
       }
-
-      // if email exists:
-        // throw new \Exception(t('Fields are not unique!'));
     }
 
   }
 }
 
-function neuronet_misc_profile_submit(array $form, FormStateInterface &$form_state){
-    $form_state->setRedirect('neuronet_misc.create_person');
-}
-
-function neuronet_misc_profile_validate(array $form, FormStateInterface &$form_state) {
-  $email = $form_state->getValue('field_email');
-  $email = $email[0]['value'];
-  if (user_load_by_mail($email) != FALSE) {
-    $form_state->setErrorByName('field_email', t('That email already exists.'));
-  }
-  $firstname = $form_state->getValue('field_first_name'); $firstname = $firstname[0]['value'];
-  $lastname = $form_state->getValue('field_last_name'); $lastname = $lastname[0]['value'];
-  if (user_load_by_name($firstname . ' ' . $lastname) != FALSE) {
-    $form_state->setErrorByName('field_first_name', t('That combination of first and last names already exists.'));
-  }
-}
-
+/**
+ * Implements hook_node_insert()
+ */
 function neuronet_misc_node_insert($node) {
   _neuronet_misc_set_job_posting_temp_store($node);
+  // Create a new user when a new profile is created.
+  // - Extract email, name, & role from profile & set those as user values.
   if ($node->getType() == 'profile') {
     $email = $node->get('field_email')->getString();
     $name = $node->get('field_first_name')->getString() . ' ' . $node->get('field_last_name')->getString();
@@ -338,8 +379,14 @@ function neuronet_misc_node_insert($node) {
     $user->set('preferred_admin_langcode', $language_interface->getId());
     // Save.
     $user->save();
+
+    // Set completed fields.
+    /** @var CompletedFields $completed_fields_service */
+    $completed_fields_service = \Drupal::service('neuronet_misc.completed_fields');
+    $completed_fields_service->saveCompletedFields($node);
   }
 }
+
 /**
  * Implements hook_node_update()
  */
@@ -393,6 +440,7 @@ function neuronet_misc_user_login(AccountInterface $account) {
  * Implements hook_views_data().
  */
 function neuronet_misc_views_data() {
+  // Expose SQL table data to Views for Completed Fields.
   $data = [];
   $data['completed_profile_fields']['table']['group'] = t('Completed Fields');
   $data['completed_profile_fields']['table']['base'] = [
@@ -430,6 +478,8 @@ function neuronet_misc_views_data() {
  */
 function neuronet_misc_js_settings_alter(&$settings, AttachedAssetsInterface $assets) {
   // Add path prefix if the baseUrl is not empty.
+  // - This is because this path prefix acts weird when the site is on a
+  //   subdomain (e.g. /neuronet is the homepage).
   $base_url = \Drupal::requestStack()->getMasterRequest()->getBaseUrl();
   if (!empty($settings['path']) && empty($settings['path']['pathPrefix']) && !empty(ltrim($base_url, '/'))) {
     $settings['path']['pathPrefix'] = substr(ltrim($base_url, '/'), -1) == '/' ? ltrim($base_url, '/') : ltrim($base_url, '/') . '/';
@@ -454,6 +504,12 @@ function neuronet_misc_module_implements_alter(&$implementations, $hook) {
  */
 function neuronet_misc_theme($existing, $type, $theme, $path) {
   return [
+    // Register the job posting notification theme hook.
+    // - This allows for the job-posting-notification.html.twig file to be used
+    //   as the HTML template for the job notification email.
+    // - This also enables
+    //   \Drupal::service('renderer')->render($params['notification_render_array'])
+    //   to work, because it's '#theme' is set to 'job_posting_notification'.
     'job_posting_notification' => [
       'variables' => [
         'title' => null,

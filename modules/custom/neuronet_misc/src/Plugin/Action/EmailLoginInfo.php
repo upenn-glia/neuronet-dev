@@ -10,7 +10,7 @@ use \Drupal\user\Entity\User;
 
 
 /**
- * Push term in front.
+ * Action to email login information.
  *
  * @Action(
  *   id = "email_login_info",

@@ -10,7 +10,7 @@ use \Drupal\user\Entity\User;
 
 
 /**
- * Push term in front.
+ * Action to send welcome email.
  *
  * @Action(
  *   id = "welcome_email",

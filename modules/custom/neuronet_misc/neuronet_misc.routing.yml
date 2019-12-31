@@ -1,11 +1,3 @@
-neuronet_misc.content:
-  path: '/hello'
-  defaults:
-    _controller: '\Drupal\neuronet_misc\Controller\HelloController::content'
-    _title: 'Hello World'
-  requirements:
-    _permission: 'access content'
-
 neuronet_misc.account:
   path: '/node/{node}/account'
   defaults:
@@ -50,22 +42,6 @@ neuronet_misc.taxonomy_manager:
   path: '/admin/neuronet/taxonomy-manager'
   defaults:
     _controller: '\Drupal\neuronet_misc\Controller\RedirectTaxonomyController::content'
-  requirements:
-    _permission: 'access neuronet admin'
-
-neuronet_misc.email_login:
-  path: '/email-login-link-single/{node}'
-  defaults:
-    _controller: '\Drupal\neuronet_misc\Controller\EmailController::sendIndividualEmail'
-    _title: 'Email Login Callback'
-  requirements:
-    _permission: 'access neuronet admin'
-
-neuronet_misc.email_login_group:
-  path: '/email-login-link-group'
-  defaults:
-    _controller: '\Drupal\neuronet_misc\Controller\EmailController::sendGroupEmail'
-    _title: 'Email Group Login Callback'
   requirements:
     _permission: 'access neuronet admin'
 

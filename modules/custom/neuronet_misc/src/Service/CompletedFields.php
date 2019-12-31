@@ -7,6 +7,9 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\NodeInterface;
 use Drupal\neuronet_misc\EntityBatchUpdateCallbackInterface;
 
+/**
+ * Service to calculate and save completed fields for a profile
+ */
 class CompletedFields implements EntityBatchUpdateCallbackInterface {
 
   /**

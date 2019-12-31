@@ -7,6 +7,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\Query\QueryFactoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
+/**
+ * Service that allows update hooks to access the batch system
+ */
 class EntityBatchUpdate {
 
   use StringTranslationTrait;

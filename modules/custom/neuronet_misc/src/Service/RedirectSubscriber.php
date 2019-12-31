@@ -7,6 +7,13 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
+/**
+ * Service to redirect from user page to associated profile page
+ *
+ * - Enforces non-admin access to user page.
+ * - This is because in NeuroNet, all user information must be viewed on a
+ *   profile, not user page. Profiles had to exist before user accounts.
+ */
 class RedirectSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
