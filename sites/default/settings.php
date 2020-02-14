@@ -32,6 +32,8 @@ if (file_exists($med_settings) && !file_exists($local_settings)) {
   include $med_settings;
 }
 
+unset($base_url);
+
 /**
  * If on the med (production) server, configure redirects
  * @see https://pantheon.io/docs/redirects
@@ -52,6 +54,7 @@ if (defined('MED_SERVER') && constant('MED_SERVER') && php_sapi_name() !== 'cli'
   // REMOVE AFTER TRANSITION TO NEW SITE:
   if ($_SERVER['HTTP_HOST'] === 'hosting.med.upenn.edu') {
     $requires_redirect = FALSE;
+    $base_url = 'https://hosting.med.upenn.edu/neuronet';
   }
 
   if ($requires_redirect) {
