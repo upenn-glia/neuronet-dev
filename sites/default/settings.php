@@ -31,3 +31,44 @@ $med_settings = __DIR__ . "/settings.med.php";
 if (file_exists($med_settings) && !file_exists($local_settings)) {
   include $med_settings;
 }
+
+unset($base_url);
+
+/**
+ * If on the med (production) server, configure redirects
+ * @see https://pantheon.io/docs/redirects
+ */
+if (defined('MED_SERVER') && constant('MED_SERVER') && php_sapi_name() !== 'cli') {
+  $primary_domain = 'www.neuronetupenn.org';
+  $requires_redirect = FALSE;
+
+  if ($_SERVER['HTTP_HOST'] !== $primary_domain) {
+    $requires_redirect = TRUE;
+  }
+
+  if (empty($_SERVER['HTTPS'] || $_SERVER['HTTPS'] === 'off')
+      && $_SERVER['SERVER_PORT'] === 80) {
+    $requires_redirect = TRUE;
+  }
+
+  // REMOVE AFTER TRANSITION TO NEW SITE:
+  if ($_SERVER['HTTP_HOST'] === 'hosting.med.upenn.edu') {
+    $requires_redirect = FALSE;
+    $base_url = 'https://hosting.med.upenn.edu/neuronet';
+  }
+
+  if ($requires_redirect) {
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: https://' . $primary_domain . $_SERVER['REQUEST_URI']);
+    exit();
+  }
+
+  // Drupal 8 Trusted Host Settings
+  if (is_array($settings)) {
+    $settings['trusted_host_patterns'] = array(
+      '^' . preg_quote($primary_domain) . '$'
+      // REMOVE AFTER TRANSITION TO NEW SITE:
+      , '^hosting\.med\.upenn\.edu$'
+    );
+  }
+}
