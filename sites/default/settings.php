@@ -42,21 +42,24 @@ if (defined('MED_SERVER') && constant('MED_SERVER') && php_sapi_name() !== 'cli'
 
   if ($_SERVER['HTTP_HOST'] !== $primary_domain) {
     $requires_redirect = TRUE;
+    $redirect_path = $_SERVER['REQUEST_URI'];
   }
 
   if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off'
       && $_SERVER['SERVER_PORT'] === 80) {
     $requires_redirect = TRUE;
+    $redirect_path = $_SERVER['REQUEST_URI'];
   }
 
   // REMOVE AFTER TRANSITION TO NEW SITE:
   if ($_SERVER['HTTP_HOST'] === 'hosting.med.upenn.edu') {
     $requires_redirect = TRUE;
+    $redirect_path = preg_replace('^/neuronet', '', $_SERVER['REQUEST_URI']);
   }
 
   if ($requires_redirect) {
     header('HTTP/1.0 301 Moved Permanently');
-    header('Location: https://' . $primary_domain . $_SERVER['REQUEST_URI']);
+    header('Location: https://' . $primary_domain . $redirect_path);
     exit();
   }
 
