@@ -46,7 +46,7 @@ if (defined('MED_SERVER') && constant('MED_SERVER') && php_sapi_name() !== 'cli'
     $requires_redirect = TRUE;
   }
 
-  if (empty($_SERVER['HTTPS'] || $_SERVER['HTTPS'] === 'off')
+  if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off'
       && $_SERVER['SERVER_PORT'] === 80) {
     $requires_redirect = TRUE;
   }
