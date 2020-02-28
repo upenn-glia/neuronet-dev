@@ -32,8 +32,6 @@ if (file_exists($med_settings) && !file_exists($local_settings)) {
   include $med_settings;
 }
 
-unset($base_url);
-
 /**
  * If on the med (production) server, configure redirects
  * @see https://pantheon.io/docs/redirects
