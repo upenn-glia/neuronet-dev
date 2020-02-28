@@ -51,8 +51,7 @@ if (defined('MED_SERVER') && constant('MED_SERVER') && php_sapi_name() !== 'cli'
 
   // REMOVE AFTER TRANSITION TO NEW SITE:
   if ($_SERVER['HTTP_HOST'] === 'hosting.med.upenn.edu') {
-    $requires_redirect = FALSE;
-    $base_url = 'https://hosting.med.upenn.edu/neuronet';
+    $requires_redirect = TRUE;
   }
 
   if ($requires_redirect) {
