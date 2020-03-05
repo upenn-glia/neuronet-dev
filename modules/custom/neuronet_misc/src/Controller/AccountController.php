@@ -43,24 +43,27 @@ class AccountController extends ControllerBase {
     // parameters from the route and/or request as needed.
     //if node id is the same as the entity reference in the user
     $user = User::load($account->id());
-    $access = false;
-    if (!$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id) {
-      $access = true;
+    $entities = \Drupal::entityTypeManager()->getStorage('user')->loadByProperties([
+      'field_profile' => $node->id(),
+    ]);
+
+    // Viewing some users requires a higher role
+    $viewing_admin = FALSE;
+    $viewing_user1 = FALSE;
+    if (!empty($entities)) {
+      $viewed_user = reset($entities);
+      $viewing_admin = $viewed_user->hasRole('administrator');
+      $viewing_user1 = $viewed_user->id() === 1;
     }
-    elseif ($user->hasRole('deputy_admin')) {
-      $entities = \Drupal::entityTypeManager()->getStorage('user')->loadByProperties([
-        'field_profile' => $node->id(),
-      ]);
-      if (!empty($entities)) {
-        $viewed_user = reset($entities);
-        if ($viewed_user->id() !== 1 && !$viewed_user->hasRole('administrator')) {
-          $access = true;
-        }
-      }
-    }
-    elseif ($user->id() == 1 || ($user->hasRole('administrator') && $viewed_user->id() !== 1)) {
-      $access = true;
-    }
+
+    // Ways access may be allowed
+    $viewing_self = !$user->get('field_profile')->isEmpty() && $node->id() == $user->get('field_profile')->target_id;
+    $allowed_deputy = $user->hasRole('deputy_admin') && !$viewing_admin && !$viewing_user1;
+    $allowed_admin = $user->hasRole('administrator') && !$viewing_user1;
+    $allowed_user1 = $user->id() === 1;
+
+    $access = $viewing_self || $allowed_deputy || $allowed_admin || $allowed_user1;
+
     return AccessResult::allowedIf($account->hasPermission('access content') && $access);
   }
 }
