@@ -95,15 +95,11 @@ display:
       style:
         type: views_bootstrap_grid
         options:
-          grouping:
-            -
-              field: field_matriculation_year
-              rendered: false
-              rendered_strip: true
+          grouping: {  }
           row_class: ''
           default_row_class: true
           alignment: horizontal
-          columns: '4'
+          columns: '999'
           col_xs: col-xs-12
           col_sm: col-sm-6
           col_md: col-md-4
