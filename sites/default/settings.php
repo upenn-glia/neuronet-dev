@@ -51,12 +51,6 @@ if (defined('MED_SERVER') && constant('MED_SERVER') && php_sapi_name() !== 'cli'
     $redirect_path = $_SERVER['REQUEST_URI'];
   }
 
-  // REMOVE AFTER TRANSITION TO NEW SITE:
-  if ($_SERVER['HTTP_HOST'] === 'hosting.med.upenn.edu') {
-    $requires_redirect = TRUE;
-    $redirect_path = preg_replace('/^\/neuronet/', '', $_SERVER['REQUEST_URI']);
-  }
-
   if ($requires_redirect) {
     header('HTTP/1.0 301 Moved Permanently');
     header('Location: https://' . $primary_domain . $redirect_path);
@@ -65,10 +59,6 @@ if (defined('MED_SERVER') && constant('MED_SERVER') && php_sapi_name() !== 'cli'
 
   // Drupal 8 Trusted Host Settings
   if (is_array($settings)) {
-    $settings['trusted_host_patterns'] = array(
-      '^' . preg_quote($primary_domain) . '$'
-      // REMOVE AFTER TRANSITION TO NEW SITE:
-      , '^hosting\.med\.upenn\.edu$'
-    );
+    $settings['trusted_host_patterns'] = array('^' . preg_quote($primary_domain) . '$');
   }
 }
