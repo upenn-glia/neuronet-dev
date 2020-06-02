@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "664244bb73b6a21cd1e044e2a3eb4f8a",
+    "content-hash": "78c1676c8c0699088d949281313e3f50",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1855,6 +1855,64 @@
             }
         },
         {
+            "name": "drupal/bootstrap",
+            "version": "3.21.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/bootstrap.git",
+                "reference": "8.x-3.21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/bootstrap-8.x-3.21.zip",
+                "reference": "8.x-3.21",
+                "shasum": "e431093eb4f64712b02e691660a85cfa4fb49c88"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.21",
+                    "datestamp": "1574427108",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Carver (markcarver)",
+                    "homepage": "https://www.drupal.org/u/markcarver",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "John McCormick (neardark)",
+                    "homepage": "https://www.drupal.org/u/neardark",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "Fabiano Sant'Ana (wundo)",
+                    "homepage": "https://www.drupal.org/u/wundo",
+                    "role": "Co-maintainer"
+                }
+            ],
+            "description": "Built to use Bootstrap, a sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+            "homepage": "https://www.drupal.org/project/bootstrap",
+            "support": {
+                "source": "http://cgit.drupalcode.org/bootstrap",
+                "docs": "https://drupal-bootstrap.org",
+                "issues": "https://www.drupal.org/project/issues/bootstrap",
+                "irc": "irc://irc.freenode.org/drupal-bootstrap"
+            }
+        },
+        {
             "name": "drupal/bootstrap_layouts",
             "version": "5.1.0",
             "source": {
@@ -2640,6 +2698,60 @@
             }
         },
         {
+            "name": "drupal/druadmin_lte_theme",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/druadmin_lte_theme.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/druadmin_lte_theme-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "8696e60c875cc7c8f17528b80eb432a85115f985"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1519508893",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "3ssom",
+                    "homepage": "https://www.drupal.org/user/758014"
+                },
+                {
+                    "name": "mhmd",
+                    "homepage": "https://www.drupal.org/user/1926104"
+                },
+                {
+                    "name": "nahedh",
+                    "homepage": "https://www.drupal.org/user/999456"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/druadmin_lte_theme",
+            "support": {
+                "source": "https://git.drupalcode.org/project/druadmin_lte_theme"
+            }
+        },
+        {
             "name": "drupal/ds",
             "version": "3.6.0",
             "source": {
@@ -2707,6 +2819,53 @@
                 "source": "http://git.drupal.org/project/ds.git",
                 "issues": "https://www.drupal.org/project/issues/ds",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/eleven",
+            "version": "1.0.0-beta5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/eleven.git",
+                "reference": "8.x-1.0-beta5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/eleven-8.x-1.0-beta5.zip",
+                "reference": "8.x-1.0-beta5",
+                "shasum": "0d24941907a37d748c2aad72f63ebe529889d6d6"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta5",
+                    "datestamp": "1519242184",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "mortendk",
+                    "homepage": "https://www.drupal.org/user/65676"
+                }
+            ],
+            "description": "Admin Theme that goes to 11",
+            "homepage": "https://www.drupal.org/project/eleven",
+            "support": {
+                "source": "https://git.drupalcode.org/project/eleven"
             }
         },
         {
@@ -3319,6 +3478,65 @@
             }
         },
         {
+            "name": "drupal/material_admin",
+            "version": "1.0.0-alpha7",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/material_admin.git",
+                "reference": "8.x-1.0-alpha7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/material_admin-8.x-1.0-alpha7.zip",
+                "reference": "8.x-1.0-alpha7",
+                "shasum": "58943c015c315559f820ca4ec4ce1a5d9bdbf243"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha7",
+                    "datestamp": "1543440180",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Bcwald",
+                    "homepage": "https://www.drupal.org/user/215794"
+                },
+                {
+                    "name": "e0ipso",
+                    "homepage": "https://www.drupal.org/user/550110"
+                },
+                {
+                    "name": "rlnorthcutt",
+                    "homepage": "https://www.drupal.org/user/116893"
+                },
+                {
+                    "name": "samuel.mortenson",
+                    "homepage": "https://www.drupal.org/user/2582268"
+                }
+            ],
+            "description": "Material Design Admin Theme",
+            "homepage": "https://www.drupal.org/project/material_admin",
+            "support": {
+                "source": "https://git.drupalcode.org/project/material_admin"
+            }
+        },
+        {
             "name": "drupal/mimemail",
             "version": "1.0.0-alpha2",
             "source": {
@@ -3414,8 +3632,7 @@
             "homepage": "https://www.drupal.org/project/multiple_selects",
             "support": {
                 "source": "https://git.drupalcode.org/project/multiple_selects"
-            },
-            "time": "2020-05-04T14:33:04+00:00"
+            }
         },
         {
             "name": "drupal/node_view_permissions",
