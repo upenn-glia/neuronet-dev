@@ -3,7 +3,7 @@
 /*
  * This file is part of Psy Shell.
  *
- * (c) 2012-2018 Justin Hileman
+ * (c) 2012-2020 Justin Hileman
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -18,20 +18,22 @@ use Psy\CodeCleaner\AbstractClassPass;
 use Psy\CodeCleaner\AssignThisVariablePass;
 use Psy\CodeCleaner\CalledClassPass;
 use Psy\CodeCleaner\CallTimePassByReferencePass;
+use Psy\CodeCleaner\EmptyArrayDimFetchPass;
 use Psy\CodeCleaner\ExitPass;
 use Psy\CodeCleaner\FinalClassPass;
 use Psy\CodeCleaner\FunctionContextPass;
 use Psy\CodeCleaner\FunctionReturnInWriteContextPass;
 use Psy\CodeCleaner\ImplicitReturnPass;
 use Psy\CodeCleaner\InstanceOfPass;
+use Psy\CodeCleaner\LabelContextPass;
 use Psy\CodeCleaner\LeavePsyshAlonePass;
-use Psy\CodeCleaner\LegacyEmptyPass;
 use Psy\CodeCleaner\ListPass;
 use Psy\CodeCleaner\LoopContextPass;
 use Psy\CodeCleaner\MagicConstantsPass;
 use Psy\CodeCleaner\NamespacePass;
 use Psy\CodeCleaner\PassableByReferencePass;
 use Psy\CodeCleaner\RequirePass;
+use Psy\CodeCleaner\ReturnTypePass;
 use Psy\CodeCleaner\StrictTypesPass;
 use Psy\CodeCleaner\UseStatementPass;
 use Psy\CodeCleaner\ValidClassNamePass;
@@ -54,9 +56,9 @@ class CodeCleaner
     /**
      * CodeCleaner constructor.
      *
-     * @param Parser        $parser    A PhpParser Parser instance. One will be created if not explicitly supplied
-     * @param Printer       $printer   A PhpParser Printer instance. One will be created if not explicitly supplied
-     * @param NodeTraverser $traverser A PhpParser NodeTraverser instance. One will be created if not explicitly supplied
+     * @param Parser|null        $parser    A PhpParser Parser instance. One will be created if not explicitly supplied
+     * @param Printer|null       $printer   A PhpParser Printer instance. One will be created if not explicitly supplied
+     * @param NodeTraverser|null $traverser A PhpParser NodeTraverser instance. One will be created if not explicitly supplied
      */
     public function __construct(Parser $parser = null, Printer $printer = null, NodeTraverser $traverser = null)
     {
@@ -98,11 +100,13 @@ class CodeCleaner
             new FunctionContextPass(),
             new FunctionReturnInWriteContextPass(),
             new InstanceOfPass(),
+            new LabelContextPass(),
             new LeavePsyshAlonePass(),
-            new LegacyEmptyPass(),
             new ListPass(),
             new LoopContextPass(),
             new PassableByReferencePass(),
+            new ReturnTypePass(),
+            new EmptyArrayDimFetchPass(),
             new ValidConstructorPass(),
 
             // Rewriting shenanigans
@@ -138,7 +142,7 @@ class CodeCleaner
         }
 
         try {
-            $code = @file_get_contents($file);
+            $code = @\file_get_contents($file);
             if (!$code) {
                 return;
             }
@@ -169,15 +173,15 @@ class CodeCleaner
      */
     private static function getDebugFile()
     {
-        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        $trace = \debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 
-        foreach (array_reverse($trace) as $stackFrame) {
+        foreach (\array_reverse($trace) as $stackFrame) {
             if (!self::isDebugCall($stackFrame)) {
                 continue;
             }
 
-            if (preg_match('/eval\(/', $stackFrame['file'])) {
-                preg_match_all('/([^\(]+)\((\d+)/', $stackFrame['file'], $matches);
+            if (\preg_match('/eval\(/', $stackFrame['file'])) {
+                \preg_match_all('/([^\(]+)\((\d+)/', $stackFrame['file'], $matches);
 
                 return $matches[1][0];
             }
@@ -198,8 +202,8 @@ class CodeCleaner
         $class    = isset($stackFrame['class']) ? $stackFrame['class'] : null;
         $function = isset($stackFrame['function']) ? $stackFrame['function'] : null;
 
-        return ($class === null && $function === 'Psy\debug') ||
-            ($class === 'Psy\Shell' && $function === 'debug');
+        return ($class === null && $function === 'Psy\\debug') ||
+            ($class === Shell::class && $function === 'debug');
     }
 
     /**
@@ -214,7 +218,7 @@ class CodeCleaner
      */
     public function clean(array $codeLines, $requireSemicolons = false)
     {
-        $stmts = $this->parse('<?php ' . implode(PHP_EOL, $codeLines) . PHP_EOL, $requireSemicolons);
+        $stmts = $this->parse('<?php ' . \implode(PHP_EOL, $codeLines) . PHP_EOL, $requireSemicolons);
         if ($stmts === false) {
             return false;
         }
@@ -223,13 +227,13 @@ class CodeCleaner
         $stmts = $this->traverser->traverse($stmts);
 
         // Work around https://github.com/nikic/PHP-Parser/issues/399
-        $oldLocale = setlocale(LC_NUMERIC, 0);
-        setlocale(LC_NUMERIC, 'C');
+        $oldLocale = \setlocale(LC_NUMERIC, 0);
+        \setlocale(LC_NUMERIC, 'C');
 
         $code = $this->printer->prettyPrint($stmts);
 
         // Now put the locale back
-        setlocale(LC_NUMERIC, $oldLocale);
+        \setlocale(LC_NUMERIC, $oldLocale);
 
         return $code;
     }
@@ -237,9 +241,9 @@ class CodeCleaner
     /**
      * Set the current local namespace.
      *
-     * @param null|array $namespace (default: null)
+     * @param array|null $namespace (default: null)
      *
-     * @return null|array
+     * @return array|null
      */
     public function setNamespace(array $namespace = null)
     {
@@ -249,7 +253,7 @@ class CodeCleaner
     /**
      * Get the current local namespace.
      *
-     * @return null|array
+     * @return array|null
      */
     public function getNamespace()
     {
@@ -307,7 +311,7 @@ class CodeCleaner
     {
         $msg = $e->getRawMessage();
 
-        return ($msg === 'Unexpected token EOF') || (strpos($msg, 'Syntax error, unexpected EOF') !== false);
+        return ($msg === 'Unexpected token EOF') || (\strpos($msg, 'Syntax error, unexpected EOF') !== false);
     }
 
     /**
@@ -344,6 +348,6 @@ class CodeCleaner
 
     private function parseErrorIsTrailingComma(\PhpParser\Error $e, $code)
     {
-        return ($e->getRawMessage() === 'A trailing comma is not allowed here') && (substr(rtrim($code), -1) === ',');
+        return ($e->getRawMessage() === 'A trailing comma is not allowed here') && (\substr(\rtrim($code), -1) === ',');
     }
 }
