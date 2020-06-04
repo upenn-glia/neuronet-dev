@@ -1,10 +1,22 @@
 uuid: 61e10abd-9498-40e6-a99a-addee25dfde1
 langcode: en
 status: true
-dependencies: {  }
-label: 'Jobs Import'
+dependencies:
+  config:
+    - field.field.node.job.field_department
+    - field.field.node.job.field_institution
+    - field.field.node.job.field_job_term
+    - field.field.node.job.field_job_type
+    - field.field.node.job.field_last_
+    - field.field.node.job.field_profile
+    - field.field.node.job.field_start_date
+    - node.type.job
+  module:
+    - node
 id: jobs_import
+label: 'Jobs Import'
 description: ''
+help: null
 import_period: -1
 fetcher: upload
 fetcher_configuration:
@@ -13,7 +25,7 @@ fetcher_configuration:
 parser: csv
 parser_configuration:
   delimiter: ','
-  no_headers: 1
+  no_headers: true
   line_limit: 100
 processor: 'entity:node'
 processor_configuration:
@@ -25,6 +37,8 @@ processor_configuration:
   skip_hash_check: false
   values:
     type: job
+  update_non_existent: _keep
+  langcode: en
 custom_sources:
   11:
     label: '11'

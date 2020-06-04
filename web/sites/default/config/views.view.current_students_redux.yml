@@ -2329,30 +2329,18 @@ display:
           clear_on_exposed: false
           action_title: Action
           selected_actions:
-            email_login_info: email_login_info
-            pass_reset: pass_reset
-            welcome_email: welcome_email
-            node_assign_owner_action: 0
-            node_unpromote_action: 0
-            node_promote_action: 0
-            node_publish_action: 0
-            node_save_action: 0
-            node_make_sticky_action: 0
-            node_unpublish_by_keyword_action: 0
-            node_unpublish_action: 0
-            node_make_unsticky_action: 0
-            views_bulk_operations_delete_entity: 0
-            pathauto_update_alias: 0
-            'entity:publish_action:node': 0
-            'entity:save_action:node': 0
-            'entity:unpublish_action:node': 0
-          preconfiguration:
-            email_login_info:
-              label_override: 'Send special welcome to beta testers'
-            pass_reset:
-              label_override: ''
-            welcome_email:
-              label_override: 'Send Welcome Email'
+            -
+              action_id: email_login_info
+              preconfiguration:
+                label_override: 'Send special welcome to beta testers'
+            -
+              action_id: pass_reset
+              preconfiguration:
+                label_override: ''
+            -
+              action_id: welcome_email
+              preconfiguration:
+                label_override: 'Send Welcome Email'
           plugin_id: views_bulk_operations_bulk_form
       style:
         type: table

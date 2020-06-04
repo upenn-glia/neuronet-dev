@@ -1,10 +1,21 @@
 uuid: 075fd3d5-cbcd-4b2b-84a6-b085d6accea2
 langcode: en
 status: true
-dependencies: {  }
-label: 'Alumnus Profile Import'
+dependencies:
+  config:
+    - field.field.node.profile.field_degree
+    - field.field.node.profile.field_entry_term
+    - field.field.node.profile.field_exit_term
+    - field.field.node.profile.field_first_name
+    - field.field.node.profile.field_grad_group
+    - field.field.node.profile.field_last_name
+    - node.type.profile
+  module:
+    - node
 id: alumnus_profile_import
+label: 'Alumnus Profile Import'
 description: ''
+help: null
 import_period: -1
 fetcher: upload
 fetcher_configuration:
@@ -13,7 +24,7 @@ fetcher_configuration:
 parser: csv
 parser_configuration:
   delimiter: ','
-  no_headers: 1
+  no_headers: true
   line_limit: 100
 processor: 'entity:node'
 processor_configuration:
@@ -25,6 +36,8 @@ processor_configuration:
   skip_hash_check: false
   values:
     type: profile
+  update_non_existent: _keep
+  langcode: en
 custom_sources:
   '':
     label: ''
