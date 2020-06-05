@@ -65,3 +65,8 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+
+# Docksal #
+###########
+docksal-local.env
+docksal-local.yml
