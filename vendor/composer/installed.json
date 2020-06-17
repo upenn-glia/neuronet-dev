@@ -55,31 +55,34 @@
     },
     {
         "name": "composer/installers",
-        "version": "v1.7.0",
-        "version_normalized": "1.7.0.0",
+        "version": "v1.9.0",
+        "version_normalized": "1.9.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "141b272484481432cda342727a427dc1e206bfa0"
+            "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/141b272484481432cda342727a427dc1e206bfa0",
-            "reference": "141b272484481432cda342727a427dc1e206bfa0",
+            "url": "https://api.github.com/repos/composer/installers/zipball/b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+            "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
             "shasum": ""
         },
         "require": {
-            "composer-plugin-api": "^1.0"
+            "composer-plugin-api": "^1.0 || ^2.0"
         },
         "replace": {
             "roundcube/plugin-installer": "*",
             "shama/baton": "*"
         },
         "require-dev": {
-            "composer/composer": "1.0.*@dev",
-            "phpunit/phpunit": "^4.8.36"
+            "composer/composer": "1.6.* || 2.0.*@dev",
+            "composer/semver": "1.0.* || 2.0.*@dev",
+            "phpunit/phpunit": "^4.8.36",
+            "sebastian/comparator": "^1.2.4",
+            "symfony/process": "^2.3"
         },
-        "time": "2019-08-12T15:00:31+00:00",
+        "time": "2020-04-07T06:57:05+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Composer\\Installers\\Plugin",
@@ -115,6 +118,7 @@
             "Kanboard",
             "Lan Management System",
             "MODX Evo",
+            "MantisBT",
             "Mautic",
             "Maya",
             "OXID",
@@ -169,12 +173,23 @@
             "shopware",
             "silverstripe",
             "sydes",
+            "sylius",
             "symfony",
             "typo3",
             "wordpress",
             "yawik",
             "zend",
             "zikula"
+        ],
+        "funding": [
+            {
+                "url": "https://packagist.com",
+                "type": "custom"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                "type": "tidelift"
+            }
         ]
     },
     {
@@ -660,17 +675,17 @@
     },
     {
         "name": "drupal/core",
-        "version": "8.8.1",
-        "version_normalized": "8.8.1.0",
+        "version": "8.8.8",
+        "version_normalized": "8.8.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core.git",
-            "reference": "d339279f4c4b89477e0f4a8b775eb5dcb86b3087"
+            "reference": "c067109fcdf86184a7c75081fd8f1d81e4e23f56"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core/zipball/d339279f4c4b89477e0f4a8b775eb5dcb86b3087",
-            "reference": "d339279f4c4b89477e0f4a8b775eb5dcb86b3087",
+            "url": "https://api.github.com/repos/drupal/core/zipball/c067109fcdf86184a7c75081fd8f1d81e4e23f56",
+            "reference": "c067109fcdf86184a7c75081fd8f1d81e4e23f56",
             "shasum": ""
         },
         "require": {
@@ -703,7 +718,7 @@
             "symfony/console": "~3.4.0",
             "symfony/dependency-injection": "~3.4.26",
             "symfony/event-dispatcher": "~3.4.0",
-            "symfony/http-foundation": "~3.4.27",
+            "symfony/http-foundation": "~3.4.35",
             "symfony/http-kernel": "~3.4.14",
             "symfony/polyfill-iconv": "^1.0",
             "symfony/process": "~3.4.0",
@@ -836,7 +851,6 @@
             "drupal/workflows": "self.version",
             "drupal/workspaces": "self.version"
         },
-        "time": "2019-12-18T10:34:03+00:00",
         "type": "drupal-core",
         "extra": {
             "drupal-scaffold": {
@@ -884,7 +898,14 @@
                 "lib/Drupal/Core/Site/Settings.php"
             ]
         },
-        "notification-url": "https://packagist.org/downloads/",
+        "scripts": {
+            "pre-autoload-dump": [
+                "Drupal\\Core\\Composer\\Composer::preAutoloadDump"
+            ],
+            "post-autoload-dump": [
+                "Drupal\\Core\\Composer\\Composer::ensureHtaccess"
+            ]
+        },
         "license": [
             "GPL-2.0-or-later"
         ],
@@ -892,17 +913,17 @@
     },
     {
         "name": "drupal/core-composer-scaffold",
-        "version": "8.8.1",
-        "version_normalized": "8.8.1.0",
+        "version": "8.8.8",
+        "version_normalized": "8.8.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-composer-scaffold.git",
-            "reference": "dca4b123a638d78bf77719632993e920de6cc426"
+            "reference": "4825cb5234c28dff79ad298db582dfb23ff4ca59"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core-composer-scaffold/zipball/dca4b123a638d78bf77719632993e920de6cc426",
-            "reference": "dca4b123a638d78bf77719632993e920de6cc426",
+            "url": "https://api.github.com/repos/drupal/core-composer-scaffold/zipball/4825cb5234c28dff79ad298db582dfb23ff4ca59",
+            "reference": "4825cb5234c28dff79ad298db582dfb23ff4ca59",
             "shasum": ""
         },
         "require": {
@@ -915,7 +936,6 @@
         "require-dev": {
             "composer/composer": "^1.8@stable"
         },
-        "time": "2019-10-09T02:55:24+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Drupal\\Composer\\Plugin\\Scaffold\\Plugin",
@@ -929,7 +949,6 @@
                 "Drupal\\Composer\\Plugin\\Scaffold\\": ""
             }
         },
-        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "GPL-2.0-or-later"
         ],
@@ -941,24 +960,23 @@
     },
     {
         "name": "drupal/core-project-message",
-        "version": "8.8.1",
-        "version_normalized": "8.8.1.0",
+        "version": "8.8.8",
+        "version_normalized": "8.8.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-project-message.git",
-            "reference": "418988513bafe533d6731650b0067b839eb61fc2"
+            "reference": "10be18c6a401de8e243777de6a74cb45a7ecacad"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core-project-message/zipball/418988513bafe533d6731650b0067b839eb61fc2",
-            "reference": "418988513bafe533d6731650b0067b839eb61fc2",
+            "url": "https://api.github.com/repos/drupal/core-project-message/zipball/10be18c6a401de8e243777de6a74cb45a7ecacad",
+            "reference": "10be18c6a401de8e243777de6a74cb45a7ecacad",
             "shasum": ""
         },
         "require": {
             "composer-plugin-api": "^1.1",
             "php": ">=7.0.8"
         },
-        "time": "2019-11-04T11:12:32+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Drupal\\Composer\\Plugin\\ProjectMessage\\MessagePlugin"
@@ -969,7 +987,6 @@
                 "Drupal\\Composer\\Plugin\\ProjectMessage\\": "."
             }
         },
-        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "GPL-2.0-or-later"
         ],
@@ -981,22 +998,21 @@
     },
     {
         "name": "drupal/core-recommended",
-        "version": "8.8.1",
-        "version_normalized": "8.8.1.0",
+        "version": "8.8.8",
+        "version_normalized": "8.8.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-recommended.git",
-            "reference": "a2215237489ccb456219bd30b26649e6899b6f35"
+            "reference": "69f4e74170c35f2069baafbbb5b7717fe5ddbb66"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core-recommended/zipball/a2215237489ccb456219bd30b26649e6899b6f35",
-            "reference": "a2215237489ccb456219bd30b26649e6899b6f35",
+            "url": "https://api.github.com/repos/drupal/core-recommended/zipball/69f4e74170c35f2069baafbbb5b7717fe5ddbb66",
+            "reference": "69f4e74170c35f2069baafbbb5b7717fe5ddbb66",
             "shasum": ""
         },
         "require": {
             "asm89/stack-cors": "1.2.0",
-            "composer/installers": "v1.7.0",
             "composer/semver": "1.5.0",
             "doctrine/annotations": "v1.4.0",
             "doctrine/cache": "v1.6.2",
@@ -1004,7 +1020,7 @@
             "doctrine/common": "v2.7.3",
             "doctrine/inflector": "v1.2.0",
             "doctrine/lexer": "1.0.2",
-            "drupal/core": "8.8.1",
+            "drupal/core": "8.8.8",
             "easyrdf/easyrdf": "0.9.1",
             "egulias/email-validator": "2.1.11",
             "guzzlehttp/guzzle": "6.3.3",
@@ -1052,9 +1068,7 @@
         "conflict": {
             "webflo/drupal-core-strict": "*"
         },
-        "time": "2019-12-18T10:34:03+00:00",
         "type": "metapackage",
-        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "GPL-2.0-or-later"
         ],
@@ -1062,24 +1076,23 @@
     },
     {
         "name": "drupal/core-vendor-hardening",
-        "version": "8.8.1",
-        "version_normalized": "8.8.1.0",
+        "version": "8.8.8",
+        "version_normalized": "8.8.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-vendor-hardening.git",
-            "reference": "f08bdad7de04c369b7cf18e642f6d344f4b2dc07"
+            "reference": "1b41da0867c3c9b870db95e94a5adaf4dbbc909b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core-vendor-hardening/zipball/f08bdad7de04c369b7cf18e642f6d344f4b2dc07",
-            "reference": "f08bdad7de04c369b7cf18e642f6d344f4b2dc07",
+            "url": "https://api.github.com/repos/drupal/core-vendor-hardening/zipball/1b41da0867c3c9b870db95e94a5adaf4dbbc909b",
+            "reference": "1b41da0867c3c9b870db95e94a5adaf4dbbc909b",
             "shasum": ""
         },
         "require": {
             "composer-plugin-api": "^1.1",
             "php": ">=7.0.8"
         },
-        "time": "2019-11-04T10:55:17+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Drupal\\Composer\\Plugin\\VendorHardening\\VendorHardeningPlugin"
@@ -1090,7 +1103,6 @@
                 "Drupal\\Composer\\Plugin\\VendorHardening\\": "."
             }
         },
-        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "GPL-2.0-or-later"
         ],
@@ -1106,12 +1118,12 @@
         "version_normalized": "0.9.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/njh/easyrdf.git",
+            "url": "https://github.com/easyrdf/easyrdf.git",
             "reference": "acd09dfe0555fbcfa254291e433c45fdd4652566"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/njh/easyrdf/zipball/acd09dfe0555fbcfa254291e433c45fdd4652566",
+            "url": "https://api.github.com/repos/easyrdf/easyrdf/zipball/acd09dfe0555fbcfa254291e433c45fdd4652566",
             "reference": "acd09dfe0555fbcfa254291e433c45fdd4652566",
             "shasum": ""
         },
@@ -3566,7 +3578,8 @@
             "http",
             "psr",
             "psr-7"
-        ]
+        ],
+        "abandoned": "laminas/laminas-diactoros"
     },
     {
         "name": "zendframework/zend-escaper",
@@ -3613,7 +3626,8 @@
             "ZendFramework",
             "escaper",
             "zf"
-        ]
+        ],
+        "abandoned": "laminas/laminas-escaper"
     },
     {
         "name": "zendframework/zend-feed",
@@ -3678,7 +3692,8 @@
             "ZendFramework",
             "feed",
             "zf"
-        ]
+        ],
+        "abandoned": "laminas/laminas-feed"
     },
     {
         "name": "zendframework/zend-stdlib",
@@ -3726,6 +3741,7 @@
             "ZendFramework",
             "stdlib",
             "zf"
-        ]
+        ],
+        "abandoned": "laminas/laminas-stdlib"
     }
 ]
