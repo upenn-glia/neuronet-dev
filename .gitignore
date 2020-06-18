@@ -64,4 +64,4 @@ sites/default/settings.med.php
 sites/default/local.settings.php
 
 # putting this back here for the benefit of the test site
-.htaccess
+/.htaccess
