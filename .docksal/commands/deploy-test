@@ -1,12 +1,26 @@
 #!/usr/bin/env bash
 
-## Pulls master branch on test site and runs composer install
+## Pulls a feature branch from dev fork on test site and runs composer install
+
+if [ -z "$1" ]
+then
+	echo 'Please provide the branch to test as an argument.' > /dev/stderr
+	exit 1
+fi
+
+if [ $# -gt 1 ]
+then
+	echo 'Too many arguments (syntax: fin deploy-test BRANCH)' > /dev/stderr
+	exit 1
+fi
+
+branch=$1
 
 echo "Checking that we're good to go..."
 if [ -z "$NEURONET_SSH_USER" ]
 then
-    echo You must define NEURONET_SSH_USER to ssh to server > /dev/stderr
-    exit 1
+	echo 'You must define NEURONET_SSH_USER to ssh to server' > /dev/stderr
+	exit 1
 fi
 
 server=hosting.pmacs.upenn.edu
@@ -18,7 +32,7 @@ googlesip=$(dig +short @8.8.8.8 $server)
 
 if [ "$ourip" = "$googlesip" ]
 then
-    echo "Looks like the PMACS VPN isn't working! Make sure you're connected." > /dev/stderr
+	echo "Looks like the PMACS VPN isn't working! Make sure you're connected." > /dev/stderr
 fi
 
 # sync database from production
@@ -32,16 +46,17 @@ $drush @self.test sql-query --file=$dumpfile
 
 # now run commands on the server
 echo 'Checking out test branch and building test site...'
-if $drush @self.test ssh '
-    cd ..;
-    git checkout test;
-    git reset --hard;
-    git pull origin test;
+if $drush @self.test ssh sudo -u neuronet bash -s <<- EOF
+	cd ..
+	git fetch dev
+	git checkout --detach dev/$branch
+	git reset --hard
 
-    composer validate && composer install --prefer-dist --no-progress --no-suggest;
-    vendor/bin/drush updb -y'
+	composer validate && composer install --prefer-dist --no-progress --no-suggest
+	vendor/bin/drush updb -y
+EOF
 then
-    echo "Test site deployed! Live at https://www.neuronetupenn.org/neuronet-test"
+	echo "Test site deployed! Live at https://www.neuronetupenn.org/neuronet-test"
 else
-    echo "Remote commands did not succeed - try manually to see what's going on"
+	echo "Remote commands did not succeed - try manually to see what's going on"
 fi
