@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [ -z "$NEURONET_SSH_USER" ]
+then
+	echo 'You must define NEURONET_SSH_USER to ssh to server' > /dev/stderr
+	exit 1
+fi
+
+server=hosting.pmacs.upenn.edu
+
+# test whether VPN is working
+ourip=$(dig +short $server)
+googlesip=$(dig +short @8.8.8.8 $server)
+
+if [ "$ourip" = "$googlesip" ]
+then
+	echo "Looks like the PMACS VPN isn't working! Make sure you're connected." > /dev/stderr
+    exit 1
+fi
+
+exit 0

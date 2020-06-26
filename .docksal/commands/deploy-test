@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Pulls a feature branch from dev fork on test site and runs composer install
+# Pulls a feature branch from dev fork on test site and runs composer install
 
 if [ -z "$1" ]
 then
@@ -15,48 +15,58 @@ then
 fi
 
 branch=$1
+echo "Deploying dev/$branch to the test site."
 
 echo "Checking that we're good to go..."
-if [ -z "$NEURONET_SSH_USER" ]
-then
-	echo 'You must define NEURONET_SSH_USER to ssh to server' > /dev/stderr
-	exit 1
-fi
+fin check-vpn || exit $?
 
-server=hosting.pmacs.upenn.edu
 drush=$PROJECT_ROOT/vendor/bin/drush
-
-# test whether VPN is working
-ourip=$(dig +short $server)
-googlesip=$(dig +short @8.8.8.8 $server)
-
-if [ "$ourip" = "$googlesip" ]
-then
-	echo "Looks like the PMACS VPN isn't working! Make sure you're connected." > /dev/stderr
-fi
 
 # sync database from production
 echo 'Copying database from prod to test...'
 #$drush sql:sync @self.prod @self.test
 # for now dump and restore, since sql:sync won't work across drush versions
-dumpfile=/home/neuronet/prod_dump.sql
-$drush @self.prod sql-dump --result-file=$dumpfile
+now=$(date +%F_%T)
+prod_dump=/home/neuronet/backups/prod_$now.sql
+test_dump=/home/neuronet/backups/test_$now.sql
+
+# dump the test DB so it can be restored later
+$drush @self.test sql-dump --result-file="$test_dump"
+$drush @self.prod sql-dump --result-file="$prod_dump"
 $drush @self.test sql-drop
-$drush @self.test sql-query --file=$dumpfile
+$drush @self.test sql-query --file="$prod_dump"
 
 # now run commands on the server
-echo 'Checking out test branch and building test site...'
-if $drush @self.test ssh sudo -u neuronet bash -s <<- EOF
-	cd ..
-	git fetch dev
-	git checkout --detach dev/$branch
-	git reset --hard
+echo 'SSHing to test site...'
+server_code=$(cat << EOF
+	echo Putting the site in maintenance mode... &&
+	../vendor/bin/drush sset system.maintenance_mode TRUE &&
 
-	composer validate && composer install --prefer-dist --no-progress --no-suggest
-	vendor/bin/drush updb -y
+	echo &&
+	echo Checking out branch $branch... &&
+	cd .. &&
+	git fetch dev &&
+	git checkout --detach dev/$branch &&
+	git reset --hard &&
+
+	echo &&
+	echo Running composer install... &&
+	composer validate && composer install --prefer-dist --no-progress --no-suggest &&
+
+	echo &&
+	echo Updating database... &&
+	cd - &&
+	../vendor/bin/drush updb -y &&
+
+	echo &&
+	echo Taking the site out of maintenance mode... &&
+	../vendor/bin/drush sset system.maintenance_mode FALSE &&
+
+	echo &&
+	echo Test site deployed! Live at https://www.neuronetupenn.org/neuronet-test
+
+	|| 	echo Remote commands did not succeed - try manually to see what is going on >&2
 EOF
-then
-	echo "Test site deployed! Live at https://www.neuronetupenn.org/neuronet-test"
-else
-	echo "Remote commands did not succeed - try manually to see what's going on"
-fi
+)
+
+$drush @self.test --ssh-options="-t" ssh "sudo -u neuronet bash \"$server_code\""
