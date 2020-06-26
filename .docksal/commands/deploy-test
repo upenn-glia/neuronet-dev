@@ -33,7 +33,7 @@ test_dump=/home/neuronet/backups/test_$now.sql
 # dump the test DB so it can be restored later
 $drush @self.test sql-dump --result-file="$test_dump"
 $drush @self.prod sql-dump --result-file="$prod_dump"
-$drush @self.test sql-drop
+$drush @self.test sql-drop -y
 $drush @self.test sql-query --file="$prod_dump"
 
 # now run commands on the server
