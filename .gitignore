@@ -71,6 +71,6 @@ Thumbs.db
 docksal-local.env
 docksal-local.yml
 
-# Ignore root .htaccess so that RewriteBase and potentially
-# other site-specific settings can be specified
-/.htaccess
+# .htaccess managed by composer #
+#################################
+/web/.htaccess

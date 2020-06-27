@@ -1,0 +1,8 @@
+## NOTE THIS FILE (web/.htaccess) IS AUTO-SCAFFOLDED FROM COMPOSER ##
+# Direct edits will be overwritten when composer is run.
+# To modify, edit assets/additions.htaccess, which is prepended to the official version.
+
+# Redirect plain secure to home (depending on rewrite prefix)
+<IfModule mod_rewrite.c>
+  RewriteRule ^secure/?$ . [R=301]
+</IfModule>
