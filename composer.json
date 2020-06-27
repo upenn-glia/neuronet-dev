@@ -68,6 +68,11 @@
         "sort-packages": true,
 	"process-timeout": 1200
     },
+    "scripts": {
+        "pre-drupal-scaffold-cmd": [
+            ">> assets/site-addons.htaccess"
+        ]
+    },
     "extra": {
         "drupal-scaffold": {
             "locations": {
@@ -75,7 +80,8 @@
             },
             "file-mapping": {
                 "[web-root]/.htaccess": {
-                    "prepend": "assets/additions.htaccess"
+                    "prepend": "assets/header.htaccess",
+                    "append": "assets/site-addons.htaccess"
                 }
             }
         },

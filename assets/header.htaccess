@@ -1,0 +1,4 @@
+## NOTE THIS FILE (web/.htaccess) IS AUTO-SCAFFOLDED FROM COMPOSER ##
+# Direct edits will be overwritten when composer is run.
+# To modify for all deployments, edit assets/header.htaccess (and commit/push)
+# To modify for one deployment, edit assets/site-addons.htaccess, which is ignored by Git. 

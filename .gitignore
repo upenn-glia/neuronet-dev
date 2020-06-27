@@ -74,3 +74,4 @@ docksal-local.yml
 # .htaccess managed by composer #
 #################################
 /web/.htaccess
+/assets/site-addons.htaccess
