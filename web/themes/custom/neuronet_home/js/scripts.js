@@ -6,41 +6,82 @@
 
 
 (function($) {
-    "use strict"; 
-	
-	/* Preloader */
-	$(window).on('load', function() {
-		var preloaderFadeOutTime = 500;
-		function hidePreloader() {
-			var preloader = $('.spinner-wrapper');
-			setTimeout(function() {
-				preloader.fadeOut(preloaderFadeOutTime);
-			}, 500);
-		}
-		hidePreloader();
-	});
+    "use strict";
 
-	
-	/* Navbar Scripts */
-	// jQuery to collapse the navbar on scroll
-    $(window).on('scroll load', function() {
-		if ($(".navbar").offset().top > 20) {
-			$(".fixed-top").addClass("top-nav-collapse");
-		} else {
-			$(".fixed-top").removeClass("top-nav-collapse");
-		}
+
+    /* Counter - CountTo */
+    var countersHaveAnimated = false;
+    var animateCounters = function() {
+        // checking if CountTo section exists in the page, if not it will not run the script and avoid errors
+        if (countersHaveAnimated || $('#counter').length == 0) {
+            return;
+        }
+
+        var oTop = $('#counter').offset().top - window.innerHeight;
+        if ($(window).scrollTop() <= oTop) {
+            return;
+        }
+
+        $('.counter-value').each(function() {
+            var $this = $(this),
+            countTo = $this.attr('data-count');
+            $({
+            countNum: $this.text()
+            }).animate({
+                countNum: countTo
+            },
+            {
+                duration: 2000,
+                easing: 'swing',
+                step: function() {
+                $this.text(Math.floor(this.countNum));
+                },
+                complete: function() {
+                $this.text(this.countNum);
+                //alert('finished');
+                }
+            });
+        });
+        countersHaveAnimated = true;
+    };
+
+    $(window).on('scroll', animateCounters);
+
+
+    /* Preloader */
+    $(window).on('load', function() {
+        var preloaderFadeOutTime = 500;
+        function hidePreloader() {
+            var preloader = $('.spinner-wrapper');
+            setTimeout(function() {
+                // trigger an animateCounters check after fadeOut to deal with large screens
+                preloader.fadeOut(preloaderFadeOutTime, animateCounters);
+            }, 500);
+        }
+        hidePreloader();
     });
 
-	// jQuery for page scrolling feature - requires jQuery Easing plugin
-	$(function() {
-		$(document).on('click', 'a.page-scroll', function(event) {
-			var $anchor = $(this);
-			$('html, body').stop().animate({
-				scrollTop: $($anchor.attr('href')).offset().top
-			}, 600, 'easeInOutExpo');
-			event.preventDefault();
-		});
-	});
+
+    /* Navbar Scripts */
+    // jQuery to collapse the navbar on scroll
+    $(window).on('scroll load', function() {
+        if ($(".navbar").offset().top > 20) {
+            $(".fixed-top").addClass("top-nav-collapse");
+        } else {
+            $(".fixed-top").removeClass("top-nav-collapse");
+        }
+    });
+
+    // jQuery for page scrolling feature - requires jQuery Easing plugin
+    $(function() {
+        $(document).on('click', 'a.page-scroll', function(event) {
+            var $anchor = $(this);
+            $('html, body').stop().animate({
+                scrollTop: $($anchor.attr('href')).offset().top
+            }, 600, 'easeInOutExpo');
+            event.preventDefault();
+        });
+    });
 
     // closes the responsive menu on menu item click
     $(".navbar-nav li a").on("click", function(event) {
@@ -50,32 +91,32 @@
 
 
     /* Rotating Text - Morphtext */
-	$("#js-rotating").Morphext({
-		// The [in] animation type. Refer to Animate.css for a list of available animations.
-		animation: "fadeIn",
-		// An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
-		separator: ",",
-		// The delay between the changing of each phrase in milliseconds.
-		speed: 2000,
-		complete: function () {
-			// Called after the entrance animation is executed.
-		}
+    $("#js-rotating").Morphext({
+        // The [in] animation type. Refer to Animate.css for a list of available animations.
+        animation: "fadeIn",
+        // An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+        separator: ",",
+        // The delay between the changing of each phrase in milliseconds.
+        speed: 2000,
+        complete: function () {
+            // Called after the entrance animation is executed.
+        }
     });
     
 
     /* Card Slider - Swiper */
-	var cardSlider = new Swiper('.card-slider', {
-		autoplay: {
+    var cardSlider = new Swiper('.card-slider', {
+        autoplay: {
             delay: 4000,
             disableOnInteraction: false
-		},
+        },
         loop: true,
         navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev'
-		},
-		slidesPerView: 3,
-		spaceBetween: 20,
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+        slidesPerView: 3,
+        spaceBetween: 20,
         breakpoints: {
             // when window is <= 992px
             992: {
@@ -94,15 +135,15 @@
         autoplay: {
             delay: 2000,
             disableOnInteraction: false
-		},
+        },
         loop: false,
         navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
         spaceBetween: 30,
         slidesPerView: 5,
-		breakpoints: {
+        breakpoints: {
             // when window is <= 380px
             380: {
                 slidesPerView: 1,
@@ -133,20 +174,20 @@
 
 
     /* Image Slider - Magnific Popup */
-	$('.popup-link').magnificPopup({
-		removalDelay: 300,
-		type: 'image',
-		callbacks: {
-			beforeOpen: function() {
-				this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure ' + this.st.el.attr('data-effect'));
-			},
-			beforeClose: function() {
-				$('.mfp-figure').addClass('fadeOut');
-			}
-		},
-		gallery:{
-			enabled:true //enable gallery mode
-		}
+    $('.popup-link').magnificPopup({
+        removalDelay: 300,
+        type: 'image',
+        callbacks: {
+            beforeOpen: function() {
+                this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure ' + this.st.el.attr('data-effect'));
+            },
+            beforeClose: function() {
+                $('.mfp-figure').addClass('fadeOut');
+            }
+        },
+        gallery:{
+            enabled:true //enable gallery mode
+        }
     });
 
     
@@ -184,65 +225,33 @@
 
 
     /* Lightbox - Magnific Popup */
-	$('.popup-with-move-anim').magnificPopup({
-		type: 'inline',
-		fixedContentPos: false, /* keep it false to avoid html tag shift with margin-right: 17px */
-		fixedBgPos: true,
-		overflowY: 'auto',
-		closeBtnInside: true,
-		preloader: false,
-		midClick: true,
-		removalDelay: 300,
-		mainClass: 'my-mfp-slide-bottom'
-	});
-    
-
-    /* Counter - CountTo */
-	var a = 0;
-	$(window).scroll(function() {
-		if ($('#counter').length) { // checking if CountTo section exists in the page, if not it will not run the script and avoid errors	
-			var oTop = $('#counter').offset().top - window.innerHeight;
-			if (a == 0 && $(window).scrollTop() > oTop) {
-			$('.counter-value').each(function() {
-				var $this = $(this),
-				countTo = $this.attr('data-count');
-				$({
-				countNum: $this.text()
-				}).animate({
-					countNum: countTo
-				},
-				{
-					duration: 2000,
-					easing: 'swing',
-					step: function() {
-					$this.text(Math.floor(this.countNum));
-					},
-					complete: function() {
-					$this.text(this.countNum);
-					//alert('finished');
-					}
-				});
-			});
-			a = 1;
-			}
-		}
+    $('.popup-with-move-anim').magnificPopup({
+        type: 'inline',
+        fixedContentPos: false, /* keep it false to avoid html tag shift with margin-right: 17px */
+        fixedBgPos: true,
+        overflowY: 'auto',
+        closeBtnInside: true,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-slide-bottom'
     });
 
 
     /* Move Form Fields Label When User Types */
     // for input and textarea fields
     $("input, textarea").keyup(function(){
-		if ($(this).val() != '') {
-			$(this).addClass('notEmpty');
-		} else {
-			$(this).removeClass('notEmpty');
-		}
+        if ($(this).val() != '') {
+            $(this).addClass('notEmpty');
+        } else {
+            $(this).removeClass('notEmpty');
+        }
     });
 
 
     /* Contact Form */
     $("#contactForm").validator().on("submit", function(event) {
-    	if (event.isDefaultPrevented()) {
+        if (event.isDefaultPrevented()) {
             // handle the invalid form...
             cformError();
             csubmitMSG(false, "Please fill all fields!");
@@ -255,8 +264,8 @@
 
     function csubmitForm() {
         // initiate variables with form content
-		var name = $("#cname").val();
-		var email = $("#cemail").val();
+        var name = $("#cname").val();
+        var email = $("#cemail").val();
         var message = $("#cmessage").val();
         var terms = $("#cterms").val();
         $.ajax({
@@ -272,7 +281,7 @@
                 }
             }
         });
-	}
+    }
 
     function cformSuccess() {
         $("#contactForm")[0].reset();
@@ -285,7 +294,7 @@
         $("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
             $(this).removeClass();
         });
-	}
+    }
 
     function csubmitMSG(valid, msg) {
         if (valid) {
@@ -299,7 +308,7 @@
 
     /* Privacy Form */
     $("#privacyForm").validator().on("submit", function(event) {
-    	if (event.isDefaultPrevented()) {
+        if (event.isDefaultPrevented()) {
             // handle the invalid form...
             pformError();
             psubmitMSG(false, "Please fill all fields!");
@@ -312,8 +321,8 @@
 
     function psubmitForm() {
         // initiate variables with form content
-		var name = $("#pname").val();
-		var email = $("#pemail").val();
+        var name = $("#pname").val();
+        var email = $("#pemail").val();
         var select = $("#pselect").val();
         var terms = $("#pterms").val();
         
@@ -330,7 +339,7 @@
                 }
             }
         });
-	}
+    }
 
     function pformSuccess() {
         $("#privacyForm")[0].reset();
@@ -342,7 +351,7 @@
         $("#privacyForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
             $(this).removeClass();
         });
-	}
+    }
 
     function psubmitMSG(valid, msg) {
         if (valid) {
@@ -367,9 +376,9 @@
     });
 
 
-	/* Removes Long Focus On Buttons */
-	$(".button, a, button").mouseup(function() {
-		$(this).blur();
-	});
+    /* Removes Long Focus On Buttons */
+    $(".button, a, button").mouseup(function() {
+        $(this).blur();
+    });
 
 })(jQuery);
