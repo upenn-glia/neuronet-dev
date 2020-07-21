@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+
+# Deploys mattschaff/master branch to test site, builds, and syncs to prod.
+# To use a different branch, provide it as an argument.
+# Can also specify both remote and branch, where
+# 'origin' = mattschaff and 'dev' = upenn-glia.
+
+if [ $# -gt 2 ]
+then
+    echo 'Too many arguments (syntax: fin deploy-prod [BRANCH=master])' >&2
+    exit 1
+fi
+
+# Identify which branch we're using
+remote=origin
+if [ $# -eq 2 ]
+then
+    remote=$1
+    shift
+fi
+
+branch=master
+if [ $# -eq 1 ]
+then
+    branch=$1
+    shift
+fi
+
+# Check connection
+echo "Checking that we're good to go..."
+fin check-vpn || exit $?
+
+
+# Put prod in maintenance mode and backup database
+bring_prod_back_online()
+{
+
+    $drush @self.prod sset system.maintenance_mode FALSE
+}
+
+echo "Putting the prod site in maintenance mode..."
+$drush @self.prod sset system.maintenance_mode TRUE
+trap bring_prod_back_online EXIT
+
+now=$(date +%F_%T)
+prod_dump=/home/neuronet/backups/prod_$now.sql
+echo "Backing up prod database to $prod_dump..."
+if ! $drush @self.prod sql-dump --result-file="$prod_dump"
+then
+    echo "Prod dump failed - fix issue before continuing."
+    exit 1
+fi
+
+prod_root=$($drush sa @self.prod --fields=root | grep -oP 'root: \K.*$')
+
+# Deploy to test site and build
+echo "Deploying $remote/$branch to the test site."
+
+drush=$PROJECT_ROOT/vendor/bin/drush
+
+
+server_code=$(cat << EOF
+    cd .. &&
+    echo Putting the test site in maintenance mode... &&
+    vendor/bin/drush sset system.maintenance_mode TRUE &&
+
+    echo &&
+    echo Checking out branch $remote/$branch... &&
+    git fetch $remote &&
+    git checkout --detach $remote/$branch &&
+    git reset --hard &&
+
+    echo &&
+    echo Running composer install... &&
+    composer validate && composer install --prefer-dist --no-progress --no-suggest &&
+
+    echo &&
+    echo Taking the test site out of maintenance mode... &&
+    vendor/bin/drush sset system.maintenance_mode FALSE &&
+
+    echo Copying files to the prod site... &&
+    rm -rf /home/neuronet/deployments/prod_backup &&
+    cp -r $prod_root/.. /home/neuronet/deployments/prod_backup
+
+    || exit 1 &&
+
+    rsync -a --exclude-from=.rsyncexclude ./ $prod_root/.. &&
+    
+    cd $prod_root/.. &&
+    composer drupal:scaffold &&
+    
+    echo &&
+    echo Updating prod database... &&
+    vendor/bin/drush updb -y &&
+
+    echo 'Prod deployed! Make sure https://www.neuronetupenn.org looks right.' && exit 0
+    
+    || cd .. &&
+    mv prod prod_failed &&
+    mv prod_backup prod &&
+    vendor/bin/drush sql-drop -y &&
+    vendor/bin/drush sql-query --file="$prod_dump" &&
+    echo 'Error updating database. Prod files and database restored. &&
+    exit 1
+EOF
+)
+
+$drush @self.test --ssh-options="-t" ssh "sudo -u neuronet bash -c \"$server_code\""

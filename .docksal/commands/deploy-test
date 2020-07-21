@@ -4,13 +4,13 @@
 
 if [ -z "$1" ]
 then
-	echo 'Please provide the branch to test as an argument.' > /dev/stderr
+	echo 'Please provide the branch to test as an argument.' >&2
 	exit 1
 fi
 
 if [ $# -gt 1 ]
 then
-	echo 'Too many arguments (syntax: fin deploy-test BRANCH)' > /dev/stderr
+	echo 'Too many arguments (syntax: fin deploy-test BRANCH)' >&2
 	exit 1
 fi
 
@@ -39,7 +39,7 @@ $drush @self.test sql-query --file="$prod_dump"
 # now run commands on the server
 echo 'SSHing to test site...'
 server_code=$(cat << EOF
-	echo Putting the site in maintenance mode... &&
+	echo Putting the test site in maintenance mode... &&
 	../vendor/bin/drush sset system.maintenance_mode TRUE &&
 
 	echo &&
@@ -59,7 +59,7 @@ server_code=$(cat << EOF
 	../vendor/bin/drush updb -y &&
 
 	echo &&
-	echo Taking the site out of maintenance mode... &&
+	echo Taking the test site out of maintenance mode... &&
 	../vendor/bin/drush sset system.maintenance_mode FALSE &&
 
 	echo &&

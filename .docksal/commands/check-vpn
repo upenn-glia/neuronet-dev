@@ -2,7 +2,7 @@
 
 if [ -z "$NEURONET_SSH_USER" ]
 then
-	echo 'You must define NEURONET_SSH_USER to ssh to server' > /dev/stderr
+	echo 'You must define NEURONET_SSH_USER to ssh to server' >&2
 	exit 1
 fi
 
@@ -14,7 +14,7 @@ googlesip=$(dig +short @8.8.8.8 $server)
 
 if [ "$ourip" = "$googlesip" ]
 then
-	echo "Looks like the PMACS VPN isn't working! Make sure you're connected." > /dev/stderr
+	echo "Looks like the PMACS VPN isn't working! Make sure you're connected." >&2
     exit 1
 fi
 

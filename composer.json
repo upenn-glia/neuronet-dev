@@ -71,7 +71,8 @@
     "scripts": {
         "pre-drupal-scaffold-cmd": [
             ">> assets/site-addons.htaccess"
-        ]
+        ],
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
     },
     "extra": {
         "drupal-scaffold": {
