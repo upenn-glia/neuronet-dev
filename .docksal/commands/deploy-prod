@@ -79,8 +79,7 @@ server_code=$(cat << EOF
     vendor/bin/drush sset system.maintenance_mode FALSE &&
 
     echo Copying files to the prod site... &&
-    rm -rf /home/neuronet/deployments/prod_backup &&
-    cp -r $prod_root/.. /home/neuronet/deployments/prod_backup
+    rsync -a --delete $prod_root/../ /home/neuronet/deployments/prod_backup
 
     || exit 1 &&
 
@@ -96,8 +95,7 @@ server_code=$(cat << EOF
     echo 'Prod deployed! Make sure https://www.neuronetupenn.org looks right.' && exit 0
     
     || cd .. &&
-    mv prod prod_failed &&
-    mv prod_backup prod &&
+    rsync -a --delete /home/neuronet/deployments/prod_backup/ . &&
     vendor/bin/drush sql-drop -y &&
     vendor/bin/drush sql-query --file="$prod_dump" &&
     echo 'Error updating database. Prod files and database restored. &&
