@@ -12,8 +12,6 @@ test:
     php: /opt/remi/php73/oot/usr/bin/php
     site: NeuroNet
   root: /home/neuronet/deployments/test/web
-  ssh:
-    options: '-T'
   uri: https://www.neuronetupenn.org/neuronet-test
   user: ${env.NEURONET_SSH_USER}
 
@@ -23,7 +21,5 @@ prod:
     php: /opt/remi/php73/oot/usr/bin/php
     site: NeuroNet
   root: /home/neuronet/deployments/prod
-  ssh:
-    options: '-T'
   uri: https://www.neuronetupenn.org
   user: ${env.NEURONET_SSH_USER}

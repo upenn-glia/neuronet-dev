@@ -2,29 +2,44 @@
 
 # Restores the latest test DB dump to the test site, and updates it if necessary
 echo "Checking that we're good to go..."
-fin check-vpn || exit $?
+
+if [ -z "$PROJECT_ROOT" ]
+then
+    echo "Error: PROJECT_ROOT not defined. Run as 'fin restore-test-db'." >&2
+    echo "Or, if you're not using Docksal, just define PROJECT_ROOT=<dir containing composer.json>" >&2
+    exit 1
+fi
+
+"$PROJECT_ROOT"/.docksal/commands/check-vpn || exit $?
 
 drush=$PROJECT_ROOT/vendor/bin/drush
 
 
 # use some command-fu to find and restore the newest test dump
-# have to use semicolons because drush ssh is dumb
+# have to make it all one bash "list" b/c drush ssh is dumb
+# Can't use single quotes, that would be too many layers
 server_code=$(cat << 'EOF'
-    latest_dump=$(echo $HOME/backups/test_*.sql | tr ' ' '\n' | tail -n 1) &&
+    cd .. &&
+    latest_dump=$(echo $HOME/backups/test_*.sql | tr " " "\n" | tail -n 1) &&
     if [ -z $latest_dump ];
     then
         touch foo;
-        echo 'No test database dump to restore' >&2;
+        echo No test database dump to restore >&2;
         exit 1;
     fi &&
 
     echo Restoring $latest_dump to test DB &&
-    drush=../vendor/bin/drush &&
+    drush=vendor/bin/drush &&
     $drush sset system.maintenance_mode TRUE &&
-    $drush sql-drop &&
-    $drush sql-query --file=$latest_dump &&
+    echo Turned on maintenance mode &&
+    $drush sql-drop -y &&
+    echo Dropped current test database &&
+    $drush sql-query --file="$latest_dump" &&
+    echo Restored "$latest_dump" &&
     $drush updb -y &&
+    echo Updated databse &&
     $drush sset system.maintenance_mode FALSE &&
+    echo Turned off maintenance mode &&
     echo &&
     echo Test DB restored.
 
@@ -34,4 +49,4 @@ EOF
 
 # ssh_cmd=(bash +O nullglob -c "$server_code")
 # $drush @self.test --tty ssh "${ssh_cmd[*]}"
-$drush @self.test --ssh-options="-t" ssh "sudo -u neuronet bash +O nullglob -c \"$server_code\""
+$drush @self.test --tty ssh "sudo -u neuronet bash +O nullglob -ic '$server_code'"
