@@ -50,29 +50,29 @@ function neuronet_misc_help($route_name, RouteMatchInterface $route_match) {
  */
 function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
   // In alumni view, remove duplicate job positions.
-  if($view->id() == 'alumni'){
-    $indexes_to_remove = array();
-    foreach($view->result as $value){
-      // it is VERY annoying to get entity reference values in Drupal 8
-      $nid = $value->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
-      $start_date = $value->_entity->get('field_start_date')->value;
-      $index = 0;
-      foreach($view->result as $value2){
-        $sub_nid = $value2->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
-        if ($nid == $sub_nid) {
-          $start_date = $value->_entity->get('field_start_date')->value;
-          $start_date2 = $value2->_entity->get('field_start_date')->value;
-          if (date($start_date2) < date($start_date)) {
-            $indexes_to_remove[] = $index;
-          }
-        }
-        $index++;
-      }
-    }
-    foreach ($indexes_to_remove as $index){
-      unset($view->result[$index]);
-    }
-  }
+  // if($view->id() == 'alumni'){
+  //   $indexes_to_remove = array();
+  //   foreach($view->result as $value){
+  //     // it is VERY annoying to get entity reference values in Drupal 8
+  //     $nid = $value->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
+  //     $start_date = $value->_entity->get('field_start_date')->value;
+  //     $index = 0;
+  //     foreach($view->result as $value2){
+  //       $sub_nid = $value2->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
+  //       if ($nid == $sub_nid) {
+  //         $start_date = $value->_entity->get('field_start_date')->value;
+  //         $start_date2 = $value2->_entity->get('field_start_date')->value;
+  //         if (date($start_date2) < date($start_date)) {
+  //           $indexes_to_remove[] = $index;
+  //         }
+  //       }
+  //       $index++;
+  //     }
+  //   }
+  //   foreach ($indexes_to_remove as $index){
+  //     unset($view->result[$index]);
+  //   }
+  // }
   // Respond to Send Custom Email action processing in NeuroNet Manager's people
   // view.
   // - Upon completion of the batch process that sends emails from the manager's
@@ -472,6 +472,33 @@ function neuronet_misc_views_data() {
   ];
   return $data;
 }
+
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function neuronet_misc_views_data_alter(array &$data) {
+  // Add groupwise_max relationship for nodes on themselves
+  // This allows selecting the most recent job to display for each alum.
+  $data['node_field_data']['groupwise_max_node'] = [
+    'title' => t('Groupwise max node'),
+    'help' => t('Of currently selected nodes, just the maximum according to some field'),
+    'relationship' => [
+      'label' => t('Groupwise max'),
+      'id' => 'groupwise_max',
+      'base' => 'node_field_data',
+      'field' => 'nid',
+
+      // // We're using the profile field table to match jobs to profiles
+      'relationship' => 'node__field_profile:field_profile_target_id',
+      'argument table' => 'node__field_profile',
+      'argument field' => 'entity_id',
+
+      'outer field' => 'node_field_data.nid',
+    ],
+  ];
+}
+
 
 /**
  * Implements hook_js_settings_alter().
