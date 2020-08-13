@@ -18,6 +18,13 @@ then
     exit 1
 fi
 
+if [ -z "$NEURONET_SSH_USER" ]
+then
+	read -rp "Enter your PMACS server username: "
+	export NEURONET_SSH_USER=$REPLY
+fi
+
+
 # Identify which branch we're using
 remote=origin
 if [ $# -eq 2 ]
@@ -74,6 +81,22 @@ echo "Deploying $remote/$branch to the test site."
 echo 'SSHing to test site...'
 server_code=$(cat << EOF
     cd .. &&
+
+	echo &&
+	echo Checking whether config needs to be exported... &&
+	if [ \$(vendor/bin/drush config:status --format=list 2>/dev/null | wc -w) -ne 0 ];
+	then
+		echo Warning: production DB does not match current config files!;
+		echo You should probably see if you need to commit a config file change before deploying, unless you know it can be discarded.;
+		
+		select action in "Stop" "Continue"; do
+			case \$action in
+				Stop ) exit 1;;
+				Continue ) break;;
+			esac;
+		done;
+	fi &&
+
     echo Putting the test site in maintenance mode... &&
     vendor/bin/drush sset system.maintenance_mode TRUE &&
 

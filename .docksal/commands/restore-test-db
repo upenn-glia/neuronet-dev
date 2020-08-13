@@ -10,6 +10,13 @@ then
     exit 1
 fi
 
+if [ -z "$NEURONET_SSH_USER" ]
+then
+	read -rp "Enter your PMACS server username: "
+	export NEURONET_SSH_USER=$REPLY
+fi
+
+
 "$PROJECT_ROOT"/.docksal/commands/check-vpn || exit $?
 
 drush=$PROJECT_ROOT/vendor/bin/drush
@@ -47,6 +54,4 @@ server_code=$(cat << 'EOF'
 EOF
 )
 
-# ssh_cmd=(bash +O nullglob -c "$server_code")
-# $drush @self.test --tty ssh "${ssh_cmd[*]}"
 $drush @self.test --tty ssh "sudo -u neuronet bash +O nullglob -ic '$server_code'"
