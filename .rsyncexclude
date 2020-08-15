@@ -1,15 +1,15 @@
 # Lists files and directories that should NOT be copied from test to prod site
 
 # dirs we don't need on prod
-.git
-.vscode
-.docksal
-drush
+/.git
+/.vscode
+/.docksal
+/drush
 
 # site-specific
-assets/site-addons.htaccess
-sites/default/files
-sites/default/settings.local.php
+/assets/site-addons.htaccess
+/web/sites/default/files
+/web/sites/default/settings.local.php
 
 # VERY IMPORTANT to not fuck up the database
-sites/default/settings.med.php
+/web/sites/default/settings.med.php
