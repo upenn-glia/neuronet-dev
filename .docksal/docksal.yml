@@ -1,0 +1,10 @@
+version: "2.1"
+services:
+  cli:
+    volumes:
+      # shared ssh-agent socket
+      - docksal_ssh_agent:/.ssh-agent:ro
+    environment:
+      - NEURONET_SSH_USER
+    extra_hosts:
+      - "hosting.pmacs.upenn.edu:172.16.100.203"

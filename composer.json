@@ -1,6 +1,6 @@
 {
-    "name": "drupal/legacy-project",
-    "description": "Project template for Drupal 8 projects with composer following drupal/drupal layout",
+    "name": "drupal/recommended-project",
+    "description": "Project template for Drupal 8 projects with a relocated document root",
     "type": "project",
     "license": "GPL-2.0-or-later",
     "homepage": "https://www.drupal.org/project/drupal",
@@ -16,10 +16,48 @@
     ],
     "require": {
         "composer/installers": "^1.2",
+        "drupal/admin_toolbar": "~2.0",
+        "drupal/adminimal_admin_toolbar": "~1.0",
+        "drupal/adminimal_theme": "~1.0",
+        "drupal/auto_entitylabel": "~3.0",
+        "drupal/autocomplete_deluxe": "~1.0",
+        "drupal/bootstrap": "~3.0",
+        "drupal/bootstrap_layouts": "~5.0",
+        "drupal/conditional_fields": "~1.0",
+        "drupal/config_update": "~1.0",
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
-        "drupal/core-vendor-hardening": "^8.8"
+        "drupal/css_editor": "~1.0",
+        "drupal/ctools": "~3.0",
+        "drupal/devel": "~2.0",
+        "drupal/druadmin_lte_theme": "~1.0",
+        "drupal/ds": "~3.0",
+        "drupal/eleven": "~1.0",
+        "drupal/features": "~3.0",
+        "drupal/feeds": "~3.0",
+        "drupal/field_group": "~3.0",
+        "drupal/google_analytics": "~2.0",
+        "drupal/login_emailusername": "~1.0",
+        "drupal/mailsystem": "~4.0",
+        "drupal/material_admin": "~1.0",
+        "drupal/mimemail": "~1.0",
+        "drupal/multiple_selects": "~1.0",
+        "drupal/node_view_permissions": "~1.0",
+        "drupal/page_manager": "~4.0",
+        "drupal/panels": "~4.0",
+        "drupal/pathauto": "~1.0",
+        "drupal/redirect": "~1.0",
+        "drupal/smtp": "~1.0",
+        "drupal/switch_page_theme": "~1.0",
+        "drupal/taxonomy_manager": "~1.0",
+        "drupal/term_csv_export_import": "~3.0",
+        "drupal/token": "~1.0",
+        "drupal/twig_tweak": "~2.0",
+        "drupal/views_bootstrap": "~3.0",
+        "drupal/views_bulk_operations": "~3.0",
+        "drupal/views_ef_fieldset": "~1.0",
+        "drush/drush": "~10.0"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -27,37 +65,50 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+	"process-timeout": 1200
+    },
+    "scripts": {
+        "pre-drupal-scaffold-cmd": [
+            ">> assets/site-addons.htaccess"
+        ],
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
     },
     "extra": {
         "drupal-scaffold": {
             "locations": {
-                "web-root": "./"
+                "web-root": "web/"
+            },
+            "file-mapping": {
+                "[web-root]/.htaccess": {
+                    "prepend": "assets/header.htaccess",
+                    "append": "assets/site-addons.htaccess"
+                }
             }
         },
         "installer-paths": {
-            "core": [
+            "web/core": [
                 "type:drupal-core"
             ],
-            "libraries/{$name}": [
+            "web/libraries/{$name}": [
                 "type:drupal-library"
             ],
-            "modules/contrib/{$name}": [
+            "web/modules/contrib/{$name}": [
                 "type:drupal-module"
             ],
-            "profiles/contrib/{$name}": [
+            "web/profiles/contrib/{$name}": [
                 "type:drupal-profile"
             ],
-            "themes/contrib/{$name}": [
+            "web/themes/contrib/{$name}": [
                 "type:drupal-theme"
             ],
             "drush/Commands/contrib/{$name}": [
                 "type:drupal-drush"
             ],
-            "modules/custom/{$name}": [
+            "web/modules/custom/{$name}": [
                 "type:drupal-custom-module"
             ],
-            "themes/custom/{$name}": [
+            "web/themes/custom/{$name}": [
                 "type:drupal-custom-theme"
             ]
         },
@@ -69,7 +120,7 @@
             "post-create-project-cmd-message": [
                 "<bg=blue;fg=white>                                                         </>",
                 "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
-                "<bg=blue;fg=white>  from the drupal/legacy-project template!               </>",
+                "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
                 "<bg=blue;fg=white>                                                         </>",
                 "",
                 "<bg=yellow;fg=black>Next steps</>:",

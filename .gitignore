@@ -1,27 +1,36 @@
+# This file contains default .gitignore rules. To use it, copy it to .gitignore,
+# and it will cause files like your settings.php and user-uploaded files to be
+# excluded from Git version control. This is a common strategy to avoid
+# accidentally including private information in public repositories and patch
+# files.
+#
+# Because .gitignore can be specific to your site, this file has a different
+# name; updating Drupal core will not override your custom .gitignore file.
+
+# Ignore core when managing all of a project's dependencies with Composer
+# including Drupal core.
+web/core
+
+# Ignore dependencies that are managed with Composer.
+# Generally you should only ignore the root vendor directory. It's important
+# that core/assets/vendor and any other vendor directories within contrib or
+# custom module, theme, etc., are not ignored unless you purposely do so.
+/vendor/
+
+# Ignore configuration files that may contain sensitive information.
+web/sites/*/settings.local.php
+web/sites/*/settings.med.php
+web/sites/*/local.settings.php
+web/sites/*/services*.yml
+
 # Ignore paths that contain user-generated content.
-sites/*/files
-sites/*/private
-files/*
-
-# Avoid accidental modification of pantheon.upstream.yml in sites
-# created from this upstream
-pantheon.upstream.yml
-
-# Pantheon commits a settings.php for environment-specific settings.
-# Place local settings in settings.local.php
-sites/*/settings.local.php
-
-# Note that services.local.yml is not loaded by default. If you would like
-# to use this file add the following to your settings.local.php file:
-#   $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
-sites/*/services.local.yml
-
-# ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
-/sites/default/**/files
-/sites/default/**/private
+web/sites/*/files
+web/sites/*/private
 
 # Ignore SimpleTest multi-site environment.
-sites/simpletest
+web/sites/simpletest
+
+pantheon.upstream.yml
 
 # Packages #
 ############
@@ -57,11 +66,11 @@ Thumbs.db
 ##########
 .sass-cache
 
-# Things in the core directory that Drupal 8 commits in the repository.
-!core/**/*.gz
+# Docksal #
+###########
+docksal-local.env
+docksal-local.yml
 
-sites/default/settings.med.php
-sites/default/local.settings.php
-
-# putting this back here for the benefit of the test site
-/.htaccess
+# Site-specific .htaccess settings #
+#################################
+/assets/site-addons.htaccess
