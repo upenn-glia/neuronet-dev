@@ -22,6 +22,8 @@ prod:
   options:
     php: /opt/remi/php73/oot/usr/bin/php
     site: NeuroNet
-  root: /home/neuronet/deployments/prod
+  root: /home/neuronet/deployments/prod/web
   uri: https://www.neuronetupenn.org
   user: ${env.NEURONET_SSH_USER}
+  paths:
+    drush-script: /home/neuronet/deployments/prod/vendor/bin/drush

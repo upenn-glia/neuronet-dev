@@ -66,14 +66,7 @@ then
     exit 1
 fi
 
-#prod_root=$($drush sa @self.prod --fields=root | grep -oP 'root: \K.*$')
-prod_root=/home/neuronet/deployments/test_deploy/web
-echo '****************'
-echo "The prod site doesn't have the right directory structure yet, so using a fake one:"
-echo "prod_root=$prod_root"
-echo "After manually updating prod site to composer structure, remove this safety mechanism."
-echo '****************'
-
+prod_root=$($drush sa @self.prod --fields=root | grep -oP 'root: \K.*$')
 
 # Deploy to test site and build
 echo "Deploying $remote/$branch to the test site."
