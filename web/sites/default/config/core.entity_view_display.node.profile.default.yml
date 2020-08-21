@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.profile.field_email
     - field.field.node.profile.field_entry_term
     - field.field.node.profile.field_exit_term
+    - field.field.node.profile.field_fellowships_training_grant
     - field.field.node.profile.field_first_name
     - field.field.node.profile.field_grad_group
     - field.field.node.profile.field_help_with
@@ -30,6 +31,7 @@ dependencies:
     - field.field.node.profile.field_ngg_activities
     - field.field.node.profile.field_non_ngg_activities
     - field.field.node.profile.field_preferred_prefix
+    - field.field.node.profile.field_preferred_pronouns
     - field.field.node.profile.field_profile_image
     - field.field.node.profile.field_research_area
     - field.field.node.profile.field_show_to_alumni
@@ -86,6 +88,22 @@ targetEntityType: node
 bundle: profile
 mode: default
 content:
+  field_fellowships_training_grant:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_preferred_pronouns:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   field_show_to_alumni:
     weight: 2
     label: above

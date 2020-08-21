@@ -1,0 +1,20 @@
+uuid: a02da804-c993-45ae-a337-a47ea391386f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_fellowships_training_grant
+field_name: field_fellowships_training_grant
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -10,6 +10,7 @@ permissions:
   - 'access glia admin'
   - 'access toolbar'
   - 'create terms in glossary'
+  - 'delete terms in glossary'
   - 'edit terms in glossary'
   - 'use text format basic_html'
   - 'use text format restricted_html'
