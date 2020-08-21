@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.profile.field_email
     - field.field.node.profile.field_entry_term
     - field.field.node.profile.field_exit_term
+    - field.field.node.profile.field_fellowships_training_grant
     - field.field.node.profile.field_first_name
     - field.field.node.profile.field_grad_group
     - field.field.node.profile.field_help_with
@@ -30,6 +31,7 @@ dependencies:
     - field.field.node.profile.field_ngg_activities
     - field.field.node.profile.field_non_ngg_activities
     - field.field.node.profile.field_preferred_prefix
+    - field.field.node.profile.field_preferred_pronouns
     - field.field.node.profile.field_profile_image
     - field.field.node.profile.field_research_area
     - field.field.node.profile.field_show_to_alumni
@@ -64,6 +66,7 @@ third_party_settings:
         - field_non_ngg_activities
         - field_locations_lived
         - field_hometown_s_
+        - field_fellowships_training_grant
       parent_name: group_profile
       weight: 10
       format_type: tab
@@ -81,6 +84,7 @@ third_party_settings:
         - field_first_name
         - field_last_name
         - field_preferred_prefix
+        - field_preferred_pronouns
         - field_email
         - field_profile_image
         - body
@@ -109,7 +113,6 @@ third_party_settings:
       weight: 0
       format_type: tabs
       format_settings:
-        label: Profile
         direction: vertical
         id: ''
         classes: ''
@@ -127,10 +130,9 @@ third_party_settings:
         - field_research_area
         - field_help_with
       parent_name: group_profile
-      weight: 11
+      weight: 12
       format_type: tab
       format_settings:
-        label: Alumni
         formatter: open
         description: ''
         required_fields: true
@@ -145,7 +147,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 8
+    weight: 9
     settings:
       rows: 9
       summary_rows: 3
@@ -155,38 +157,11 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_alma_mater:
-    weight: 12
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_alumni:
-    weight: 3
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
-  field_candidacy_:
-    weight: 18
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_classes_taken:
     weight: 20
     settings:
       match_operator: CONTAINS
@@ -196,15 +171,42 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_alumni:
+    weight: 10
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_candidacy_:
+    weight: 25
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_classes_taken:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_curriculum_vitae:
-    weight: 13
+    weight: 14
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
   field_degree:
-    weight: 7
+    weight: 14
     settings:
       match_operator: CONTAINS
       size: 60
@@ -230,13 +232,13 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_degree_pursued:
-    weight: 13
+    weight: 21
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_email:
-    weight: 6
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -244,7 +246,7 @@ content:
     type: email_default
     region: content
   field_entry_term:
-    weight: 8
+    weight: 15
     settings:
       match_operator: CONTAINS
       size: 60
@@ -270,7 +272,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_exit_term:
-    weight: 9
+    weight: 16
     settings:
       match_operator: CONTAINS
       size: 60
@@ -295,6 +297,16 @@ content:
           bundle: profile
     type: entity_reference_autocomplete
     region: content
+  field_fellowships_training_grant:
+    weight: 32
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_first_name:
     weight: 3
     settings:
@@ -304,7 +316,7 @@ content:
     type: string_textfield
     region: content
   field_grad_group:
-    weight: 6
+    weight: 13
     settings: {  }
     third_party_settings:
       conditional_fields:
@@ -326,7 +338,7 @@ content:
     type: options_buttons
     region: content
   field_help_with:
-    weight: 11
+    weight: 18
     settings:
       match_operator: CONTAINS
       size: 60
@@ -352,7 +364,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_hometown_s_:
-    weight: 24
+    weight: 31
     settings:
       size: 60
       placeholder: ''
@@ -360,7 +372,7 @@ content:
     type: string_textfield
     region: content
   field_journal_club:
-    weight: 19
+    weight: 26
     settings:
       match_operator: CONTAINS
       size: 60
@@ -370,7 +382,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_lab_rotations:
-    weight: 16
+    weight: 23
     settings:
       match_operator: CONTAINS
       size: 60
@@ -388,7 +400,7 @@ content:
     type: string_textfield
     region: content
   field_links:
-    weight: 11
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -412,7 +424,7 @@ content:
     type: link_default
     region: content
   field_links2:
-    weight: 12
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -420,13 +432,13 @@ content:
     type: link_default
     region: content
   field_locations_lived:
-    weight: 23
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_matriculation_year:
-    weight: 15
+    weight: 22
     settings:
       match_operator: CONTAINS
       size: 60
@@ -436,7 +448,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_neuroscience_interests:
-    weight: 10
+    weight: 11
     settings:
       match_operator: CONTAINS
       size: 60
@@ -446,7 +458,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_ngg_activities:
-    weight: 21
+    weight: 28
     settings:
       match_operator: CONTAINS
       size: 60
@@ -456,7 +468,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_non_ngg_activities:
-    weight: 22
+    weight: 29
     settings:
       rows: 5
       placeholder: ''
@@ -471,8 +483,14 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_preferred_pronouns:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_profile_image:
-    weight: 7
+    weight: 8
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -480,7 +498,7 @@ content:
     type: image_image
     region: content
   field_research_area:
-    weight: 10
+    weight: 17
     settings:
       match_operator: CONTAINS
       size: 60
@@ -506,7 +524,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_show_to_alumni:
-    weight: 5
+    weight: 12
     settings:
       display_label: true
     third_party_settings:
@@ -530,7 +548,7 @@ content:
     type: boolean_checkbox
     region: content
   field_show_to_students:
-    weight: 4
+    weight: 11
     settings:
       display_label: true
     third_party_settings:
@@ -554,7 +572,7 @@ content:
     type: boolean_checkbox
     region: content
   field_thesis_committee:
-    weight: 17
+    weight: 24
     settings:
       match_operator: CONTAINS
       size: 60
@@ -564,7 +582,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_thesis_lab:
-    weight: 9
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
@@ -574,7 +592,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_undergraduate_major:
-    weight: 11
+    weight: 19
     settings:
       match_operator: CONTAINS
       size: 60
@@ -585,7 +603,7 @@ content:
     region: content
   path:
     type: path
-    weight: 7
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -593,21 +611,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 5
+    weight: 4
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 7
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 6
+    weight: 5
     region: content
     third_party_settings: {  }
   title:
@@ -620,7 +638,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60

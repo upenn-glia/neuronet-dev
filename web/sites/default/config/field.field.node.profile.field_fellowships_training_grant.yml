@@ -1,0 +1,29 @@
+uuid: e2c8d5c2-561d-4422-b597-9864687e55cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fellowships_training_grant
+    - node.type.profile
+    - taxonomy.vocabulary.fellowships_training_grants_awar
+id: node.profile.field_fellowships_training_grant
+field_name: field_fellowships_training_grant
+entity_type: node
+bundle: profile
+label: 'Fellowships/Training Grants/Awards'
+description: 'Select your award from the drop down or add a new one.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      fellowships_training_grants_awar: fellowships_training_grants_awar
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference
