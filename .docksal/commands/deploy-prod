@@ -104,6 +104,10 @@ server_code=$(cat << EOF
     composer validate && composer install --prefer-dist --no-progress --no-suggest &&
 
     echo &&
+    echo Updating test database... &&
+    vendor/bin/drush updb -y &&
+
+    echo &&
     echo Taking the test site out of maintenance mode... &&
     vendor/bin/drush sset system.maintenance_mode FALSE &&
 
