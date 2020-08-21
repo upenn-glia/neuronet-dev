@@ -125,6 +125,10 @@ server_code=$(cat << EOF
     echo Updating prod database... &&
     vendor/bin/drush updb -y &&
 
+    echo &&
+    echo Importing config files... &&
+    vendor/bin/drush cim -y &&
+
     echo Prod deployed! Make sure https://www.neuronetupenn.org looks right. && exit 0
     
     || echo Error updating database. &&

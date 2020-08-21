@@ -90,6 +90,10 @@ server_code=$(cat << EOF
 	\$drush updb -y &&
 
 	echo &&
+	echo Importing config files... &&
+	\$drush cim -y &&
+
+	echo &&
 	echo Taking the test site out of maintenance mode... &&
 	\$drush sset system.maintenance_mode FALSE &&
 
