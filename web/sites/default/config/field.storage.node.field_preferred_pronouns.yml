@@ -1,0 +1,20 @@
+uuid: 5673a87a-6276-4a19-9c20-10993b5071a7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_preferred_pronouns
+field_name: field_preferred_pronouns
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

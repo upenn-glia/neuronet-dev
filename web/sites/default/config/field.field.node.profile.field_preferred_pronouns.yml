@@ -1,0 +1,29 @@
+uuid: d6bea8f2-5d5c-46c3-bd30-efa8a92b2a27
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_preferred_pronouns
+    - node.type.profile
+    - taxonomy.vocabulary.preferred_pronouns
+id: node.profile.field_preferred_pronouns
+field_name: field_preferred_pronouns
+entity_type: node
+bundle: profile
+label: 'Preferred Pronouns'
+description: 'Select your preferred pronouns from the drop-down list.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      preferred_pronouns: preferred_pronouns
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

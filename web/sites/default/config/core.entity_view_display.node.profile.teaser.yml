@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.profile.field_email
     - field.field.node.profile.field_entry_term
     - field.field.node.profile.field_exit_term
+    - field.field.node.profile.field_fellowships_training_grant
     - field.field.node.profile.field_first_name
     - field.field.node.profile.field_grad_group
     - field.field.node.profile.field_help_with
@@ -31,8 +32,11 @@ dependencies:
     - field.field.node.profile.field_ngg_activities
     - field.field.node.profile.field_non_ngg_activities
     - field.field.node.profile.field_preferred_prefix
+    - field.field.node.profile.field_preferred_pronouns
     - field.field.node.profile.field_profile_image
     - field.field.node.profile.field_research_area
+    - field.field.node.profile.field_show_to_alumni
+    - field.field.node.profile.field_show_to_students
     - field.field.node.profile.field_thesis_committee
     - field.field.node.profile.field_thesis_lab
     - field.field.node.profile.field_undergraduate_major
@@ -66,6 +70,7 @@ hidden:
   field_email: true
   field_entry_term: true
   field_exit_term: true
+  field_fellowships_training_grant: true
   field_first_name: true
   field_grad_group: true
   field_help_with: true
@@ -81,8 +86,11 @@ hidden:
   field_ngg_activities: true
   field_non_ngg_activities: true
   field_preferred_prefix: true
+  field_preferred_pronouns: true
   field_profile_image: true
   field_research_area: true
+  field_show_to_alumni: true
+  field_show_to_students: true
   field_thesis_committee: true
   field_thesis_lab: true
   field_undergraduate_major: true
