@@ -53,7 +53,7 @@ $drush @self.test sql-query --file="$prod_dump" || exit $?
 # now run commands on the server
 echo 'SSHing to test site...'
 server_code=$(cat << EOF
-	drush=\$(pwd)/../vendor/bin/drush
+	drush=\$(pwd)/../vendor/bin/drush &&
 
 	echo &&
 	echo Checking whether config needs to be exported... &&
