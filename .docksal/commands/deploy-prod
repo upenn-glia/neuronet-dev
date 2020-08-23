@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Deploys mattschaff/master branch to test site, builds, and syncs to prod.
+# Deploys mattschaff/master branch to 'staging', builds, and swithces
+# the 'prod' and 'staging' symlinks so the newly-built site is live.
 # To use a different branch, provide it as an argument.
 # Can also specify both remote and branch, where
 # 'origin' = mattschaff and 'dev' = upenn-glia.
@@ -13,7 +14,7 @@ fi
 
 if [ -z "$PROJECT_ROOT" ]
 then
-    echo "Error: PROJECT_ROOT not defined. Run as 'fin restore-test-db'." >&2
+    echo "Error: PROJECT_ROOT not defined. Run as 'fin deploy-prod'." >&2
     echo "Or, if you're not using Docksal, just define PROJECT_ROOT=<dir containing composer.json>" >&2
     exit 1
 fi
@@ -55,12 +56,11 @@ bring_prod_back_online()
 
 # Remember, this should be done before dumping/checking the states of databases
 # to avoid race conditions.
-echo "Putting both sites in maintenance mode..."
+echo "Putting prod site in maintenance mode..."
 $drush @self.prod sset system.maintenance_mode TRUE
-$drush @self.test sset system.maintenance_mode TRUE
 trap bring_prod_back_online EXIT
 
-# check whether prod or test site has unexported config
+# check whether prod site has unexported config
 config_check_code=$(cat << EOF
 	drush=\$(pwd)/../vendor/bin/drush &&
 
@@ -73,25 +73,19 @@ config_check_code=$(cat << EOF
 EOF
 )
 
-check_config()
-{
-	if ! $drush @self."$1" ssh "$config_check_code" 2>/dev/null
-	then
-		echo "Warning: $1 DB does not match current config files!"
-		echo "You should probably see if you need to commit a config file change before deploying, unless you know it can be discarded."
-
-		select action in "Stop" "Continue"; do
-			case $action in
-				Stop ) exit 1;;
-				Continue ) break;;
-			esac
-		done
-	fi
-}
-
 echo "Checking whether config needs to be exported..."
-check_config test
-check_config prod
+if ! $drush @self.prod ssh "$config_check_code" 2>/dev/null
+then
+    echo "Warning: prod DB does not match current config files!"
+    echo "You should probably see if you need to commit a config file change before deploying, unless you know it can be discarded."
+
+    select action in "Stop" "Continue"; do
+        case $action in
+            Stop ) exit 1;;
+            Continue ) break;;
+        esac
+    done
+fi
 
 now=$(date +%F_%T)
 prod_dump=/home/neuronet/backups/prod_$now.sql
@@ -102,17 +96,15 @@ then
     exit 1
 fi
 
-prod_root=$($drush sa @self.prod --fields=root | grep -oP 'root: \K.*$')
+# Deploy to staging site and build
+echo "Deploying $remote/$branch to the staging site."
 
-# Deploy to test site and build
-echo "Deploying $remote/$branch to the test site."
-
-echo 'SSHing to test site...'
+echo 'SSHing to staging site...'
 server_code=$(cat << EOF
     cd .. &&
 
     echo &&
-    echo Checking out branch $remote/$branch on the test site... &&
+    echo Checking out branch $remote/$branch on the staging site... &&
     git fetch $remote &&
     git checkout -f $remote/$branch &&
     git reset --hard &&
@@ -121,47 +113,36 @@ server_code=$(cat << EOF
     echo Running composer install... &&
     composer validate && composer install --prefer-dist --no-progress --no-suggest &&
 
-    echo &&
-    echo Updating test database... &&
-    vendor/bin/drush updb -y &&
+    cleanup() {
+        echo Database problem - restoring backup;
+        drush sql-drop -y &&
+        drush sql-query --file=$prod_dump;
+    } &&
 
-    echo &&
-    echo Importing config on test site... &&
-    vendor/bin/drush cim -y &&
+    trap cleanup EXIT &&
 
-    echo &&
-    echo Taking the test site out of maintenance mode... &&
-    vendor/bin/drush sset system.maintenance_mode FALSE &&
-
-    echo Copying files to the prod site... &&
-    rsync -a --delete $prod_root/../ /home/neuronet/deployments/prod_backup
-
-    || exit 1 &&
-
-    rsync -a --exclude-from=.rsyncexclude ./ $prod_root/.. &&
-    
-    cd $prod_root/.. &&
-    composer drupal:scaffold &&
-    
     echo &&
     echo Updating prod database... &&
-    vendor/bin/drush updb -y &&
+    drush updb -y &&
 
     echo &&
     echo Importing config on prod site... &&
-    vendor/bin/drush cim -y &&
+    drush cim -y &&
 
-    echo Prod deployed! Make sure https://www.neuronetupenn.org looks right. && exit 0
-    
-    || echo Error updating database. &&
-    cd $prod_root/.. &&
-    rsync -a --delete /home/neuronet/deployments/prod_backup/ . &&
-    vendor/bin/drush sql-drop -y &&
-    vendor/bin/drush sql-query --file="$prod_dump" &&
-    echo Prod files and database restored.
-    || echo Error restoring prod files and database - must fix manually;
-    exit 1
+    echo Cache-rebuilding... &&
+    drush cr &&
+
+    trap - EXIT &&
+
+    echo Backing up current prod site before switching...;
+    cd .. &&
+    rsync -a --delete prod/ prod_backup;
+
+    echo Switching test and staging symlinks;
+    ./switch-prod.sh;
+
+    echo Prod deployed! Make sure https://www.neuronetupenn.org looks right.
 EOF
 )
 
-$drush @self.test --tty ssh "sudo -u neuronet bash -ic '$server_code'"
+$drush @self.staging --tty ssh "sudo -u neuronet bash -ic '$server_code'"
