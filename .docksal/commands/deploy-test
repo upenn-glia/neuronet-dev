@@ -16,7 +16,7 @@ fi
 
 if [ -z "$PROJECT_ROOT" ]
 then
-    echo "Error: PROJECT_ROOT not defined. Run as 'fin restore-test-db'." >&2
+    echo "Error: PROJECT_ROOT not defined. Run as 'fin deploy-test'." >&2
     echo "Or, if you're not using Docksal, just define PROJECT_ROOT=<dir containing composer.json>" >&2
     exit 1
 fi
@@ -56,37 +56,29 @@ config_check_code=$(cat << EOF
 EOF
 )
 
-function check_config {
-	if ! $drush @self."$1" ssh "$config_check_code" 2>/dev/null
-	then
-		echo "Warning: $1 DB does not match current config files!"
-		echo "You should probably see if you need to commit a config file change before deploying, unless you know it can be discarded."
-
-		select action in "Stop" "Continue"; do
-			case $action in
-				Stop ) exit 1;;
-				Continue ) break;;
-			esac
-		done
-	fi
-}
-
 echo "Checking whether config needs to be exported..."
-check_config test
+if ! $drush @self.test ssh "$config_check_code" 2>/dev/null
+then
+	echo "Warning: test DB does not match current config files!"
+	echo "You should probably see if you need to commit a config file change before deploying, unless you know it can be discarded."
 
-# sync database from production
-echo 'Copying database from prod to test...'
-#$drush sql:sync @self.prod @self.test
-# for now dump and restore, since sql:sync won't work across drush versions
+	select action in "Stop" "Continue"; do
+		case $action in
+			Stop ) exit 1;;
+			Continue ) break;;
+		esac
+	done
+fi
+
 now=$(date +%F_%T)
-prod_dump=/home/neuronet/backups/prod_$now.sql
 test_dump=/home/neuronet/backups/test_$now.sql
+echo "Backing up test database to $test_dump..."
 
-# dump the test DB so it can be restored later
-$drush @self.test sql-dump --result-file="$test_dump" &&
-$drush @self.prod sql-dump --result-file="$prod_dump" &&
-$drush @self.test sql-drop -y &&
-$drush @self.test sql-query --file="$prod_dump" || exit $?
+if ! $drush @self.test sql-dump --result-file="$test_dump"
+then
+	echo "Test dump failed - fix issue before continuing."
+	exit 1
+fi
 
 # now run commands on the server
 echo 'SSHing to test site...'
@@ -102,23 +94,34 @@ server_code=$(cat << EOF
 	echo Running composer install... &&
 	composer validate && composer install --prefer-dist --no-progress --no-suggest &&
 
+	cleanup() {
+		echo Database problem - restoring backup;
+		drush sql-drop -y &&
+		drush sql-query --file=$test_dump;
+	} &&
+	trap cleanup EXIT &&
+
 	echo &&
 	echo Updating database... &&
 	cd - &&
-	\$drush updb -y &&
+	drush updb -y &&
 
 	echo &&
 	echo Importing config files... &&
-	\$drush cim -y &&
+	drush cim -y &&
+
+	echo &&
+	echo Cache-rebuilding... &&
+	drush cr &&
+
+	trap - EXIT &&
 
 	echo &&
 	echo Taking the test site out of maintenance mode... &&
-	\$drush sset system.maintenance_mode FALSE &&
+	drush sset system.maintenance_mode FALSE &&
 
 	echo &&
 	echo Test site deployed! Live at https://www.neuronetupenn.org/neuronet-test
-
-	|| 	echo Remote commands did not succeed - try manually to see what is going on >&2
 EOF
 )
 

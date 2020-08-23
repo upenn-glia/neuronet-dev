@@ -27,3 +27,13 @@ prod:
   user: ${env.NEURONET_SSH_USER}
   paths:
     drush-script: /home/neuronet/deployments/prod/vendor/bin/drush
+
+staging:
+  host: hosting.pmacs.upenn.edu
+  options:
+    php: /opt/remi/php73/oot/usr/bin/php
+    site: NeuroNet
+  root: /home/neuronet/deployments/staging/web
+  user: ${env.NEURONET_SSH_USER}
+  paths:
+    drush-script: /home/neuronet/deployments/staging/vendor/bin/drush
