@@ -46,16 +46,52 @@ echo "Checking that we're good to go..."
 
 drush=$PROJECT_ROOT/vendor/bin/drush
 
-# Put prod in maintenance mode and backup database
+# Make sure the real site is back online after exiting
 bring_prod_back_online()
 {
     echo "Taking the prod site out of maintenance mode..."
     $drush @self.prod sset system.maintenance_mode FALSE
 }
 
-echo "Putting the prod site in maintenance mode..."
+# Remember, this should be done before dumping/checking the states of databases
+# to avoid race conditions.
+echo "Putting both sites in maintenance mode..."
 $drush @self.prod sset system.maintenance_mode TRUE
+$drush @self.test sset system.maintenance_mode TRUE
 trap bring_prod_back_online EXIT
+
+# check whether prod or test site has unexported config
+config_check_code=$(cat << EOF
+	drush=\$(pwd)/../vendor/bin/drush &&
+
+	if [ \$(\$drush config:status --format=list 2>/dev/null | wc -w) -ne 0 ];
+	then
+		exit 1;
+	else
+		exit 0;
+	fi
+EOF
+)
+
+check_config()
+{
+	if ! $drush @self."$1" ssh "$config_check_code" 2>/dev/null
+	then
+		echo "Warning: $1 DB does not match current config files!"
+		echo "You should probably see if you need to commit a config file change before deploying, unless you know it can be discarded."
+
+		select action in "Stop" "Continue"; do
+			case $action in
+				Stop ) exit 1;;
+				Continue ) break;;
+			esac
+		done
+	fi
+}
+
+echo "Checking whether config needs to be exported..."
+check_config test
+check_config prod
 
 now=$(date +%F_%T)
 prod_dump=/home/neuronet/backups/prod_$now.sql
@@ -75,26 +111,8 @@ echo 'SSHing to test site...'
 server_code=$(cat << EOF
     cd .. &&
 
-	echo &&
-	echo Checking whether config needs to be exported... &&
-	if [ \$(vendor/bin/drush config:status --format=list 2>/dev/null | wc -w) -ne 0 ];
-	then
-		echo Warning: production DB does not match current config files!;
-		echo You should probably see if you need to commit a config file change before deploying, unless you know it can be discarded.;
-		
-		select action in "Stop" "Continue"; do
-			case \$action in
-				Stop ) exit 1;;
-				Continue ) break;;
-			esac;
-		done;
-	fi &&
-
-    echo Putting the test site in maintenance mode... &&
-    vendor/bin/drush sset system.maintenance_mode TRUE &&
-
     echo &&
-    echo Checking out branch $remote/$branch... &&
+    echo Checking out branch $remote/$branch on the test site... &&
     git fetch $remote &&
     git checkout -f $remote/$branch &&
     git reset --hard &&
@@ -106,6 +124,10 @@ server_code=$(cat << EOF
     echo &&
     echo Updating test database... &&
     vendor/bin/drush updb -y &&
+
+    echo &&
+    echo Importing config on test site... &&
+    vendor/bin/drush cim -y &&
 
     echo &&
     echo Taking the test site out of maintenance mode... &&
@@ -126,7 +148,7 @@ server_code=$(cat << EOF
     vendor/bin/drush updb -y &&
 
     echo &&
-    echo Importing config files... &&
+    echo Importing config on prod site... &&
     vendor/bin/drush cim -y &&
 
     echo Prod deployed! Make sure https://www.neuronetupenn.org looks right. && exit 0

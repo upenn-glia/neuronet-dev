@@ -36,6 +36,44 @@ echo "Checking that we're good to go..."
 
 drush=$PROJECT_ROOT/vendor/bin/drush
 
+# Remember, this should be done before dumping/checking state of database
+# to avoid race conditions.
+echo "Putting test site in maintenance mode..."
+$drush @self.test sset system.maintenance_mode TRUE
+
+# check whether test site has unexported config
+# if so, since we're copying the prod database it won't be an issue immediately,
+# but could lead to a bad situation if restore-test-db is later used.
+config_check_code=$(cat << EOF
+	drush=\$(pwd)/../vendor/bin/drush &&
+
+	if [ \$(\$drush config:status --format=list 2>/dev/null | wc -w) -ne 0 ];
+	then
+		exit 1;
+	else
+		exit 0;
+	fi
+EOF
+)
+
+function check_config {
+	if ! $drush @self."$1" ssh "$config_check_code" 2>/dev/null
+	then
+		echo "Warning: $1 DB does not match current config files!"
+		echo "You should probably see if you need to commit a config file change before deploying, unless you know it can be discarded."
+
+		select action in "Stop" "Continue"; do
+			case $action in
+				Stop ) exit 1;;
+				Continue ) break;;
+			esac
+		done
+	fi
+}
+
+echo "Checking whether config needs to be exported..."
+check_config test
+
 # sync database from production
 echo 'Copying database from prod to test...'
 #$drush sql:sync @self.prod @self.test
@@ -53,26 +91,6 @@ $drush @self.test sql-query --file="$prod_dump" || exit $?
 # now run commands on the server
 echo 'SSHing to test site...'
 server_code=$(cat << EOF
-	drush=\$(pwd)/../vendor/bin/drush &&
-
-	echo &&
-	echo Checking whether config needs to be exported... &&
-	if [ \$(\$drush config:status --format=list 2>/dev/null | wc -w) -ne 0 ];
-	then
-		echo Warning: production DB does not match current config files!;
-		echo You should probably see if you need to commit a config file change before deploying, unless you know it can be discarded.;
-		
-		select action in "Stop" "Continue"; do
-			case \$action in
-				Stop ) exit 1;;
-				Continue ) break;;
-			esac;
-		done;
-	fi &&
-
-	echo Putting the test site in maintenance mode... &&
-	\$drush sset system.maintenance_mode TRUE &&
-
 	echo &&
 	echo Checking out branch $branch... &&
 	cd .. &&

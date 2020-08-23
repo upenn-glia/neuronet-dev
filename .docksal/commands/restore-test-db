@@ -45,6 +45,8 @@ server_code=$(cat << 'EOF'
     echo Restored "$latest_dump" &&
     $drush updb -y &&
     echo Updated databse &&
+    $drush cim -y &&
+    echo Imported config files &&
     $drush sset system.maintenance_mode FALSE &&
     echo Turned off maintenance mode &&
     echo &&
