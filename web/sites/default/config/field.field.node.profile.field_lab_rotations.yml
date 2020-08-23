@@ -10,8 +10,8 @@ id: node.profile.field_lab_rotations
 field_name: field_lab_rotations
 entity_type: node
 bundle: profile
-label: 'Lab Rotation Advisers'
-description: 'To add non-NGG faculty, please email neuronet.glia@gmail.com with the full faculty name and we will add your request within 48 hours and confirm with you.'
+label: 'Lab Rotation Advisors'
+description: 'Select your rotation advisors from the autofill feature. If your advisor is not on the list, contact neuronet.glia@gmail.com. You can add more than one advisor by selecting the "Add another item'' button below. To delete an advisor after saving, just erase the name and save.'
 required: false
 translatable: false
 default_value: {  }

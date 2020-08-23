@@ -12,7 +12,7 @@ field_name: field_profile_image
 entity_type: node
 bundle: profile
 label: Image
-description: ''
+description: 'Select a Profile Picture visible to current students and alumni. File extensions: png, gif, jpg, jpeg'
 required: false
 translatable: false
 default_value: {  }

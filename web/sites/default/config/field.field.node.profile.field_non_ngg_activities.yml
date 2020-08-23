@@ -10,7 +10,7 @@ field_name: field_non_ngg_activities
 entity_type: node
 bundle: profile
 label: 'Non-Academic Activities'
-description: ''
+description: 'Write-in your activities outside lab. Sports, hobbies, art, clubs, etc.!'
 required: false
 translatable: false
 default_value: {  }

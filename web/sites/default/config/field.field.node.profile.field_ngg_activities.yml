@@ -11,7 +11,7 @@ field_name: field_ngg_activities
 entity_type: node
 bundle: profile
 label: 'Academic Activities'
-description: ''
+description: 'Select an activity from the autofill feature. If your activity is not on the list you may write it in. You can add more than one activity by selecting the "Add another item'' button below. To delete an activity after saving, just erase the activity and save.'
 required: false
 translatable: false
 default_value: {  }

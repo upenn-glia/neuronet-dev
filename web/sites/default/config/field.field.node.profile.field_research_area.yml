@@ -11,7 +11,7 @@ field_name: field_research_area
 entity_type: node
 bundle: profile
 label: 'Research Area/Industry'
-description: ''
+description: 'Select your research area/industry from the autofill feature. If your specialty is not on the list, contact neuronet.glia@gmail.com. You can add more than one specialty by selecting the "Add another item'' button below. To delete a specialty after saving, just erase the specialty and save.'
 required: false
 translatable: false
 default_value: {  }

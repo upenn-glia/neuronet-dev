@@ -12,7 +12,7 @@ field_name: body
 entity_type: node
 bundle: profile
 label: Biography
-description: ''
+description: 'Add any content you want to share with other NGG students and alumni. This can be similar to your description on your lab webpage or LinkedIn. You can copy/paste or create text with formatting, images, and links. Please note there are fields for links and social media below.'
 required: false
 translatable: true
 default_value: {  }

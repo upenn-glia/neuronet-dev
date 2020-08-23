@@ -11,7 +11,7 @@ field_name: field_undergraduate_major
 entity_type: node
 bundle: profile
 label: 'Undergraduate Major'
-description: ''
+description: 'Select a major from the autofill feature. If your major is not on the list you may write it in. You can add more than one major by selecting the "Add another item'' button below. To delete a major after saving, just erase the major and save.'
 required: false
 translatable: false
 default_value: {  }

@@ -12,7 +12,7 @@ field_name: field_curriculum_vitae
 entity_type: node
 bundle: profile
 label: 'Curriculum Vitae'
-description: ''
+description: 'You can add your CV for alumni to look through. This is recommended if you are thinking of or currently conducting a job search. File extensions: txt, pdf, docx, doc'
 required: false
 translatable: false
 default_value: {  }

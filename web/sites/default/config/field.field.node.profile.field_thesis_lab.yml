@@ -10,8 +10,8 @@ id: node.profile.field_thesis_lab
 field_name: field_thesis_lab
 entity_type: node
 bundle: profile
-label: 'Thesis Adviser(s)'
-description: 'To add non-NGG faculty, please email neuronet.glia@gmail.com with the full faculty name and we will add your request within 48 hours and confirm with you.'
+label: 'Thesis Advisor(s)'
+description: 'Please select your thesis advisor(s) from the drop-down menu below. If you do not see your advisor email neuronet.glia@gmail.com and someone will help you.'
 required: false
 translatable: false
 default_value: {  }

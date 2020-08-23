@@ -11,7 +11,7 @@ field_name: field_journal_club
 entity_type: node
 bundle: profile
 label: 'Journal Clubs'
-description: ''
+description: 'Select a journal club from the autofill feature. If your journal club is not on the list you may write it in. You can add more than one journal club by selecting the "Add another item'' button below. To delete a journal club after saving, just erase the club and save.'
 required: false
 translatable: false
 default_value: {  }

@@ -11,7 +11,7 @@ field_name: field_neuroscience_interests
 entity_type: node
 bundle: profile
 label: 'Neuroscience Interests'
-description: ''
+description: 'Select a few keywords that describe your neuroscience interests to help others find you on NeuroNet.'
 required: false
 translatable: false
 default_value: {  }

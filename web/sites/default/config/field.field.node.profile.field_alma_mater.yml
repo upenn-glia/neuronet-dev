@@ -11,7 +11,7 @@ field_name: field_alma_mater
 entity_type: node
 bundle: profile
 label: 'Alma Mater'
-description: ''
+description: 'Select your undergraduate institution from the autofill feature. If your alma mater is not on the list, please contact neuronet.glia@gmail.com.'
 required: false
 translatable: false
 default_value: {  }
