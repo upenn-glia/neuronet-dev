@@ -50,29 +50,93 @@ function neuronet_misc_help($route_name, RouteMatchInterface $route_match) {
  */
 function neuronet_misc_views_pre_render(\Drupal\views\ViewExecutable $view) {
   // In alumni view, remove duplicate job positions.
-  // if($view->id() == 'alumni'){
-  //   $indexes_to_remove = array();
-  //   foreach($view->result as $value){
-  //     // it is VERY annoying to get entity reference values in Drupal 8
-  //     $nid = $value->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
-  //     $start_date = $value->_entity->get('field_start_date')->value;
-  //     $index = 0;
-  //     foreach($view->result as $value2){
-  //       $sub_nid = $value2->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
-  //       if ($nid == $sub_nid) {
-  //         $start_date = $value->_entity->get('field_start_date')->value;
-  //         $start_date2 = $value2->_entity->get('field_start_date')->value;
-  //         if (date($start_date2) < date($start_date)) {
-  //           $indexes_to_remove[] = $index;
-  //         }
-  //       }
-  //       $index++;
-  //     }
-  //   }
-  //   foreach ($indexes_to_remove as $index){
-  //     unset($view->result[$index]);
-  //   }
-  // }
+  if($view->id() == 'alumni'){
+    $indexes_to_remove = array();
+    foreach($view->result as $value){
+      // it is VERY annoying to get entity reference values in Drupal 8
+      $nid = $value->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
+      $start_date = $value->_entity->get('field_start_date')->value;
+      $index = 0;
+      foreach($view->result as $value2){
+        $sub_nid = $value2->_entity->get('field_profile')->first()->get('entity')->getTarget()->getValue()->get('nid')->value;
+        if ($nid == $sub_nid) {
+          $start_date = $value->_entity->get('field_start_date')->value;
+          $start_date2 = $value2->_entity->get('field_start_date')->value;
+          if (date($start_date2) < date($start_date)) {
+            $indexes_to_remove[] = $index;
+          }
+        }
+        $index++;
+      }
+    }
+    foreach ($indexes_to_remove as $index){
+      unset($view->result[$index]);
+    }
+  }
+
+  if ($view->id() == 'alumni2') {
+    $entries_to_keep = array(); // Maps profile nid to latest job nid (the one we want to keep)
+    
+    foreach ($view->result as $index => $value) {
+      $profile_id = $value->_entity->id();
+
+      // gather data on the job corresponding to this result (if any).
+      // compare with the existing best job for this profile, if any, and update it
+      // if this one is more recent.
+      
+      // defaults if these are not defined
+      $start_date = INF; // so that it supersedes jobs with set start dates
+      $end_date = INF; // ditto
+      $created_date = INF;
+
+      if (array_key_exists('reverse__node__field_profile', $value->_relationship_entities)) {
+        $job_array = $value->_relationship_entities['reverse__node__field_profile']->toArray();
+
+        if (count($job_array['field_start_date']) > 0) {
+          $start_date = $job_array['field_start_date'][0]['value'];
+        }
+
+        if (count($job_array['field_end_date']) > 0) {
+          $end_date = $job_array['field_end_date'][0]['value'];
+        }
+
+        $created_date = $job_array['created'][0]['value'];
+      }
+
+      // check whether we should discard this entry
+      if (array_key_exists($profile_id, $entries_to_keep)) {
+        $existing = $entries_to_keep[$profile_id];
+        if ($end_date < $existing['end_date']) {
+          continue;
+        }
+        $equal = $end_date === $existing['end_date'];
+        
+        if ($equal && $start_date < $existing['start_date']) {
+          continue;
+        }
+        $equal = $equal && $start_date === $existing['start_date'];
+
+        if ($equal && $created_date < $existing['created_date']) {
+          continue;
+        }
+      }
+
+      // ok, save the data
+      $entries_to_keep[$profile_id] = [
+        'ind' => $index,
+        'start_date' => $start_date,
+        'end_date' => $end_date,
+        'created_date' => $created_date
+      ];
+    }
+
+    $inds_to_keep = array_column($entries_to_keep, 'ind');
+    
+
+    $view->result = array_filter($view->result, function()
+    )
+  }
+
   // Respond to Send Custom Email action processing in NeuroNet Manager's people
   // view.
   // - Upon completion of the batch process that sends emails from the manager's

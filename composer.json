@@ -57,6 +57,7 @@
         "drupal/views_bootstrap": "~3.0",
         "drupal/views_bulk_operations": "~3.0",
         "drupal/views_ef_fieldset": "~1.0",
+        "drupal/views_sort_null_field": "~1.0",
         "drush/drush": "~10.0"
     },
     "conflict": {
