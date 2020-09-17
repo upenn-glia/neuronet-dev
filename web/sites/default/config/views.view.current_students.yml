@@ -11,7 +11,10 @@ dependencies:
     - image.style.medium
     - node.type.profile
     - taxonomy.vocabulary.academic_term
+    - taxonomy.vocabulary.classes_taken
+    - taxonomy.vocabulary.fellowships_training_grants_awar
     - taxonomy.vocabulary.institution
+    - taxonomy.vocabulary.journal_clubs
     - taxonomy.vocabulary.locations_lived
     - taxonomy.vocabulary.matriculation_year
     - taxonomy.vocabulary.neuroscience_interests
@@ -796,7 +799,7 @@ display:
   page_1:
     display_plugin: page
     id: page_1
-    display_title: Page
+    display_title: StudentView
     position: 1
     display_options:
       display_extenders:
@@ -820,7 +823,7 @@ display:
                   title: ''
                   description: ''
                   open: '1'
-                  weight: '-23'
+                  weight: '-27'
                   id: container-1
                   pid: root
                   depth: '1'
@@ -837,67 +840,79 @@ display:
                   pid: container-1
                   depth: '2'
                   type: filter
-                submit:
-                  weight: '-20'
-                  id: submit
-                  pid: container-1
-                  depth: '2'
-                  type: buttons
                 container-0:
                   container_type: details
                   title: 'Advanced Search'
                   description: ''
-                  weight: '-21'
+                  weight: '-26'
                   open: 0
                   id: container-0
                   pid: root
                   depth: '1'
                   type: container
                 field_locations_lived_target_id:
-                  weight: '-22'
+                  weight: '-27'
                   id: field_locations_lived_target_id
                   pid: container-0
                   depth: '2'
                   type: filter
                 field_matriculation_year_target_id:
-                  weight: '-21'
+                  weight: '-26'
                   id: field_matriculation_year_target_id
                   pid: container-0
                   depth: '2'
                   type: filter
-                field_ngg_activities_target_id:
-                  weight: '-20'
-                  id: field_ngg_activities_target_id
+                term_node_tid_depth_1:
+                  weight: '-25'
+                  id: term_node_tid_depth_1
                   pid: container-0
                   depth: '2'
                   type: filter
                 field_candidacy__target_id:
-                  weight: '-19'
+                  weight: '-24'
                   id: field_candidacy__target_id
                   pid: container-0
                   depth: '2'
                   type: filter
                 field_thesis_committee_target_id:
-                  weight: '-18'
+                  weight: '-23'
                   id: field_thesis_committee_target_id
                   pid: container-0
                   depth: '2'
                   type: filter
                 field_thesis_lab_target_id:
-                  weight: '-17'
+                  weight: '-22'
                   id: field_thesis_lab_target_id
                   pid: container-0
                   depth: '2'
                   type: filter
+                field_classes_taken_target_id:
+                  weight: '-21'
+                  id: field_classes_taken_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                field_journal_club_target_id:
+                  weight: '-20'
+                  id: field_journal_club_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
+                field_fellowships_training_grant_target_id:
+                  weight: '-19'
+                  id: field_fellowships_training_grant_target_id
+                  pid: container-0
+                  depth: '2'
+                  type: filter
                 field_alma_mater_target_id:
-                  weight: '-16'
+                  weight: '-18'
                   id: field_alma_mater_target_id
                   pid: container-0
                   depth: '2'
                   type: filter
-                reset:
-                  weight: '-21'
-                  id: reset
+                submit:
+                  weight: '-24'
+                  id: submit
                   pid: root
                   depth: '1'
                   type: buttons
@@ -905,7 +920,7 @@ display:
                   container_type: details
                   title: 'Container 2'
                   description: ''
-                  weight: '-20'
+                  weight: '-23'
                   open: 0
                   id: container-2
                   pid: root
@@ -915,7 +930,7 @@ display:
                   container_type: details
                   title: 'Container 3'
                   description: ''
-                  weight: '-19'
+                  weight: '-22'
                   open: 0
                   id: container-3
                   pid: root
@@ -925,7 +940,7 @@ display:
                   container_type: details
                   title: 'Container 4'
                   description: ''
-                  weight: '-18'
+                  weight: '-21'
                   open: 0
                   id: container-4
                   pid: root
@@ -935,7 +950,7 @@ display:
                   container_type: details
                   title: 'Container 5'
                   description: ''
-                  weight: '-17'
+                  weight: '-20'
                   open: 0
                   id: container-5
                   pid: root
@@ -945,7 +960,7 @@ display:
                   container_type: details
                   title: 'Container 6'
                   description: ''
-                  weight: '-16'
+                  weight: '-19'
                   open: 0
                   id: container-6
                   pid: root
@@ -955,7 +970,7 @@ display:
                   container_type: details
                   title: 'Container 7'
                   description: ''
-                  weight: '-15'
+                  weight: '-18'
                   open: 0
                   id: container-7
                   pid: root
@@ -965,19 +980,9 @@ display:
                   container_type: details
                   title: 'Container 8'
                   description: ''
-                  weight: '-14'
+                  weight: '-17'
                   open: 0
                   id: container-8
-                  pid: root
-                  depth: '1'
-                  type: container
-                container-9:
-                  container_type: details
-                  title: 'Container 9'
-                  description: ''
-                  weight: '-13'
-                  open: 0
-                  id: container-9
                   pid: root
                   depth: '1'
                   type: container
@@ -985,9 +990,39 @@ display:
                   container_type: details
                   title: 'Container 10'
                   description: ''
-                  weight: '-10'
+                  weight: '-16'
                   open: 0
                   id: container-10
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-9:
+                  container_type: details
+                  title: 'Container 9'
+                  description: ''
+                  weight: '-15'
+                  open: 0
+                  id: container-9
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-12:
+                  container_type: details
+                  title: 'Container 12'
+                  description: ''
+                  weight: '-14'
+                  open: 0
+                  id: container-12
+                  pid: root
+                  depth: '1'
+                  type: container
+                container-11:
+                  container_type: details
+                  title: 'Container 11'
+                  description: ''
+                  weight: '-13'
+                  open: 0
+                  id: container-11
                   pid: root
                   depth: '1'
                   type: container
@@ -1708,55 +1743,6 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_ngg_activities_target_id:
-          id: field_ngg_activities_target_id
-          table: node__field_ngg_activities
-          field: field_ngg_activities_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_ngg_activities_target_id_op
-            label: 'Academic Activities'
-            description: ''
-            use_operator: false
-            operator: field_ngg_activities_target_id_op
-            identifier: field_ngg_activities_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              alumni: '0'
-              deputy_admin: '0'
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: ngg_related_extracurricular_acti
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
         field_matriculation_year_target_id:
           id: field_matriculation_year_target_id
           table: node__field_matriculation_year
@@ -1901,6 +1887,212 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
+        term_node_tid_depth_1:
+          id: term_node_tid_depth_1
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: term_node_tid_depth_1_op
+            label: 'Academic Activities'
+            description: ''
+            use_operator: false
+            operator: term_node_tid_depth_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: term_node_tid_depth_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              alumni: '0'
+              deputy_admin: '0'
+              current_student: '0'
+              glossary_editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: ngg_related_extracurricular_acti
+          hierarchy: true
+          error_message: true
+          depth: 2
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
+        field_fellowships_training_grant_target_id:
+          id: field_fellowships_training_grant_target_id
+          table: node__field_fellowships_training_grant
+          field: field_fellowships_training_grant_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_fellowships_training_grant_target_id_op
+            label: 'Fellowships/Training Grants/Awards'
+            description: ''
+            use_operator: false
+            operator: field_fellowships_training_grant_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_fellowships_training_grant_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              alumni: '0'
+              deputy_admin: '0'
+              current_student: '0'
+              glossary_editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: fellowships_training_grants_awar
+          hierarchy: true
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_journal_club_target_id:
+          id: field_journal_club_target_id
+          table: node__field_journal_club
+          field: field_journal_club_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_journal_club_target_id_op
+            label: 'Journal Clubs'
+            description: ''
+            use_operator: false
+            operator: field_journal_club_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_journal_club_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              alumni: '0'
+              deputy_admin: '0'
+              current_student: '0'
+              glossary_editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: journal_clubs
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_classes_taken_target_id:
+          id: field_classes_taken_target_id
+          table: node__field_classes_taken
+          field: field_classes_taken_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_classes_taken_target_id_op
+            label: 'Classes Taken'
+            description: ''
+            use_operator: false
+            operator: field_classes_taken_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_classes_taken_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              alumni: '0'
+              deputy_admin: '0'
+              current_student: '0'
+              glossary_editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: classes_taken
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       filter_groups:
         operator: AND
         groups:
@@ -1918,6 +2110,7 @@ display:
         description: ''
         weight: 0
       title: 'Current Students'
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:

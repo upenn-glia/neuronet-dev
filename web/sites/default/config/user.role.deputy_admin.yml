@@ -31,6 +31,7 @@ permissions:
   - 'administer user display'
   - 'administer user fields'
   - 'administer user form display'
+  - 'administer views'
   - 'create article content'
   - 'create email content'
   - 'create job content'
