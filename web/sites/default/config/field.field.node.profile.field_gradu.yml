@@ -1,0 +1,23 @@
+uuid: 141eda91-b0a3-468b-99a7-0a5b4c848982
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gradu
+    - node.type.profile
+id: node.profile.field_gradu
+field_name: field_gradu
+entity_type: node
+bundle: profile
+label: 'Graduation Year'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1970
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

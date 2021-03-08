@@ -101,6 +101,8 @@ display:
           col_sm: col-sm-6
           col_md: col-md-4
           col_lg: col-lg-3
+          col_class_default: 1
+          row_class_default: 1
       row:
         type: fields
         options:

@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.profile.field_fellowships_training_grant
     - field.field.node.profile.field_first_name
     - field.field.node.profile.field_grad_group
+    - field.field.node.profile.field_gradu
     - field.field.node.profile.field_help_with
     - field.field.node.profile.field_hometown_s_
     - field.field.node.profile.field_journal_club
@@ -128,6 +129,7 @@ third_party_settings:
         - field_entry_term
         - field_exit_term
         - field_research_area
+        - field_featured_job
         - field_help_with
       parent_name: group_profile
       weight: 12
@@ -337,8 +339,15 @@ content:
           bundle: profile
     type: options_buttons
     region: content
+  field_gradu:
+    weight: 33
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
   field_help_with:
-    weight: 18
+    weight: 19
     settings:
       match_operator: CONTAINS
       size: 60

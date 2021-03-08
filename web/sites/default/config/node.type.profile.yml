@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: Profile
 type: profile
-description: "NGG alumnus profile\r\n\r\n(NOTE: To associate your profile with non-NGG faculty, please email neuronet.glia@gmail.com with the full faculty name, and we will add your request within 48 hours and confirm with you.)"
+description: 'Information about an NGG student or alum'
 help: ''
 new_revision: true
 preview_mode: 0

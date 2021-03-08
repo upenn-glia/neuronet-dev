@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.profile.field_fellowships_training_grant
     - field.field.node.profile.field_first_name
     - field.field.node.profile.field_grad_group
+    - field.field.node.profile.field_gradu
     - field.field.node.profile.field_help_with
     - field.field.node.profile.field_hometown_s_
     - field.field.node.profile.field_journal_club
@@ -163,6 +164,7 @@ hidden:
   field_fellowships_training_grant: true
   field_first_name: true
   field_grad_group: true
+  field_gradu: true
   field_help_with: true
   field_hometown_s_: true
   field_journal_club: true

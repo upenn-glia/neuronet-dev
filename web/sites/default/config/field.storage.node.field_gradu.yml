@@ -1,0 +1,20 @@
+uuid: 8ac8a7c1-726f-48fb-b2e0-50809b2b3291
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_gradu
+field_name: field_gradu
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
